@@ -4,10 +4,10 @@
 
 @section('content')
 
-<h1 style="text-align:center ;">Lista de Usuarios</h1>
+<h1 style="text-align:center ;">Lista de usuarios</h1>
 
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    
+
     <thead>
         <tr>
             <th>Nombre</th>
@@ -24,12 +24,12 @@
             <td scope="row">{{ $user->name }}</td>
             <td>{{ $user->email}} </td>
             <td> </td>
-                                                
+
             <td><a   class="btn btn-info" href="">Ver</a></td>
             <td><a   class="btn btn-success" href="">Editar</a></td>
             <td><a   class="btn btn-danger" href="">Eliminar</a></td>
-                                                
-                                                
+
+
          </tr>
          @empty
             <tr>
@@ -37,8 +37,8 @@
              </tr>
 
         @endforelse
-     </tbody>                               
-                                        
+     </tbody>
+
 </table>
 
 
