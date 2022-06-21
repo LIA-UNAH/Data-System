@@ -22,13 +22,21 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 /*
 Rutas para usuarios
 */
-Route::get ('/Usuarios', [App\Http\Controllers\UserController::class, 'index'])
+
+//HU5 - Visualizar usurios
+Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
     ->name('usuarios.index');
+
+//HU6 - Eliminar usuario
+Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
+    ->name('usuarios.destroy');
+
+//HU8 - Buscar y recargar usuario
+Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
+    ->name('usuarios.searchIndex');
+
+
 
