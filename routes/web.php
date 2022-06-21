@@ -22,9 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/*
-Rutas para usuarios
-*/
+/* Rutas para usuarios */
 
 //HU5 - Visualizar usurios
 Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
