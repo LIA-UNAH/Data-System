@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('cliente', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id_cliente');
+            $table->foreign('user_id_cliente')->references('id')->on('users');
+            $table->string('id_cliente',15);
+            $table->string('direccion_cliente',15);
             $table->timestamps();
         });
     }
