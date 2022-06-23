@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,8 +37,11 @@ Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, '
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
-    //HU20 - index, create, store, show, edit, update, destroy
-    Route::resource('/productos', ProductoController::class);
+//HU20 - index, create, store, show, edit, update, destroy
+Route::resource('/productos', ProductoController::class);
+
+//HU23 - index, create, store, show, edit, updare, destroy
+Route::resource('/pedidos', PedidoController::class);
 
 //Visualizar clientes
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])
@@ -59,5 +63,4 @@ Route::get('/proveedor', [App\Http\Controllers\ProveedorController::class, 'inde
 //Visualizar proveedor
 Route::post('/proveedor/crear', [App\Http\Controllers\ProveedorController::class, 'store'])
 ->name('proveedor.store');
-
 
