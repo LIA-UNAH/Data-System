@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\ProductoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,5 +36,6 @@ Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, '
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
-
+    //HU20 - index, create, store, show, edit, update, destroy
+    Route::resource('/productos', ProductoController::class);
 
