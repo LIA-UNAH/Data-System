@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,4 +39,7 @@ Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 's
 
     //HU20 - index, create, store, show, edit, update, destroy
     Route::resource('/productos', ProductoController::class);
+
+//HU23 - index, create, store, show, edit, updare, destroy
+Route::resource('/pedidos', PedidoController::class);
 
