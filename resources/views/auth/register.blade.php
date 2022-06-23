@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
 
@@ -11,14 +10,15 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">¡Crear una cuenta!</h1>
                         </div>
                         <form method="POST" class="user" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="name"
-                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Name') }}">
+                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Nombre') }}"
+                                           onkeypress="return funcionLetras(event);" style="text-transform: capitalize;">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -28,8 +28,9 @@
                             </div>
                             <div class="form-group">
                                 <input id="email" name="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
-                                    placeholder={{ __('Email Address') }}  value="{{ old('email') }}" required autocomplete="email">
-                                        @error('email')
+                                       placeholder="{{ __('Correo electrónico') }}" value="{{ old('email') }}" required autocomplete="email"
+                                pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+                                @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -38,8 +39,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input id="password" type="password" name="password" class="form-control form-control-user @error('password') is-invalid @enderror"
-                                         placeholder="{{ __('Password') }}" required autocomplete="new-password">
-
+                                         placeholder="{{ __('Contraseña') }}" required autocomplete="new-password">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -48,28 +48,26 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <input id="password-confirm" name="password_confirmation" type="password" class="form-control form-control-user"
-                                         placeholder="{{ __('Confirm Password') }}"  required autocomplete="new-password">
+                                         placeholder="{{ __('Confirmar contraseña') }}"  required autocomplete="new-password">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                {{ __('Register') }}
+                                {{ __('Registro') }}
                             </button>
-                            <hr>
-                            <a href="index.html" class="btn btn-google btn-user btn-block">
-                                <i class="fab fa-google fa-fw"></i> Register with Google
-                            </a>
-                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+
+                            <a href="/" class="btn btn-google btn-user btn-block">
+                                {{ __('Regresar') }}
                             </a>
                         </form>
                         <hr>
                         <div class="text-center">
                             <a class="small" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
+                                {{ __('¿Olvidó su contraseña? ') }}
                             </a>
                         </div>
+                        <hr>
                         <div class="text-center">
-                            <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
+                            <a class="small" href="{{ route('login') }}">¿Ya tienes una cuenta? ¡Inicia sesión!</a>
                         </div>
                     </div>
                 </div>
@@ -78,6 +76,19 @@
     </div>
 
 </div>
+
+    <script>
+        function funcionLetras(evt){
+            var code = (evt.which) ? evt.which : evt.keyCode;
+            if(code==8 || code==32) {
+                return true;
+            } else if(code>=65) {
+                return true;
+            } else{
+                return false;
+            }
+        }
+    </script>
 @endsection
 
 
