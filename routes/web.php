@@ -39,3 +39,25 @@ Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 's
     //HU20 - index, create, store, show, edit, update, destroy
     Route::resource('/productos', ProductoController::class);
 
+//Visualizar clientes
+Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])
+    ->name('clientes.index');
+//Buscar y recargar clientes
+Route::get('/clientes/busqueda', [App\Http\Controllers\ClienteController::class, 'search'])
+    ->name('clientes.searchIndex');
+//editar clientes
+Route::post('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update'])
+->name('clientes.update');
+//Eliminar cliente
+Route::delete('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'destroy'])
+->name('clientes.destroy');
+
+
+//Visualizar proveedor
+Route::get('/proveedor', [App\Http\Controllers\ProveedorController::class, 'index'])
+    ->name('proveedor.index');
+//Visualizar proveedor
+Route::post('/proveedor/crear', [App\Http\Controllers\ProveedorController::class, 'store'])
+->name('proveedor.store');
+
+

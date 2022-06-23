@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
@@ -13,7 +14,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        //
+        $proveedor = Proveedor::all();
+        return view('proveedor.proveedores_index')->with('proveedor', $proveedor);
     }
 
     /**
@@ -34,7 +36,17 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proveedor = new Proveedor();
+        $proveedor->nombre_proveedor = $request->input('nombre_proveedor');
+        $proveedor->rtn_proveedor = $request->input('rtn_proveedor');
+        $proveedor->telefono_proveedor = $request->input('telefono_proveedor');
+        $proveedor->direccion_proveedor = $request->input('direccion_proveedor');
+        $proveedor->contacto_proveedor = $request->input('contacto_proveedor');
+        $proveedor->telefono_contacto_proveedor = $request->input('telefono_contacto_proveedor');
+        $proveedor->save();
+
+        session()->put('suce', 'Se Creo con exito.');
+        return redirect()->back()->withInput();
     }
 
     /**

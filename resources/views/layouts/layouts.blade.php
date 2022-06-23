@@ -109,7 +109,7 @@
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Lista de proveedores</a>
+                    <a class="collapse-item" href="{{ route('proveedor.index') }}">Lista de proveedores</a>
                 </div>
             </div>
         </li>
@@ -168,7 +168,7 @@
             </a>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Lista de clientes</a>
+                    <a class="collapse-item" href="{{ route('clientes.index') }}">Lista de clientes</a>
                 </div>
             </div>
         </li>
