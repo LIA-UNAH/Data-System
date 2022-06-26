@@ -37,10 +37,10 @@ Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, '
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
-//HU20 - index, create, store, show, edit, update, destroy
+//HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy 
 Route::resource('/productos', ProductoController::class);
 
-//HU23 - index, create, store, show, edit, updare, destroy
+//HU23 - index, create, store, show, edit, updare, destroy 
 Route::resource('/pedidos', PedidoController::class);
 
 //Visualizar clientes
