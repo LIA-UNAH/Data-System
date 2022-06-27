@@ -13,18 +13,18 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $clientes = Cliente::all();
-        return view('cliente.clientes_index')->with('clientes', $clientes);
+    public function index(){
+        $users = User::all();
+        return view('cliente/clientes_index')->with('users', $users);
     }
 
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $clientes = Cliente::where('name', $texto)->get();
+        $users = User::where('name', 'like', '%'.$texto.'%')->get();
 
-        return view('cliente.clientes_index')->with('clientes', $clientes);
+        return view('cliente/clientes_index')->with('users', $users);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -90,7 +90,7 @@ class ClienteController extends Controller
         $user->email = $request->input('email');
         $user->save();
 
-        session()->put('suce', 'Editado con exito.');
+        session()->put('exito', 'Editado con exito.');
         return redirect()->back()->withInput();
 
     }
@@ -101,10 +101,10 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy(User $user)
     {
-        $cliente->delete();
-        session()->put('suce', 'Eliminado con exito.');
+        $user->delete();
+        session()->put('exito', 'El cliente fue eliminado con exito.');
         return redirect()->back()->withInput();
     }
 }

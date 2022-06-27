@@ -37,26 +37,28 @@ Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, '
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
-//HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy 
+//HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
 Route::resource('/productos', ProductoController::class);
 
-//HU23 - index, create, store, show, edit, updare, destroy 
+//HU23 - index, create, store, show, edit, updare, destroy
 Route::resource('/pedidos', PedidoController::class);
 Route::post('/pedidos', [App\Http\Controllers\PedidoController::class, 'store'])->name('pedido.store');
 
 //Visualizar clientes
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])
     ->name('clientes.index');
+
 //Buscar y recargar clientes
 Route::get('/clientes/busqueda', [App\Http\Controllers\ClienteController::class, 'search'])
-    ->name('clientes.searchIndex');
+    ->name('usuarios.searchIndex');
+
 //editar clientes
 Route::post('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update'])
-->name('clientes.update');
-//Eliminar cliente
-Route::delete('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'destroy'])
-->name('clientes.destroy');
+    ->name('clientes.update');
 
+//Eliminar cliente
+Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class, 'destroy'])
+    ->name('usuarios.destroy');
 
 //Visualizar proveedor
 Route::get('/proveedor', [App\Http\Controllers\ProveedorController::class, 'index'])

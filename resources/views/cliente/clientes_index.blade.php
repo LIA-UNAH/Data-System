@@ -1,178 +1,203 @@
 @extends('Layouts.Layouts')
-
-
-
 @section('content')
 
+    {{-- Mensajes de las operaciones realizadas --}}
+    {{--Para los mensajes afirmativos y sin errores --}}
+    @if (session()->has('exito'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            {{ session('suce') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    {{--Para los mensajes de errores --}}
+    @if (session()->has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('erorr') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    {{-- Terminan los mensajes --}}
 
-<h1 style="text-align:center">LISTA DE CLIENTES</h1>
+    <div class="card shadow mb-4 ">
+        <div class="card-header py-3" style="background: #0d6efd">
+            <div style="float: left">
+                <h2 class="m-0 font-weight-bold" style="color: white">Clientes</h2>
+            </div>
 
-{{-- Mensajes de las operaciones realizadas --}}
-{{--Para los mensajes afirmativos y sin errores --}}
-@if (session()->has('suce'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-        {{ session('suce') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-{{--Para los mensajes de errores --}}
-@if (session()->has('erorr'))
-    <div class="alert alert-danger" role="alert">
-        {{ session('erorr') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-{{-- Terminan los mensajes --}}
-
-
-<div class="card" style="padding: 10px">
-    <form action="{{ route('clientes.searchIndex') }}" method="GET"
-          class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input type="text" name="busqueda" class="form-control bg-light border-0 small"
-                   placeholder="Buscar por nombre"
-                   aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit" value="Buscar">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
+            <div style="float: right">
+                <!-- HU8 - Buscar y recargar usuario -->
+                <form action="{{ route('usuarios.searchIndex') }}" method="GET" style=""
+                      class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" name="busqueda" class="form-control bg-light border-0 small"
+                               style="color: #1a202c"
+                               placeholder="Buscar"
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn " type="submit" value="Buscar" style="background: white">
+                                <i class="fas fa-search fa-sm" style="color: #0d6efd"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- HU8 - Buscar y recargar usuario -->
             </div>
         </div>
-    </form>
 
-    <br>
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top: 15px">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>E-mail</th>
-            <th>Identidad</th>
-            <th>Dirección</th>
-            <th>Ver Cliente</th>
-            <th>Editar Cliente</th>
-            <th>Eliminar CLiente</th>
-        </tr>
-        </thead>
-        <tbody>
-        @forelse($clientes as $cliente)
-            <tr>
-                <td scope="row">{{ $cliente->name }}</td>
-                <td>{{ $cliente->email}} </td>
-                <td>{{ $cliente->id_cliente}} </td>
-                <td>{{ $cliente->direccion_cliente}} </td>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table" id="dataTable" width="100%">
+                    <thead class="card-header py-3" style="background: #1a202c; color: white">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>E-mail</th>
+                        <th>Dirección</th>
+                        <th>Telefóno</th>
+                        <th colspan="3">Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse($users as $user)
+                        @if($user->type== 'administrador' OR $user->type== 'empleado')
 
-                <td><a class="btn btn-info" href="">Ver</a></td>
-                <td><a class="btn btn-success" href="#" data-bs-toggle="modal"
-                    data-bs-target="#modal_editar_cliente">Editar</a></td>
+                        @else
+                            <tr>
+                                <td scope="row">{{ $user->name }}</td>
+                                <td>{{ $user->email}} </td>
+                                <td scope="row">{{ $user->address }}</td>
+                                <td scope="row">{{ $user->telephone }}</td>
 
-                <div class="modal fade" id="modal_editar_cliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="staticBackdropLabel">Crear nuevo equipo</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+                                <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye"
+                                                                                                     style="color: white"></i></a>
+                                </td>
+                                <td style="text-align: center"><a class="btn btn-success" href="#" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente"><i class="fa fa-edit" style="color: white"></i></a></td>
 
-                        <form action="{{ route('clientes.update',['id'=> $cliente->id])}}" method="POST">
-                            @csrf
-                        <div class="modal-body">
-                      <div class="row g-3">
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre" value="{{$cliente->name}}" required>
-                                <div class="invalid-feedback">
-                                  Valid first Name is required.
+                                <div class="modal fade" id="modal_editar_cliente" data-bs-backdrop="static"
+                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Editar cliente</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <form action="{{ route('clientes.update',['id'=> $user->id])}}"
+                                                  method="POST">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <div class="row g-3">
+                                                        <div class="col-sm-6">
+                                                            <label for="firstName" class="form-label">Nombre completo:</label>
+                                                            <input type="text" class="form-control" id="name" name="name"
+                                                                   value="{{$user->name}}" required>
+                                                            <div class="invalid-feedback">
+                                                                Valid first Name is required.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <label for="firstName" class="form-label">Correo electrónico:</label>
+                                                            <input type="email" class="form-control" id="email"
+                                                                   name="email" value="{{$user->email}}" required>
+                                                            <div class="invalid-feedback">
+                                                                Valid first Email is required.
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="firstName" class="form-label">Teléfono:</label>
+                                                            <input type="number" class="form-control" id="telephone"
+                                                                   name="id_cliente" value="{{$user->telephone}}" required>
+                                                            <div class="invalid-feedback">
+                                                                Valid first telephone is required.
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="firstName" class="form-label">Dirección:</label>
+                                                            <textarea name="address" id="address" cols="22" rows="5"
+                                                                      required>{{$user->address}}</textarea>
+                                                            <div class="invalid-feedback">
+                                                                Valid first direccion is required.
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancelar
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
 
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Correo:</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese el Correo" value="{{$cliente->email}}" required>
-                                <div class="invalid-feedback">
-                                  Valid first Email is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">N# ID:</label>
-                                <input type="number" class="form-control" id="id_cliente" name="id_cliente" placeholder="Ingrese el N# identidad" value="{{$cliente->id_cliente}}" required>
-                                <div class="invalid-feedback">
-                                  Valid first ID is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Dirección:</label>
-                                <textarea name="direccion" id="direccion" cols="25" rows="5" required >{{$cliente->direccion_cliente}}</textarea>
-                                 <div class="invalid-feedback">
-                                  Valid first direccion is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                              </div>
-                              <div class="col-sm-6">
-                              </div>
-                               <div class="col-sm-6">
-                              </div>
+                                <div>
 
-                              </div>
-                          </div>
+                                    {{-- Eliminar usuario se valiada para evitar que el usuario
+                                    actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
+                                    @if($user->id == Auth::user()->id OR $user->type== 'administrador')
+                                        <td>
+                                        </td>
+                                    @else
+                                        <td style="text-align: center">
+                                            <a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                               data-bs-target="#modal_eliminar_cliente"><i class="fa fa-reply"
+                                                                                           style="color: white"></a>
+                                        </td>
 
-
-                          <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                              <button type="submit" class="btn btn-primary">Guardar</button>
-                          </div>
-
-                          </form>
-                          </div>
-                      </div>
-                    </div>
-
-                  <div>
-
-
-                <td>
-                    <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                           data-bs-target="#modal_eliminar_cliente">Eliminar</a>
-                 </td>
-
-                    <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
-                         aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalLabel">Eliminar Cliente</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    ¿Desea eliminar a "{{ $cliente->name }}"
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerra
-                                    </button>
-                                    <form action="{{ route('clientes.destroy', ['cliente'=>$cliente->id]) }}"
-                                          method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {{-- Hasta aqui el modal de eliminar --}}
-
-
-            </tr>
-        @empty
-            <tr>
-                <td colspan="4">No hay Clientes</td>
-            </tr>
-
-        @endforelse
-        </tbody>
-
-    </table>
-</div>
+                                        <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
+                                             aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header" style="background: darkred; color: white">
+                                                        <h5 class="modal-title" id="ModalLabel">Eliminar usuario</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close" style="color: white"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Desea eliminar el usuario "{{ $user->name }}?"
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancelar
+                                                        </button>
+                                                        <form
+                                                            action="{{ route('usuarios.destroy', ['user'=>$user->id ]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Eliminar
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                @endif
+                                @endif
+                                {{-- Hasta aqui el modal de eliminar --}}
+                            </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6">No hay clientes</td>
+                                </tr>
+                            @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection

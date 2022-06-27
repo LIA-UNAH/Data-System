@@ -20,7 +20,9 @@ class UserTableSeeder extends Seeder
                 'name'=>'Administrador',
                 'email'=>'admin@unah.hn',
                 'password' => bcrypt('12345678'),
-                'type'=>'administrador'
+                'type'=>'administrador',
+                'address'=>'Colonia La Concepción',
+                'telephone'=>'99999999'
             ]
         );
 
@@ -29,7 +31,9 @@ class UserTableSeeder extends Seeder
                 'name'=>'Ana Romero',
                 'email'=>'amromero@unah.hn',
                 'password' => bcrypt('12345678'),
-                'type'=>'empleado'
+                'type'=>'empleado',
+                'address'=>'Colonia La Cofradía',
+                'telephone'=>'99607004'
             ]
         );
 
@@ -38,7 +42,9 @@ class UserTableSeeder extends Seeder
                 'name'=>'Nielsandr Meza',
                 'email'=>'nvmeza@unah.hn',
                 'password' => bcrypt('12345678'),
-                'type'=>'empleado'
+                'type'=>'empleado',
+                'address'=>'Colonia Nueva Esperanza',
+                'telephone'=>'96832662'
             ]
         );
 
@@ -47,7 +53,9 @@ class UserTableSeeder extends Seeder
                 'name'=>'Jennifer Lazo',
                 'email'=>'jennifer.lazo@unah.hn',
                 'password' => bcrypt('12345678'),
-                'type'=>'empleado'
+                'type'=>'empleado',
+                'address'=>'Barrio Tierra Blanca',
+                'telephone'=>'33476034'
             ]
         );
 
@@ -56,7 +64,9 @@ class UserTableSeeder extends Seeder
                 'name'=>'Oscar Sanchez',
                 'email'=>'osanchezg@unah.hn',
                 'password' => bcrypt('12345678'),
-                'type'=>'empleado'
+                'type'=>'empleado',
+                'address'=>'Barrio Los Angeles',
+                'telephone'=>'95795073'
             ]
         );
 
@@ -65,7 +75,20 @@ class UserTableSeeder extends Seeder
                 'name'=>'Wilmer Hernández',
                 'email'=>'wnhernandezf@unah.hn',
                 'password' => bcrypt('12345678'),
-                'type'=>'empleado'
+                'type'=>'empleado',
+                'address'=>'Colonia La Pradera',
+                'telephone'=>'94896083'
+            ]
+        );
+
+        User::create(
+            [
+                'name'=>'Lester Bogran',
+                'email'=>'lester-bogran@unah.edu.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'cliente',
+                'address'=>'Colonia Los Andes',
+                'telephone'=>'99178932'
             ]
         );
     }

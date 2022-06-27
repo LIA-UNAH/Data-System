@@ -56,6 +56,9 @@
                     </thead>
                     <tbody>
                     @forelse($users as $user)
+                        @if($user->type== 'cliente')
+
+                        @else
                         <tr>
                             <td scope="row">{{ $user->name }}</td>
                             <td>{{ $user->email}} </td>
@@ -99,6 +102,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            @endif
                             @endif
                             {{-- Hasta aqui el modal de eliminar --}}
                         </tr>

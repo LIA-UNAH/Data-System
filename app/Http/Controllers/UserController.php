@@ -24,6 +24,19 @@ class UserController extends Controller
         return view('usuario/usuarios_index')->with('users', $users);
     }
 
+    public function update(Request $request, $id)
+    {
+        $users = User::findOrFail($id);
+        $users->name = $request->input('name');
+        $users->email = $request->input('email');
+        $users->address = $request->input('address');
+        $users->telephone = $request->input('telephone');
+        $users->save();
+
+        session()->put('exito', 'Editado con exito.');
+        return redirect()->back()->withInput();
+    }
+
     //HU6 - Eliminar usuario
     public function destroy(User $user){
         // Se usa una busqueda rapida que se genera en la ruta para solo aplicar el metodo delete del modelo usuario
