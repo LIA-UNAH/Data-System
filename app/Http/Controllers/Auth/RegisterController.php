@@ -56,12 +56,12 @@ class RegisterController extends Controller
         ],[
             'name.required' => '¡Debes ingresar tu nombre completo!',
             'name.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
-            'name.min' => '¡Has excedido el limite minímo de 3 letras!',
+            'name.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
             'name.max' => '¡Has excedido el limite máximo de 45 letras!',
 
             'email.required' => '¡Debes ingresar tu correo electrónico!',
-            'email.string' => '¡Debes ingresar tu correo electrónico, solo se permiten letras!',
-            'email.email' => '¡Debes ingresar un correo electrónico valido!',
+            'email.string' => '¡Debes ingresar tu correo electrónico, verifica la información!',
+            'email.email' => '¡Debes ingresar un correo electrónico válido!',
             'email.max' => '¡Has excedido el limite máximo de 45 letras!',
             'email.unique' => '¡Debes ingresar un correo electrónico diferente!',
 
@@ -69,9 +69,6 @@ class RegisterController extends Controller
             'password.confirmed' => '¡Debes confirmar tu contraseña!',
             'password.min' => '¡Debes ingresar una contraseña segura!',
         ]);
-
-
-
     }
 
     /**

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-
     <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
@@ -16,7 +15,7 @@
                             @csrf
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="name"
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                         name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Nombre') }}"
                                            onkeypress="return funcionLetras(event);" style="text-transform: capitalize;">
                                         @error('name')
@@ -27,7 +26,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input id="email" name="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                                <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                        placeholder="{{ __('Correo electrónico') }}" value="{{ old('email') }}" required autocomplete="email"
                                 pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
                                 @error('email')
@@ -38,7 +37,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input id="password" type="password" name="password" class="form-control form-control-user @error('password') is-invalid @enderror"
+                                    <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                                          placeholder="{{ __('Contraseña') }}" required autocomplete="new-password">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -47,12 +46,13 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-6">
-                                    <input id="password-confirm" name="password_confirmation" type="password" class="form-control form-control-user"
+                                    <input id="password-confirm" name="password_confirmation" type="password" class="form-control"
                                          placeholder="{{ __('Confirmar contraseña') }}"  required autocomplete="new-password">
                                 </div>
                             </div>
+
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                {{ __('Registro') }}
+                                {{ __('Registrar') }}
                             </button>
 
                             <a href="/" class="btn btn-google btn-user btn-block">

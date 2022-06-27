@@ -12,10 +12,11 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">¡Iniciar sesión!</h1>
                                 </div>
                                 <form class="user" method="POST" action="{{ route('login') }}">
                                     @csrf
+
                                     <div class="form-group">
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -25,6 +26,7 @@
                                             </span>
                                         @enderror
                                     </div>
+
                                     <div class="form-group">
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -39,29 +41,22 @@
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
+                                                {{ __('Recordar datos') }}
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block"> Ingresar </button>
                                     <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
-                                    </a>
-                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                    </a>
+                                    <a href="/" class="btn btn-google btn-user btn-block"> Regresar </a>
                                 </form>
                                 <hr>
                                 <div class="text-center">
                                     <a class="small" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('¿Olvidó Su Contraseña? ') }}
                                     </a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="{{ route('register') }}">Create an Account!</a>
+                                    <a class="small" href="{{ route('register') }}">¡Crear una Cuenta! </a>
                                 </div>
                             </div>
                         </div>

@@ -1,21 +1,18 @@
 @extends('Layouts.Layouts')
-
-
-
 @section('content')
 
     <h1 style="text-align:center">LISTA DE USUARIOS</h1>
 
     {{-- Mensajes de las operaciones realizadas --}}
     {{--Para los mensajes afirmativos y sin errores --}}
-    @if (session()->has('suce'))
+    @if (session()->has('exito'))
         <div class="alert alert-success alert-dismissible" role="alert">
             {{ session('suce') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     {{--Para los mensajes de errores --}}
-    @if (session()->has('erorr'))
+    @if (session()->has('error'))
         <div class="alert alert-danger" role="alert">
             {{ session('erorr') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -46,9 +43,9 @@
                 <th>Nombre</th>
                 <th>E-mail</th>
                 <th>Rol de usuario</th>
-                <th>Ver Usuario</th>
-                <th>Editar Usuario</th>
-                <th>Eliminar Usuario</th>
+                <th>Ver</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
             </thead>
             <tbody>
@@ -56,13 +53,13 @@
                 <tr>
                     <td scope="row">{{ $user->name }}</td>
                     <td>{{ $user->email}} </td>
-                    <td></td>
+                    <td scope="row">{{ $user->type }}</td>
 
                     <td><a class="btn btn-info" href="">Ver</a></td>
                     <td><a class="btn btn-success" href="">Editar</a></td>
                     {{-- Eliminar usuario se valiada para evitar que el usuario
-                    actualmente logueado no se pueda eliminar a si mismo  H6 --}}
-                    @if($user->id == Auth::user()->id)
+                    actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
+                    @if($user->id == Auth::user()->id OR $user->type== 'administrador')
                         <td>
                         </td>
                     @else
@@ -81,10 +78,10 @@
                                                 aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        ¿Desea eliminar a "{{ $user->name }}"
+                                        ¿Desea eliminar el usuario "{{ $user->name }}?"
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerra
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
                                         </button>
                                         <form action="{{ route('usuarios.destroy', ['user'=>$user->id ]) }}"
                                               method="POST">
@@ -103,7 +100,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">No hay Usuarios</td>
+                    <td colspan="4">No hay usuarios</td>
                 </tr>
 
             @endforelse

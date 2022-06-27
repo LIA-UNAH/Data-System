@@ -16,24 +16,23 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                                    <p class="mb-4">We get it, stuff happens. Just enter your email address below
-                                        and we'll send you a link to reset your password!</p>
+                                    <h1 class="h4 text-gray-900 mb-2">Reestablecer contrseña</h1>
+                                    <p class="mb-4">¡Que las cosas suceden; sólo tienes que introducir tu dirección de correo electrónico a continuación y te enviaremos un enlace para restablecer tu contraseña! </p>
                                 </div>
                                 <form method="POST" class="user" action="{{ route('password.email') }}">
                                     @csrf
                                     <div class="form-group">
                                         <input id="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                                            placeholder="Enter Email Address...">
+                                            placeholder="Correo electrónico">
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        {{ __('Send Password Reset Link') }}
+                                        {{ __('Enviar enlace') }}
                                     </button>
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
+                                    <a class="small" href="{{ route('login') }}">¿Ya tienes una cuenta? ¡Inicia de sesión! </a>
                                 </div>
                             </div>
                         </div>

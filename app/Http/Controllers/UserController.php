@@ -29,7 +29,7 @@ class UserController extends Controller
         // Se usa una busqueda rapida que se genera en la ruta para solo aplicar el metodo delete del modelo usuario
         $user->delete();
 
-        session()->put('suce', 'Eliminado con exito.');
+        session()->put('exito', 'El usuaio ha sido eliminado con éxito.');
         return redirect()->back()->withInput();
     }
 }
