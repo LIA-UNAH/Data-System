@@ -42,6 +42,7 @@ Route::resource('/productos', ProductoController::class);
 
 //HU23 - index, create, store, show, edit, updare, destroy 
 Route::resource('/pedidos', PedidoController::class);
+Route::post('/pedidos', [App\Http\Controllers\PedidoController::class, 'store'])->name('pedido.store');
 
 //Visualizar clientes
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])

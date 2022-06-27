@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_Producto');
-            $table->string('marca_Modelo');
+            $table->string('marca_Producto');
             $table->string('dimension');
-            $table->dateTime('fecha_de orden');
+            $table->string('fecha_de_orden');
             $table->integer('existencia');
             $table->string('colore_Producto');
             $table->double('precio_Producto');

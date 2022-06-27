@@ -10,9 +10,9 @@ class Pedido extends Model
     protected $table="pedidos";
     protected $fillable =[
         'nombre_Producto',
-        'marca_Modelo', 
+        'marca_Producto', 
         'dimension', 
-        'fecha_de orden',
+        'fecha_de_orden',
         'colore_Producto',
         'precio_Producto'
     ];
