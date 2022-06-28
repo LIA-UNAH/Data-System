@@ -66,4 +66,10 @@ Route::get('/proveedor', [App\Http\Controllers\ProveedorController::class, 'inde
 //Visualizar proveedor
 Route::post('/proveedor/crear', [App\Http\Controllers\ProveedorController::class, 'store'])
 ->name('proveedor.store');
+//Eliminar proveedor
+Route::delete('/proveedor/{proved}', [App\Http\Controllers\ProveedorController::class, 'destroy'])
+    ->name('proveedor.destroy');
+//Editar proveedor
+Route::put('/proveedor/{id}', [App\Http\Controllers\ProveedorController::class, 'update'])
+->name('proveedor.update');
 
