@@ -144,7 +144,7 @@
             <tbody>
             @forelse($productos as $i=>  $pro)
                 <tr>
-                <td scope="row">{{++$i}}</td>
+                <td scope="row"><strong>{{++$i}}</strong></td>
                     <td scope="row">{{$pro->nombre}}</td>
                     <td>{{ $pro->cantidad}} </td>
                     <td>{{ $pro->prec_compra}}</td>
