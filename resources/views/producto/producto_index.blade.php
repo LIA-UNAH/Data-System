@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1 style="text-align:center">LISTA DE PRODUCTOS</h1>
+
 
     {{-- Mensajes de las operaciones realizadas --}}
     {{--Para los mensajes afirmativos y sin errores --}}
@@ -22,6 +22,14 @@
         </div>
     @endif
     {{-- Terminan los mensajes --}}
+
+    <div class="card shadow mb-4 ">
+        <div class="card-header py-3" style="background: #0d6efd">
+            <div style="float: left">
+                <h2 class="m-0 font-weight-bold" style="color: white">Productos</h2>
+            </div>
+
+            <div style="float: right">
 
     <!-- HU8 - Buscar y recargar producto -->
     <div class="card" style="padding: 10px">
@@ -132,12 +140,10 @@
             <tr>
                 <th>N°</th>
                 <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Precio de compra</th>
-                <th>Precio de venta</th>
+                <th>Código</th>
                 <th>Existencia</th>
+                <th>Precio de venta</th>
                 <th>Impuesto</th>
-                <th>Total</th>
                 <th><i class="fa fa-exclamation-circle" aria-hidden=""></i></th>
             </tr>
             </thead>
@@ -146,12 +152,10 @@
                 <tr>
                 <td scope="row"><strong>{{++$i}}</strong></td>
                     <td scope="row">{{$pro->nombre}}</td>
-                    <td>{{ $pro->cantidad}} </td>
-                    <td>{{ $pro->prec_compra}}</td>
-                    <td>{{ $pro->prec_venta}}</td>
+                    <td>{{ $pro->Código}} </td>
                     <td>{{ $pro->existencia}}</td>
+                    <td>{{ $pro->prec_venta}}</td>
                     <td>{{ $pro->impuesto}}</td>
-                    <td>{{ $pro->total}}</td>
 
                     <td><a class="btn btn-info" href="">Ver</a>
                     <a class="btn btn-success" href="">Editar</a>
