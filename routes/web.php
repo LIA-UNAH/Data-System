@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\VentaClienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,3 +74,10 @@ Route::delete('/proveedor/{proved}', [App\Http\Controllers\ProveedorController::
 Route::put('/proveedor/{id}', [App\Http\Controllers\ProveedorController::class, 'update'])
 ->name('proveedor.update');
 
+Route::resource('/ventas', VentaClienteController::class);
+
+    Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::class, 'search'])
+    ->name('ventas.searchIndex');
+
+    Route::get('/ventas/facturas', [App\Http\Controllers\VentaClienteController::class, 'factura'])
+    ->name('ventas.facturas');

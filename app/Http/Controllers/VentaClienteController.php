@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 
 class VentaClienteController extends Controller
@@ -13,7 +15,21 @@ class VentaClienteController extends Controller
      */
     public function index()
     {
-        //
+        $ventas = Venta::all();
+        return view('venta.ventas_index')->with('ventas', $ventas);
+    }
+
+    public function factura()
+    {
+        
+        return view('venta\factura');
+    }
+
+    public function search(Request $request){
+        $texto =trim($request->get('busqueda'));
+        $ventas = Venta::where('Nfactura', 'like', '%'.$texto.'%')->get();
+
+        return view('venta/ventas_index')->with('ventas', $ventas);
     }
 
     /**
@@ -23,7 +39,9 @@ class VentaClienteController extends Controller
      */
     public function create()
     {
-        //
+        $productos = Producto::all();
+        return view('venta/ventas_create')->with('productos', $productos);
+        
     }
 
     /**
@@ -34,8 +52,21 @@ class VentaClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $crearventa = new Venta();
+
+        $crearventa->nombre = $request->input('nombre');
+        $crearventa->cantidad = $request->input('cantidad');
+        $crearventa->cantidad = $request->input('precio');
+        
+        $crearventa->total = $request->input('total');
+
+        $crearventa->save();
+
+        return redirect()->back();
     }
+
+    
+    
 
     /**
      * Display the specified resource.
@@ -43,9 +74,10 @@ class VentaClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        
+        return view('venta.facturas');
     }
 
     /**
@@ -77,8 +109,11 @@ class VentaClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Venta $ventas)
     {
-        //
+        $ventas->delete();
+
+        session()->put('suce', 'Eliminado con exito.');
+        return redirect()->back()->withInput();
     }
 }
