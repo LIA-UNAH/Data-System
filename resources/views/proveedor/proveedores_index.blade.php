@@ -1,6 +1,6 @@
 @extends('Layouts.Layouts')
 @section('content')
-<h1 style="text-align:center">LISTA DE PROVEEDORES</h1>
+
 
 {{-- Mensajes de las operaciones realizadas --}}
 {{--Para los mensajes afirmativos y sin errores --}}
@@ -19,26 +19,30 @@
 @endif
 {{-- Terminan los mensajes --}}
 
-
-
-<div class="card" style="padding: 10px">
+<div class="card shadow mb-4 ">
+        <div class="card-header py-3" style="background: #0d6efd">
+                <div style="float: left">
+                    <h2 class="m-0 font-weight-bold" style="color: white">Proveedores</h2>
+                </div>
 
 <div style="float: right;">
                 <!-- Buscar y recargar proveedor -->
-                <form action="{{ route('proveedor.index') }}" method="GET" style=""
-                      class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input  type="text" name="buscar_texto" class="form-control bg-light border-2 small" style="color: #1a202c"
-                               placeholder="Buscar" value="{{$buscar}}"
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" value="Buscar">
-                                <i class="fas fa-search fa-sm" style="color: #ffff"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-</div>
+                <form action="{{ route('proveedor.index') }}" method="GET"
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                      <div class="input-group">
+                          <input type="text" name="buscar_texto" class="form-control bg-light border-0 small"
+                                placeholder="Buscar" value="{{$buscar}}"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                              <button class="btn btn" type="submit" value="Buscar" style="background: white">
+                                  <i class="fas fa-search fa-sm"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+              
+            </div>
+        </div>
 
 <div style="margin-bottom: -30px;">
     <button type="button" class="btn btn-primary shadow-lg rounded my-4"
@@ -115,16 +119,19 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                   <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
+              
 
               </form>
               </div>
           </div>
         </div>
+        
 
-      <div>
+      <div class="card-body">
+            <div class="table-responsive">
 
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top: 15px">
-        <thead>
+            <table class="table table" id="dataTable" width="100%" >
+            <thead class="card-header py-3" style="background: #1a202c; color:white">
         <tr>
             <th>Codigo</th>
             <th>Nombre</th>
@@ -260,6 +267,7 @@
               </div>
           </div>
         </div>
+        
 
 
               </td>
@@ -276,6 +284,7 @@
     <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
             {{ $proveedor->links('pagination::bootstrap-4') }}
         </div>
+  </div>
 </div>
  
 @endsection
