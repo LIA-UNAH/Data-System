@@ -6,14 +6,14 @@
     {{--Para los mensajes afirmativos y sin errores --}}
     @if (session()->has('exito'))
         <div class="alert alert-success alert-dismissible" role="alert">
-            {{ session('suce') }}
+            {{ session('exito') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     {{--Para los mensajes de errores --}}
     @if (session()->has('error'))
         <div class="alert alert-danger" role="alert">
-            {{ session('erorr') }}
+            {{ session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -52,7 +52,7 @@
 
                     <!-- Añadir -->
                     <div style="float: right; margin-left: 10px">
-                        <td style="text-align: center"><a class="btn btn-success" href="" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
+                        <td style="text-align: center"><a class="btn btn-success" href="{{route("usuarios.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
                     </div>
                     <!-- Añadir -->
                 </div>

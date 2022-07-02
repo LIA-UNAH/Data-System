@@ -35,6 +35,13 @@ Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
+// Agregar clientes
+Route::get("/usuarios/create", [App\Http\Controllers\UserController::class, "create"])
+    ->name("usuarios.create");
+
+Route::post("/usuarios/create", [App\Http\Controllers\UserController::class, "store"])
+    ->name("usuarios.create");
+
 // Eliminar usuario
 Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
     ->name('usuarios.destroy');
@@ -53,13 +60,20 @@ Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']
 Route::get('/clientes/busqueda', [App\Http\Controllers\ClienteController::class, 'search'])
     ->name('clientes.searchIndex');
 
+// Agregar clientes
+Route::get("/clientes/create", [App\Http\Controllers\ClienteController::class, "create"])
+    ->name("clientes.create");
+
+Route::post("/clientes/create", [App\Http\Controllers\ClienteController::class, "store"])
+    ->name("clientes.create");
+
 // Editar clientes
 Route::post('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update'])
     ->name('clientes.update');
 
 // Eliminar cliente
 Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class, 'destroy'])
-    ->name('usuarios.destroy');
+    ->name('clientes.destroy');
 
 /*
 |--------------------------------------------------------------------------

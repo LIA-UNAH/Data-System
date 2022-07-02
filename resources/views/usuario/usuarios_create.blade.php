@@ -1,21 +1,21 @@
 @extends('Layouts.Layouts')
-@section('title', 'Clientes')
+@section('title', 'Usuarios')
 @section('content')
 
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
             <div style="float: left">
-                <h2 class="m-0 font-weight-bold" style="color: white">Crear cliente</h2>
+                <h2 class="m-0 font-weight-bold" style="color: white">Crear usuario</h2>
             </div>
         </div>
 
         <div class="card-body">
             <!-- Nested Row within Card Body -->
-            <div class="row" style="background: #e9aa0b">
-                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="row" style="background: #4a5568">
+                <div class="col-lg-5 d-none d-lg-block bg-login-image"></div>
                 <div class="col-lg-7">
                     <div class="p-5">
-                        <form method="POST" class="user" action="{{route("clientes.create")}}" >
+                        <form method="POST" class="user" action="{{route("usuarios.create")}}" >
                             @csrf
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -59,7 +59,8 @@
                                         <select class="form-control @error('type') is-invalid @enderror"  id="type"
                                                 required autocomplete="type" name="type"
                                                 autofocus>
-                                            <option value="cliente">Cliente</option>
+                                            <option value="empleado">Empleado</option>
+                                            <option value="administrador">Administrador</option>
                                         </select>
                                         @error('type')
                                         <span class="invalid-feedback" role="alert">
@@ -108,19 +109,16 @@
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a href="/clientes" style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
+                                    <a href="/usuarios" style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
                                        class="btn btn-google btn-user btn-block">
                                         {{ __('Regresar') }}
                                     </a>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 @endsection
