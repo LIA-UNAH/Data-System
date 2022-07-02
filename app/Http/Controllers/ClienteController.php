@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
@@ -14,14 +15,14 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $users = User::paginate(10);
+        $users = DB::table('users')->where('type', '=', 'cliente')
+            ->paginate(10);
         return view('cliente/clientes_index')->with('users', $users);
     }
 
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $users = User::where('name', 'like', '%'.$texto.'%')->get();
-
+        $users = User::where('name', 'like', '%'.$texto.'%')->paginate(10);
         return view('cliente/clientes_index')->with('users', $users);
     }
 

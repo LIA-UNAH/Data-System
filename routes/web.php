@@ -10,9 +10,6 @@ use App\Http\Controllers\VentaClienteController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
 |
 */
 
@@ -24,60 +21,100 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/* Rutas para usuarios */
+/*
+|--------------------------------------------------------------------------
+| Usuarios
+|--------------------------------------------------------------------------
+*/
 
-//HU5 - Visualizar usurios
+// Visualizar usuarios
 Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
     ->name('usuarios.index');
 
-//HU6 - Eliminar usuario
-Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
-    ->name('usuarios.destroy');
-
-//HU8 - Buscar y recargar usuario
+// Buscar usuarios
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
-//HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
-Route::resource('/productos', ProductoController::class);
+// Eliminar usuario
+Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
+    ->name('usuarios.destroy');
 
-//HU23 - index, create, store, show, edit, updare, destroy
-Route::resource('/pedidos', PedidoController::class);
-Route::post('/pedidos', [App\Http\Controllers\PedidoController::class, 'store'])->name('pedido.store');
+/*
+|--------------------------------------------------------------------------
+| Clientes
+|--------------------------------------------------------------------------
+*/
 
 //Visualizar clientes
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])
     ->name('clientes.index');
 
-//Buscar y recargar clientes
+//Buscar clientes
 Route::get('/clientes/busqueda', [App\Http\Controllers\ClienteController::class, 'search'])
     ->name('clientes.searchIndex');
 
-//editar clientes
+// Editar clientes
 Route::post('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update'])
     ->name('clientes.update');
 
-//Eliminar cliente
+// Eliminar cliente
 Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class, 'destroy'])
     ->name('usuarios.destroy');
 
-//Visualizar proveedor
+/*
+|--------------------------------------------------------------------------
+| Productos
+|--------------------------------------------------------------------------
+*/
+
+//HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
+Route::resource('/productos', ProductoController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Pedidos
+|--------------------------------------------------------------------------
+*/
+
+//HU23 - index, create, store, show, edit, updare, destroy
+Route::resource('/pedidos', PedidoController::class);
+Route::post('/pedidos', [App\Http\Controllers\PedidoController::class, 'store'])->name('pedido.store');
+
+/*
+|--------------------------------------------------------------------------
+| Proveedores
+|--------------------------------------------------------------------------
+*/
+
+// Visualizar proveedor
 Route::get('/proveedor', [App\Http\Controllers\ProveedorController::class, 'index'])
     ->name('proveedor.index');
-//Visualizar proveedor
+
+// Crear proveedor
 Route::post('/proveedor/crear', [App\Http\Controllers\ProveedorController::class, 'store'])
-->name('proveedor.store');
-//Eliminar proveedor
+    ->name('proveedor.store');
+
+// Eliminar proveedor
 Route::delete('/proveedor/{proved}', [App\Http\Controllers\ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
-//Editar proveedor
-Route::put('/proveedor/{id}', [App\Http\Controllers\ProveedorController::class, 'update'])
-->name('proveedor.update');
 
+// Editar proveedor
+Route::put('/proveedor/{id}', [App\Http\Controllers\ProveedorController::class, 'update'])
+    ->name('proveedor.update');
+
+/*
+|--------------------------------------------------------------------------
+| Ventas
+|--------------------------------------------------------------------------
+*/
+
+// Visualizar ventas
 Route::resource('/ventas', VentaClienteController::class);
 
-    Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::class, 'search'])
+// Buscar ventas
+Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::class, 'search'])
     ->name('ventas.searchIndex');
 
-    Route::get('/ventas/facturas', [App\Http\Controllers\VentaClienteController::class, 'factura'])
+// Factura ventas
+Route::get('/ventas/facturas', [App\Http\Controllers\VentaClienteController::class, 'factura'])
     ->name('ventas.facturas');

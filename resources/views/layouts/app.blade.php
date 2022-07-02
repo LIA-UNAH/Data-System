@@ -7,8 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>DSA - @yield('title')</title>
 
     <link href={{ asset("admin/vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
     <link
@@ -25,8 +24,6 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
                 @yield('content')
-
-
             </div>
         </div>
     </div>
@@ -40,6 +37,5 @@
     <!-- Custom scripts for all pages-->
     <script src={{ asset("admin/js/sb-admin-2.min.js") }}></script>
 </body>
-
 
 </html>

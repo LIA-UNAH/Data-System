@@ -1,4 +1,5 @@
 @extends('Layouts.Layouts')
+@section('title', 'Usuarios')
 @section('content')
 
     {{-- Mensajes de las operaciones realizadas --}}
@@ -25,21 +26,37 @@
             </div>
 
             <div style="float: right">
-                <!-- HU8 - Buscar y recargar usuario -->
-                <form action="{{ route('usuarios.searchIndex') }}" method="GET" style=""
-                      class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" name="busqueda" class="form-control bg-light border-0 small" style="color: #1a202c"
-                               placeholder="Buscar"
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn " type="submit" value="Buscar" style="background: white">
-                                <i class="fas fa-search fa-sm" style="color: #0d6efd"></i>
-                            </button>
+                <div style="float: left">
+                    <!-- HU8 - Buscar y recargar usuario -->
+                    <form action="{{ route('usuarios.searchIndex') }}" method="GET" style=""
+                          class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" name="busqueda" class="form-control bg-light border-0 small"
+                                   placeholder="Buscar" aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append" style="margin-left: 5px">
+                                <button class="btn " type="submit" value="Buscar" style=" border: 2px solid #ffffff;border-radius: 4px; color: white">
+                                    <i class="fas fa-search fa-sm" style="color: white"></i>
+                                </button>
+                            </div>
                         </div>
+                    </form>
+                    <!-- HU8 - Buscar y recargar usuario -->
+                </div>
+
+                <div style="float: right">
+                    <!-- Recargar -->
+                    <div style="float: left; margin-left: 15px">
+                        <td style="text-align: center"><a class="btn btn-dark" href="/usuarios" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
                     </div>
-                </form>
-                <!-- HU8 - Buscar y recargar usuario -->
+                    <!-- Recargar -->
+
+                    <!-- Añadir -->
+                    <div style="float: right; margin-left: 10px">
+                        <td style="text-align: center"><a class="btn btn-success" href="" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
+                    </div>
+                    <!-- Añadir -->
+                </div>
+
             </div>
         </div>
 
@@ -48,6 +65,7 @@
                 <table class="table table" id="dataTable" width="100%" >
                     <thead class="card-header py-3" style="background: #1a202c; color: white">
                     <tr>
+                        <th>Id</th>
                         <th>Nombre</th>
                         <th>E-mail</th>
                         <th>Rol de usuario</th>
@@ -61,6 +79,7 @@
                         @if($user->type== 'cliente')
                         @else
                         <tr>
+                            <td scope="row">{{ $user->id }}</td>
                             <td scope="row">{{ $user->name }}</td>
                             <td>{{ $user->email}} </td>
                             <td scope="row">{{ $user->type }}</td>
@@ -115,6 +134,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
+            {{ $users->links() }}
         </div>
     </div>
 @endsection
