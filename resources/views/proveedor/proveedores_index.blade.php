@@ -122,7 +122,7 @@
         </div>
 
       <div>
-        <br>
+
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top: 15px">
         <thead>
         <tr>
@@ -146,8 +146,8 @@
                 <td>{{ $proved->direccion_proveedor}} </td>
                 <td>{{ $proved->contacto_proveedor}} </td>
                 <td>{{ $proved->telefono_contacto_proveedor}} </td>
-                <td><button type="button" class="btn btn-info"  href=""><i class="fa fa-eye" aria-hidden="true"></i></button>
-               <!---ACA EMPIEZA EL BOTON DE ELIMINAR--->
+                <td><button type="button" class="btn btn-info"  href=""><i class="fa fa-eye" aria-hidden="true"></i></button>            
+                <!---ACA EMPIEZA EL BOTON DE ELIMINAR--->
                <button type="button" class="btn btn-danger" data-bs-toggle="modal" style="" data-bs-target="#modalEliminarProveedor{{$proved->id}}">
                                             <i class="fa fa-trash" aria-hidden="true"></i> <!--boton de eliminar--->
                                             </button>
@@ -273,6 +273,10 @@
         </tbody>
 
     </table>
+    <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
+            {{ $proveedor->links('pagination::bootstrap-4') }}
+        </div>
 </div>
+ 
 @endsection
 
