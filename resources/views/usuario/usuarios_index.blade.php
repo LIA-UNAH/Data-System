@@ -51,13 +51,14 @@
                         <th>Nombre</th>
                         <th>E-mail</th>
                         <th>Rol de usuario</th>
-                        <th colspan="3">Opciones</th>
+                        <th>Visualizar</th>
+                        <th>Editar</th>
+                        <th>Desactivar</th>
                     </tr>
                     </thead>
                     <tbody>
                     @forelse($users as $user)
                         @if($user->type== 'cliente')
-
                         @else
                         <tr>
                             <td scope="row">{{ $user->name }}</td>
@@ -74,7 +75,7 @@
                             @else
                                 <td style="text-align: center">
                                     <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                       data-bs-target="#modal_eliminar_cliente"><i class="fa fa-reply" style="color: white"></a>
+                                       data-bs-target="#modal_eliminar_cliente"><i class="fa fa-window-close" style="color: white"></i></a>
                                 </td>
 
                                 <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"

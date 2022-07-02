@@ -14,6 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
+            // No se está utilizando está tabla
+            // IMPORTANTE
+            // Se está utilizando a los clientes, desde los usuarios
             $table->id();
             $table->string('name');
             $table->string('email')->unique();

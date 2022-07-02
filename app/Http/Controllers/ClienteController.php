@@ -14,7 +14,7 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $users = User::all();
+        $users = User::paginate(10);
         return view('cliente/clientes_index')->with('users', $users);
     }
 

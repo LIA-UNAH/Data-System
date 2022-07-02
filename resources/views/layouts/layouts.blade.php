@@ -25,8 +25,6 @@
 
 <body id="page-top">
 
-
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -201,14 +199,9 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <button id="sidebarToggleTop" class="btn btn-link  rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="dropdown-item" style="margin-left: 15px">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-white-400" id="sidebarToggle"></i>
-                </div>
 
                 <!-- End of Sidebar -->
                 <ul class="navbar-nav ml-auto">

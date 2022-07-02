@@ -91,5 +91,7 @@ class UserTableSeeder extends Seeder
                 'telephone'=>'99178932'
             ]
         );
+
+
     }
 }

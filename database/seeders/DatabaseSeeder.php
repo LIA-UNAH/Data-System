@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserTableSeeder::class);
+        \App\Models\Proveedor::factory(100)->create();
+        \App\Models\User::factory(100)->create();
     }
 }

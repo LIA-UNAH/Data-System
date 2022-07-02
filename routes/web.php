@@ -51,7 +51,7 @@ Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']
 
 //Buscar y recargar clientes
 Route::get('/clientes/busqueda', [App\Http\Controllers\ClienteController::class, 'search'])
-    ->name('usuarios.searchIndex');
+    ->name('clientes.searchIndex');
 
 //editar clientes
 Route::post('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update'])

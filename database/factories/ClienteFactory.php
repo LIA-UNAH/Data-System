@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ClienteFactory extends Factory
+class UserFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,12 @@ class ClienteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=> $this->faker->firstName($gender = null).' '.$this->faker->lastName,
+            'email'=> $this->faker->email(),
+            'password' =>$this->faker->numerify('########'),
+            'type'=> 'cliente',
+            'address' =>$this->faker->address,
+            'telephone' =>$this->faker->numerify('########')
         ];
     }
 }

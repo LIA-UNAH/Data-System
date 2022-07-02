@@ -67,8 +67,7 @@
                                 <td scope="row">{{ $user->address }}</td>
                                 <td scope="row">{{ $user->telephone }}</td>
 
-                                <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye"
-                                                                                                     style="color: white"></i></a>
+                                <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye" style="color: white"></i></a>
                                 </td>
                                 <td style="text-align: center"><a class="btn btn-success" href="#" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente"><i class="fa fa-edit" style="color: white"></i></a></td>
 
@@ -153,9 +152,7 @@
                                         </td>
                                     @else
                                         <td style="text-align: center">
-                                            <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                               data-bs-target="#modal_eliminar_cliente"><i class="fa fa-reply"
-                                                                                           style="color: white"></a>
+                                            <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#modal_eliminar_cliente"><i class="fa fa-window-close" style="color: white"></i></a>
                                         </td>
 
                                         <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
@@ -198,6 +195,10 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
+            {{ $users->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection

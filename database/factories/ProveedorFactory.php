@@ -17,7 +17,12 @@ class ProveedorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre_proveedor'=> $this->faker->firstName($gender = null).' '.$this->faker->lastName,
+            'rtn_proveedor'=> $this->faker->numerify('070#').'-'.$this->faker->numerify('199#').'-'.$this->faker->numerify('######') ,
+            'telefono_proveedor' =>$this->faker->numerify('9#######'),
+            'direccion_proveedor'=> $this->faker->address(),
+            'contacto_proveedor'=> $this->faker->firstName($gender = null).' '.$this->faker->lastName,
+            'telefono_contacto_proveedor' =>$this->faker->numerify('9#######'),
         ];
     }
 }
