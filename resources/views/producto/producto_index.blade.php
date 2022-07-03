@@ -37,11 +37,11 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                       <div class="input-group">
                           <input type="text" name="busqueda" class="form-control bg-light border-0 small"
-                                placeholder="Buscar por nombre"
+                                placeholder="Buscar"
                                 aria-label="Search" aria-describedby="basic-addon2">
-                          <div class="input-group-append">
+                            <div class="input-group-append" style="margin-left: 5px">
                               <button class="btn btn" type="submit" value="Buscar" style="background: white">
-                                  <i class="fas fa-search fa-sm"></i>
+                                  <i class="fas fa-search fa-sm" style="color: white"></i>
                               </button>
                           </div>
                       </div>

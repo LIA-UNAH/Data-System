@@ -44,7 +44,7 @@
             </div>
         </div>
 
-<div style="margin-bottom: -30px;">
+        <div style="margin-left: 15px; margin-bottom:-15px">
     <button type="button" class="btn btn-primary shadow-lg rounded my-4"
             data-bs-toggle="modal" data-bs-target="#modal_nuevo_proveedor" >
         Crear nuevo
@@ -133,7 +133,7 @@
             <table class="table table" id="dataTable" width="100%" >
             <thead class="card-header py-3" style="background: #1a202c; color:white">
         <tr>
-            <th>Codigo</th>
+            <th>N°</th>
             <th>Nombre</th>
             <th>RTN</th>
             <th>Teléfono</th>
@@ -175,7 +175,7 @@
                                                         @method('DELETE')
                                                     <div class="modal-body">
                                                  
-                                                    Desea eliminar al proveedor <strong>{{$proved->nombre_proveedor}}</strong>
+                                                    ¿Desea eliminar al proveedor <strong>{{$proved->nombre_proveedor}}?</strong>
                                                           
                                                     </div>           
                                                  <div class="modal-footer">
@@ -267,10 +267,10 @@
               </div>
           </div>
         </div>
-        
 
 
-              </td>
+
+      </td>
             </tr>
         @empty
             <tr>
