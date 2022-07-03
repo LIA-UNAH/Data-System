@@ -25,8 +25,9 @@
                     <h2 class="m-0 font-weight-bold" style="color: white">Proveedores</h2>
                 </div>
 
-<div style="float: right;">
-                <!-- Buscar y recargar proveedor -->
+            <div style="float: right;">
+              <div style="float: left">
+                <!-- Buscar proveedor -->
                 <form action="{{ route('proveedor.index') }}" method="GET"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                       <div class="input-group">
@@ -40,6 +41,21 @@
                           </div>
                       </div>
                   </form>
+
+                  </div>
+
+                <div style="float: right">
+                    <!-- Recargar -->
+                    <div style="float: left; margin-left: 15px">
+                        <td style="text-align: center"><a class="btn btn-dark" href="/proveedor" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
+                    </div>
+
+                    <!-- Añadir -->
+                    <div style="float: right; margin-left: 10px">
+                        <td style="text-align: center"><a class="btn btn-success" href="{{route("clientes.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
+                    </div>
+                    <!--fin Añadir -->
+                </div>
               
             </div>
         </div>
@@ -153,10 +169,10 @@
                 <td>{{ $proved->direccion_proveedor}} </td>
                 <td>{{ $proved->contacto_proveedor}} </td>
                 <td>{{ $proved->telefono_contacto_proveedor}} </td>
-                <td><button type="button" class="btn btn-info"  href=""><i class="fa fa-eye" aria-hidden="true"></i></button>            
+                <td><button type="button" class="btn btn-info"  href=""><i class="fa fa-eye" aria-hidden="true" style="color: white"></i></button>            
                 <!---ACA EMPIEZA EL BOTON DE ELIMINAR--->
                <button type="button" class="btn btn-danger" data-bs-toggle="modal" style="" data-bs-target="#modalEliminarProveedor{{$proved->id}}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i> <!--boton de eliminar--->
+                                            <i class="fa fa-window-close" aria-hidden="true"></i> <!--boton de eliminar--->
                                             </button>
                                             <!---------############################----------->
                                             <!-----------MODAL PARA ELIMINAR UN PROVEEDOR---------------->
