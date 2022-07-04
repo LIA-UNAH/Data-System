@@ -31,7 +31,8 @@
                 </div>
 
             <div style="float: right">
-              <!-- HU8 - Buscar y recargar producto -->
+                 <div style="float: left">
+                 <!-- HU8 - Buscar y recargar producto -->
               
                   <form action="" method="GET"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -39,18 +40,35 @@
                           <input type="text" name="busqueda" class="form-control bg-light border-0 small"
                                 placeholder="Buscar"
                                 aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append" style="margin-left: 5px">
-                              <button class="btn btn" type="submit" value="Buscar" style="background: white">
-                                  <i class="fas fa-search fa-sm" style="color: white"></i>
+                            <div class="input-group-append">
+                              <button class="btn" type="submit" value="Buscar" style="background: white">
+                                  <i class="fas fa-search fa-sm" style="color: black"></i>
                               </button>
                           </div>
                       </div>
                   </form>
+                       <!-- HU8 - Buscar y recargar usuario -->
+            </div>
+
+            <div style="float: right">
+                <!-- Recargar -->
+                <div style="float: left; margin-left: 15px">
+                    <td style="text-align: center"><a class="btn btn-dark" href="/productos" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
+                </div>
+                <!-- Recargar -->
+
+                <!-- Añadir -->
+                <div style="float: right; margin-left: 10px">
+                    <td style="text-align: center"><a class="btn btn-success" href="{{route("productos.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
+                </div>
+                <!-- Añadir -->
+            </div>
               
             </div>
         </div>
+        
         <!--------------------------------------------------->
-        <!-- Modal PARA CREAR UN NUEVO PRODUCTO -->
+       <!-------Modal PARA CREAR UN NUEVO PRODUCTO------
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                       <div class="modal-content">
@@ -115,10 +133,10 @@
                               </div> 
                               
                               </div>            
-                          </div>
+                          </div --->
 
                           
-                          <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
+                          <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO
                           <div class="modal-footer"> 
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                               <button type="submit" class="btn btn-primary">Guardar</button>
@@ -127,14 +145,15 @@
                           </form>
                           </div>
                       </div>
-                    </div>
+                    </div -->
 
-                  <div style="margin-left: 15px; margin-bottom:-15px">
-                  <!-- ESTE BOTON LLAMA AL MODAL -->
+                  <!--div style="margin-left: 15px; margin-bottom:-15px">
+                   ESTE BOTON LLAMA AL MODAL 
                   <button type="button" class="btn btn-primary shadow-lg rounded my-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
                     Crear nuevo 
                   </button>
-                  </div>
+                  </div---->
+                  
 
         <!--------EMPIEZA LA TABLA ---------------->
         <div class="card-body">
@@ -143,10 +162,11 @@
                           <thead class="card-header py-3" style="background: #1a202c; color:white">
                   <tr>
                       <th>N°</th>
-                      <th>Nombre</th>
+                      <th>Descripción</th>
                       <th>Código</th>
                       <th>Existencia</th>
                       <th>Precio de venta</th>
+                      <th>Categoría</th>
                       <th>Impuesto</th>
                       <th><i class="fa fa-exclamation-circle" aria-hidden=""></i></th>
                   </tr>
@@ -155,10 +175,11 @@
                   @forelse($productos as $i=>  $pro)
                       <tr>
                       <td scope="row"><strong>{{++$i}}</strong></td>
-                          <td scope="row">{{$pro->nombre}}</td>
-                          <td>{{ $pro->Código}} </td>
+                          <td scope="row">{{$pro->descripcion}}</td>
+                          <td>{{ $pro->codigo}} </td>
                           <td>{{ $pro->existencia}}</td>
                           <td>{{ $pro->prec_venta}}</td>
+                          <td>{{ $pro->categoria}}</td>
                           <td>{{ $pro->impuesto}}</td>
 
                           <td><a class="btn btn-info" href="">Ver</a>
@@ -207,7 +228,8 @@
                   </tbody>
 
               </table>
-            </div>
+             </div>
         </div>
     </div>
+    
 @endsection
