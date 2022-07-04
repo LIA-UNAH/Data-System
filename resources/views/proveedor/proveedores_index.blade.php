@@ -118,7 +118,7 @@
 
                    <div class="col-sm-6">
                         <label for="firstName" class="form-label">Dirección:</label>
-                        <input type="text" style="height: 100px;" name="direccion_proveedor" id="direccion_proveedor" cols="25" rows="5" required ></input>
+                        <input type="text" class="form-control" name="direccion_proveedor" id="direccion_proveedor" required ></input>
                         <div class="invalid-feedback">
                         Valid first direccion is required.
                         </div>
