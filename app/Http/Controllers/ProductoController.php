@@ -25,7 +25,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('producto.productos_create');
     }
 
     /**
@@ -38,17 +38,17 @@ class ProductoController extends Controller
     {
         $crearprod = new Producto();
 
-        $crearprod->nombre = $request->input('nombre');
-        $crearprod->cantidad = $request->input('cantidad');
-        $crearprod->prec_compra = $request->input('prec_compra');
-        $crearprod->prec_venta = $request->input('prec_venta');
+        $crearprod->descripcion = $request->input('descripcion');
+        $crearprod->codigo = $request->input('codigo');
         $crearprod->existencia = $request->input('existencia');
+        $crearprod->prec_venta = $request->input('prec_venta');
+        $crearprod->categoria = $request->input('categoria');
         $crearprod->impuesto = $request->input('impuesto');
-        $crearprod->total = $request->input('total');
+        
 
         $crearprod->save();
 
-        return redirect()->back();
+        return redirect()->route('productos.index');
     }
 
     /**

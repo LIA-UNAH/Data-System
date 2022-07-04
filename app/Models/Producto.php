@@ -10,12 +10,11 @@ class Producto extends Model
     //use HasFactory;
     protected $table="productos";
     protected $fillable =[
-        'nombre',
-        'cantidad', 
-        'prec_compra', 
-        'prec_venta',
+        'descripcion',
+        'codigo',
         'existencia',
-        'impuesto', 
-        'total'
+        'prec_venta',
+        'categoria',
+        'impuesto'
     ];
 }
