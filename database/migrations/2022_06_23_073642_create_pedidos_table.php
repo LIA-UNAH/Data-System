@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_Producto');
-            $table->string('marca_Producto');
-            $table->string('dimension');
+            $table->string('nombre_Cliente');
+            $table->string('telefon_Cliente');
+            $table->string('ciudad');
             $table->string('fecha_de_orden');
-            $table->integer('existencia');
-            $table->string('colore_Producto');
-            $table->double('precio_Producto');
+            $table->integer('estado_Pedido');
+            $table->string('detalle_Pedido');
+            $table->double('total_Pedido');
             $table->timestamps();
         });
     }

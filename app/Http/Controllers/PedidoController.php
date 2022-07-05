@@ -36,19 +36,7 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        $crearpedid = new Pedido();
-
-        $crearpedid->nombre_Producto = $request->input('nombre_Producto');
-        $crearpedid->marca_Producto = $request->input('marca_Producto');
-        $crearpedid->dimension = $request->input('dimension');
-        $crearpedid->fecha_de_orden = $request->input('fecha_de_orden');
-        $crearpedid->existencia = $request->input('existencia');
-        $crearpedid->colore_Producto = $request->input('colore_Producto');
-        $crearpedid->precio_Producto = $request->input('precio_Producto');
-
-        $crearpedid->save();
-
-        return redirect()->back();
+        
     }
 
     /**
