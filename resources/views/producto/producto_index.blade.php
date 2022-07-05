@@ -183,7 +183,7 @@
                           <td>{{ $pro->impuesto}}</td>
 
                           <td><a class="btn btn-info" href="">Ver</a>
-                          <a class="btn btn-success" href="">Editar</a>
+                          <a class="btn btn-success" href="{{ route('producto.edit', ['id' => $pro->id])}}">Editar</a>
                           
                                   <a class="btn btn-danger" href="#" data-bs-toggle="modal"
                                     data-bs-target="#modal_eliminar_cliente">Eliminar</a>
