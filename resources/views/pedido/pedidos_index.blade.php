@@ -147,13 +147,11 @@
                           <thead class="card-header py-3" style="background: #1a202c; color:white">
         <tr>
             <th>N°</th>
-            <th>Nombre Del Producto</th>
-            <th>Marca Del Producto</th>
-            <th>Dimension</th>
+            <th>Ciudad</th>
             <th>Fecha De Orden</th>
-            <th>Existencia</th>
-            <th>Color del producto</th>
-            <th>Precio Del Producto</th>
+            <th>Estado Del Pedido</th>  
+            <th>Detalle Del Pedido</th>
+            <th>Total Del Pedido</th>
             <th><i class="fa fa-exclamation-circle" aria-hidden=""></i></th>
         </tr>
         </thead>
@@ -161,13 +159,13 @@
         @forelse($pedidos as $i=>  $pedid)
             <tr>
             <td scope="row">{{++$i}}</td>
-                <td scope="row">{{$pedid->nombre_Producto}}</td>
-                <td>{{ $pedid->marca_Producto}} </td>
-                <td>{{ $pedid->dimension}}</td>
+                <td scope="row">{{$pedid->nombre_Cliente}}</td>
+                <td>{{ $pedid->telefono_Cliente}} </td>
+                <td>{{ $pedid->ciudad}}</td>
                 <td>{{ $pedid->fecha_de_orden}}</td>  
-                <td>{{ $pedid->existencia}}</td>
-                <td>{{$pedid->colore_Producto}}</td>
-                <td>{{ $pedid->precio_Producto}}</td>
+                <td>{{ $pedid->estado_Pedido}}</td>
+                <td>{{$pedid->detalle_Pedido}}</td>
+                <td>{{ $pedid->total_Pedido}}</td>
               
                 <td><a class="btn btn-info" href="">Ver</a>
                           <a class="btn btn-success" href="">Editar</a>
