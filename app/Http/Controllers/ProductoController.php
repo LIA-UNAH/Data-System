@@ -68,9 +68,11 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    // Editar Producto
+    public function edit($id)
     {
-        //
+    $producto = Producto::findOrFail($id);
+     return view('producto.productos_update')->with('producto',$producto);   
     }
 
     /**
@@ -80,17 +82,49 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+
+     //Guardar Producto Editado
+    public function update(Request $request, $id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+       
+        //Validar 
+
+        $request ->validate([
+            'descripcion'=>'required|alpha',
+            'codigo'=>'required|alpha|numeric',
+            'existencia'=>'alpha',
+            'prec_venta'=>'numeric',
+            'categoria'=>'alpha',
+            'impuesto'=>'numeric'
+        ]);
+
+        //Formulario
+        $producto -> descripcion=$request->input('descripcion');
+        $producto -> codigo=$request->input('codigo');
+        $producto -> existencia=$request->input('existencia');
+        $producto -> prec_venta=$request->input('prec_venta');
+        $producto -> categoria=$request->input('categoria');
+        $producto -> impuesto=$request->input('impuesto');
+
+        //Salvamos
+        $creado = $producto->save();
+       if($creado){
+            return redirect()->route('producto.producto.index')
+            ->with('mensaje','El producto fue modificado exitosamente.');
+           }//fin if
+          else{
+            
+         }//fin else
     }
+    
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(Producto $producto)
     {
         //
