@@ -52,7 +52,7 @@
 
                     <!-- Añadir -->
                     <div style="float: right; margin-left: 10px">
-                        <td style="text-align: center"><a class="btn btn-success" href="{{route("clientes.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
+                        <td style="text-align: center"><a class="btn btn-success" href="" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
                     </div>
                     <!--fin Añadir -->
                 </div>
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <div style="margin-left: 15px; margin-bottom:-15px">
+        <!--<div style="margin-left: 15px; margin-bottom:-15px">
     <button type="button" class="btn btn-primary shadow-lg rounded my-4"
             data-bs-toggle="modal" data-bs-target="#modal_nuevo_proveedor" >
         Crear nuevo
@@ -130,7 +130,7 @@
               </div>
 
 
-              <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
+              ---ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO---
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                   <button type="submit" class="btn btn-primary">Guardar</button>
@@ -140,9 +140,9 @@
               </form>
               </div>
           </div>
-        </div>
+        </div>-->
         
-
+      <!---Tabla--->
       <div class="card-body">
             <div class="table-responsive">
 
