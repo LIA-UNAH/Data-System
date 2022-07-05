@@ -83,6 +83,15 @@ Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class
 
 //HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
 Route::resource('/productos', ProductoController::class);
+// Editar Producto
+Route::get('/productos/{id}/editar',  [App\Http\Controllers\ProductoController::class, 'edit'])
+->name('producto.edit')
+->where('id','[0-9]+');
+
+// Actualizar Producto
+Route::put('/productos/{id}/editar', [App\Http\Controllers\ProductoController::class, 'update'])
+->name('producto.update')
+->where('id','[0-9]+');
 
 /*
 |--------------------------------------------------------------------------
