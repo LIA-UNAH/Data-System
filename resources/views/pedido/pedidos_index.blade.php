@@ -4,8 +4,6 @@
 
 @section('content')
 
-<h1 style="text-align:center">LISTA DE PEDIDOS</h1>
-
 {{-- Mensajes de las operaciones realizadas --}}
     {{--Para los mensajes afirmativos y sin errores --}}
     @if (session()->has('suce'))
@@ -23,24 +21,47 @@
     @endif
     {{-- Terminan los mensajes --}}
 
-    <!-- HU23 - Buscar y recargar producto -->
-    <div class="card" style="padding: 10px">
-        <form action="" method="GET"
-              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-                <input type="text" name="busqueda" class="form-control bg-light border-0 small"
-                       placeholder="Buscar pedido por nombre"
-                       aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit" value="Buscar">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
+<div class="card shadow mb-4 ">
+        <div class="card-header py-3" style="background: #0d6efd">
+                <div style="float: left">
+                    <h2 class="m-0 font-weight-bold" style="color: white">Pedidos</h2>
                 </div>
+
+            <div style="float: right">
+                 <div style="float: left">
+                 <!-- HU8 - Buscar y recargar pedido -->
+              
+                  <form action="" method="GET"
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                      <div class="input-group">
+                          <input type="text" name="busqueda" class="form-control bg-light border-0 small"
+                                placeholder="Buscar"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <button class="btn" type="submit" value="Buscar" style="background: white">
+                                  <i class="fas fa-search fa-sm" style="color: black"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+                       <!-- HU23 - recargar pedido -->
             </div>
-        </form>
+
+            <div style="float: right">
+                <!-- Recargar -->
+                <div style="float: left; margin-left: 15px">
+                    <td style="text-align: center"><a class="btn btn-dark" href="/pedidos" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
+                </div>
+                <!-- Recargar -->
+    
+                <!-- Añadir -->
+            </div>
+              
+            </div>
+        </div>
 
         <!--------------------------------------------------->
-        <!-- Modal PARA CREAR UN NUEVO PRODUCTO -->
+        <!-- Modal PARA CREAR UN NUEVO Pedido --
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                       <div class="modal-content">
@@ -51,7 +72,7 @@
 
                         <form action="{{ route('pedido.store')}}" method="POST">
                             @csrf
-                        <div class="modal-body">
+                        <div--- class="modal-body">
                       <div class="row g-3">
                               <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre del producto:</label>
@@ -105,10 +126,10 @@
                               </div> 
                               
                               </div>            
-                          </div>
+                          </div--->
 
                           
-                          <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
+                          <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO--
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                               <button type="submit" class="btn btn-primary">Guardar</button>
@@ -117,17 +138,13 @@
                           </form>
                           </div>
                       </div>
-                    </div>
+                    </div---->
 
-                  <div>
-                  <!-- ESTE BOTON LLAMA AL MODAL -->
-                  <button type="button" class="btn btn-primary shadow-lg rounded my-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
-                    Realizar Pedido 
-                  </button>
-                  </div>
       <!--------EMPIEZA LA TABLA ---------------->
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top: 15px">
-        <thead>
+      <div class="card-body">
+            <div class="table-responsive">
+                      <table class="table table" id="dataTable" width="100%" >
+                          <thead class="card-header py-3" style="background: #1a202c; color:white">
         <tr>
             <th>N°</th>
             <th>Nombre Del Producto</th>
@@ -152,13 +169,12 @@
                 <td>{{$pedid->colore_Producto}}</td>
                 <td>{{ $pedid->precio_Producto}}</td>
               
-
                 <td><a class="btn btn-info" href="">Ver</a>
-                <a class="btn btn-success" href="">Editar</a>
-                
-                        <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                           data-bs-target="#modal_eliminar_Pedido">Eliminar</a>
-                    </td>
+                          <a class="btn btn-success" href="">Editar</a>
+                          
+                                  <a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#modal_eliminar_cliente">Eliminar</a>
+                              </td>
 
                     <!-- <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
                          aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
@@ -196,10 +212,12 @@
             </tr>
 
         @endforelse
-        </tbody>
+           </tbody>
 
-    </table>
-</div>
+              </table>
+             </div>
+        </div>
+    </div>
 
 
 
