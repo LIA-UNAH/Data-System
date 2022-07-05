@@ -198,14 +198,24 @@ hr {
                                 <span class="text-600 text-90">ID:</span>
                             </div>
 
-                            <div class="my-2">
-                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> 
-                                <span class="text-600 text-90">Fecha:</span>
+                            <div class="my-2" >
+                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i> 
+                                <span class="text-600 text-90" >Fecha:
+                                    <span id="current_date">
+                                        <script>
+                                            date = new Date();
+                                            year = date.getFullYear();
+                                            month = date.getMonth() + 1;
+                                            day = date.getDate();
+                                            document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+                                        </script>
+                                    </span> 
+                                </span>
                             </div>
 
                             <div class="my-2">
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> 
-                                <span class="text-600 text-90">Vendido Por:</span>   
+                                <span class="text-600 text-90">Vendido Por:{{ Auth::user()->name }}</span>   
                                 <span class="badge badge-warning badge-pill px-25"></span>
                             </div>
                         </div>
