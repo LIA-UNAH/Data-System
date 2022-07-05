@@ -159,9 +159,7 @@
         @forelse($pedidos as $i=>  $pedid)
             <tr>
             <td scope="row">{{++$i}}</td>
-                <td scope="row">{{$pedid->nombre_Cliente}}</td>
-                <td>{{ $pedid->telefono_Cliente}} </td>
-                <td>{{ $pedid->ciudad}}</td>
+                <td scope="row">{{$pedid->ciudad}}</td>
                 <td>{{ $pedid->fecha_de_orden}}</td>  
                 <td>{{ $pedid->estado_Pedido}}</td>
                 <td>{{$pedid->detalle_Pedido}}</td>
