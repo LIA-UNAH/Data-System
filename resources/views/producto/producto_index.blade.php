@@ -168,7 +168,7 @@
                       <th>Precio de venta</th>
                       <th>Categoría</th>
                       <th>Impuesto</th>
-                      <th><i class="fa fa-exclamation-circle" aria-hidden=""></i></th>
+                      <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden="" style="display: flex; justify-content: center;"></i></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -182,11 +182,11 @@
                           <td>{{ $pro->categoria}}</td>
                           <td>{{ $pro->impuesto}}</td>
 
-                          <td><a class="btn btn-info" href="">Ver</a>
-                          <a class="btn btn-success" href="{{ route('producto.edit', ['id' => $pro->id])}}">Editar</a>
+                          <td><a class="btn btn-info" href="">Ver</a></td>
+                         <td><a class="btn btn-success" href="{{ route('producto.edit', ['id' => $pro->id])}}">Editar</a></td> 
                           
-                                  <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modal_eliminar_cliente">Eliminar</a>
+                                 <td><a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#modal_eliminar_cliente">Eliminar</a></td> 
                               </td>
 
                               <!-- <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"

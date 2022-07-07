@@ -156,7 +156,8 @@
             <th>Dirección</th>
             <th>Contacto</th>
             <th>Teléfono contacto</th>
-            <th>Ver Proveedor</th>
+            <th colspan="6"><i class="fa fa-exclamation-circle" aria-hidden="" style="display: flex; justify-content: center;"></i></th>
+            
         </tr>
         </thead>
         <tbody>
@@ -169,11 +170,15 @@
                 <td>{{ $proved->direccion_proveedor}} </td>
                 <td>{{ $proved->contacto_proveedor}} </td>
                 <td>{{ $proved->telefono_contacto_proveedor}} </td>
-                <td><button type="button" class="btn btn-info"  href=""><i class="fa fa-eye" aria-hidden="true" style="color: white"></i></button>            
+                <td colspan="4"><button type="button" class="btn btn-info"  href=""><i class="fa fa-eye" aria-hidden="true" style="color: white; "></i></button></td> 
+                <td><a class="btn btn-success" href="{{ route('proveedor.edit', $proved->id) }}"> 
+                                            <i class="fa fa-edit" aria-hidden="true"></i> <!--boton de editar--->
+                                            @csrf </a> </td>         
                 <!---ACA EMPIEZA EL BOTON DE ELIMINAR--->
-               <button type="button" class="btn btn-danger" data-bs-toggle="modal" style="" data-bs-target="#modalEliminarProveedor{{$proved->id}}">
+               <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" style="float:right" data-bs-target="#modalEliminarProveedor{{$proved->id}}">
                                             <i class="fa fa-window-close" aria-hidden="true"></i> <!--boton de eliminar--->
-                                            </button>
+                                            </button></td>
+                                            
                                             <!---------############################----------->
                                             <!-----------MODAL PARA ELIMINAR UN PROVEEDOR---------------->
                                             
@@ -205,12 +210,10 @@
                                             </div>
                                            
                                             <!-----------####################################------->
-                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" style="" data-bs-target="#modalEditarProveedor{{$proved->id}}">
-                                            <i class="fa fa-edit" aria-hidden="true"></i> <!--boton de editar--->
-                                            </button>
+                                            
 
-                                            <div class="modal fade" id="modalEditarProveedor{{$proved->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <!--    <div class="modal fade" id="modalEditarProveedor{{$proved->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="staticBackdropLabel">Editar Proveedor</h5>
@@ -273,8 +276,8 @@
               </div>
 
 
-              <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
-              <div class="modal-footer">
+              ----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
+              <!--div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                   <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
@@ -282,11 +285,11 @@
               </form>
               </div>
           </div>
-        </div>
+        </div> -->
 
 
 
-      </td>
+      
             </tr>
         @empty
             <tr>
