@@ -76,7 +76,7 @@ class ProveedorController extends Controller
     public function edit($id)
     {
         $proveedor=Proveedor::FindOrFail($id);
-        return view('proveedor.proveedores_index', compact('proveedors'));
+        return view('proveedor.proveedores_update', compact('proveedor'));
     }
 
     /**
@@ -97,7 +97,7 @@ class ProveedorController extends Controller
         $proveedor->telefono_contacto_proveedor = $request->input('telefono_contacto_proveedor');
 
         $proveedor->save();
-        return redirect()->back();
+        return redirect()->route('proveedor.index');
     }
 
     /**
