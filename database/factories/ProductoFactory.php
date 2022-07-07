@@ -17,7 +17,12 @@ class ProductoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'descripcion'=> $this->faker->text($maxNbChars = 15) ,
+            'codigo'=> $this->faker-> bothify('??####?##?####?'),
+            'existencia'=> $this->faker->numberBetween($min = 1, $max = 500) ,
+            'prec_venta'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
+            'categoria'=> $this->faker->text($maxNbChars = 10),
+            'impuesto'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0.1, $max = 0.50),
         ];
     }
 }
