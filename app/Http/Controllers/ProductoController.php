@@ -14,7 +14,11 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $produc = Producto::all();
+        $produc = Producto::select('id','descripcion', 'codigo',
+        'existencia',
+        'prec_venta',
+        'categoria',
+        'impuesto')->paginate(10);
         return view('producto.producto_index')->with('productos', $produc);
     }
 
