@@ -228,6 +228,9 @@
                   </tbody>
 
               </table>
+              <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
+            {{ $productos->links('pagination::bootstrap-4') }}
+        </div>
              </div>
         </div>
     </div>
