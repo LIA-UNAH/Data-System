@@ -122,7 +122,11 @@ Route::delete('/proveedor/{proved}', [App\Http\Controllers\ProveedorController::
     ->name('proveedor.destroy');
 
 // Editar proveedor
-Route::put('/proveedor/{id}', [App\Http\Controllers\ProveedorController::class, 'update'])
+Route::get('/proveedor/{id}/edit', [App\Http\Controllers\ProveedorController::class, 'edit'])
+    ->name('proveedor.edit');
+
+// Editar proveedor
+Route::put('/proveedor/{id}/editar', [App\Http\Controllers\ProveedorController::class, 'update'])
     ->name('proveedor.update');
 
 /*
