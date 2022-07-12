@@ -131,11 +131,9 @@ hr {
                 ID: #111-222
             </small>
 
-            <small id="dropdownMenuButton1"  data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-primary dropdown-toggle">
+            <small id="dropdownMenuButton1" data-bs-toggle="modal" data-bs-target="#AgregarPro" aria-expanded="false" class="btn btn-primary dropdown-toggle">
                 Agregar Producto:
-            </small>
-
-            
+            </small>    
         </h1>
 
         <div class="page-tools">
@@ -304,9 +302,94 @@ hr {
         </div>
     </div>
 
-  
+<!-- Modal Busca Producto-->
+<div class="modal fade" id="AgregarPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        
+    <h4 class="modal-title" id="myModalLabel">Buscar productos</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" ><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+    <form class="form-horizontal">
+    <div class="form-group">                                              
+    <div class="col-sm-6">
+    <input type="text" class="form-control" id="filtrar" placeholder="Buscar productos">
+    <a type="button" href="#" id="bus"><i class="fas fa-search fa-sm"></i>Buscar</a>
+    </div>
+                  </div>
+                </form>                 
+                                  <div class="outer_div">                                          
+                                             
+                                        <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody class="buscar">    
+                                        <tr  class="warning">
+                                            <th>N°</th>
+                                            <th>Código</th>
+                                            <th>Producto</th> 
+                                            <th><span class='text-center'>Precio</span></th>
+                                            <th><span class='text-center'>Cant.</span></th>
+                                            <th class='text-center' style="width: 36px;">Agregar</th>
+                                        </tr>
 
-    
+                                        @forelse($productos as $i=>  $pro)
+                                            
+                                            <tr>
+                                                <td scope="row" id="id"><strong>{{$pro->id}}</strong></td>
+                                                <td>{{ $pro->codigo}} </td>
+                                                <td scope="row" id="desc">{{$pro->descripcion}}</td>
+                                                <td class='col-xs-2'>
+                                                    <div class="pull-right" id="precio">
+                                                        <input type="text" class="form-control" style="text-align:right" id="precio" value="{{ $pro->prec_venta}}">
+                                                    </div>
+                                                </td>
+                                                <td class='col-xs-1' id="cant">
+                                                    <div class="pull-right">
+                                                        <input type="number" class="form-control" style="text-align:right" id="cant" value="">
+                                                    </div>
+                                                </td>
+                                                <td class='text-center'>
+                                                    <a class='btn btn-info'href="#" onclick="agregado($id)"><i class= "fa fa-plus-square"  ></i></a>
+                                                </td>
+
+                                        
+                                            </tr>
+
+                                            @empty
+                                                <tr>
+                                                    <td colspan="4">No hay productos ingresados</td>
+                                                </tr>
+
+                                        @endforelse
+                                        
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                  </div><!-- Datos ajax Final -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal" >Cerrar</button>                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        
+<script>
+    function agregar($id){
+        var cant = document.getElementById('cant'+id).value;
+      $.ajax({
+      type: 'POST',
+      data: "codigo="+id+"&canti="+cant,
+      success: function (r){
+      $("#resultados1").html(r);
+      }                                
+      });
+    }
+</script> 
     
 @endsection
 
