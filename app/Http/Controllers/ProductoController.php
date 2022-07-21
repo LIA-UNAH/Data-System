@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -12,10 +13,15 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $produc = Producto::paginate(10);
-        return view('producto.producto_index')->with('productos', $produc);
+        $buscar = trim( $request->get('buscar_producto'));
+        $productos=DB::table('productos')->select('id', 'descripcion', 'codigo', 'existencia', 'prec_venta',
+         'categoria', 'impuesto')->where('descripcion', 'like', '%'.$buscar.'%')
+         ->Where('descripcion', 'LIKE', '%'. $buscar. '%')
+         ->orWhere('categoria', 'LIKE', '%'. $buscar. '%')
+         ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(10);
+        return view('producto.producto_index', compact('productos', 'buscar'));
     }
 
     /**
@@ -59,7 +65,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        return view('producto.productos_show');
     }
 
     /**
