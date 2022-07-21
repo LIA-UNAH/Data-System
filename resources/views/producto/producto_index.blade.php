@@ -5,7 +5,6 @@
 @section('content')
 
 
-
     {{-- Mensajes de las operaciones realizadas --}}
     {{--Para los mensajes afirmativos y sin errores --}}
     @if (session()->has('suce'))
@@ -182,40 +181,45 @@
                           <td>{{ $pro->categoria}}</td>
                           <td>{{ $pro->impuesto}}</td>
 
-                          <td><a class="btn btn-info" href="">Ver</a></td>
-                         <td><a class="btn btn-success" href="{{ route('producto.edit', ['id' => $pro->id])}}">Editar</a></td> 
+                          <td><a class="btn btn-info" href="{{ route('productos.ver', ['id' => $pro->id])}}"><i class="fa fa-eye" aria-hidden="true" style="color: white; "></i></a></td>
+                         <td><a class="btn btn-success" href="{{ route('producto.edit', ['id' => $pro->id])}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td> 
                           
                                  <td><a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modal_eliminar_cliente">Eliminar</a></td> 
+                                    data-bs-target="#modalEliminarProveedor{{$pro->id}}"> <i class="fa fa-window-close" aria-hidden="true"></i> </a></td> 
                               </td>
 
-                              <!-- <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
-                                  aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title" id="ModalLabel">Eliminar Usuario</h5>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                      aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                              ¿Desea eliminar a ""
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerra
-                                              </button>
-                                              <form action=""
-                                                    method="POST">
-                                                  @csrf
-                                                  @method('DELETE')
-                                                  <button type="submit" class="btn btn-danger">Eliminar</button>
-                                              </form>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          
-                          {{-- Hasta aqui el modal de eliminar --}} -->
+                              
+                                            <!---------############################----------->
+                                            <!-----------MODAL PARA ELIMINAR UN PRODUCTO---------------->
+                                            
+                                                                   
+                                            <div class="modal fade" id="modalEliminarProveedor{{$pro->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h5 class="modal-title" id="staticBackdropLabel">Eliminar Producto</h5>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+
+                                                    <form action="{{ route('productos.destroy',$pro->id)}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    <div class="modal-body">
+                                                 
+                                                    ¿Desea eliminar el producto <strong>{{$pro->descripcion}}?</strong>
+                                                          
+                                                    </div>           
+                                                 <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                      <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                  </div>
+
+                                                  </form>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                           
+                                            <!-----------####################################------->
 
 
                       </tr>
