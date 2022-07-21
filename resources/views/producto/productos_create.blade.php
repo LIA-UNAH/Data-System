@@ -59,7 +59,7 @@
                           
                           <div style="float:center">
                           
-                              <a class="btn btn-dark" href="/productos">Cerrar</a>
+                              <a class="btn btn-dark" href="/productos">Volver</a>
                               
                               <button type="submit" class="btn btn-primary">Guardar</button>
                           </div>

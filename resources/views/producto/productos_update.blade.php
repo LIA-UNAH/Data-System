@@ -2,20 +2,7 @@
 @section('content')
 
 
-    <div class="card shadow mb-4 ">
-        <div class="card-header py-3" style="background: #0d6efd">
-                <div style="float: left">
-                    <h2 class="m-0 font-weight-bold" style="color: white">Editar Productos</h2>
-                </div>
-                </div>
-
-                <div style="float: right">
-                <!-- Recargar -->
-                <div style="float: left; margin-left: 15px">
-                  
-                  </div>
-                
-                <!-- Recargar -->
+   
 
 
                 <div class="container">
@@ -82,12 +69,13 @@
                           <br>
                           <div style="float:center">
                           
-                              <a class="btn btn-dark" href="/productos">Cerrar</a>
+                              <a class="btn btn-dark" href="/productos">Volver</a>
                               
                               <button type="submit" class="btn btn-primary">Guardar</button>
                           </div>
 
                           </form>
-                          </div>
+                </div>
+                          
 
 @endsection

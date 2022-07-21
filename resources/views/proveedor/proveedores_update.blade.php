@@ -59,7 +59,7 @@
 
               <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
               <div >
-                  <a class="btn btn-dark" href="/proveedor">Cerrar</a>
+                  <a class="btn btn-dark" href="/proveedor">Volver</a>
                   <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
 
