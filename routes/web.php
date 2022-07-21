@@ -83,6 +83,11 @@ Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class
 
 //HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
 Route::resource('/productos', ProductoController::class);
+//Ver Producto
+
+Route::get('productos/{id}/show', [App\Http\Controllers\ProductoController::class, 'show']
+)->name('productos.ver');
+
 // Editar Producto
 Route::get('/productos/{id}/editar',  [App\Http\Controllers\ProductoController::class, 'edit'])
 ->name('producto.edit')
