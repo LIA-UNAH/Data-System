@@ -4,6 +4,15 @@
 
    
 
+<div class="card shadow mb-4 ">
+  <div></div>
+<div class="card-header py-3" style="background: #0d6efd">
+                
+                <div style="float: left">
+                    <h2 class="m-0 font-weight-bold" style="color: white">Productos</h2>
+                </div>
+                </div>
+<br>
 
                 <div class="container">
                 <form action="{{ route( 'producto.edit', ['id'=>$producto->id]) }}" method="POST">
@@ -67,6 +76,7 @@
                           </div>
 
                           <br>
+                        
                           <div style="float:center">
                           
                               <a class="btn btn-dark" href="/productos">Volver</a>
@@ -76,6 +86,9 @@
 
                           </form>
                 </div>
+                <br>
+                
+</div>
                           
 
 @endsection

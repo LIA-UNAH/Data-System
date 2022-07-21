@@ -97,14 +97,14 @@ class ProductoController extends Controller
        
         //Validar 
 
-        $request ->validate([
+      /* $request ->validate([
             'descripcion'=>'required|alpha',
             'codigo'=>'required|alpha|numeric',
             'existencia'=>'alpha',
             'prec_venta'=>'numeric',
             'categoria'=>'alpha',
             'impuesto'=>'numeric'
-        ]);
+        ]);*/
 
         //Formulario
         $producto -> descripcion=$request->input('descripcion');
@@ -117,7 +117,7 @@ class ProductoController extends Controller
         //Salvamos
         $creado = $producto->save();
        if($creado){
-            return redirect()->route('producto.producto.index')
+            return redirect()->route('productos.index')
             ->with('mensaje','El producto fue modificado exitosamente.');
            }//fin if
           else{
