@@ -161,9 +161,9 @@
         </tr>
         </thead>
         <tbody>
-        @forelse($proveedor as $i=> $proved)
+        @forelse($proveedor as $item=> $proved)
             <tr>
-                <td scope="row"><strong>{{ ++$i }}</strong></td>
+                <td scope="row"><strong>{{$item +$proveedor->firstItem() }}</strong></td>
                 <td>{{ $proved->nombre_proveedor}} </td>
                 <td>{{ $proved->rtn_proveedor}} </td>
                 <td>{{ $proved->telefono_proveedor}} </td>
