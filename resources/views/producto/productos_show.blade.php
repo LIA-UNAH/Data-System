@@ -8,7 +8,7 @@
   <div class="card">
     <div class="row ">
 
-      <div class="col-md-7 px-3 ">
+      <div class="col-md-8 px-3 ">
         <div class="ml-3 pb-lg-4">
           <div style="font-size: 40px; float: left; width: 45%; text-align: justify;"><strong>Descripción:</strong></div> <div style="font-size: 40px; float: right; width: 55%; text-align: justify;"> {{$verproducto->descripcion}} </div>
           <div style="font-size: 30px; float: left; width: 45%; text-align: justify;"><strong>Código:</strong></div> <div style="font-size: 30px; float: right; width: 55%; text-align: justify;">  {{$verproducto->codigo}}</div>
@@ -22,37 +22,9 @@
           <br>
         </div>
       </div>
-      <!-- Carousel start -->
-      <div class="col-md-5">
-        <div id="CarouselTest" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#CarouselTest" data-slide-to="0" class="active"></li>
-            <li data-target="#CarouselTest" data-slide-to="1"></li>
-            <li data-target="#CarouselTest" data-slide-to="2"></li>
-
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block" src="https://picsum.photos/450/300?image=1072" alt="">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block" src="https://picsum.photos/450/300?image=855" alt="">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block" src="https://picsum.photos/450/300?image=355" alt="">
-            </div>
-            <a class="carousel-control-prev" href="#CarouselTest" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-            <a class="carousel-control-next" href="#CarouselTest" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-          </div>
+      <div class="col-sm-4" style="margin-left: -100px;">
+          <img class="d-block " src="https://www.eltiempo.com/files/image_640_428/uploads/2022/05/13/627e742f42f3b.jpeg" alt="" width="450px" height="350">
         </div>
-      </div>
-      <!-- End of carousel -->
     </div>
   </div>
   <!-- End of card -->
