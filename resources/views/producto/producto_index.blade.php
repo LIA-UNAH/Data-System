@@ -163,10 +163,6 @@
                       <th>N°</th>
                       <th>Descripción</th>
                       <th>Código</th>
-                      <th>Existencia</th>
-                      <th>Precio de venta</th>
-                      <th>Categoría</th>
-                      <th>Impuesto</th>
                       <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden="" style="display: flex; justify-content: center;"></i></th>
                   </tr>
                   </thead>
@@ -176,10 +172,6 @@
                       <td scope="row"><strong>{{$item +$productos->firstItem()}}</strong></td>
                           <td scope="row">{{$pro->descripcion}}</td>
                           <td>{{ $pro->codigo}} </td>
-                          <td>{{ $pro->existencia}}</td>
-                          <td>{{ $pro->prec_venta}}</td>
-                          <td>{{ $pro->categoria}}</td>
-                          <td>{{ $pro->impuesto}}</td>
 
                           <td><a class="btn btn-info" href="{{ route('productos.ver', ['id' => $pro->id])}}"><i class="fa fa-eye" aria-hidden="true" style="color: white; "></i></a></td>
                          <td><a class="btn btn-success" href="{{ route('producto.edit', ['id' => $pro->id])}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td> 
