@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto;
+use App\Models\Producto  ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 
 class ProductoController extends Controller
 {
@@ -50,11 +52,18 @@ class ProductoController extends Controller
         $crearprod->prec_venta = $request->input('prec_venta');
         $crearprod->categoria = $request->input('categoria');
         $crearprod->impuesto = $request->input('impuesto');
-        
+        //$crearprod->imagen_producto = $request->input('imagen_producto');
+        if($request->hasFile('imagen_producto')){
+            $imagen = $request->file('imagen_producto');
+            $extention = $imagen->getClientOriginalExtension();
+            $filname = time().'.'.$extention;
+            $imagen->move('imagenes/', $filname);
+            $crearprod->imagen_producto = $filname;
+        }
 
         $crearprod->save();
 
-        return redirect()->route('productos.index');
+        return redirect()->route('productos.index')->with('realizado', '¡El producto ha sido creado con exito!');
     }
 
     /**
@@ -113,16 +122,16 @@ class ProductoController extends Controller
         $producto -> prec_venta=$request->input('prec_venta');
         $producto -> categoria=$request->input('categoria');
         $producto -> impuesto=$request->input('impuesto');
-
-        //Salvamos
+        
+       //Salvamos
         $creado = $producto->save();
-       if($creado){
-            return redirect()->route('productos.index')
-            ->with('mensaje','El producto fue modificado exitosamente.');
-           }//fin if
-          else{
+        if($creado){
+           return redirect()->route('productos.index')
+           ->with('mensaje','El producto fue modificado exitosamente.');
+          }//fin if
+         else{
             
-         }//fin else
+        }//fin else
     }
     
 
