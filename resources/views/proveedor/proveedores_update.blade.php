@@ -1,6 +1,14 @@
 @extends('Layouts.Layouts')
 @section('content')
-<div class="container">
+<div class="card shadow mb-4 ">
+  <div></div>
+<div class="card-header py-3" style="background: #0d6efd; border-radius:5px 5px 0 0;">
+                
+                <div style="float: left">
+                    <h2 class="m-0 font-weight-bold" style="color: white">Editar Proveedor</h2>
+                </div>
+                </div>
+<br><div class="container">
 <form action="{{ route('proveedor.update', $proveedor->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -64,5 +72,7 @@
               </div>
 
               </form>
+</div>
+<br>
 </div>
 @endsection
