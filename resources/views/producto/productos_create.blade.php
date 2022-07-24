@@ -10,7 +10,7 @@
                 </div>
 <br>
 <div class="container">
-<form action="{{ route('productos.store')}}" method="POST">
+<form action="{{ route('productos.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                         <div class="modal-body">
                       <div class="row g-3">
@@ -58,8 +58,17 @@
                                   Valid first name is required.
                                 </div>
                               </div>
-                               
                               
+                              
+                              <div class="col-sm-6">
+                              <label class="form-label" for="customFile">Agregar Imagen:</label>
+                              <input type="file" class="form-control" id="imagen_producto" name="imagen_producto"/>
+                               </div>
+
+                               <div class="col-sm-6">
+                                <img id="imagen_seleccionada" src="" alt="" style="max-height: 300px;">
+                              </div>
+
                               </div>            
                           </div>
 
@@ -76,5 +85,16 @@
                           </div>
                           <br>
 </div>
-
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  $(Document).ready(function (e){
+    $('#imagen').change(function(){
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        $('#imagen_seleccionada').attr('src', e.target.result);
+      }
+      reader.reeadAsDataURL(this.files[0]);
+    });
+  });
+</script>
 @endsection
