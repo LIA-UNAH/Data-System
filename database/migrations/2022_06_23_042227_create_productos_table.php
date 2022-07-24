@@ -21,6 +21,7 @@ return new class extends Migration
             $table->double('prec_venta');
             $table->string('categoria', 80);
             $table->double('impuesto');
+            $table->string('imagen_producto');
             $table->timestamps();
         });
     }
