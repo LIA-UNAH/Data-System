@@ -20,9 +20,19 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    {{-- Terminan los mensajes --}}
 
-    
+    {{--Para los mensajes de creado y actualizado --}}
+  @if (session('realizado'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{session('realizado')}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
+
+
+
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
                 <div style="float: left">
