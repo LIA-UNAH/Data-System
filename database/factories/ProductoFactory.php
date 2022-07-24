@@ -23,6 +23,7 @@ class ProductoFactory extends Factory
             'prec_venta'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
             'categoria'=> $this->faker->text($maxNbChars = 10),
             'impuesto'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0.1, $max = 0.50),
+            'imagen_producto'=>$this->faker->imageUrl(360, 360)
         ];
     }
 }
