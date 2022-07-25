@@ -152,7 +152,7 @@
             <th>Estado Del Pedido</th>  
             <th>Detalle Del Pedido</th>
             <th>Total Del Pedido</th>
-            <th><i class="fa fa-exclamation-circle" aria-hidden=""></i></th>
+            <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden="" style="display: flex; justify-content: center;"></i></th>
         </tr>
         </thead>
         <tbody>
@@ -164,13 +164,17 @@
                 <td>{{ $pedid->estado_Pedido}}</td>
                 <td>{{$pedid->detalle_Pedido}}</td>
                 <td>{{ $pedid->total_Pedido}}</td>
-              
-                <td><a class="btn btn-info" href="">Ver</a>
-                          <a class="btn btn-success" href="">Editar</a>
-                          
-                                  <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modal_eliminar_cliente">Eliminar</a>
+              <div>
+              <td><a class="btn btn-info" href="{{ route('pedidos.mostrar', ['id' => $pedid->id])}}"><i class="fa fa-eye" aria-hidden="true" style="color: white; "></i></a></td>
+                <td><a class="btn btn-success" href=""><i class="fa fa-edit" aria-hidden="true"></i></a></td> 
+
+                <td><a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#modalEliminarProveedor"> <i class="fa fa-window-close" aria-hidden="true"></i> </a></td> 
                               </td>
+                          
+                </div> 
+                                 
+                             
 
                     <!-- <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
                          aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
@@ -211,6 +215,7 @@
            </tbody>
 
               </table>
+              {{ $pedidos->links('pagination::bootstrap-4') }}
              </div>
         </div>
     </div>
