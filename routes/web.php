@@ -107,6 +107,8 @@ Route::put('/productos/{id}/editar', [App\Http\Controllers\ProductoController::c
 //HU23 - index, create, store, show, edit, updare, destroy
 Route::resource('/pedidos', PedidoController::class);
 Route::post('/pedidos', [App\Http\Controllers\PedidoController::class, 'store'])->name('pedido.store');
+Route::get('pedidos/{id}/show', [App\Http\Controllers\PedidoController::class, 'show']
+)->name('pedidos.mostrar');
 
 /*
 |--------------------------------------------------------------------------
