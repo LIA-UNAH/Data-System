@@ -47,98 +47,10 @@
                        <!-- HU23 - recargar pedido -->
             </div>
 
-            <div style="float: right">
-                <!-- Recargar -->
-                <div style="float: left; margin-left: 15px">
-                    <td style="text-align: center"><a class="btn btn-dark" href="/pedidos" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
-                </div>
-                <!-- Recargar -->
-
-                <!-- Añadir -->
-            </div>
+            
 
             </div>
         </div>
-
-        <!--------------------------------------------------->
-        <!-- Modal PARA CREAR UN NUEVO Pedido --
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="staticBackdropLabel">Realizar un pedido</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <form action="{{ route('pedido.store')}}" method="POST">
-                            @csrf
-                        <div--- class="modal-body">
-                      <div class="row g-3">
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Nombre del producto:</label>
-                                <input type="text" class="form-control" id="nombre_Producto" name="nombre_Producto" placeholder="Ingrese el nombre del producto" value="" required>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Marca del producto:</label>
-                                <input type="text" class="form-control" id="marca_Producto" name="marca_Producto" placeholder="Ingrese la marca del producto" value="" required>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Dimensiones:</label>
-                                <input type="text" class="form-control" id="dimension" name="dimension" placeholder="Ingrese las dimesiones" value="" required>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Fecha de orden:</label>
-                                <input type="text" class="form-control" id="fecha_de_orden" name="fecha_de_orden" placeholder="00-00-0000" value="" required>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Existencia:</label>
-                                <input type="number" class="form-control" id="existencia" name="existencia" placeholder="Ingrese la serie" value="" >
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Color del producto:</label>
-                                <input type="text" class="form-control" id="colore_Producto" name="colore_Producto" placeholder="Ingrese el color del producto" value="" required>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                               <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Precio del producto:</label>
-                                <input type="number" class="form-control" id="precio_Producto" name="precio_Producto" placeholder="Ingrese el precio del producto" value="" required>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-
-                              </div>
-                          </div--->
-
-
-                          <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO--
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                              <button type="submit" class="btn btn-primary">Guardar</button>
-                          </div>
-
-                          </form>
-                          </div>
-                      </div>
-                    </div---->
 
       <!--------EMPIEZA LA TABLA ---------------->
       <div class="card-body">
@@ -156,9 +68,9 @@
         </tr>
         </thead>
         <tbody>
-        @forelse($pedidos as $i=>  $pedid)
+        @forelse($pedidos as $item=> $pedid)
             <tr>
-                <td scope="row">{{++$i}}</td>
+                <td scope="row"><strong>{{$item +$pedidos->firstItem()}}</strong></td>
                 <td scope="row">{{$pedid->ciudad}}</td>
                 <td>{{ $pedid->fecha_de_orden}}</td>
                 <td>{{ $pedid->estado_Pedido}}</td>
@@ -217,7 +129,8 @@
            </tbody>
 
               </table>
-              {{ $pedidos->links('pagination::bootstrap-4') }}
+            {{ $pedidos->links() }}
+            
              </div>
         </div>
     </div>
