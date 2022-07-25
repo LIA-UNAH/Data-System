@@ -77,6 +77,7 @@
                     <tbody>
                     @forelse($users as $user)
                         @if($user->type== 'cliente')
+
                         @else
                         <tr>
                             <td scope="row">{{ $user->id }}</td>
@@ -88,41 +89,41 @@
                             <td style="text-align: center"><a class="btn btn-success" href=""><i class="fa fa-edit" style="color: white"></i></a></td>
                             {{-- Eliminar usuario se valiada para evitar que el usuario
                             actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
-                            @if($user->id == Auth::user()->id OR $user->type== 'administrador')
-                                <td>
-                                </td>
-                            @else
-                                <td style="text-align: center">
-                                    <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                       data-bs-target="#modal_eliminar_cliente"><i class="fa fa-window-close" style="color: white"></i></a>
-                                </td>
+                                @if($user->id == Auth::user()->id OR $user->type== 'administrador')
+                                    <td>
+                                    </td>
+                                @else
+                                    <td style="text-align: center">
+                                        <a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                        data-bs-target={{"#modal_eliminar_cliente".$user->id}}><i class="fa fa-window-close" style="color: white"></i></a>
+                                    </td>
 
-                                <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
-                                     aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header" style="background: darkred; color: white">
-                                                <h5 class="modal-title"  id="ModalLabel">Eliminar usuario</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close" style="color: white"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Desea eliminar el usuario "{{ $user->name }}?"
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
-                                                </button>
-                                                <form action="{{ route('usuarios.destroy', ['user'=>$user->id ]) }}"
-                                                      method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                </form>
+                                    <div class="modal fade" id={{"modal_eliminar_cliente".$user->id}} tabindex="-1"
+                                        aria-labelledby={{"modal_eliminar_cliente".$user->id}} aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background: darkred; color: white">
+                                                    <h5 class="modal-title"  id="ModalLabel">Eliminar usuario</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close" style="color: white"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Desea eliminar el usuario "{{ $user->name }}?"
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
+                                                    </button>
+                                                    <form action="{{ route('usuarios.destroy', ['user'=>$user->id ]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
+                                @endif
                             @endif
                             {{-- Hasta aqui el modal de eliminar --}}
                         </tr>

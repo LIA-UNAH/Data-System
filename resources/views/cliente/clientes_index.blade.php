@@ -171,11 +171,11 @@
                                         </td>
                                     @else
                                         <td style="text-align: center">
-                                            <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#modal_eliminar_cliente"><i class="fa fa-window-close" style="color: white"></i></a>
+                                            <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target={{ "#modal_eliminar_cliente".$user->id }}><i class="fa fa-window-close" style="color: white"></i></a>
                                         </td>
 
-                                        <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
-                                             aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
+                                        <div class="modal fade" id={{ "modal_eliminar_cliente".$user->id }} tabindex="-1"
+                                             aria-labelledby={{ "modal_eliminar_cliente".$user->id }} aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header" style="background: darkred; color: white">
