@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 
+
 class PedidoController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedid = Pedido::all();
+        $pedid = Pedido::paginate(10);
         return view('pedido.pedidos_index')->with('pedidos', $pedid);
     }
 
@@ -47,7 +48,8 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        $pedido = Pedido::findOrFail($id);
+        return view('pedido.pedidos_show', compact('pedido'));
     }
 
     /**
