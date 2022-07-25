@@ -9,7 +9,7 @@
 <div class="card-header py-3" style="background: #0d6efd">
                 
                 <div style="float: left">
-                    <h2 class="m-0 font-weight-bold" style="color: white">Productos</h2>
+                    <h2 class="m-0 font-weight-bold" style="color: white">Editar Productos</h2>
                 </div>
                 </div>
 <br>
