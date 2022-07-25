@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
+
+   
+    use HasFactory;
+    
     protected $table="pedidos";
     protected $fillable =[
         'nombre_Cliente',
-        'telefono_Cliente', 
+        'telefon_Cliente', 
         'ciudad', 
         'fecha_de_orden',
         'detalle_Pedido',
         'total_Pedido'
-    ];
+    ]; 
 }
+
