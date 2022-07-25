@@ -30,7 +30,7 @@
             <div style="float: right">
                  <div style="float: left">
                  <!-- HU8 - Buscar y recargar pedido -->
-              
+
                   <form action="" method="GET"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                       <div class="input-group">
@@ -53,10 +53,10 @@
                     <td style="text-align: center"><a class="btn btn-dark" href="/pedidos" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
                 </div>
                 <!-- Recargar -->
-    
+
                 <!-- Añadir -->
             </div>
-              
+
             </div>
         </div>
 
@@ -123,12 +123,12 @@
                                 <div class="invalid-feedback">
                                   Valid first name is required.
                                 </div>
-                              </div> 
-                              
-                              </div>            
+                              </div>
+
+                              </div>
                           </div--->
 
-                          
+
                           <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO--
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -142,14 +142,14 @@
 
       <!--------EMPIEZA LA TABLA ---------------->
       <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" id="tblaBody">
                       <table class="table table" id="dataTable" width="100%" >
                           <thead class="card-header py-3" style="background: #1a202c; color:white">
         <tr>
             <th>N°</th>
             <th>Ciudad</th>
             <th>Fecha De Orden</th>
-            <th>Estado Del Pedido</th>  
+            <th>Estado Del Pedido</th>
             <th>Detalle Del Pedido</th>
             <th>Total Del Pedido</th>
             <th><i class="fa fa-exclamation-circle" aria-hidden=""></i></th>
@@ -158,16 +158,16 @@
         <tbody>
         @forelse($pedidos as $i=>  $pedid)
             <tr>
-            <td scope="row">{{++$i}}</td>
+                <td scope="row">{{++$i}}</td>
                 <td scope="row">{{$pedid->ciudad}}</td>
-                <td>{{ $pedid->fecha_de_orden}}</td>  
+                <td>{{ $pedid->fecha_de_orden}}</td>
                 <td>{{ $pedid->estado_Pedido}}</td>
                 <td>{{$pedid->detalle_Pedido}}</td>
                 <td>{{ $pedid->total_Pedido}}</td>
-              
+
                 <td><a class="btn btn-info" href="">Ver</a>
                           <a class="btn btn-success" href="">Editar</a>
-                          
+
                                   <a class="btn btn-danger" href="#" data-bs-toggle="modal"
                                     data-bs-target="#modal_eliminar_cliente">Eliminar</a>
                               </td>
@@ -197,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                 {{-- Hasta aqui el modal de eliminar --}} -->
 
 

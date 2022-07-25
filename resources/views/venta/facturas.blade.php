@@ -158,7 +158,7 @@ hr {
                         </div>
                     </div>
                 </div>
-              
+
 
                 <hr class="row brc-default-l1 mx-n1 mb-4" />
 
@@ -194,12 +194,12 @@ hr {
                             </div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
-                                </i> 
+                                </i>
                                 <span class="text-600 text-90">ID:</span>
                             </div>
 
                             <div class="my-2" >
-                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i> 
+                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i>
                                 <span class="text-600 text-90" >Fecha:
                                     <span id="current_date">
                                         <script>
@@ -209,26 +209,26 @@ hr {
                                             day = date.getDate();
                                             document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
                                         </script>
-                                    </span> 
+                                    </span>
                                 </span>
                             </div>
 
                             <div class="my-2">
-                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> 
-                                <span class="text-600 text-90">Vendido Por:{{ Auth::user()->name }}</span>   
+                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
+                                <span class="text-600 text-90">Vendido Por:{{ Auth::user()->name }}</span>
                                 <span class="badge badge-warning badge-pill px-25"></span>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
 
-              
-                    
+
+
 
                     <!-- or use a table instead -->
-                   
-            <div class="table-responsive">
+
+            <div class="table-responsive" id="tblaBody">
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                     <thead class="bg-none bgc-default-tp1">
                         <tr class="text-white">
@@ -248,11 +248,11 @@ hr {
                             <td>2</td>
                             <td class="text-95">$10</td>
                             <td class="text-secondary-d2">$20</td>
-                        </tr> 
+                        </tr>
                     </tbody>
                 </table>
             </div>
-           
+
 
                     <div class="row mt-3">
                         <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
@@ -280,7 +280,7 @@ hr {
 
                             <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                 <div class="col-7 text-right">
-                                    Total 
+                                    Total
                                 </div>
                                 <div class="col-5">
                                     <span class="text-150 text-success-d3 opacity-2"></span>

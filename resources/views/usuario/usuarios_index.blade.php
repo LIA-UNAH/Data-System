@@ -61,8 +61,8 @@
         </div>
 
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table" id="dataTable" width="100%" >
+            <div class="table-responsive" id="tblaBody">
+                <table class="table table" id="dataTable">
                     <thead class="card-header py-3" style="background: #1a202c; color: white">
                     <tr>
                         <th>Id</th>
@@ -140,3 +140,13 @@
         </div>
     </div>
 @endsection
+
+@push('scripsss')
+<script>
+            $(document).ready(function() {
+
+                $('#tblaBody').css('height', (screen.height - 500));
+
+            });
+</script>
+@endpush
