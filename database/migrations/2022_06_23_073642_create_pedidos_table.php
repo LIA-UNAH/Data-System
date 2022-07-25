@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telefon_Cliente');
             $table->string('ciudad');
             $table->string('fecha_de_orden');
-            $table->integer('estado_Pedido');
+            $table->string('estado_Pedido');
             $table->string('detalle_Pedido');
             $table->double('total_Pedido');
             $table->timestamps();
