@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         \App\Models\Proveedor::factory(100)->create();
         \App\Models\User::factory(100)->create();
-        \App\Models\Producto::factory(100)->create();
+        \App\Models\Producto::factory(100)->create();   
+        \App\Models\Pedido::factory(100)->create();       
     }
 }
