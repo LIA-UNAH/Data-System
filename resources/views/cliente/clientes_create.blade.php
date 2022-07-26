@@ -100,6 +100,17 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-0" style="margin-top: 15px">
+                                <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="image"
+                                       name="image" value="{{ old('image') }}" required autocomplete="image"
+                                       autofocus placeholder="{{ __('image') }}">
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
                             <div class="form-group row" style="margin-top: 15px">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <button type="submit" style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"

@@ -99,13 +99,39 @@ class UserController extends Controller
         return redirect()->route("usuarios.index")->with("exito", "Se creó exitosamente el usuario");
     }
 
+    //HU32 - Ver usuario
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view("usuario.usuarios_show")->with("user", $user);
+    }
+
     //H30 - Editar usuario
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Request $request, $id)
     {
         $user = User::findOrFail($id);
         return view("usuario.usuarios_edit")->with("user", $user);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $users = User::findOrFail($id);

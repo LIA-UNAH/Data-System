@@ -35,23 +35,27 @@ Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
-// Agregar clientes
+// Agregar usuarios
 Route::get("/usuarios/create", [App\Http\Controllers\UserController::class, "create"])
     ->name("usuarios.create");
 
 Route::post("/usuarios/create", [App\Http\Controllers\UserController::class, "store"])
     ->name("usuarios.create");
 
-// Editar clientes
+// Editar usuarios
 Route::get("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "edit"])
     ->name("usuarios.edit")->where('id', '[0-9]+');
 
 Route::put("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "update"])
     ->name("usuarios.edit")->where('id', '[0-9]+');
 
-// Eliminar usuario
+// Eliminar usuarios
 Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
     ->name('usuarios.destroy');
+
+// Visualizar usuarios
+Route::get("/usuarios/{id}/", [App\Http\Controllers\UserController::class, "show"])
+    ->name("usuarios.show")->where('id', '[0-9]+');
 
 /*
 |--------------------------------------------------------------------------
@@ -59,11 +63,11 @@ Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, '
 |--------------------------------------------------------------------------
 */
 
-//Visualizar clientes
+// Visualizar clientes
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])
     ->name('clientes.index');
 
-//Buscar clientes
+// Buscar clientes
 Route::get('/clientes/busqueda', [App\Http\Controllers\ClienteController::class, 'search'])
     ->name('clientes.searchIndex');
 
@@ -75,12 +79,19 @@ Route::post("/clientes/create", [App\Http\Controllers\ClienteController::class, 
     ->name("clientes.create");
 
 // Editar clientes
-Route::post('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update'])
-    ->name('clientes.update');
+Route::get("/clientes/{id}/edit", [App\Http\Controllers\ClienteController::class, "edit"])
+    ->name("clientes.edit")->where('id', '[0-9]+');
 
-// Eliminar cliente
+Route::put("/clientes/{id}/edit", [App\Http\Controllers\ClienteController::class, "update"])
+    ->name("clientes.edit")->where('id', '[0-9]+');
+
+// Eliminar clientes
 Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class, 'destroy'])
     ->name('clientes.destroy');
+
+// Visualizar usuarios
+Route::get("/clientes/{id}/", [App\Http\Controllers\ClienteController::class, "show"])
+    ->name("clientes.show")->where('id', '[0-9]+');
 
 /*
 |--------------------------------------------------------------------------

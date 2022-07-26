@@ -85,7 +85,7 @@
                             <td>{{ $user->email}} </td>
                             <td scope="row">{{ $user->type }}</td>
 
-                            <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye" style="color: white"></i></a></td>
+                            <td style="text-align: center"><a class="btn btn-primary" href="{{route('usuarios.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
                             <td style="text-align: center"><a class="btn btn-success" href="{{route("usuarios.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
                             {{-- Eliminar usuario se valiada para evitar que el usuario
                             actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}

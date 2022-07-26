@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class ClienteController extends Controller
 {
@@ -82,18 +83,22 @@ class ClienteController extends Controller
             'telephone.max' => '¡Ingresa tu número teléfono completo, sin exceder el límite!',
         ]);
 
-        $users = new User();
-        $users->name = $request->input("name");
-        $users->email = $request->input("email");
-        $users->password = $request->input("password");
-        $users->type = $request->input("type");
-        $users->address = $request->input("address");
-        $users->telephone = $request->input("telephone");
-        $users->save();
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/uploads';
+            $file_name = $image->getClientOriginalName();
+            $profileImage = $file_name ;
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
+        User::create($input);
 
         return redirect()->route("clientes.index")->with("exito", "Se creó exitosamente el cliente");
     }
 
+    //HU32 - Ver usuario
     /**
      * Display the specified resource.
      *
@@ -102,18 +107,21 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('clientes.clientes_show')->with('user', $user);
     }
 
+    //H30 - Editar cliente
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view("cliente.clientes_edit")->with("user", $user);
     }
 
     /**
@@ -125,21 +133,57 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clientes = Cliente::findOrFail($id);
-        $clientes->name = $request->input('name');
-        $clientes->email = $request->input('email');
-        $clientes->id_cliente = $request->input('id_cliente');
-        $clientes->direccion_cliente = $request->input('direccion');
-        $clientes->save();
+        $users = User::findOrFail($id);
+        $this->validate($request, [
+            'name' => ['required', 'string','min:3', 'max:70'],
+            'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id),],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'type' => ['required'],
+            'address' => ['required', 'string','min:3', 'max:250'],
+            'telephone' => ['required', 'numeric','min:2', 'max:99999999'],
+        ], [
+            'name.required' => '¡Debes ingresar tu nombre completo!',
+            'name.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'name.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
+            'name.max' => '¡Has excedido el limite máximo de 70 letras!',
 
-        $user = User::findOrFail($clientes->user_id_cliente);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->save();
+            'email.required' => '¡Debes ingresar tu correo electrónico!',
+            'email.string' => '¡Debes ingresar tu correo electrónico, verifica la información!',
+            'email.email' => '¡Debes ingresar un correo electrónico válido!',
+            'email.max' => '¡Has excedido el limite máximo de 70 letras!',
+            'email.unique' => '¡Debes ingresar un correo electrónico diferente!',
 
-        session()->put('exito', 'Editado con exito.');
-        return redirect()->back()->withInput();
+            'type.required' => '¡Debes ingresar el tipo de usuario!',
 
+            'password.required' => '¡Debes ingresar una contraseña!',
+            'password.confirmed' => '¡Debes confirmar tu contraseña!',
+            'password.min' => '¡Debes ingresar una contraseña segura!',
+
+            'address.required' => '¡Debes ingresar tu dirección!',
+            'address.string' => '¡Debes ingresar tu dirección, verifica la información!',
+            'address.min' => '¡Ingresa tu dirección completa, sin abreviaturas!',
+            'address.max' => '¡Has excedido el limite máximo de 250 letras!',
+
+            'telephone.required' => '¡Debes ingresar tu número de teléfono!',
+            'telephone.numeric' => '¡Debes ingresar tu teléfono, solo se permiten números!',
+            'telephone.min' => '¡Ingresa tu número de teléfono completo!',
+            'telephone.max' => '¡Ingresa tu número de teléfono completo, sin exceder el límite!',
+        ]);
+
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/uploads/';
+            $file_name = $image->getClientOriginalName();
+            $profileImage = $file_name ;
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        $users->update($input);
+        return redirect()->route("clientes.index")->with("exito", "Se editó exitosamente el cliente");
     }
 
     /**
