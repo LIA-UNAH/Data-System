@@ -13,7 +13,10 @@
             <!-- Nested Row within Card Body -->
             <div class="row" style="background: #4a5568">
                 <div class="col-lg-5 d-none d-lg-block" style="text-align: center; margin-top: 80px">
+
                     <img src="/images/uploads/{{ $user->image }}" width="300px" style="border-radius: 4%">
+
+
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
@@ -77,7 +80,7 @@
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         <select class="form-control @error('type') is-invalid @enderror"  id="type"
-                                                autocomplete="type" name="type"
+                                                required autocomplete="type" name="type"
                                                 autofocus>
                                             <option value="{{$user->type}}" style="display: none">{{$user->type}}</option>
                                             <option value="empleado">Empleado</option>
@@ -110,11 +113,6 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <input
-                                        @if(old("password"))
-                                            value="{{old("password")}}"
-                                        @else
-                                            value="{{$user->password}}"
-                                        @endif
                                         id="password-confirm" name="password_confirmation" type="password"
                                            class="form-control"
                                            placeholder="{{ __('Confirmar') }}" autocomplete="new-password">

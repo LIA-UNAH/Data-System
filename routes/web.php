@@ -35,21 +35,21 @@ Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
 Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
-// Agregar usuarios
+// Agregar clientes
 Route::get("/usuarios/create", [App\Http\Controllers\UserController::class, "create"])
     ->name("usuarios.create");
 
 Route::post("/usuarios/create", [App\Http\Controllers\UserController::class, "store"])
     ->name("usuarios.create");
 
-// Editar usuarios
+// Editar clientes
 Route::get("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "edit"])
     ->name("usuarios.edit")->where('id', '[0-9]+');
 
 Route::put("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "update"])
     ->name("usuarios.edit")->where('id', '[0-9]+');
 
-// Eliminar usuarios
+// Eliminar usuario
 Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
     ->name('usuarios.destroy');
 
@@ -75,13 +75,10 @@ Route::post("/clientes/create", [App\Http\Controllers\ClienteController::class, 
     ->name("clientes.create");
 
 // Editar clientes
-Route::get("/clientes/{id}/edit", [App\Http\Controllers\ClienteController::class, "edit"])
-    ->name("clientes.edit")->where('id', '[0-9]+');
+Route::post('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update'])
+    ->name('clientes.update');
 
-Route::put("/clientes/{id}/edit", [App\Http\Controllers\ClienteController::class, "update"])
-    ->name("clientes.edit")->where('id', '[0-9]+');
-
-// Eliminar clientes
+// Eliminar cliente
 Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class, 'destroy'])
     ->name('clientes.destroy');
 
