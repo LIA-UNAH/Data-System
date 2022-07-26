@@ -87,86 +87,11 @@
                                 <td>{{ $user->email}} </td>
                                 <td scope="row">{{ $user->telephone }}</td>
 
-                                <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye" style="color: white"></i></a>
-                                </td>
-                                <td style="text-align: center"><a class="btn btn-success" href="#" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente"><i class="fa fa-edit" style="color: white"></i></a></td>
+                                <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye" style="color: white"></i></a></td>
+                                <td style="text-align: center"><a class="btn btn-success" href="{{route("clientes.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
 
-                                <div class="modal fade" id="modal_editar_cliente" data-bs-backdrop="static"
-                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Editar cliente</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-
-                                            <form action="{{ route('clientes.update',['id'=> $user->id])}}"
-                                                  method="POST">
-                                                @csrf
-                                                <div class="modal-body">
-                                                    <div class="row g-3">
-                                                        <div class="col-sm-6">
-                                                            <label for="firstName" class="form-label">Nombre completo:</label>
-                                                            <input type="text" class="form-control" id="name" name="name"
-                                                                   value="{{$user->name}}" required>
-                                                            <div class="invalid-feedback">
-                                                                Valid first Name is required.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-sm-6">
-                                                            <label for="firstName" class="form-label">Correo electrónico:</label>
-                                                            <input type="email" class="form-control" id="email"
-                                                                   name="email" value="{{$user->email}}" required>
-                                                            <div class="invalid-feedback">
-                                                                Valid first Email is required.
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label for="firstName" class="form-label">Teléfono:</label>
-                                                            <input type="number" class="form-control" id="telephone"
-                                                                   name="id_cliente" value="{{$user->telephone}}" required>
-                                                            <div class="invalid-feedback">
-                                                                Valid first telephone is required.
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label for="firstName" class="form-label">Dirección:</label>
-                                                            <textarea name="address" id="address" cols="22" rows="5"
-                                                                      required>{{$user->address}}</textarea>
-                                                            <div class="invalid-feedback">
-                                                                Valid first direccion is required.
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cancelar
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-
-                                    {{-- Eliminar usuario se valiada para evitar que el usuario
-                                    actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
+                                {{-- Eliminar usuario se valiada para evitar que el usuario
+                                actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
                                     @if($user->id == Auth::user()->id OR $user->type== 'administrador')
                                         <td>
                                         </td>

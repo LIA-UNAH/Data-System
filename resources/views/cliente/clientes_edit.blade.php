@@ -1,11 +1,11 @@
 @extends('Layouts.Layouts')
-@section('title', 'Usuarios')
+@section('title', 'Clientes')
 @section('content')
 
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
             <div style="float: left">
-                <h2 class="m-0 font-weight-bold" style="color: white">Editar usuario</h2>
+                <h2 class="m-0 font-weight-bold" style="color: white">Editar cliente</h2>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
                 <div class="col-lg-7">
                     <div class="p-5">
 
-                        <form method="POST" action="{{route("usuarios.edit",["id"=>$user->id])}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route("clientes.edit",["id"=>$user->id])}}" enctype="multipart/form-data">
                             @method("PUT")
                             @csrf
 
@@ -79,9 +79,7 @@
                                         <select class="form-control @error('type') is-invalid @enderror"  id="type"
                                                 autocomplete="type" name="type"
                                                 autofocus>
-                                            <option value="{{$user->type}}" style="display: none">{{$user->type}}</option>
-                                            <option value="empleado">Empleado</option>
-                                            <option value="administrador">Administrador</option>
+                                            <option value="cliente" style="display: none">Cliente</option>
                                         </select>
                                         @error('type')
                                         <span class="invalid-feedback" role="alert">
@@ -116,8 +114,8 @@
                                             value="{{$user->password}}"
                                         @endif
                                         id="password-confirm" name="password_confirmation" type="password"
-                                           class="form-control"
-                                           placeholder="{{ __('Confirmar') }}" autocomplete="new-password">
+                                        class="form-control"
+                                        placeholder="{{ __('Confirmar') }}" autocomplete="new-password">
                                 </div>
                             </div>
 
