@@ -26,7 +26,6 @@
             </div>
 
             <div style="float: right">
-
                 <div style="float: left">
                     <!-- HU8 - Buscar y recargar usuario -->
                     <form action="{{ route('clientes.searchIndex') }}" method="GET" style=""
@@ -68,20 +67,22 @@
                 <table class="table table" id="dataTable">
                     <thead class="card-header py-3" style="background: #1a202c; color: white">
                     <tr>
-                        <th>Id</th>
+                        <th>N°</th>
                         <th>Nombre</th>
                         <th>E-mail</th>
                         <th>Telefóno</th>
-                        <th colspan="3">Opciones</th>
+                        <th style="text-align: center">Visualizar</th>
+                        <th style="text-align: center">Editar</th>
+                        <th style="text-align: center">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($users as $user)
+                    @forelse($users as $valor=> $user)
                         @if($user->type== 'administrador' OR $user->type== 'empleado')
 
                         @else
                             <tr>
-                                <td scope="row">{{ $user->id }}</td>
+                                <td scope="row"><strong>{{ $valor +$users->firstItem() }}</strong></td>
                                 <td scope="row">{{ $user->name }}</td>
                                 <td>{{ $user->email}} </td>
                                 <td scope="row">{{ $user->telephone }}</td>
@@ -225,9 +226,7 @@
 @push('scripsss')
 <script>
             $(document).ready(function() {
-
-                $('#tblaBody').css('height', (screen.height - 500));
-
+                $('#tblaBody').css('height', (screen.height - 450));
             });
 </script>
 @endpush

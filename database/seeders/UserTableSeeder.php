@@ -22,7 +22,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'type'=>'administrador',
                 'address'=>'Colonia La Concepción',
-                'telephone'=>'99999999'
+                'telephone'=>'99999999',
+                'image'=>'Perfil (39).jpg'
             ]
         );
 
@@ -33,7 +34,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'type'=>'empleado',
                 'address'=>'Colonia La Cofradía',
-                'telephone'=>'99607004'
+                'telephone'=>'99607004',
+                'image'=>'Perfil (40).jpg'
             ]
         );
 
@@ -44,7 +46,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'type'=>'empleado',
                 'address'=>'Colonia Nueva Esperanza',
-                'telephone'=>'96832662'
+                'telephone'=>'96832662',
+                'image'=>'Perfil (26).jpg'
             ]
         );
 
@@ -55,7 +58,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'type'=>'empleado',
                 'address'=>'Barrio Tierra Blanca',
-                'telephone'=>'33476034'
+                'telephone'=>'33476034',
+                'image'=>'Perfil (17).jpg'
             ]
         );
 
@@ -66,7 +70,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'type'=>'empleado',
                 'address'=>'Barrio Los Angeles',
-                'telephone'=>'95795073'
+                'telephone'=>'95795073',
+                'image'=>'Perfil (9).jpg'
             ]
         );
 
@@ -77,7 +82,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'type'=>'empleado',
                 'address'=>'Colonia La Pradera',
-                'telephone'=>'94896083'
+                'telephone'=>'94896083',
+                'image'=>'Perfil (5).jpg'
             ]
         );
 
@@ -88,7 +94,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'type'=>'cliente',
                 'address'=>'Colonia Los Andes',
-                'telephone'=>'99178932'
+                'telephone'=>'99178932',
+                'image'=>'Perfil (2).jpg'
             ]
         );
 

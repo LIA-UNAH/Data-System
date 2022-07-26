@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('type', ['cliente', 'administrador', 'empleado']);
             $table->string('address', 250);
             $table->string('telephone', 8);
+            $table->string('image');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -42,6 +42,13 @@ Route::get("/usuarios/create", [App\Http\Controllers\UserController::class, "cre
 Route::post("/usuarios/create", [App\Http\Controllers\UserController::class, "store"])
     ->name("usuarios.create");
 
+// Editar clientes
+Route::get("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "edit"])
+    ->name("usuarios.edit")->where('id', '[0-9]+');
+
+Route::put("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "update"])
+    ->name("usuarios.edit")->where('id', '[0-9]+');
+
 // Eliminar usuario
 Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
     ->name('usuarios.destroy');
