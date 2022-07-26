@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\Venta;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VentaClienteController extends Controller
@@ -47,8 +48,10 @@ class VentaClienteController extends Controller
     public function create()
     {
         $productos = Producto::all();
-        return view('venta\ventas_create')->with('productos', $productos);
-        
+        $users = User::where('type', '=', 'cliente')->get();
+
+        return view('venta\ventas_create')->with('productos', $productos)->with('users', $users);
+
     }
 
     public function buscarcliente(Request $request){

@@ -150,11 +150,13 @@ hr {
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <div>
+                    <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
                             <select name=”nombre_lista” id=”nombre_lista”>
                                 <option value=”nombre_opcion” id="name">Seleccione un cliente</option>
-                              
+                                @foreach ($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
                             </select>
                             <span class="text-600 text-110 text-blue align-middle"></span>
                         </div>
