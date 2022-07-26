@@ -145,6 +145,14 @@ Route::put('/proveedor/{id}/editar', [App\Http\Controllers\ProveedorController::
 // Visualizar ventas
 Route::resource('/ventas', VentaClienteController::class);
 
+//Crear venta
+
+Route::get("/ventas/create", [App\Http\Controllers\VentaClienteController::class, "create"])
+    ->name("ventas.create");
+
+Route::post("/ventas/create", [App\Http\Controllers\VentaClienteController::class, "store"])
+    ->name("ventas.create");
+
 // Buscar ventas
 Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::class, 'search'])
     ->name('ventas.searchIndex');
@@ -152,3 +160,7 @@ Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::cla
 // Factura ventas
 Route::get('/ventas/facturas', [App\Http\Controllers\VentaClienteController::class, 'factura'])
     ->name('ventas.facturas');
+
+    //buscar producto en ventas create
+    Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])
+    ->name('ventas.buscarpro');

@@ -70,7 +70,7 @@
 
                 <!-- Ordenar  -->
 
-                <button style="text-align: center; float: right; margin-left: 10px" id="dropdownMenuButton1"
+                <button style="text-align: center; float: right; margin-left: 15px" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false"><a class="btn btn-secondary dropdown-toggle"
                         href=""><i class="bi bi-calendar-check-fill"></i> Ordenar</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
