@@ -28,6 +28,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 |--------------------------------------------------------------------------
 */
 
+// Información del sistema
+Route::get('/info', [App\Http\Controllers\UserController::class, 'info'])->name('info');
+
+
+
 // Visualizar usuarios
 Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
     ->name('usuarios.index');

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
-
-
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -25,22 +23,11 @@ class UserController extends Controller
         return view('usuario/usuarios_index')->with('users', $users);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('usuario.usuarios_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -100,12 +87,6 @@ class UserController extends Controller
     }
 
     //HU32 - Ver usuario
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -113,25 +94,18 @@ class UserController extends Controller
     }
 
     //HU33 - Perfil de usuario
-    /**
-     * Display the specified resource.
-     *
-     * @param
-     * @return \Illuminate\Http\Response
-     */
     public function profile()
     {
         $user = auth()->user();
         return view("profile")->with("user", $user);
     }
 
+    //HU35 - Información del sistema
+    public function info(){
+        return view('information');
+    }
+
     //H30 - Editar usuario
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, $id)
     {
         $user = User::findOrFail($id);

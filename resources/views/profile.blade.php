@@ -1,11 +1,11 @@
 @extends('Layouts.Layouts')
-@section('title', 'Usuarios')
+@section('title', 'Perfil')
 @section('content')
 
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
             <div style="float: left">
-                <h2 class="m-0 font-weight-bold" style="color: white">Visualizar {{$user->type}}</h2>
+                <h2 class="m-0 font-weight-bold" style="color: white">Perfil de usuario</h2>
             </div>
         </div>
 
