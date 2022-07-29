@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DSA - Dashboard</title>
+    <title>Data System</title>
 
     <!-- Custom fonts for this template-->
     <link href={{ asset("admin/vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -384,8 +384,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                            <img class="img-profile rounded-circle"
-                                 src="/images/uploads/{{ Auth::user()->image }}">
+                            <img class="img-profile rounded-circle" src="/images/uploads/{{ Auth::user()->image }}" alt="Profile">
+
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -398,7 +398,7 @@
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Configuración
                             </a>
-                            <a class="dropdown-item" href="/informacion">
+                            <a class="dropdown-item" href="/info">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Información
                             </a>
