@@ -18,4 +18,10 @@ class Producto extends Model
     //     'impuesto'
     // ];
    // use HasFactory;
+
+
+   public function detalle_compre()
+   {
+       return $this->hasOne('App\Models\DetalleCompra');
+   }
 }

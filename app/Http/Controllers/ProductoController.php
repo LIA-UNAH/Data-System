@@ -88,7 +88,7 @@ class ProductoController extends Controller
     public function edit($id)
     {
     $producto = Producto::findOrFail($id);
-     return view('producto.productos_update')->with('producto',$producto);   
+     return view('producto.productos_update')->with('producto',$producto);
     }
 
     /**
@@ -103,8 +103,8 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         $producto = Producto::findOrFail($id);
-       
-        //Validar 
+
+        //Validar
 
       /* $request ->validate([
             'descripcion'=>'required|alpha',
@@ -122,7 +122,7 @@ class ProductoController extends Controller
         $producto -> prec_venta=$request->input('prec_venta');
         $producto -> categoria=$request->input('categoria');
         $producto -> impuesto=$request->input('impuesto');
-        
+
        //Salvamos
         $creado = $producto->save();
         if($creado){
@@ -130,20 +130,33 @@ class ProductoController extends Controller
            ->with('mensaje','El producto fue modificado exitosamente.');
           }//fin if
          else{
-            
+
         }//fin else
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    
+
     public function destroy($id)
     {
         Producto::destroy($id);
         return redirect()->route('productos.index');
+    }
+
+
+
+    public function index_inventario(Request $request)
+    {
+        $buscar = trim( $request->get('buscar_producto'));
+        $productos=DB::table('productos')->select('id', 'descripcion', 'codigo', 'existencia', 'prec_venta',
+         'categoria', 'impuesto')->where('descripcion', 'like', '%'.$buscar.'%')
+         ->Where('descripcion', 'LIKE', '%'. $buscar. '%')
+         ->orWhere('categoria', 'LIKE', '%'. $buscar. '%')
+         ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(10);
+        return view('Inventario.Inventario_index', compact('productos', 'buscar'));
     }
 }

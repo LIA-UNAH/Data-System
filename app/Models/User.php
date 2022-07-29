@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cliente::class);
     }
+
+    public function compra()
+    {
+        return $this->hasMany('App\Models\Compra');
+    }
 }

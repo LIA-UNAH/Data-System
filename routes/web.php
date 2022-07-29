@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompraClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductoController;
@@ -13,13 +14,13 @@ use App\Http\Controllers\VentaClienteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /*
 |--------------------------------------------------------------------------
@@ -179,6 +180,32 @@ Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::cla
 Route::get('/ventas/facturas', [App\Http\Controllers\VentaClienteController::class, 'factura'])
     ->name('ventas.facturas');
 
-    //buscar producto en ventas create
-    Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])
+//buscar producto en ventas create
+Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])
     ->name('ventas.buscarpro');
+
+
+/*
+|--------------------------------------------------------------------------
+| Compras
+|--------------------------------------------------------------------------
+*/
+
+// Visualizar Compras
+Route::resource('/compras', CompraClienteController::class);
+Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::class, 'compra_guardar'])
+    ->name('compras.guardar_compra');
+
+
+/*
+|--------------------------------------------------------------------------
+| Inventario
+|--------------------------------------------------------------------------
+*/
+
+// Visualizar Inventario
+
+Route::get('/inventario', [App\Http\Controllers\ProductoController::class, 'index_inventario'])
+    ->name('inventario.index');
+
+});
