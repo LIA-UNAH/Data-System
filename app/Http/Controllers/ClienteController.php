@@ -98,7 +98,7 @@ class ClienteController extends Controller
         return redirect()->route("clientes.index")->with("exito", "Se creó exitosamente el cliente");
     }
 
-    //HU32 - Ver usuario
+    //HU33 - Ver cliente
     /**
      * Display the specified resource.
      *
@@ -108,7 +108,7 @@ class ClienteController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('clientes.clientes_show')->with('user', $user);
+        return view("cliente.clientes_show")->with("user", $user);
     }
 
     //H30 - Editar cliente

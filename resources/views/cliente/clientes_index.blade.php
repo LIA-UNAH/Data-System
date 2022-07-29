@@ -87,7 +87,7 @@
                                 <td>{{ $user->email}} </td>
                                 <td scope="row">{{ $user->telephone }}</td>
 
-                                <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye" style="color: white"></i></a></td>
+                                <td style="text-align: center"><a class="btn btn-primary" href="{{route('clientes.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
                                 <td style="text-align: center"><a class="btn btn-success" href="{{route("clientes.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
 
                                 {{-- Eliminar usuario se valiada para evitar que el usuario

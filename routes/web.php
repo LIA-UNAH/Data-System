@@ -94,6 +94,10 @@ Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class
 Route::get("/clientes/{id}/", [App\Http\Controllers\ClienteController::class, "show"])
     ->name("clientes.show")->where('id', '[0-9]+');
 
+// Visualizar usuarios
+    Route::get("/clientes/{id}/", [App\Http\Controllers\ClienteController::class, "show"])
+        ->name("clientes.show")->where('id', '[0-9]+');
+
 /*
 |--------------------------------------------------------------------------
 | Productos

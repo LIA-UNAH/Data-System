@@ -30,7 +30,7 @@
                                            @else
                                                value="{{$user->name}}"
                                            @endif
-                                           name="name" value="{{ old('name') }}" required
+                                           name="name" value="{{ old('name') }}" required maxlength="70"
                                            onkeypress="return funcionLetras(event);"
                                            style="text-transform: capitalize;">
                                     @error('name')
@@ -47,7 +47,7 @@
                                             @else
                                                 value="{{$user->email}}"
                                             @endif
-                                            name="email" value="{{ old('email') }}"
+                                            name="email" value="{{ old('email') }}" maxlength="70"
                                             required autocomplete="email" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">

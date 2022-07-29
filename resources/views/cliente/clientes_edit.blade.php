@@ -151,7 +151,7 @@
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a href="/usuarios" style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
+                                    <a href="/clientes" style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
                                        class="btn btn-google btn-user btn-block">
                                         {{ __('Regresar') }}
                                     </a>
