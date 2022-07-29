@@ -112,6 +112,19 @@ class UserController extends Controller
         return view("usuario.usuarios_show")->with("user", $user);
     }
 
+    //HU33 - Perfil de usuario
+    /**
+     * Display the specified resource.
+     *
+     * @param
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        $user = auth()->user();
+        return view("profile")->with("user", $user);
+    }
+
     //H30 - Editar usuario
     /**
      * Show the form for editing the specified resource.

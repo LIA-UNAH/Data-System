@@ -58,6 +58,10 @@ Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, '
 Route::get("/usuarios/{id}/", [App\Http\Controllers\UserController::class, "show"])
     ->name("usuarios.show")->where('id', '[0-9]+');
 
+// Perfil de usuario
+    Route::get("/usuarios/profile", [App\Http\Controllers\UserController::class, "profile"])
+        ->name("usuarios.profile")->where('id', '[0-9]+');
+
 /*
 |--------------------------------------------------------------------------
 | Clientes
@@ -90,13 +94,9 @@ Route::put("/clientes/{id}/edit", [App\Http\Controllers\ClienteController::class
 Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class, 'destroy'])
     ->name('clientes.destroy');
 
-// Visualizar usuarios
+// Visualizar clientes
 Route::get("/clientes/{id}/", [App\Http\Controllers\ClienteController::class, "show"])
     ->name("clientes.show")->where('id', '[0-9]+');
-
-// Visualizar usuarios
-    Route::get("/clientes/{id}/", [App\Http\Controllers\ClienteController::class, "show"])
-        ->name("clientes.show")->where('id', '[0-9]+');
 
 /*
 |--------------------------------------------------------------------------
