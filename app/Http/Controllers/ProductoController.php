@@ -44,6 +44,46 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $request ->validate([
+
+            'descripcion' => ['required', 'string', 'min:5', 'max:80'], 
+            'codigo'=>  ['required', 'string', 'min:5', 'max:9'], 
+            'existencia' =>  ['numeric'], 
+            'prec_venta'=>  ['required', 'numeric', 'min:0'], 
+            'categoria'=>  ['required', 'string', 'min:5', 'max:80'], 
+            'impuesto'=>  ['required', 'numeric', ], 
+            'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        ],[
+            'descripcion.required' => '¡Debes ingresar una descripción!',
+            'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
+            'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'descripcion.max' => '¡Has excedido el limite máximo de 80 letras!',
+            
+            'codigo.required' => '¡Debes ingresar un código!',
+            'codigo.string' => '¡Debes ingresar un código, verifica la información!',
+            'codigo.min' => '¡Debes ingresar al menos 5 dígitos!',
+            'codigo.max' => '¡Has excedido el limite máximo de 9 dígitos!',
+            'codigo.unique' => '¡Debes ingresar un código diferente!',
+
+            'existencia.numeric' => '¡Solo se permiten números!',
+
+            'prec_venta.numeric' => '¡Solo se permiten números!',
+            'prec_venta.required' => '¡Debes ingresar un precio de venta!',
+            'prec_venta.min' => '¡Debes ingresar un precio de venta mínimo de 0!', 
+
+            'categoria.required' => '¡Debes ingresar una categoría!',
+            'categoria.string' => '¡Debes ingresar una categoría, verifica la información!',
+            'categoria.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'categoria.max' => '¡Has excedido el limite máximo de 80 letras!',
+
+            'impuesto.numeric' => '¡Solo se permiten números!',
+            'impuesto.required' => '¡Debes ingresar un impuesto!',
+
+            'imagen_producto.required' => '¡Debes cargar una imagen!',
+            'imagen_producto.image' => '¡Debes seleccionar una imagen!',
+            'imagen_producto.mimes' => '¡Debes seleccionar una imagen en el formato correcto!'
+        ]);
+        
         $crearprod = new Producto();
 
         $crearprod->descripcion = $request->input('descripcion');
@@ -127,7 +167,7 @@ class ProductoController extends Controller
         $creado = $producto->save();
         if($creado){
            return redirect()->route('productos.index')
-           ->with('mensaje','El producto fue modificado exitosamente.');
+           ->with('realizado','El producto fue modificado exitosamente.');
           }//fin if
          else{
 
@@ -144,7 +184,8 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         Producto::destroy($id);
-        return redirect()->route('productos.index');
+        return redirect()->route('productos.index')
+        ->with('error','El producto fue eliminado exitosamente.');
     }
 
 
