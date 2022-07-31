@@ -135,8 +135,19 @@ Route::put('/productos/{id}/editar', [App\Http\Controllers\ProductoController::c
 //HU23 - index, create, store, show, edit, updare, destroy
 Route::resource('/pedidos', PedidoController::class);
 
+// ver pedido
 Route::get('pedidos/{id}/show', [App\Http\Controllers\PedidoController::class, 'show']
 )->name('pedidos.mostrar');
+
+// editar pedido
+Route::get('/pedidos/{id}/editar',  [App\Http\Controllers\PedidoController::class, 'edit'])
+->name('pedido.edit')
+->where('id','[0-9]+');
+
+//Actualizar Pedido
+Route::put('/pedidos/{id}/editar', [App\Http\Controllers\PedidoController::class, 'update'])
+->name('pedido.update')
+->where('id','[0-9]+');
 
 /*
 |--------------------------------------------------------------------------
