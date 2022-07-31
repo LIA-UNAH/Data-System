@@ -60,7 +60,9 @@ class PedidoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pedido = Pedido::findOrFail($id);
+        return view('pedido.pedidos_update')->with('pedido',$pedido);
+      
     }
 
     /**
@@ -72,7 +74,37 @@ class PedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pedido = Pedido::findOrFail($id);
+
+        //Validar
+
+      /* $request ->validate([
+            'descripcion'=>'required|alpha',
+            'codigo'=>'required|alpha|numeric',
+            'existencia'=>'alpha',
+            'prec_venta'=>'numeric',
+            'categoria'=>'alpha',
+            'impuesto'=>'numeric'
+        ]);*/
+
+        //Formulario
+        $pedido -> nombre_Cliente=$request->input('nombre_Cliente');
+        $pedido -> telefon_Cliente=$request->input('telefon_Cliente');
+        $pedido -> ciudad=$request->input('ciudad');
+        $pedido -> fecha_de_orden=$request->input('fecha_de_orden');
+        $pedido -> estado_Pedido=$request->input('estado_Pedido');
+        $pedido -> detalle_Pedido=$request->input('detalle_Pedido');
+        $pedido -> total_Pedido=$request->input('total_Pedido');
+
+       //Salvamos
+        $creado = $pedido->save();
+        if($creado){
+           return redirect()->route('pedidos.index')
+           ->with('realizado','El edido fue modificado exitosamente.');
+          }//fin if
+         else{
+
+        }//fin else
     }
 
     /**
