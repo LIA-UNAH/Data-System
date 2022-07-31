@@ -79,7 +79,7 @@
 
               <div>
               <td><a class="btn btn-info" href="{{ route('pedidos.mostrar', ['id' => $pedid->id])}}"><i class="fa fa-eye" aria-hidden="true" style="color: white; "></i></a></td>
-                <td><a class="btn btn-success" href=""><i class="fa fa-edit" aria-hidden="true"></i></a></td> 
+                <td><a class="btn btn-success" href="{{ route('pedido.edit', ['id' => $pedid->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td> 
 
                 <td><a class="btn btn-danger" href="#" data-bs-toggle="modal"
                                     data-bs-target="#modalEliminarProveedor"> <i class="fa fa-window-close" aria-hidden="true"></i> </a></td> 
