@@ -198,12 +198,8 @@ class ProductoController extends Controller
             'categoria.string' => '¡Debes ingresar una categoría, verifica la información!',
             'categoria.min' => '¡Debes ingresar un minimo de 5 letras!',
             'categoria.max' => '¡Has excedido el limite máximo de 80 letras!',
-
-            'imagen_producto.required' => '¡Debes cargar una imagen!',
-            'imagen_producto.image' => '¡Debes seleccionar una imagen!',
-            'imagen_producto.mimes' => '¡Debes seleccionar una imagen en el formato correcto!'
         ]);
-        
+
         //Formulario
         $producto -> nombre=$request->input('nombre');
         $producto -> descripcion=$request->input('descripcion');

@@ -119,7 +119,7 @@
                               <div class="col-sm-6">
                               <label class="form-label" for="customFile">Agregar Imagen:</label>
                               <input type="file" class="form-control" id="imagen_producto" name="imagen_producto" 
-                              values="{{$producto->imagen_producto}}" required/>
+                              values="{{$producto->imagen_producto}}" required>
                               @error('imagen_producto')
                                     <small class="text-danger" >
                                                 <strong>{{ $message }}</strong>
