@@ -16,6 +16,19 @@
                             @csrf
                         <div class="modal-body">
                       <div class="row g-3">
+
+                              <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Nombre:</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre:" value="" required>
+                                        @error('nombre')
+                                            <small class="text-danger" >
+                                                        <strong>{{ $message }}</strong>
+                                                    </small>
+                                            @enderror
+                                        <div class="invalid-feedback">
+                                          Valid first name is required.
+                                        </div>
+                                      </div>
                               <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Descripción:</label>
                                 <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese la descripcion" value="" required>
@@ -55,8 +68,21 @@
                                 </div>
                               </div>
                               <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Precio de venta:</label>
-                                <input type="text" class="form-control" id="prec_venta" name="prec_venta" placeholder="Ingrese el precio de venta" value="" required>
+                                <label for="firstName" class="form-label">Precio de compra:</label>
+                                <input type="text" class="form-control" id="prec_compra" name="prec_compra" placeholder="Ingrese el precio de compra" value="" required>
+                                @error('prec_compra')
+                                    <small class="text-danger" >
+                                                <strong>{{ $message }}</strong>
+                                            </small>
+                                    @enderror
+                                <div class="invalid-feedback">
+                                  Valid first name is required.
+                                </div>
+                              </div>
+                              
+                              <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Precio de venta mayorista:</label>
+                                <input type="text" class="form-control" id="prec_venta" name="prec_venta" placeholder="Ingrese el precio de venta mayorista" value="" required>
                                 @error('prec_venta')
                                     <small class="text-danger" >
                                                 <strong>{{ $message }}</strong>
@@ -78,10 +104,10 @@
                                   Valid first name is required.
                                 </div>
                               </div> 
-                              <div class="col-sm-6">
+                              <!-- <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Impuesto:</label>
                                 <input type="text" class="form-control" id="impuesto" name="impuesto" placeholder="Ingrese el impuesto" value="" required>
-                                @error('impuesto0')
+                                @error('impuesto')
                                     <small class="text-danger" >
                                                 <strong>{{ $message }}</strong>
                                             </small>
@@ -89,7 +115,7 @@
                                 <div class="invalid-feedback">
                                   Valid first name is required.
                                 </div>
-                              </div>
+                              </div> -->
                               
                               
                               <div class="col-sm-6">

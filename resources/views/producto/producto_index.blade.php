@@ -184,6 +184,7 @@
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                     <tr>
                         <th>N°</th>
+                        <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Código</th>
                         <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden=""
@@ -194,8 +195,9 @@
                     @forelse($productos as $item=> $pro)
                         <tr>
                             <td scope="row"><strong>{{ $item +$productos->firstItem() }}</strong></td>
+                            <td scope="row">{{ $pro->nombre }}</td>
                             <td scope="row">{{ $pro->descripcion }}</td>
-                            <td>{{ $pro->codigo }} </td>
+                            <td style="text-transform: uppercase;">{{ $pro->codigo }} </td>
 
                             <td><a class="btn btn-info"
                                     href="{{ route('productos.ver', ['id' => $pro->id]) }}"><i
@@ -273,7 +275,7 @@
 <script>
             $(document).ready(function() {
 
-                $('#tblaBody').css('height', (screen.height - 500));
+                $('#tblaBody').css('height', (screen.height - 300));
 
             });
 </script>
