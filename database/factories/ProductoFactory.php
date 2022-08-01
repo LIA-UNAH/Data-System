@@ -17,13 +17,18 @@ class ProductoFactory extends Factory
     public function definition()
     {
         return [
+            'nombre'=> $this->faker->randomElement($array = array ('Teléfono','Computadora', 'Parlante', 'Audífonos',
+                                                                    'Protectores', 'Pasta térmica', 'Pantallas', 'Vidrio templado',
+                                                                    'Mouse', 'Memorias USB', 'Memorias SD', 'Cargadores',
+                                                                    'Cables USB', 'Cables HDMI', 'Teclados', 'WebCam', 'Impresoras',
+                                                                    'Routers', 'MousePad', 'Adaptadores')),
             'descripcion'=> $this->faker->text($maxNbChars = 15) ,
-            'codigo'=> $this->faker-> bothify('??####?##?####?'),
+            'codigo'=> $this->faker-> bothify('??#?##?##'),
             'existencia'=> $this->faker->numberBetween($min = 1, $max = 500) ,
+            'prec_compra'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
             'prec_venta'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
-            'categoria'=> $this->faker->text($maxNbChars = 10),
-            'impuesto'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0.1, $max = 0.50),
-            'imagen_producto'=>$this->faker->imageUrl(360, 360)
+            'categoria'=> $this->faker->randomElement($array = array ('Accesorios PCs y Celulares')),
+            'imagen_producto'=>$this->faker->imageUrl(640,  480)
         ];
     }
 }

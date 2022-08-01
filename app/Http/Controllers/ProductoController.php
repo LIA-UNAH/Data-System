@@ -18,9 +18,10 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         $buscar = trim( $request->get('buscar_producto'));
-        $productos=DB::table('productos')->select('id', 'descripcion', 'codigo', 'existencia', 'prec_venta',
-         'categoria', 'impuesto')->where('descripcion', 'like', '%'.$buscar.'%')
-         ->Where('descripcion', 'LIKE', '%'. $buscar. '%')
+        $productos=DB::table('productos')->select('id', 'nombre', 'descripcion', 'codigo', 'existencia', 'prec_venta',
+        'prec_compra','categoria')->where('descripcion', 'like', '%'.$buscar.'%')
+        ->Where('nombre', 'LIKE', '%'. $buscar. '%') 
+        ->orWhere('descripcion', 'LIKE', '%'. $buscar. '%')
          ->orWhere('categoria', 'LIKE', '%'. $buscar. '%')
          ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(10);
         return view('producto.producto_index', compact('productos', 'buscar'));
@@ -46,14 +47,21 @@ class ProductoController extends Controller
     {
         $request ->validate([
 
+            'nombre' => ['required', 'string', 'min:5', 'max:80'],
             'descripcion' => ['required', 'string', 'min:5', 'max:80'], 
             'codigo'=>  ['required', 'string', 'min:5', 'max:9'], 
             'existencia' =>  ['numeric'], 
-            'prec_venta'=>  ['required', 'numeric', 'min:0'], 
+            'prec_venta'=>  ['required', 'numeric', 'min:0'],
+            'prec_compra'=>  ['required', 'numeric', 'min:0'], 
             'categoria'=>  ['required', 'string', 'min:5', 'max:80'], 
-            'impuesto'=>  ['required', 'numeric', ], 
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ],[
+
+            'nombre.required' => '¡Debes ingresar nombre!',
+            'nombre.string' => '¡Debes ingresar un nombre, verifica la información!',
+            'nombre.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'nombre.max' => '¡Has excedido el limite máximo de 80 letras!',    
+
             'descripcion.required' => '¡Debes ingresar una descripción!',
             'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
             'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
@@ -71,13 +79,15 @@ class ProductoController extends Controller
             'prec_venta.required' => '¡Debes ingresar un precio de venta!',
             'prec_venta.min' => '¡Debes ingresar un precio de venta mínimo de 0!', 
 
+            
+            'prec_compra.numeric' => '¡Solo se permiten números!',
+            'prec_compra.required' => '¡Debes ingresar un precio de compra!',
+            'prec_compra.min' => '¡Debes ingresar un precio de compra mínimo de 0!', 
+
             'categoria.required' => '¡Debes ingresar una categoría!',
             'categoria.string' => '¡Debes ingresar una categoría, verifica la información!',
             'categoria.min' => '¡Debes ingresar un minimo de 5 letras!',
             'categoria.max' => '¡Has excedido el limite máximo de 80 letras!',
-
-            'impuesto.numeric' => '¡Solo se permiten números!',
-            'impuesto.required' => '¡Debes ingresar un impuesto!',
 
             'imagen_producto.required' => '¡Debes cargar una imagen!',
             'imagen_producto.image' => '¡Debes seleccionar una imagen!',
@@ -86,12 +96,13 @@ class ProductoController extends Controller
         
         $crearprod = new Producto();
 
+        $crearprod->nombre = $request->input('nombre');
         $crearprod->descripcion = $request->input('descripcion');
         $crearprod->codigo = $request->input('codigo');
         $crearprod->existencia = $request->input('existencia');
+        $crearprod->prec_compra = $request->input('prec_compra');
         $crearprod->prec_venta = $request->input('prec_venta');
         $crearprod->categoria = $request->input('categoria');
-        $crearprod->impuesto = $request->input('impuesto');
         //$crearprod->imagen_producto = $request->input('imagen_producto');
         if($request->hasFile('imagen_producto')){
             $imagen = $request->file('imagen_producto');
@@ -156,12 +167,13 @@ class ProductoController extends Controller
         ]);*/
 
         //Formulario
+        $producto -> nombre=$request->input('nombre');
         $producto -> descripcion=$request->input('descripcion');
         $producto -> codigo=$request->input('codigo');
         $producto -> existencia=$request->input('existencia');
+        $producto -> prec_compra=$request->input('prec_compra');
         $producto -> prec_venta=$request->input('prec_venta');
         $producto -> categoria=$request->input('categoria');
-        $producto -> impuesto=$request->input('impuesto');
 
        //Salvamos
         $creado = $producto->save();
@@ -193,9 +205,10 @@ class ProductoController extends Controller
     public function index_inventario(Request $request)
     {
         $buscar = trim( $request->get('buscar_producto'));
-        $productos=DB::table('productos')->select('id', 'descripcion', 'codigo', 'existencia', 'prec_venta',
-         'categoria', 'impuesto')->where('descripcion', 'like', '%'.$buscar.'%')
-         ->Where('descripcion', 'LIKE', '%'. $buscar. '%')
+        $productos=DB::table('productos')->select('id', 'nombre','descripcion', 'codigo', 'existencia', 'prec_venta',
+        'prec_compra','categoria')->where('descripcion', 'like', '%'.$buscar.'%')
+         ->Where('nombre', 'LIKE', '%'. $buscar. '%')
+         ->orWhere('descripcion', 'LIKE', '%'. $buscar. '%')
          ->orWhere('categoria', 'LIKE', '%'. $buscar. '%')
          ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(10);
         return view('Inventario.Inventario_index', compact('productos', 'buscar'));
