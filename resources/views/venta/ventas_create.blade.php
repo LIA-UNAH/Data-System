@@ -125,7 +125,7 @@ hr {
             Factura
             <small class="page-info">
                 <i class="fa fa-angle-double-right text-80"></i>
-                ID: #111-222
+                Numero Factura
             </small>        
         </h1>
 
@@ -150,7 +150,7 @@ hr {
 
                 <div class="row">
                     <div class="col-sm-6">
-                    <div>
+                        <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
                             <select name=”nombre_lista” id=”nombre_lista”>
                                 <option value=”nombre_opcion” id="name">Seleccione un cliente</option>
@@ -160,21 +160,25 @@ hr {
                             </select>
                             <span class="text-600 text-110 text-blue align-middle"></span>
                         </div>
-                        <div class="text-grey-m2">
-                            <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Direccion:</span>
-                            <span class="text-600 text-110 text-blue align-middle"></span>
-                            </div>
-                            <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">RTN Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle"></span>
-                            </div>
-                            <div class="my-1">
+                        <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Celular Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle"></span>
+                            <input type="tel" class="text-600 text-110 text-blue align-middle"  placeholder="0000-0000"></input>
                             </div>
 
+                        <div class="text-grey-m2">
+
+                        
+                            
+                            <div class="my-1">
+                            <span class="text-sm text-grey-m2 align-middle">Tipo de Cliente:</span>
+                            <select name="" id="">
+                            <option value=”tipo_opcion” id="name">Seleccione el Tipo de Cliente</option>
+                                
+                            </select>
                             </div>
+                            
+
+                        </div>
                     </div>
                     <!-- /.col -->
 
@@ -238,20 +242,22 @@ hr {
                                 </div>
                             </form>
 
-                            <div class="tb"  style="column-count: 4; margin: top 10px; ">
+                            <div class="tb"  style="column-count: 4; ">
                                     
                                 @foreach($productos as $pro)
                                            
-                                    <div style="border:1px solid black; ">
-                                        <div class="produto" >
+                                    <div style=" background-color:  hsla(120, 60%, 70%, 0.2); border: 2px solid black;border-radius: 12px;padding: 5px; text-align:center; ">
+                                        <div class="produto" style="text-align:center;"  >
                                             <img src="" alt="" class="produto__img" style="width: 60px; height:60px; border:#4087d4;">
-                                            <div class="productDescription">
-                                            <h6 class="producto_name">{{$pro->descripcion}}</h6>
-                                            <spam class="produto__price">{{$pro->prec_venta}}</spam>
-                                            </div>
-                                            <a href=""><i class="produto__icon fas fa-cart-plus"></i></a><br>
+                                            
+                                            <h6 class="producto_name" >{{$pro->descripcion}}</h6>
+                                            <h6 class="produto_pric"  >Precio: {{$pro->prec_venta}}</h6>
+                                            <h6 class="produto_ex"  >Existencia: {{$pro->existencia}}</h6>
+                                            
+                                            <a href="" ><i  class="produto__icon fas fa-cart-plus"></i></a>
                                         </div>
                                      </div>
+                                     <br>
                                                
                                            
                                            
