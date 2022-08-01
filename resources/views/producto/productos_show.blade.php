@@ -3,7 +3,8 @@
 <link href="/verproducto.css" rel="stylesheet" type="text/css" />
 
 <div class="container py-1">
-  <div class=" text-center" style="font-size: 3em;"> <strong>Detalles del Producto</strong></div>
+  <div class=" text-center" style="font-size: 3em;"> <strong>Detalles del Producto</strong>
+  <a class="btn btn-success" href="{{ route('producto.edit', ['id' => $verproducto->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></div>
   <!-- Card Start -->
   <div class="card">
     <div class="row ">
