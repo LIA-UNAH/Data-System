@@ -77,16 +77,7 @@ class PedidoController extends Controller
         $pedido = Pedido::findOrFail($id);
 
         //Validar
-
-      /* $request ->validate([
-            'descripcion'=>'required|alpha',
-            'codigo'=>'required|alpha|numeric',
-            'existencia'=>'alpha',
-            'prec_venta'=>'numeric',
-            'categoria'=>'alpha',
-            'impuesto'=>'numeric'
-        ]);*/
-
+        
         //Formulario
         $pedido -> nombre_Cliente=$request->input('nombre_Cliente');
         $pedido -> telefon_Cliente=$request->input('telefon_Cliente');
