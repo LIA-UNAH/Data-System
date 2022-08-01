@@ -253,6 +253,21 @@ hr {
                                             <h6 class="producto_name" >{{$pro->descripcion}}</h6>
                                             <h6 class="produto_pric"  >Precio: {{$pro->prec_venta}}</h6>
                                             <h6 class="produto_ex"  >Existencia: {{$pro->existencia}}</h6>
+                                            <div class="d-flex mb-4" >
+                                                <button class="btn btn-primary px-1 me-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+
+                                                <div class="form-outline">
+                                                    <input style="width : 50px;" id="form1"   min="0" name="quantity" value="1" type="number" class="form-control" />
+                                                </div>
+
+                                                <button class="btn btn-primary px-1 ms-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
                                             
                                             <a href="" ><i  class="produto__icon fas fa-cart-plus"></i></a>
                                         </div>
