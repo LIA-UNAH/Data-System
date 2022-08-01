@@ -20,8 +20,7 @@ class ProductoController extends Controller
         $buscar = trim( $request->get('buscar_producto'));
         $productos=DB::table('productos')->select('id', 'nombre', 'descripcion', 'codigo', 'existencia', 'prec_venta',
         'prec_compra','categoria')->where('descripcion', 'like', '%'.$buscar.'%')
-        ->Where('nombre', 'LIKE', '%'. $buscar. '%') 
-        ->orWhere('descripcion', 'LIKE', '%'. $buscar. '%')
+        ->orWhere('nombre', 'LIKE', '%'. $buscar. '%')
          ->orWhere('categoria', 'LIKE', '%'. $buscar. '%')
          ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(10);
         return view('producto.producto_index', compact('productos', 'buscar'));

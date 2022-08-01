@@ -232,7 +232,7 @@
                                             @method('DELETE')
                                             <div class="modal-body">
 
-                                                ¿Desea eliminar el producto <strong>{{ $pro->descripcion }}?</strong>
+                                                ¿Desea eliminar el producto <strong>{{ $pro->nombre }}?</strong>
 
                                             </div>
                                             <div class="modal-footer">
