@@ -242,7 +242,9 @@ Route::get('/inventario', [App\Http\Controllers\ProductoController::class, 'inde
 Route::get('/categorias', [CategoriaController::class, 'index'])
     ->name('categorias.index');
 
-
+// Buscar categorias
+Route::get('/categorias/busqueda', [CategoriaController::class, 'search'])
+    ->name('categorias.searchIndex');
 
 // Agregar categorias
 Route::get("/categorias/create", [CategoriaController::class, "create"])
@@ -257,7 +259,6 @@ Route::get("/categorias/{id}/edit", [CategoriaController::class, "edit"])
 
 Route::put("/categorias/{id}/edit", [CategoriaController::class, "update"])
     ->name("categorias.edit")->where('id', '[0-9]+');
-
 
 // Visualizar categorias
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])

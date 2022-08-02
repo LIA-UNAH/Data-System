@@ -27,22 +27,21 @@
 
             <div style="float: right">
                 <div style="float: left">
-                    <!-- HU8 - Buscar y recargar usuario -->
-                    <form action="{{ route('categorias.searchIndex') }}" method="GET" style=""
+                    <!-- HU - Buscar y recargar categoria -->
+                    <form action="{{ route('categorias.searchIndex') }}" method="GET"
                           class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" name="busqueda" class="form-control bg-light border-0 small"
-
-                                   placeholder="Buscar"
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append" style="margin-left: 5px">
-                                <button class="btn " type="submit" value="Buscar" style=" border: 2px solid #ffffff;border-radius: 4px; color: white">
-                                    <i class="fas fa-search fa-sm" style="color: white"></i>
+                                   value="" aria-label=""
+                                   aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn" type="submit" value="Buscar" style="background: white">
+                                    <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
-                    <!-- HU8 - Buscar y recargar usuario -->
+                    <!-- HU - Buscar y recargar categorias -->
                 </div>
 
                 <div style="float: right">

@@ -14,6 +14,12 @@ class CategoriaController extends Controller
         return view('categoria/categorias_index')->with('categorias', $categorias);
     }
 
+    public function search(Request $request){
+        $texto =trim($request->get('busqueda'));
+        $categorias = Categoria::where('name', 'like', '%'.$texto.'%')->paginate(10);
+        return view('categoria/categorias_index')->with('categorias', $categorias);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
