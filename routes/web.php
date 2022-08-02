@@ -260,6 +260,10 @@ Route::get("/categorias/{id}/edit", [CategoriaController::class, "edit"])
 Route::put("/categorias/{id}/edit", [CategoriaController::class, "update"])
     ->name("categorias.edit")->where('id', '[0-9]+');
 
+// Eliminar categorias
+Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy'])
+    ->name('categorias.destroy');
+
 // Visualizar categorias
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
