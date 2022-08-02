@@ -198,6 +198,10 @@ class ProductoController extends Controller
             'categoria.string' => '¡Debes ingresar una categoría, verifica la información!',
             'categoria.min' => '¡Debes ingresar un minimo de 5 letras!',
             'categoria.max' => '¡Has excedido el limite máximo de 80 letras!',
+        
+            'imagen_producto.required' => '¡Debes cargar una imagen!',
+            'imagen_producto.image' => '¡Debes seleccionar una imagen!',
+            'imagen_producto.mimes' => '¡Debes seleccionar una imagen en el formato correcto!'
         ]);
 
         //Formulario
@@ -209,23 +213,22 @@ class ProductoController extends Controller
         $producto -> prec_venta=$request->input('prec_venta');
         $producto -> categoria=$request->input('categoria');
             //edit imagen del producto
-            if($request->hasFile('imagen_producto')){
-                $imagen = $request->file('imagen_producto');
-                $extention = $imagen->getClientOriginalExtension();
-                $filname = time().'.'.$extention;
-                $imagen->move('imagenes/', $filname);
-                $producto->imagen_producto = $filname;
+            if($request->hasFile('imagen_producto'))
+        {
+            $ubicacion = 'imagenes/'.$producto->imagen_producto;
+            if(File::exists($ubicacion)){
+                File::delete($ubicacion);    
             }
+            $imagen = $request->file('imagen_producto');
+            $extention = $imagen->getClientOriginalExtension();
+            $filname = time().'.'.$extention;
+            $imagen->move('imagenes/', $filname);
+            $producto->imagen_producto = $filname;
+        }
+        //Salvamos
+        $producto->update();
 
-       //Salvamos
-        $creado = $producto->save();
-        if($creado){
-           return redirect()->route('productos.index')
-           ->with('realizado','El producto fue modificado exitosamente.');
-          }//fin if
-         else{
-
-        }//fin else
+        return redirect()->route('productos.index')->with('realizado', '¡El producto ha sido actualizado con exito!');
     }
 
 
