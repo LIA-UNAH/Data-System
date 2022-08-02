@@ -15,7 +15,8 @@
 <br>
 
                 <div class="container">
-                <form action="{{ route( 'producto.edit', ['id'=>$producto->id]) }}" method="POST">
+                <form action="{{ route( 'producto.edit', ['id'=>$producto->id]) }}" 
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 @method ('put')
                 <div class="modal-body">
@@ -118,17 +119,10 @@
 
                               <div class="col-sm-6">
                               <label class="form-label" for="customFile">Agregar Imagen:</label>
-                              <input type="file" class="form-control" id="imagen_producto" name="imagen_producto" 
-                              values="{{$producto->imagen_producto}}" required>
-                              @error('imagen_producto')
-                                    <small class="text-danger" >
-                                                <strong>{{ $message }}</strong>
-                                            </small>
-                                    @enderror
-                               </div>
+                              <input type="file" class="form-control" id="imagen_producto" name="imagen_producto"/>
+                              <img class="d-block " src="{{ asset('/imagenes/'.$producto->imagen_producto)}}" alt="" width="150px" height="100px"> 
+                            </div>
 
-                               <div class="col-sm-6" id="imagenSeleccionada" style="max-height: 300px;">
-                              </div>                   
                               </div>            
                           </div>
 
