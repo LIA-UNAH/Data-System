@@ -4,22 +4,40 @@
 
 @section('content')
 
+
 {{-- Mensajes de las operaciones realizadas --}}
-    {{--Para los mensajes afirmativos y sin errores --}}
-    @if (session()->has('suce'))
-        <div class="alert alert-success alert-dismissible" role="alert">
-            {{ session('suce') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    {{--Para los mensajes de errores --}}
-    @if (session()->has('erorr'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('erorr') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    {{-- Terminan los mensajes --}}
+{{-- Para los mensajes afirmativos y sin errores --}}
+@if(session()->has('suce'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        {{ session('suce') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+{{-- Para los mensajes de errores --}}
+@if(session()->has('erorr'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('erorr') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+{{-- Para los mensajes de creado y actualizado --}}
+@if(session('realizado'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ session('realizado') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ session('error') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
 <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
