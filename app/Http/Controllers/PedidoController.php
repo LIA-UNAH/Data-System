@@ -87,15 +87,10 @@ class PedidoController extends Controller
         $pedido -> detalle_Pedido=$request->input('detalle_Pedido');
         $pedido -> total_Pedido=$request->input('total_Pedido');
 
-       //Salvamos
-        $creado = $pedido->save();
-        if($creado){
-           return redirect()->route('pedidos.index')
-           ->with('realizado','El edido fue modificado exitosamente.');
-          }//fin if
-         else{
+     //salvamos
+     $pedido->update();
 
-        }//fin else
+        return redirect()->route('pedidos.index')->with('realizado', '¡El pedido ha sido actualizado con exito!');
     }
 
     /**
