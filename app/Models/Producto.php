@@ -19,9 +19,13 @@ class Producto extends Model
     // ];
    // use HasFactory;
 
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
 
-   public function detalle_compre()
-   {
-       return $this->hasOne('App\Models\DetalleCompra');
-   }
+    public function detalle_compre()
+    {
+        return $this->hasOne('App\Models\DetalleCompra');
+    }
 }

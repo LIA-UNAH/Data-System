@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraClienteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductoController;
@@ -22,49 +25,47 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Información del sistema
+Route::get('/info', [UserController::class, 'info'])->name('info');
+
 /*
 |--------------------------------------------------------------------------
 | Usuarios
 |--------------------------------------------------------------------------
 */
 
-// Información del sistema
-Route::get('/info', [App\Http\Controllers\UserController::class, 'info'])->name('info');
-
-
-
 // Visualizar usuarios
-Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])
+Route::get('/usuarios', [UserController::class, 'index'])
     ->name('usuarios.index');
 
 // Buscar usuarios
-Route::get('/usuarios/busqueda', [App\Http\Controllers\UserController::class, 'search'])
+Route::get('/usuarios/busqueda', [UserController::class, 'search'])
     ->name('usuarios.searchIndex');
 
 // Agregar usuarios
-Route::get("/usuarios/create", [App\Http\Controllers\UserController::class, "create"])
+Route::get("/usuarios/create", [UserController::class, "create"])
     ->name("usuarios.create");
 
-Route::post("/usuarios/create", [App\Http\Controllers\UserController::class, "store"])
+Route::post("/usuarios/create", [UserController::class, "store"])
     ->name("usuarios.create");
 
 // Editar usuarios
-Route::get("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "edit"])
+Route::get("/usuarios/{id}/edit", [UserController::class, "edit"])
     ->name("usuarios.edit")->where('id', '[0-9]+');
 
-Route::put("/usuarios/{id}/edit", [App\Http\Controllers\UserController::class, "update"])
+Route::put("/usuarios/{id}/edit", [UserController::class, "update"])
     ->name("usuarios.edit")->where('id', '[0-9]+');
 
 // Eliminar usuarios
-Route::delete('/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])
+Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])
     ->name('usuarios.destroy');
 
 // Visualizar usuarios
-Route::get("/usuarios/{id}/", [App\Http\Controllers\UserController::class, "show"])
+Route::get("/usuarios/{id}/", [UserController::class, "show"])
     ->name("usuarios.show")->where('id', '[0-9]+');
 
 // Perfil de usuario
-    Route::get("/usuarios/profile", [App\Http\Controllers\UserController::class, "profile"])
+    Route::get("/usuarios/profile", [UserController::class, "profile"])
         ->name("usuarios.profile")->where('id', '[0-9]+');
 
 /*
@@ -74,33 +75,33 @@ Route::get("/usuarios/{id}/", [App\Http\Controllers\UserController::class, "show
 */
 
 // Visualizar clientes
-Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])
+Route::get('/clientes', [ClienteController::class, 'index'])
     ->name('clientes.index');
 
 // Buscar clientes
-Route::get('/clientes/busqueda', [App\Http\Controllers\ClienteController::class, 'search'])
+Route::get('/clientes/busqueda', [ClienteController::class, 'search'])
     ->name('clientes.searchIndex');
 
 // Agregar clientes
-Route::get("/clientes/create", [App\Http\Controllers\ClienteController::class, "create"])
+Route::get("/clientes/create", [ClienteController::class, "create"])
     ->name("clientes.create");
 
-Route::post("/clientes/create", [App\Http\Controllers\ClienteController::class, "store"])
+Route::post("/clientes/create", [ClienteController::class, "store"])
     ->name("clientes.create");
 
 // Editar clientes
-Route::get("/clientes/{id}/edit", [App\Http\Controllers\ClienteController::class, "edit"])
+Route::get("/clientes/{id}/edit", [ClienteController::class, "edit"])
     ->name("clientes.edit")->where('id', '[0-9]+');
 
-Route::put("/clientes/{id}/edit", [App\Http\Controllers\ClienteController::class, "update"])
+Route::put("/clientes/{id}/edit", [ClienteController::class, "update"])
     ->name("clientes.edit")->where('id', '[0-9]+');
 
 // Eliminar clientes
-Route::delete('/clientes/{user}', [App\Http\Controllers\ClienteController::class, 'destroy'])
+Route::delete('/clientes/{user}', [ClienteController::class, 'destroy'])
     ->name('clientes.destroy');
 
 // Visualizar clientes
-Route::get("/clientes/{id}/", [App\Http\Controllers\ClienteController::class, "show"])
+Route::get("/clientes/{id}/", [ClienteController::class, "show"])
     ->name("clientes.show")->where('id', '[0-9]+');
 
 /*
@@ -113,16 +114,16 @@ Route::get("/clientes/{id}/", [App\Http\Controllers\ClienteController::class, "s
 Route::resource('/productos', ProductoController::class);
 //Ver Producto
 
-Route::get('productos/{id}/show', [App\Http\Controllers\ProductoController::class, 'show']
+Route::get('productos/{id}/show', [ProductoController::class, 'show']
 )->name('productos.ver');
 
 // Editar Producto
-Route::get('/productos/{id}/editar',  [App\Http\Controllers\ProductoController::class, 'edit'])
+Route::get('/productos/{id}/editar',  [ProductoController::class, 'edit'])
 ->name('producto.edit')
 ->where('id','[0-9]+');
 
 // Actualizar Producto
-Route::put('/productos/{id}/editar', [App\Http\Controllers\ProductoController::class, 'update'])
+Route::put('/productos/{id}/editar', [ProductoController::class, 'update'])
 ->name('producto.update')
 ->where('id','[0-9]+');
 
@@ -229,3 +230,36 @@ Route::get('/inventario', [App\Http\Controllers\ProductoController::class, 'inde
     ->name('inventario.index');
 
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Categorias
+|--------------------------------------------------------------------------
+*/
+
+// Listar categorias
+Route::get('/categorias', [CategoriaController::class, 'index'])
+    ->name('categorias.index');
+
+
+
+// Agregar categorias
+Route::get("/categorias/create", [CategoriaController::class, "create"])
+    ->name("categorias.create");
+
+Route::post("/categorias/create", [CategoriaController::class, "store"])
+    ->name("categorias.create");
+
+// Editar categorias
+Route::get("/categorias/{id}/edit", [CategoriaController::class, "edit"])
+    ->name("categorias.edit")->where('id', '[0-9]+');
+
+Route::put("/categorias/{id}/edit", [CategoriaController::class, "update"])
+    ->name("categorias.edit")->where('id', '[0-9]+');
+
+
+// Visualizar categorias
+Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
+    ->name("categorias.show")->where('id', '[0-9]+');
+
