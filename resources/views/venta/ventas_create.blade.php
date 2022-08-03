@@ -1,7 +1,7 @@
 @extends('Layouts.Layouts')
 @section('content')
 <style>
-    
+
 .text-secondary-d1 {
     color: #728299!important;
 }
@@ -126,7 +126,7 @@ hr {
             <small class="page-info">
                 <i class="fa fa-angle-double-right text-80"></i>
                 Numero Factura
-            </small>        
+            </small>
         </h1>
 
         <div class="page-tools">
@@ -167,16 +167,16 @@ hr {
 
                         <div class="text-grey-m2">
 
-                        
-                            
+
+
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Tipo de Cliente:</span>
                             <select name="" id="">
                             <option value=”tipo_opcion” id="name">Seleccione el Tipo de Cliente</option>
-                                
+
                             </select>
                             </div>
-                            
+
 
                         </div>
                     </div>
@@ -190,12 +190,12 @@ hr {
                             </div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
-                                </i> 
+                                </i>
                                 <span class="text-600 text-90">ID:</span>
                             </div>
 
                             <div class="my-2" >
-                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i> 
+                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i>
                                 <span class="text-600 text-90" >Fecha:
                                     <span id="current_date">
                                         <script>
@@ -205,18 +205,37 @@ hr {
                                             day = date.getDate();
                                             document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
                                         </script>
-                                    </span> 
+                                    </span>
                                 </span>
                             </div>
 
                             <div class="my-2">
-                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> 
-                                <span class="text-600 text-90">Vendido Por:{{ Auth::user()->name }}</span>   
+                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
+                                <span class="text-600 text-90">Vendido Por:{{ Auth::user()->name }}</span>
                                 <span class="badge badge-warning badge-pill px-25"></span>
                             </div>
                         </div>
                     </div>
-                   
+                    <hr class="row brc-default-l1 mx-n1 mb-4" />
+                    <!-- HU8 - Buscar producto -->
+                    <div class="bprod" style="float: left">
+                        <form action="{{ route('ventas.buscarpro') }}" method="GET"
+                              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" name="buscar_producto" class="form-control bg-light border-0 small" placeholder="Buscar"
+                                       aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append" style="margin-left: 5px">
+                                    <button class="btn btn-primary " type="submit" value="Buscar" style=" border: 2px solid #ffffff;border-radius: 4px; color:green">
+                                        <i class="fas fa-search fa-sm" style="color: black"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="row brc-default-l1 mx-n1 mb-4" />
+                    <h4>Catalogo de Productos</h4>
+                    <hr class="row brc-default-l1 mx-n1 mb-4" />
+
                 </div>
 
             </div>
@@ -225,57 +244,54 @@ hr {
                 <!-- Catalogo de Productos -->
                 <div class="catpro" style=" height: 400px; overflow:scroll;  float:left; ">
                     <section class="NovidadesSection"  >
-                        <h4>Catalogo de Productos</h4>
 
-                        <div class="bprod" style="float: left">
-                    <!-- HU8 - Buscar producto -->
-                            <form action="{{ route('ventas.buscarpro') }}" method="GET"
-                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" name="buscar_producto" class="form-control bg-light border-0 small" placeholder="Buscar"
-                                        aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append" style="margin-left: 5px">
-                                        <button class="btn btn-primary " type="submit" value="Buscar" style=" border: 2px solid #ffffff;border-radius: 4px; color:green">
-                                            <i class="fas fa-search fa-sm" style="color: black"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="tb" style="display: grid; grid-template-columns: 180px 180px 180px;">
 
-                            <div class="tb"  style="column-count: 4; ">
-                                    
                                 @foreach($productos as $pro)
-                                           
-                                    <div style=" background-color:  hsla(120, 60%, 70%, 0.2); border: 2px solid black;border-radius: 12px;padding: 5px; text-align:center; ">
-                                        <div class="produto" style="text-align:center;"  >
-                                            <img src="" alt="" class="produto__img" style="width: 60px; height:60px; border:#4087d4;">
-                                            
-                                            <h6 class="producto_name" >{{$pro->descripcion}}</h6>
-                                            <h6 class="produto_pric"  >Precio: {{$pro->prec_venta}}</h6>
-                                            <h6 class="produto_ex"  >Existencia: {{$pro->existencia}}</h6>
-                                            <div class="d-flex mb-4" >
-                                                <button class="btn btn-primary px-1 me-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
+                                    
 
-                                                <div class="form-outline">
-                                                    <input style="width : 50px;" id="form1"   min="0" name="quantity" value="1" type="number" class="form-control" />
+
+                                    <div class="col mb-5">
+                                        <div class="card h-100">
+                                            <!-- Sale badge-->
+                                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{$pro->existencia}} unidades</div>
+                                            <!-- Product image-->
+                                            <img class="card-img-top" src="/images/products/{{$pro->imagen_producto}}" width="400px" height="130px" alt="..." />
+                                            <!-- Product details-->
+                                            <div class="card-body p-4">
+                                                <div class="text-center">
+                                                    <!-- Product name-->
+                                                    <p class="fw-bolder">{{$pro->nombre}}</p>
+                                                    <!-- Product reviews-->
+                                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                                        <span class="text-muted text-decoration-line">L. {{$pro->prec_venta_fin}}</span>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                                        <button class="btn btn-primary px-1 me-2"
+                                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+
+                                                        <div class="form-outline">
+                                                            <input style="width : 65px;" id="form1"   min="0" name="quantity" value="1" type="number" class="form-control" />
+                                                        </div>
+
+                                                        <button class="btn btn-primary px-1 ms-2"
+                                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </div>
+
                                                 </div>
-
-                                                <button class="btn btn-primary px-1 ms-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
                                             </div>
-                                            
-                                            <a href="" ><i  class="produto__icon fas fa-cart-plus"></i></a>
+                                            <!-- Product actions-->
+                                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Comprar</a></div>
+                                            </div>
                                         </div>
-                                     </div>
-                                     <br>
-                                               
-                                           
-                                           
+                                    </div>
+                                 
                                 @endforeach
                             </div>
 
@@ -283,7 +299,7 @@ hr {
                         </section>
                 </div>
                     <!-- or use a table instead -->
-                   
+
             <div class="table-responsive" style="width: 40%; float:right;">
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                     <thead class="bg-none bgc-default-tp1">
@@ -300,7 +316,7 @@ hr {
                         <tr></tr>
                         <tr>
 
-                        </tr> 
+                        </tr>
                     </tbody>
                 </table>
                 <div class="row mt-3">
@@ -329,7 +345,7 @@ hr {
 
                             <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                 <div class="col-7 text-right">
-                                    Total 
+                                    Total
                                 </div>
                                 <div class="col-5">
                                     <span class="text-150 text-success-d3 opacity-2"></span>
@@ -342,14 +358,14 @@ hr {
 
                     <div>
                         <span class="text-secondary-d1 text-105"></span>
-                        
+
                         <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Guardar</a>
                         <a href="/ventas" class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0" >Cancelar</a>
                     </div>
             </div>
-           
 
-                    
+
+
                 </div>
             </div>
         </div>
@@ -357,9 +373,9 @@ hr {
 
 
 
-        
 
-    
+
+
 @endsection
 
 

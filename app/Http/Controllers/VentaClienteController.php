@@ -36,8 +36,9 @@ class VentaClienteController extends Controller
 
     public function buscarpro(Request $request){
         $busc =trim($request->get('buscar_producto'));
-        $productos = Producto::where('descripcion', 'like', '%'.$busc.'%')->get();
-        return view('venta\ventas_create')->with('productos', $productos);
+        $productos = Producto::where('nombre', 'like', '%'.$busc.'%')->get();
+        $users = User::where('type', '=', 'cliente')->get();
+        return view('venta\ventas_create')->with('productos', $productos)->with('users', $users);
     }
 
     /**
@@ -54,9 +55,7 @@ class VentaClienteController extends Controller
 
     }
 
-    public function buscarcliente(Request $request){
-        $cliente = Cliente::all();
-    }
+    
 
     /**
      * Store a newly created resource in storage.
