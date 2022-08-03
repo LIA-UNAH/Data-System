@@ -12,8 +12,8 @@
         <div class="card-body">
             <!-- Nested Row within Card Body -->
             <div class="row" style="background: #4a5568">
-                <div class="col-lg-5 d-none d-lg-block" style="text-align: center; margin-top: 80px">
-                    <img src="/images/uploads/{{ $user->image }}" width="300px" style="border-radius: 4%">
+                <div class="col-lg-5 d-none d-lg-block" style="text-align: center;">
+                    <img id="imagen" src="/images/uploads/{{ $user->image }}"  style="border-radius: 4%;height: 500px; width: 100%">
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                <div class="col-sm-5 mb-3 mb-sm-0">
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                                            @if(old("password"))
                                                value="{{old("password")}}"
@@ -106,7 +106,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <input
                                         @if(old("password"))
                                             value="{{old("password")}}"
@@ -116,6 +116,12 @@
                                         id="password-confirm" name="password_confirmation" type="password"
                                         class="form-control"
                                         placeholder="{{ __('Confirmar') }}" autocomplete="new-password">
+                                </div>
+                                <div class="col-sm-1">
+                                    <span id="imgContrasena" data-activo=false><img  style="width: 25px; height: 25px;" src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png" class="icon"></span>
+                                </div>
+                                <div class="col-sm-1">
+
                                 </div>
                             </div>
 
@@ -163,4 +169,57 @@
             </div>
         </div>
     </div>
+
 @endsection
+
+@push('scripsss')
+    <script>
+        function mostrar(){
+            if (document.getElementById("image").files.length <= 0) return;
+
+            var archivo = document.getElementById("image").files[0];
+
+            if (archivo.size > 1000000) {
+                const tamanioEnMb = 1000000 / 1000000;
+                alert(`El tamaño máximo es ${tamanioEnMb} MB`);
+
+                document.getElementById("image").value = "";
+            } else {
+
+                var reader = new FileReader();
+                if (archivo) {
+                    reader.readAsDataURL(archivo);
+                    reader.onloadend = function () {
+                        document.getElementById("imagen").src = reader.result;
+                    }
+                }
+            }
+        }
+
+
+        $("#imgContrasena").click(function () {
+
+            var control = $(this);
+            var estatus = control.data('activo');
+
+            var image = control.find('img');
+                if (estatus == false) {
+
+                    control.data('activo', true);
+                    $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-10-256.png');
+                    $("#password").attr('type', 'text');
+                    $("#password-confirm").attr('type', 'text');
+
+
+                }
+                else {
+
+                    control.data('activo', false);
+                    $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png');
+                    $("#password").attr('type', 'password');
+                    $("#password-confirm").attr('type', 'password');
+                }
+        });
+
+    </script>
+@endpush

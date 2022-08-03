@@ -28,13 +28,18 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <div class="input-group">
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                            <span id="imgContrasena" data-activo=false><img  style="width: 25px; height: 25px;" src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png" class="icon"></span>
+                                        </div>
+
 
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
+
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
@@ -67,6 +72,32 @@
     </div>
 </div>
 @endsection
+
+@push('scripsss')
+<script>
+    $("#imgContrasena").click(function () {
+
+    var control = $(this);
+    var estatus = control.data('activo');
+
+    var image = control.find('img');
+        if (estatus == false) {
+
+            control.data('activo', true);
+            $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-10-256.png');
+            $("#password").attr('type', 'text');
+
+
+        }
+        else {
+
+            control.data('activo', false);
+            $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png');
+            $("#password").attr('type', 'password');
+        }
+    });
+</script>
+@endpush
 
 
 

@@ -40,7 +40,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="col-sm-5 mb-3 mb-sm-0">
                                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                                                name="password" placeholder="{{ __('Contraseña') }}" required
                                                autocomplete="new-password">
@@ -50,10 +50,16 @@
                                         </span>
                                         @enderror
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-5">
                                         <input id="password-confirm" name="password_confirmation" type="password"
                                                class="form-control"
                                                placeholder="{{ __('Confirmar') }}" required autocomplete="new-password">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span id="imgContrasena" data-activo=false><img  style="width: 25px; height: 25px;" src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png" class="icon"></span>
+                                    </div>
+                                    <div class="col-sm-1">
+
                                     </div>
                                 </div>
 
@@ -148,6 +154,34 @@
         }
     </script>
 @endsection
+
+@push('scripsss')
+<script>
+    $("#imgContrasena").click(function () {
+
+    var control = $(this);
+    var estatus = control.data('activo');
+
+    var image = control.find('img');
+        if (estatus == false) {
+
+            control.data('activo', true);
+            $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-10-256.png');
+            $("#password").attr('type', 'text');
+            $("#password-confirm").attr('type', 'text');
+
+
+        }
+        else {
+
+            control.data('activo', false);
+            $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png');
+            $("#password").attr('type', 'password');
+            $("#password-confirm").attr('type', 'password');
+        }
+    });
+</script>
+@endpush
 
 
 

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Crypt;
 
 class ClienteController extends Controller
 {
@@ -108,6 +109,7 @@ class ClienteController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+
         return view("cliente.clientes_show")->with("user", $user);
     }
 
@@ -171,6 +173,8 @@ class ClienteController extends Controller
         ]);
 
         $input = $request->all();
+
+
 
         if ($image = $request->file('image')) {
             $destinationPath = 'images/uploads/';

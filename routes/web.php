@@ -6,6 +6,7 @@ use App\Http\Controllers\CompraClienteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\VentaClienteController;
 
 
 Auth::routes();
+Route::get('sendmail', [MailController::class, 'index']);
 Route::group(['middleware' => 'auth'], function () {
 
 
