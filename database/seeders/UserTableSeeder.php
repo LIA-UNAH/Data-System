@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create(
+        $us = User::create(
             [
                 'name'=>'Administrador Principal',
                 'email'=>'admin@unah.hn',
@@ -26,8 +26,9 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (39).jpg'
             ]
         );
+        $us->assignRole('Administrador');
 
-        User::create(
+        $us = User::create(
             [
                 'name'=>'Ana Romero',
                 'email'=>'amromero@unah.hn',
@@ -38,8 +39,9 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (40).jpg'
             ]
         );
+        $us->assignRole('Empleado');
 
-        User::create(
+        $us = User::create(
             [
                 'name'=>'Nielsandr Meza',
                 'email'=>'nvmeza@unah.hn',
@@ -50,8 +52,9 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (26).jpg'
             ]
         );
+        $us->assignRole('Empleado');
 
-        User::create(
+        $us = User::create(
             [
                 'name'=>'Jennifer Lazo',
                 'email'=>'jennifer.lazo@unah.hn',
@@ -62,8 +65,9 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (17).jpg'
             ]
         );
+        $us->assignRole('Empleado');
 
-        User::create(
+        $us = User::create(
             [
                 'name'=>'Oscar Sanchez',
                 'email'=>'osanchezg@unah.hn',
@@ -74,8 +78,9 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (9).jpg'
             ]
         );
+        $us->assignRole('Empleado');
 
-        User::create(
+        $us = User::create(
             [
                 'name'=>'Wilmer Hernández',
                 'email'=>'wnhernandezf@unah.hn',
@@ -86,8 +91,9 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (5).jpg'
             ]
         );
+        $us->assignRole('Empleado');
 
-        User::create(
+        $us = User::create(
             [
                 'name'=>'Lester Bogran',
                 'email'=>'lester-bogran@unah.edu.hn',
@@ -98,6 +104,7 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (2).jpg'
             ]
         );
+        $us->assignRole('Cliente');
 
 
     }
