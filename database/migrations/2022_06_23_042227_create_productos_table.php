@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 80)->nullable();
-            $table->string('descripcion', 80);
             $table->char('codigo',15);
+            $table->string('nombre', 80);
+            $table->string('modelo',20)->nullable();
+            $table->string('descripcion', 80);
             $table->float('existencia');
-            $table->double('prec_venta');
             $table->double('prec_compra');
-            $table->string('categoria', 80);
+            $table->double('prec_venta_may');
+            $table->double('prec_venta_fin');
+            $table->unsignedBigInteger('id_categoria');
+            $table->foreign("id_categoria")->references("id")->on("categorias");
             $table->string('imagen_producto');
             $table->timestamps();
         });

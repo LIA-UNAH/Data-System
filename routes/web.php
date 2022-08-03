@@ -23,96 +23,109 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Información del sistema
-Route::get('/info', [UserController::class, 'info'])->name('info');
+    Route::get('/info', [UserController::class, 'info'])->name('info');
 
-/*
-|--------------------------------------------------------------------------
-| Usuarios
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Usuarios
+    |--------------------------------------------------------------------------
+    */
 
 // Visualizar usuarios
-Route::get('/usuarios', [UserController::class, 'index'])
-    ->name('usuarios.index');
+    Route::get('/usuarios', [UserController::class, 'index'])
+        ->name('usuarios.index');
 
 // Buscar usuarios
-Route::get('/usuarios/busqueda', [UserController::class, 'search'])
-    ->name('usuarios.searchIndex');
+    Route::get('/usuarios/busqueda', [UserController::class, 'search'])
+        ->name('usuarios.searchIndex');
 
 // Agregar usuarios
-Route::get("/usuarios/create", [UserController::class, "create"])
-    ->name("usuarios.create");
+    Route::get("/usuarios/create", [UserController::class, "create"])
+        ->name("usuarios.create");
 
-Route::post("/usuarios/create", [UserController::class, "store"])
-    ->name("usuarios.create");
+    Route::post("/usuarios/create", [UserController::class, "store"])
+        ->name("usuarios.create");
 
 // Editar usuarios
-Route::get("/usuarios/{id}/edit", [UserController::class, "edit"])
-    ->name("usuarios.edit")->where('id', '[0-9]+');
+    Route::get("/usuarios/{id}/edit", [UserController::class, "edit"])
+        ->name("usuarios.edit")->where('id', '[0-9]+');
 
-Route::put("/usuarios/{id}/edit", [UserController::class, "update"])
-    ->name("usuarios.edit")->where('id', '[0-9]+');
+    Route::put("/usuarios/{id}/edit", [UserController::class, "update"])
+        ->name("usuarios.edit")->where('id', '[0-9]+');
 
 // Eliminar usuarios
-Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])
-    ->name('usuarios.destroy');
+    Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])
+        ->name('usuarios.destroy');
 
 // Visualizar usuarios
-Route::get("/usuarios/{id}/", [UserController::class, "show"])
-    ->name("usuarios.show")->where('id', '[0-9]+');
+    Route::get("/usuarios/{id}/", [UserController::class, "show"])
+        ->name("usuarios.show")->where('id', '[0-9]+');
 
 // Perfil de usuario
     Route::get("/usuarios/profile", [UserController::class, "profile"])
         ->name("usuarios.profile")->where('id', '[0-9]+');
 
-/*
-|--------------------------------------------------------------------------
-| Clientes
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Clientes
+    |--------------------------------------------------------------------------
+    */
 
 // Visualizar clientes
-Route::get('/clientes', [ClienteController::class, 'index'])
-    ->name('clientes.index');
+    Route::get('/clientes', [ClienteController::class, 'index'])
+        ->name('clientes.index');
 
 // Buscar clientes
-Route::get('/clientes/busqueda', [ClienteController::class, 'search'])
-    ->name('clientes.searchIndex');
+    Route::get('/clientes/busqueda', [ClienteController::class, 'search'])
+        ->name('clientes.searchIndex');
 
 // Agregar clientes
-Route::get("/clientes/create", [ClienteController::class, "create"])
-    ->name("clientes.create");
+    Route::get("/clientes/create", [ClienteController::class, "create"])
+        ->name("clientes.create");
 
-Route::post("/clientes/create", [ClienteController::class, "store"])
-    ->name("clientes.create");
+    Route::post("/clientes/create", [ClienteController::class, "store"])
+        ->name("clientes.create");
 
 // Editar clientes
-Route::get("/clientes/{id}/edit", [ClienteController::class, "edit"])
-    ->name("clientes.edit")->where('id', '[0-9]+');
+    Route::get("/clientes/{id}/edit", [ClienteController::class, "edit"])
+        ->name("clientes.edit")->where('id', '[0-9]+');
 
-Route::put("/clientes/{id}/edit", [ClienteController::class, "update"])
-    ->name("clientes.edit")->where('id', '[0-9]+');
+    Route::put("/clientes/{id}/edit", [ClienteController::class, "update"])
+        ->name("clientes.edit")->where('id', '[0-9]+');
 
 // Eliminar clientes
-Route::delete('/clientes/{user}', [ClienteController::class, 'destroy'])
-    ->name('clientes.destroy');
+    Route::delete('/clientes/{user}', [ClienteController::class, 'destroy'])
+        ->name('clientes.destroy');
 
 // Visualizar clientes
-Route::get("/clientes/{id}/", [ClienteController::class, "show"])
-    ->name("clientes.show")->where('id', '[0-9]+');
+    Route::get("/clientes/{id}/", [ClienteController::class, "show"])
+        ->name("clientes.show")->where('id', '[0-9]+');
 
-/*
-|--------------------------------------------------------------------------
-| Productos
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Productos
+    |--------------------------------------------------------------------------
+    */
 
 //HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
-Route::resource('/productos', ProductoController::class);
-//Ver Producto
+// Listar productos
+    Route::get('/productos', [ProductoController::class, 'index'])
+        ->name('productos.index');
+
+// Buscar productos
+    Route::get('/productos/busqueda', [ProductoController::class, 'search'])
+        ->name('productos.searchIndex');
+
+// Agregar usuarios
+Route::get("/productos/create", [ProductoController::class, "create"])
+        ->name("productos.create");
+
+Route::post("/productos/create", [ProductoController::class, "store"])
+        ->name("productos.create");
+
 
 Route::get('productos/{id}/show', [ProductoController::class, 'show']
 )->name('productos.ver');
@@ -126,6 +139,10 @@ Route::get('/productos/{id}/editar',  [ProductoController::class, 'edit'])
 Route::put('/productos/{id}/editar', [ProductoController::class, 'update'])
 ->name('producto.update')
 ->where('id','[0-9]+');
+
+// Eliminar usuarios
+    Route::delete('/productos/{user}', [ProductoController::class, 'destroy'])
+        ->name('productos.destroy');
 
 /*
 |--------------------------------------------------------------------------

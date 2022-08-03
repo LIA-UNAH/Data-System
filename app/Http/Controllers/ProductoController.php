@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto  ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,14 +18,16 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $buscar = trim( $request->get('buscar_producto'));
-        $productos=DB::table('productos')->select('id', 'nombre', 'descripcion', 'codigo', 'existencia', 'prec_venta',
-        'prec_compra','categoria')->where('descripcion', 'like', '%'.$buscar.'%')
-        ->orWhere('nombre', 'LIKE', '%'. $buscar. '%')
-         ->orWhere('categoria', 'LIKE', '%'. $buscar. '%')
-         ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(10);
-        return view('producto.producto_index', compact('productos', 'buscar'));
+        $productos = Producto::paginate(10);
+        return view('producto.productos_index')->with('productos', $productos);
     }
+
+    public function search(Request $request){
+        $texto =trim($request->get('busqueda'));
+        $productos = Producto::where('nombre', 'like', '%'.$texto.'%')->paginate(10);
+        return view('producto/productos_index')->with('productos', $productos);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,25 +50,25 @@ class ProductoController extends Controller
         $request ->validate([
 
             'nombre' => ['required', 'string', 'min:5', 'max:80'],
-            'descripcion' => ['required', 'string', 'min:5', 'max:80'], 
-            'codigo'=>  ['required', 'string', 'min:5', 'max:9'], 
-            'existencia' =>  ['numeric'], 
+            'descripcion' => ['required', 'string', 'min:5', 'max:80'],
+            'codigo'=>  ['required', 'string', 'min:5', 'max:9'],
+            'existencia' =>  ['numeric'],
             'prec_venta'=>  ['required', 'numeric', 'min:0'],
-            'prec_compra'=>  ['required', 'numeric', 'min:0'], 
-            'categoria'=>  ['required', 'string', 'min:5', 'max:80'], 
+            'prec_compra'=>  ['required', 'numeric', 'min:0'],
+            'categoria'=>  ['required', 'string', 'min:5', 'max:80'],
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ],[
 
             'nombre.required' => '¡Debes ingresar nombre!',
             'nombre.string' => '¡Debes ingresar un nombre, verifica la información!',
             'nombre.min' => '¡Debes ingresar un minimo de 5 letras!',
-            'nombre.max' => '¡Has excedido el limite máximo de 80 letras!',    
+            'nombre.max' => '¡Has excedido el limite máximo de 80 letras!',
 
             'descripcion.required' => '¡Debes ingresar una descripción!',
             'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
             'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
             'descripcion.max' => '¡Has excedido el limite máximo de 80 letras!',
-            
+
             'codigo.required' => '¡Debes ingresar un código!',
             'codigo.string' => '¡Debes ingresar un código, verifica la información!',
             'codigo.min' => '¡Debes ingresar al menos 5 dígitos!',
@@ -76,12 +79,12 @@ class ProductoController extends Controller
 
             'prec_venta.numeric' => '¡Solo se permiten números!',
             'prec_venta.required' => '¡Debes ingresar un precio de venta!',
-            'prec_venta.min' => '¡Debes ingresar un precio de venta mínimo de 0!', 
+            'prec_venta.min' => '¡Debes ingresar un precio de venta mínimo de 0!',
 
-            
+
             'prec_compra.numeric' => '¡Solo se permiten números!',
             'prec_compra.required' => '¡Debes ingresar un precio de compra!',
-            'prec_compra.min' => '¡Debes ingresar un precio de compra mínimo de 0!', 
+            'prec_compra.min' => '¡Debes ingresar un precio de compra mínimo de 0!',
 
             'categoria.required' => '¡Debes ingresar una categoría!',
             'categoria.string' => '¡Debes ingresar una categoría, verifica la información!',
@@ -92,7 +95,7 @@ class ProductoController extends Controller
             'imagen_producto.image' => '¡Debes seleccionar una imagen!',
             'imagen_producto.mimes' => '¡Debes seleccionar una imagen en el formato correcto!'
         ]);
-        
+
         $crearprod = new Producto();
 
         $crearprod->nombre = $request->input('nombre');
@@ -158,25 +161,25 @@ class ProductoController extends Controller
         $request ->validate([
 
             'nombre' => ['required', 'string', 'min:5', 'max:80'],
-            'descripcion' => ['required', 'string', 'min:5', 'max:80'], 
-            'codigo'=>  ['required', 'string', 'min:5', 'max:9'], 
-            'existencia' =>  ['numeric'], 
+            'descripcion' => ['required', 'string', 'min:5', 'max:80'],
+            'codigo'=>  ['required', 'string', 'min:5', 'max:9'],
+            'existencia' =>  ['numeric'],
             'prec_venta'=>  ['required', 'numeric', 'min:0'],
-            'prec_compra'=>  ['required', 'numeric', 'min:0'], 
-            'categoria'=>  ['required', 'string', 'min:5', 'max:80'], 
+            'prec_compra'=>  ['required', 'numeric', 'min:0'],
+            'categoria'=>  ['required', 'string', 'min:5', 'max:80'],
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ],[
 
             'nombre.required' => '¡Debes ingresar nombre!',
             'nombre.string' => '¡Debes ingresar un nombre, verifica la información!',
             'nombre.min' => '¡Debes ingresar un minimo de 5 letras!',
-            'nombre.max' => '¡Has excedido el limite máximo de 80 letras!',    
+            'nombre.max' => '¡Has excedido el limite máximo de 80 letras!',
 
             'descripcion.required' => '¡Debes ingresar una descripción!',
             'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
             'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
             'descripcion.max' => '¡Has excedido el limite máximo de 80 letras!',
-            
+
             'codigo.required' => '¡Debes ingresar un código!',
             'codigo.string' => '¡Debes ingresar un código, verifica la información!',
             'codigo.min' => '¡Debes ingresar al menos 5 dígitos!',
@@ -187,18 +190,18 @@ class ProductoController extends Controller
 
             'prec_venta.numeric' => '¡Solo se permiten números!',
             'prec_venta.required' => '¡Debes ingresar un precio de venta!',
-            'prec_venta.min' => '¡Debes ingresar un precio de venta mínimo de 0!', 
+            'prec_venta.min' => '¡Debes ingresar un precio de venta mínimo de 0!',
 
-            
+
             'prec_compra.numeric' => '¡Solo se permiten números!',
             'prec_compra.required' => '¡Debes ingresar un precio de compra!',
-            'prec_compra.min' => '¡Debes ingresar un precio de compra mínimo de 0!', 
+            'prec_compra.min' => '¡Debes ingresar un precio de compra mínimo de 0!',
 
             'categoria.required' => '¡Debes ingresar una categoría!',
             'categoria.string' => '¡Debes ingresar una categoría, verifica la información!',
             'categoria.min' => '¡Debes ingresar un minimo de 5 letras!',
             'categoria.max' => '¡Has excedido el limite máximo de 80 letras!',
-        
+
             'imagen_producto.required' => '¡Debes cargar una imagen!',
             'imagen_producto.image' => '¡Debes seleccionar una imagen!',
             'imagen_producto.mimes' => '¡Debes seleccionar una imagen en el formato correcto!'
@@ -217,7 +220,7 @@ class ProductoController extends Controller
         {
             $ubicacion = 'imagenes/'.$producto->imagen_producto;
             if(File::exists($ubicacion)){
-                File::delete($ubicacion);    
+                File::delete($ubicacion);
             }
             $imagen = $request->file('imagen_producto');
             $extention = $imagen->getClientOriginalExtension();

@@ -9,25 +9,25 @@
   <div class="card">
     <div class="row ">
 
-      <div class="col-md-8 px-3 ">
+      <div class="col-md-8 px-3 " style="padding: 15px">
         <div class="ml-3 pb-lg-4">
         <div style="font-size: 30px; float: left; width: 40%; text-align: justify;"><strong>Nombre:</strong></div> <div style="font-size: 30px; float: right; width: 55%; text-align: none;"> {{$verproducto->nombre}} </div>
           <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Descripción:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->descripcion}} </div>
           <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Código:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->codigo}}</div>
           <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Existencia:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->existencia}}</div>
           <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio de Compra:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->prec_compra}}</div>
-          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio de Venta:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->prec_venta}}</div>
-          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Categoría:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->categoria}}</div>
+          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio (Mayorista):</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->prec_venta_may}}</div>
+            <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio (Final):</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->prec_venta_fin}}</div>
           <!-- <div style="font-size: 25px; float: left; width: 45%; text-align: justify;"><strong>Impuesto:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: justify;"> {{$verproducto->impuesto}}</div> -->
            <!---<p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>-->
-          
-          <a href="/productos" class="mt-4 btn btn-dark">Volver</a> 
+
+          <a href="/productos" class="mt-4 btn btn-dark">Volver</a>
           <br>
         </div>
       </div>
       <div class="col-sm-4" style="margin-left: -100px;">
-          <img class="d-block " src="{{ asset('/imagenes/'.$verproducto->imagen_producto)}}" alt="" width="450px" height="350px">
-        </div>
+          <img src="/images/products/{{$verproducto->imagen_producto}}" width="400px" height="400px" style="border-radius: 10%; padding: 15px">
+      </div>
     </div>
   </div>
   <!-- End of card -->
@@ -40,7 +40,7 @@
 
       <div class="col-sm-7">
         <div class="card-block">
-                   <h4 class="card-title">Small card</h4> 
+                   <h4 class="card-title">Small card</h4>
           <p>Wetgple text to build your own card.</p>
           <p>Change around the content for awsomenes</p>
           <a href="#" class="btn btn-primary btn-sm">Read More</a>
@@ -53,7 +53,7 @@
     </div>
   </div>
 
- 
+
     <div class="card float-right">
       <div class="row">
         <div class="col-sm-5">
@@ -68,13 +68,13 @@
             <a href="#" class="btn btn-primary btn-sm float-right">Read More</a>
           </div>
         </div>
- 
+
       </div>
     </div>
   </div>
- 
+
  <br>
 <br> -->
- 
+
 
 @endsection

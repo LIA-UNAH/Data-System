@@ -8,20 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
-    // protected $table="productos";
-    // protected $fillable =[
-    //     'descripcion',
-    //     'codigo',
-    //     'existencia',
-    //     'prec_venta',
-    //     'categoria',
-    //     'impuesto'
-    // ];
-   // use HasFactory;
 
-    public function categoria()
-    {
-        return $this->belongsTo(Categoria::class);
+    public function categoria(){
+        return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 
     public function detalle_compre()
