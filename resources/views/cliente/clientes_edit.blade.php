@@ -12,12 +12,15 @@
         <div class="card-body">
             <!-- Nested Row within Card Body -->
             <div class="row" style="background: #4a5568">
-                <div class="col-lg-5 d-none d-lg-block" style="text-align: center;">
-                    <img id="imagen" src="/images/uploads/{{ $user->image }}"  style="border-radius: 4%;height: 500px; width: 100%">
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="text-center" style="align-items: center; justify-content: center; padding: 50px">
+                        <img id="imagen" src="/images/uploads/{{ $user->image }}" class="img-fluid rounded" width="430" height="430">
+                    </div>
                 </div>
+
+
                 <div class="col-lg-7">
                     <div class="p-5">
-
                         <form method="POST" action="{{route("clientes.edit",["id"=>$user->id])}}" enctype="multipart/form-data">
                             @method("PUT")
                             @csrf
@@ -141,7 +144,7 @@
                             <div class="mb-0" style="margin-top: 15px">
                                 <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="image"
                                        name="image" value="{{ old('image') }}" autocomplete="image"
-                                       autofocus placeholder="{{ __('image') }}">
+                                       autofocus placeholder="{{ __('image') }}" onchange="mostrar()">
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -182,7 +185,6 @@
             if (archivo.size > 1000000) {
                 const tamanioEnMb = 1000000 / 1000000;
                 alert(`El tamaño máximo es ${tamanioEnMb} MB`);
-
                 document.getElementById("image").value = "";
             } else {
 

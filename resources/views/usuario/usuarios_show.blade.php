@@ -41,8 +41,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 d-none d-lg-block" style="text-align: center; padding-top: 50px">
-                    <img src="/images/uploads/{{ $user->image }}" width="300px" style="border-radius: 4%">
+                <div class="col-lg-5 d-none d-lg-block" style="text-align: center; padding-top: 10px">
+                    <img src="/images/uploads/{{ $user->image }}" class="img-fluid" >
 
                     <div class="col-sm-12 col-xs-12" style="text-align: center; margin-top: 15px; margin-bottom: 15px">
                         <a href="{{route("usuarios.edit",["id"=>$user->id])}}" style="margin-right: 4px; width: 145px; display: inline-block; background: #0f6848; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"

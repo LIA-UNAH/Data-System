@@ -19,13 +19,13 @@ class ClienteController extends Controller
      */
     public function index(){
         $users = DB::table('users')->where('type', '=', 'cliente')
-            ->paginate(10);
+            ->paginate(5);
         return view('cliente/clientes_index')->with('users', $users);
     }
 
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $users = User::where('name', 'like', '%'.$texto.'%')->paginate(10);
+        $users = User::where('name', 'like', '%'.$texto.'%')->paginate(5);
         return view('cliente/clientes_index')->with('users', $users);
     }
 
@@ -85,6 +85,8 @@ class ClienteController extends Controller
         ]);
 
         $input = $request->all();
+        $password = $request->input('password');
+        $input['password'] = bcrypt($password);
 
         if ($image = $request->file('image')) {
             $destinationPath = 'images/uploads';

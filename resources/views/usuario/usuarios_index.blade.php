@@ -144,9 +144,9 @@
 @endsection
 
 @push('scripsss')
-<script>
-            $(document).ready(function() {
-                $('#tblaBody').css('height', (screen.height - 450));
-            });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('body').css('overflow', 'hidden');
+        });
+    </script>
 @endpush

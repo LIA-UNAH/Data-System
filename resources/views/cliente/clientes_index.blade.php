@@ -150,7 +150,7 @@
 @push('scripsss')
 <script>
             $(document).ready(function() {
-                $('#tblaBody').css('height', (screen.height - 450));
+                $('html,body').css('overflow', 'hidden');
             });
 </script>
 @endpush

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nombre', 80);
             $table->string('modelo',20)->nullable();
             $table->string('descripcion', 80);
-            $table->float('existencia');
+            $table->integer('existencia');
             $table->double('prec_compra');
             $table->double('prec_venta_may');
             $table->double('prec_venta_fin');

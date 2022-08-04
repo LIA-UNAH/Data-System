@@ -66,6 +66,8 @@
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                     <tr>
                         <th>N°</th>
+                        <th>Producto</th>
+                        <th>Modelo</th>
                         <th>Descripción</th>
                         <th>Precio Costo</th>
                         <th>Existencia</th>
@@ -75,8 +77,10 @@
                     @forelse($productos as $item=> $pro)
                         <tr>
                             <td scope="row"><strong>{{ ++$item }}</strong></td>
-                            <td scope="row">{{ $pro->codigo.' '.$pro->descripcion }}</td>
-                            <td>{{  $pro->prec_venta }} </td>
+                            <td scope="row">{{ $pro->nombre }}</td>
+                            <td scope="row">{{ $pro->modelo }}</td>
+                            <td scope="row">{{ $pro->descripcion }}</td>
+                            <td>L. {{  $pro->prec_compra }} </td>
                             <td>{{  $pro->existencia }} </td>
                         </tr>
                     @empty
@@ -95,17 +99,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection
-
-
-@push('scripsss')
-<script>
-            $(document).ready(function() {
-
-                $('#tblaBody').css('height', (screen.height - 500));
-
-            });
-</script>
-@endpush

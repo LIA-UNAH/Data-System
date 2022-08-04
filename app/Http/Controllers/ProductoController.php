@@ -48,7 +48,6 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request ->validate([
-
             'nombre' => ['required', 'string', 'min:5', 'max:80'],
             'descripcion' => ['required', 'string', 'min:5', 'max:80'],
             'codigo'=>  ['required', 'string', 'min:5', 'max:9'],
@@ -58,7 +57,6 @@ class ProductoController extends Controller
             'categoria'=>  ['required', 'string', 'min:5', 'max:80'],
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ],[
-
             'nombre.required' => '¡Debes ingresar nombre!',
             'nombre.string' => '¡Debes ingresar un nombre, verifica la información!',
             'nombre.min' => '¡Debes ingresar un minimo de 5 letras!',
@@ -77,19 +75,17 @@ class ProductoController extends Controller
 
             'existencia.numeric' => '¡Solo se permiten números!',
 
-            'prec_venta.numeric' => '¡Solo se permiten números!',
-            'prec_venta.required' => '¡Debes ingresar un precio de venta!',
-            'prec_venta.min' => '¡Debes ingresar un precio de venta mínimo de 0!',
+            'prec_venta_fin.numeric' => '¡Solo se permiten números!',
+            'prec_venta_fin.required' => '¡Debes ingresar un precio de venta!',
+            'prec_venta_fin.min' => '¡Debes ingresar un precio de venta mínimo de 0!',
 
+            'prec_venta_may.numeric' => '¡Solo se permiten números!',
+            'prec_venta_may.required' => '¡Debes ingresar un precio de venta!',
+            'prec_venta_may.min' => '¡Debes ingresar un precio de venta mínimo de 0!',
 
             'prec_compra.numeric' => '¡Solo se permiten números!',
             'prec_compra.required' => '¡Debes ingresar un precio de compra!',
             'prec_compra.min' => '¡Debes ingresar un precio de compra mínimo de 0!',
-
-            'categoria.required' => '¡Debes ingresar una categoría!',
-            'categoria.string' => '¡Debes ingresar una categoría, verifica la información!',
-            'categoria.min' => '¡Debes ingresar un minimo de 5 letras!',
-            'categoria.max' => '¡Has excedido el limite máximo de 80 letras!',
 
             'imagen_producto.required' => '¡Debes cargar una imagen!',
             'imagen_producto.image' => '¡Debes seleccionar una imagen!',
@@ -99,12 +95,14 @@ class ProductoController extends Controller
         $crearprod = new Producto();
 
         $crearprod->nombre = $request->input('nombre');
+        $crearprod->modelo = $request->input('modelo');
         $crearprod->descripcion = $request->input('descripcion');
         $crearprod->codigo = $request->input('codigo');
         $crearprod->existencia = $request->input('existencia');
         $crearprod->prec_compra = $request->input('prec_compra');
-        $crearprod->prec_venta = $request->input('prec_venta');
-        $crearprod->categoria = $request->input('categoria');
+        $crearprod->prec_venta_fin = $request->input('prec_venta_fin');
+        $crearprod->prec_venta_may = $request->input('prec_venta_may');
+        $crearprod->id_categoria = $request->input('id_categoria');
         //$crearprod->imagen_producto = $request->input('imagen_producto');
         if($request->hasFile('imagen_producto')){
             $imagen = $request->file('imagen_producto');
@@ -141,7 +139,7 @@ class ProductoController extends Controller
     public function edit($id)
     {
     $producto = Producto::findOrFail($id);
-     return view('producto.productos_update')->with('producto',$producto);
+     return view('producto.productos_edit')->with('producto',$producto);
     }
 
     /**
@@ -249,16 +247,14 @@ class ProductoController extends Controller
     }
 
 
-
     public function index_inventario(Request $request)
     {
         $buscar = trim( $request->get('buscar_producto'));
-        $productos=DB::table('productos')->select('id', 'nombre','descripcion', 'codigo', 'existencia', 'prec_venta',
-        'prec_compra','categoria')->where('descripcion', 'like', '%'.$buscar.'%')
+        $productos=DB::table('productos')->select('id', 'modelo','nombre','descripcion', 'codigo', 'existencia', 'prec_venta_may',
+        'prec_venta_fin','prec_compra','id_categoria')->where('descripcion', 'like', '%'.$buscar.'%')
          ->Where('nombre', 'LIKE', '%'. $buscar. '%')
          ->orWhere('descripcion', 'LIKE', '%'. $buscar. '%')
-         ->orWhere('categoria', 'LIKE', '%'. $buscar. '%')
-         ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(10);
+         ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(5);
         return view('Inventario.Inventario_index', compact('productos', 'buscar'));
     }
 }

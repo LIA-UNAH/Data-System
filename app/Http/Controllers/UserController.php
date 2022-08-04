@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -12,14 +13,14 @@ class UserController extends Controller
     //HU5 - Visualizar usuarios
     public function index(){
         $users = DB::table('users')->where('type', '=', 'cliente', 'not')
-            ->paginate(10);
+            ->paginate(5);
         return view('usuario/usuarios_index')->with('users', $users);
     }
 
     //HU8 - Recargar y buscar usuario
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $users = User::where('name', 'like', '%'.$texto.'%')->paginate(10);
+        $users = User::where('name', 'like', '%'.$texto.'%')->paginate(5);
         return view('usuario/usuarios_index')->with('users', $users);
     }
 
@@ -72,6 +73,8 @@ class UserController extends Controller
         ]);
 
         $input = $request->all();
+        $password = $request->input('password');
+        $input['password'] = bcrypt($password);
 
         if ($image = $request->file('image')) {
             $destinationPath = 'images/uploads';

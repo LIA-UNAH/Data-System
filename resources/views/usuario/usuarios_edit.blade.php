@@ -1,7 +1,6 @@
 @extends('Layouts.Layouts')
 @section('title', 'Usuarios')
 @section('content')
-
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
             <div style="float: left">
@@ -12,12 +11,13 @@
         <div class="card-body">
             <!-- Nested Row within Card Body -->
             <div class="row" style="background: #4a5568">
-                <div class="col-lg-5 d-none d-lg-block" style="text-align: center;">
-                    <img id="imagen" src="/images/uploads/{{ $user->image }}"  style="border-radius: 4%;height: 500px; width: 100%">
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="text-center" style="align-items: center; justify-content: center; padding: 50px">
+                        <img id="imagen" src="/images/uploads/{{ $user->image }}" class="img-fluid rounded" width="430" height="430">
+                    </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
-
                         <form method="POST" action="{{route("usuarios.edit",["id"=>$user->id])}}" enctype="multipart/form-data">
                             @method("PUT")
                             @csrf
@@ -171,6 +171,7 @@
             </div>
         </div>
     </div>
+
     @push('scripsss')
     <script>
         function mostrar(){
@@ -202,16 +203,12 @@
 
         var image = control.find('img');
             if (estatus == false) {
-
                 control.data('activo', true);
                 $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-10-256.png');
                 $("#password").attr('type', 'text');
                 $("#password-confirm").attr('type', 'text');
-
-
             }
             else {
-
                 control.data('activo', false);
                 $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png');
                 $("#password").attr('type', 'password');

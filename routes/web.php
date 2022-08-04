@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->name("usuarios.show")->where('id', '[0-9]+');
 
 // Perfil de usuario
-    Route::get("/usuarios/profile", [UserController::class, "profile"])
+    Route::get("/profile", [UserController::class, "profile"])
         ->name("usuarios.profile")->where('id', '[0-9]+');
 
     /*
@@ -121,28 +121,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/productos/busqueda', [ProductoController::class, 'search'])
         ->name('productos.searchIndex');
 
-// Agregar usuarios
+// Agregar productos
 Route::get("/productos/create", [ProductoController::class, "create"])
         ->name("productos.create");
 
 Route::post("/productos/create", [ProductoController::class, "store"])
         ->name("productos.create");
 
+// Editar productos
+Route::get("/productos/{id}/edit", [ProductoController::class, "edit"])
+        ->name("productos.edit")->where('id', '[0-9]+');
 
-Route::get('productos/{id}/show', [ProductoController::class, 'show']
-)->name('productos.ver');
+Route::put("/productos/{id}/edit", [ProductoController::class, "update"])
+        ->name("productos.edit")->where('id', '[0-9]+');
 
-// Editar Producto
-Route::get('/productos/{id}/editar',  [ProductoController::class, 'edit'])
-->name('producto.edit')
-->where('id','[0-9]+');
+// Visualizar productos
+Route::get("/productos/{id}/", [ProductoController::class, "show"])
+        ->name("productos.show")->where('id', '[0-9]+');
 
-// Actualizar Producto
-Route::put('/productos/{id}/editar', [ProductoController::class, 'update'])
-->name('producto.update')
-->where('id','[0-9]+');
-
-// Eliminar usuarios
+// Eliminar productos
     Route::delete('/productos/{user}', [ProductoController::class, 'destroy'])
         ->name('productos.destroy');
 

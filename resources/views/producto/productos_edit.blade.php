@@ -2,12 +2,12 @@
 @section('content')
 
 
-   
+
 
 <div class="card shadow mb-4 ">
   <div></div>
 <div class="card-header py-3" style="background: #0d6efd">
-                
+
                 <div style="float: left">
                     <h2 class="m-0 font-weight-bold" style="color: white">Editar Productos</h2>
                 </div>
@@ -15,16 +15,16 @@
 <br>
 
                 <div class="container">
-                <form action="{{ route( 'producto.edit', ['id'=>$producto->id]) }}" 
+                <form action="{{ route( 'productos.edit', ['id'=>$producto->id]) }}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
                 @method ('put')
                 <div class="modal-body">
                       <div class="row g-3">
-                     
+
                       <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" 
+                                <input type="text" class="form-control" id="nombre" name="nombre"
                                 placeholder="Ingrese el nombre" value="{{$producto->nombre}}" required>
                                 @error('nombre')
                                             <small class="text-danger" >
@@ -37,7 +37,7 @@
                               </div>
                               <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Descripción:</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion" 
+                                <input type="text" class="form-control" id="descripcion" name="descripcion"
                                 placeholder="Ingrese la descripcion" value="{{$producto->descripcion}}" required>
                                 @error('descripcion')
                                     <small class="text-danger" >
@@ -62,7 +62,7 @@
                                   Valid first name is required.
                                 </div>
                               </div>
-                              
+
                               <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Existencia:</label>
                                 <input type="number" class="form-control" id="existencia" name="existencia"
@@ -78,7 +78,7 @@
                               </div>
                               <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Precio de compra:</label>
-                                <input type="number" class="form-control" id="prec_compra" name="prec_compra" 
+                                <input type="number" class="form-control" id="prec_compra" name="prec_compra"
                                 placeholder="Ingrese el precio de compra" value="{{$producto->prec_compra}}" required>
                                 @error('prec_compra')
                                     <small class="text-danger" >
@@ -89,10 +89,10 @@
                                   Valid first name is required.
                                 </div>
                               </div>
-                              
+
                               <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Precio de venta mayorista:</label>
-                                <input type="number" class="form-control" id="prec_venta" name="prec_venta" 
+                                <input type="number" class="form-control" id="prec_venta" name="prec_venta"
                                 placeholder="Ingrese el precio de venta mayorista" value="{{$producto->prec_venta}}" required>
                                 @error('prec_venta')
                                     <small class="text-danger" >
@@ -105,7 +105,7 @@
                                 </div>
                                   <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Categoría:</label>
-                                <input type="text" class="form-control" id="categoria" name="categoria" 
+                                <input type="text" class="form-control" id="categoria" name="categoria"
                                 placeholder="Ingrese la categoría" value="{{$producto->categoria}}" required>
                                 @error('categoria')
                                     <small class="text-danger" >
@@ -115,31 +115,31 @@
                                 <div class="invalid-feedback">
                                   Valid first name is required.
                                 </div>
-                              </div> 
+                              </div>
 
                               <div class="col-sm-6">
                               <label class="form-label" for="customFile">Agregar Imagen:</label>
                               <input type="file" class="form-control" id="imagen_producto" name="imagen_producto"/>
-                              <img class="d-block " src="{{ asset('/imagenes/'.$producto->imagen_producto)}}" alt="" width="150px" height="100px"> 
+                              <img class="d-block " src="{{ asset('/imagenes/'.$producto->imagen_producto)}}" alt="" width="150px" height="100px">
                             </div>
 
-                              </div>            
+                              </div>
                           </div>
 
                           <br>
-                        
+
                           <div style="float:center">
-                          
+
                               <a class="btn btn-dark" href="/productos">Volver</a>
-                              
+
                               <button type="submit" class="btn btn-primary">Guardar</button>
                           </div>
 
                           </form>
                 </div>
                 <br>
-                
+
 </div>
-                          
+
 
 @endsection

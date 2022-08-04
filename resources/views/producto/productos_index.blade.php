@@ -115,10 +115,10 @@
                             <td style="text-transform: uppercase;">L. {{ $producto->prec_venta_fin }} </td>
 
                             <td><a class="btn btn-info"
-                                    href="{{ route('productos.ver', ['id' => $producto->id]) }}"><i
+                                    href="{{ route('productos.show', ['id' => $producto->id]) }}"><i
                                         class="fa fa-eye" aria-hidden="true" style="color: white; "></i></a></td>
                             <td><a class="btn btn-success"
-                                    href="{{ route('producto.edit', ['id' => $producto->id]) }}"><i
+                                    href="{{ route('productos.edit', ['id' => $producto->id]) }}"><i
                                         class="fa fa-edit" aria-hidden="true"></i></a></td>
                             <td><a class="btn btn-danger" href="#" data-bs-toggle="modal"
                                     data-bs-target="#modalEliminarProveedor{{ $producto->id }}"> <i

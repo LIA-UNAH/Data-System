@@ -6,11 +6,11 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
+                    <img class="col-lg-6 d-none d-lg-block" src="/images/resources/bg_register.jpg">
+                    <div class="col-lg-6">
+                        <div class="p-5" >
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">¡Crear una cuenta!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Registrar cuenta</h1>
                             </div>
                             <form method="POST" class="user" action="{{ route('register') }}">
                                 @csrf
@@ -50,16 +50,13 @@
                                         </span>
                                         @enderror
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-5 mb-3 mb-sm-0" style="margin-right: -10px">
                                         <input id="password-confirm" name="password_confirmation" type="password"
                                                class="form-control"
                                                placeholder="{{ __('Confirmar') }}" required autocomplete="new-password">
                                     </div>
-                                    <div class="col-sm-1">
-                                        <span id="imgContrasena" data-activo=false><img  style="width: 25px; height: 25px;" src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png" class="icon"></span>
-                                    </div>
-                                    <div class="col-sm-1">
-
+                                    <div class="col-sm-1" style="margin-right: -8px">
+                                        <button id="show_password" class="btn btn-primary" style="display: inline-block; background: #1a202c; color: white; " type="button" onclick="fShowPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
                                     </div>
                                 </div>
 
@@ -80,7 +77,8 @@
                                         <input type="tel" class="form-control @error('telephone') is-invalid @enderror" id="telephone"
                                                name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone"
                                                autofocus placeholder="{{ __('Teléfono') }}"
-                                               onkeypress="return funcionNumeros(event);" minlength="8" maxlength="8">
+                                               onkeypress="return funcionNumeros(event);"
+                                               minlength="8" maxlength="8">
                                         @error('telephone')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -102,27 +100,21 @@
                                     </div>
                                 </div>
 
-                                <div>
-                                    <button type="submit" style="display: inline-block;"
-                                            class="btn btn-primary btn-user btn-block">
-                                        {{ __('Registrar') }}
-                                    </button>
-
-                                    <a href="/" style="display: inline-block;"
-                                       class="btn btn-google btn-user btn-block">
-                                        {{ __('Regresar') }}
-                                    </a>
+                                <div class="form-group row" style="margin-top: 15px">
+                                    <div class="col-sm-6">
+                                        <a href="/login" style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                                           class="btn btn-google btn-user btn-block">
+                                            {{ __('Regresar') }}
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <button type="submit" style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                                                class="btn btn-primary btn-user btn-block">
+                                            {{ __('Registrar') }}
+                                        </button>
+                                    </div>
                                 </div>
-
                             </form>
-                            <hr>
-
-                            <div class="text-center">
-                                <a class="small" style="color: #78261f; margin-right: 15px"
-                                   href="{{ route('password.request') }}">{{ __('¿Olvidaste tu contraseña?') }}</a> |
-                                <a class="small" style="color: #1a202c; margin-left: 15px" href="{{ route('login') }}">Ya
-                                    tienes cuenta ¡Inicia sesión!</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -156,31 +148,29 @@
 @endsection
 
 @push('scripsss')
-<script>
-    $("#imgContrasena").click(function () {
+    <script>
+        $("#show_password").click(function () {
 
-    var control = $(this);
-    var estatus = control.data('activo');
+            var control = $(this);
+            var estatus = control.data('activo');
 
-    var image = control.find('img');
-        if (estatus == false) {
+            var image = control.find('img');
+            if (estatus == false) {
 
-            control.data('activo', true);
-            $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-10-256.png');
-            $("#password").attr('type', 'text');
-            $("#password-confirm").attr('type', 'text');
+                control.data('activo', true);
+                $("#password").attr('type', 'text');
+                $("#password-confirm").attr('type', 'text');
 
 
-        }
-        else {
+            }
+            else {
 
-            control.data('activo', false);
-            $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png');
-            $("#password").attr('type', 'password');
-            $("#password-confirm").attr('type', 'password');
-        }
-    });
-</script>
+                control.data('activo', false);
+                $("#password").attr('type', 'password');
+                $("#password-confirm").attr('type', 'password');
+            }
+        });
+    </script>
 @endpush
 
 
