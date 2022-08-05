@@ -18,13 +18,13 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $productos = Producto::paginate(10);
+        $productos = Producto::paginate(5);
         return view('producto.productos_index')->with('productos', $productos);
     }
 
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $productos = Producto::where('nombre', 'like', '%'.$texto.'%')->paginate(10);
+        $productos = Producto::where('nombre', 'like', '%'.$texto.'%')->paginate(5);
         return view('producto/productos_index')->with('productos', $productos);
     }
 
@@ -48,32 +48,45 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request ->validate([
-            'nombre' => ['required', 'string', 'min:5', 'max:80'],
-            'descripcion' => ['required', 'string', 'min:5', 'max:80'],
             'codigo'=>  ['required', 'string', 'min:5', 'max:9'],
+            'nombre' => ['required', 'string', 'min:5', 'max:80'],
+            'marca' => ['required', 'string', 'min:5', 'max:20'],
+            'modelo' => ['required', 'string', 'min:5', 'max:20'],
+            'descripcion' => ['required', 'string', 'min:5', 'max:255'],
             'existencia' =>  ['numeric'],
+
             'prec_venta'=>  ['required', 'numeric', 'min:0'],
             'prec_compra'=>  ['required', 'numeric', 'min:0'],
-            'categoria'=>  ['required', 'string', 'min:5', 'max:80'],
+            'categoria'=>  ['required', 'string'],
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ],[
-            'nombre.required' => '¡Debes ingresar nombre!',
-            'nombre.string' => '¡Debes ingresar un nombre, verifica la información!',
-            'nombre.min' => '¡Debes ingresar un minimo de 5 letras!',
-            'nombre.max' => '¡Has excedido el limite máximo de 80 letras!',
-
-            'descripcion.required' => '¡Debes ingresar una descripción!',
-            'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
-            'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
-            'descripcion.max' => '¡Has excedido el limite máximo de 80 letras!',
-
             'codigo.required' => '¡Debes ingresar un código!',
             'codigo.string' => '¡Debes ingresar un código, verifica la información!',
             'codigo.min' => '¡Debes ingresar al menos 5 dígitos!',
             'codigo.max' => '¡Has excedido el limite máximo de 9 dígitos!',
             'codigo.unique' => '¡Debes ingresar un código diferente!',
 
-            'existencia.numeric' => '¡Solo se permiten números!',
+            'nombre.required' => '¡Debes ingresar nombre!',
+            'nombre.string' => '¡Debes ingresar un nombre, verifica la información!',
+            'nombre.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'nombre.max' => '¡Has excedido el limite máximo de 80 letras!',
+
+            'marca.required' => '¡Debes ingresar nombre!',
+            'marca.string' => '¡Debes ingresar un nombre, verifica la información!',
+            'marca.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'marca.max' => '¡Has excedido el limite máximo de 80 letras!',
+
+            'modelo.required' => '¡Debes ingresar nombre!',
+            'modelo.string' => '¡Debes ingresar un nombre, verifica la información!',
+            'modelo.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'modelo.max' => '¡Has excedido el limite máximo de 80 letras!',
+
+            'descripcion.required' => '¡Debes ingresar una descripción!',
+            'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
+            'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'descripcion.max' => '¡Has excedido el limite máximo de 255 letras!',
+
+            'existencia.numeric' => '¡Solo se permite ingresar números!',
 
             'prec_venta_fin.numeric' => '¡Solo se permiten números!',
             'prec_venta_fin.required' => '¡Debes ingresar un precio de venta!',
@@ -103,6 +116,7 @@ class ProductoController extends Controller
         $crearprod->prec_venta_fin = $request->input('prec_venta_fin');
         $crearprod->prec_venta_may = $request->input('prec_venta_may');
         $crearprod->id_categoria = $request->input('id_categoria');
+
         //$crearprod->imagen_producto = $request->input('imagen_producto');
         if($request->hasFile('imagen_producto')){
             $imagen = $request->file('imagen_producto');

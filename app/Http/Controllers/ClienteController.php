@@ -49,7 +49,7 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string','min:3', 'max:70'],
+            'name' => ['required', 'text','min:3', 'max:70'],
             'email' => ['required', 'string', 'email', 'max:70', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required'],
@@ -57,7 +57,7 @@ class ClienteController extends Controller
             'telephone' => ['required', 'numeric','min:2', 'max:99999999'],
         ], [
             'name.required' => '¡Debes ingresar tu nombre completo!',
-            'name.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'name.text' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
             'name.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
             'name.max' => '¡Has excedido el limite máximo de 70 letras!',
 

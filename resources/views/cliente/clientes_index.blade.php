@@ -80,9 +80,9 @@
                         @if($user->type== 'administrador' OR $user->type== 'empleado')
 
                         @else
-                            <tr>
+                            <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                                 <td scope="row"><strong>{{ $valor +$users->firstItem() }}</strong></td>
-                                <td scope="row">{{ $user->name }}</td>
+                                <td scope="row"><strong>{{ $user->name }}</strong></td>
                                 <td>{{ $user->email}} </td>
                                 <td scope="row">{{ $user->telephone }}</td>
 

@@ -165,8 +165,8 @@
                 </thead>
                 <tbody>
                     @forelse($proveedor as $item=> $proved)
-                        <tr>
-                            <td scope="row"><strong>{{ $item +$proveedor->firstItem() }}</strong></td>
+                        <tr style="font-family: 'Nunito', sans-serif; font-size: small">
+                            <td scope="row" ><strong>{{ $item +$proveedor->firstItem() }}</strong></td>
                             <td>{{ $proved->nombre_proveedor }} </td>
                             <td>{{ $proved->rtn_proveedor }} </td>
                             <td>{{ $proved->telefono_proveedor }} </td>

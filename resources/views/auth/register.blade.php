@@ -19,6 +19,7 @@
                                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                                name="name" value="{{ old('name') }}" required autocomplete="name"
                                                autofocus placeholder="{{ __('Nombre') }}"
+                                               pattern="^[a-zA-Z ]*$"
                                                onkeypress="return funcionLetras(event);"
                                                style="text-transform: capitalize;">
                                         @error('name')
@@ -39,6 +40,7 @@
                                             </span>
                                     @enderror
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-5 mb-3 mb-sm-0">
                                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
@@ -50,6 +52,7 @@
                                         </span>
                                         @enderror
                                     </div>
+
                                     <div class="col-sm-5 mb-3 mb-sm-0" style="margin-right: -10px">
                                         <input id="password-confirm" name="password_confirmation" type="password"
                                                class="form-control"
@@ -148,28 +151,22 @@
 @endsection
 
 @push('scripsss')
-    <script>
-        $("#show_password").click(function () {
+    <script type="text/javascript">
+        function fShowPassword(){
+            var cambio_b = document.getElementById("password");
+            var cambio_a = document.getElementById("password-confirm");
 
-            var control = $(this);
-            var estatus = control.data('activo');
-
-            var image = control.find('img');
-            if (estatus == false) {
-
-                control.data('activo', true);
-                $("#password").attr('type', 'text');
-                $("#password-confirm").attr('type', 'text');
-
-
+            if(cambio_a.type === "password" && cambio_b.type === "password" ){
+                cambio_a.type = "text";
+                cambio_b.type = "text";
+                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+            }else{
+                cambio_a.type = "password";
+                cambio_b.type = "password";
+                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
             }
-            else {
+        }
 
-                control.data('activo', false);
-                $("#password").attr('type', 'password');
-                $("#password-confirm").attr('type', 'password');
-            }
-        });
     </script>
 @endpush
 

@@ -95,24 +95,22 @@
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                     <tr>
                         <th>N°</th>
-                        <th>Nombre</th>
+                        <th>Producto</th>
                         <th>Descripción</th>
-                        <th>Categoria</th>
-                        <th>Código</th>
-                        <th>Precio de venta</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>
                         <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden=""
                                 style="display: flex; justify-content: center;"></i></th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($productos as $item=> $producto)
-                        <tr>
-                            <td scope="row"><strong>{{ $item +$productos->firstItem() }}</strong></td>
-                            <td scope="row">{{ $producto->nombre }}</td>
-                            <td scope="row">{{ $producto->descripcion }}</td>
-                            <td scope="row">{{ $producto->categoria->name }}</td>
-                            <td style="text-transform: uppercase;">{{ $producto->codigo }} </td>
-                            <td style="text-transform: uppercase;">L. {{ $producto->prec_venta_fin }} </td>
+                        <tr style="font-family: 'Nunito', sans-serif; font-size: small">
+                            <td scope="row" style="width: 5%"><strong>{{ $item +$productos->firstItem() }}</strong></td>
+                            <td scope="row" style="text-transform: uppercase; width: 25%"><strong>{{ $producto->categoria->name }} {{ $producto->marca }} {{ $producto->modelo }}</strong></td>
+                            <td scope="row" style="width: 40%">{{ $producto->descripcion }}</td>
+                            <td scope="row" style="width: 15%">{{ $producto->existencia }} unidades</td>
+                            <td style="width: 15%">L {{ $producto->prec_venta_fin }}</td>
 
                             <td><a class="btn btn-info"
                                     href="{{ route('productos.show', ['id' => $producto->id]) }}"><i
@@ -181,17 +179,12 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 
-
 @push('scripsss')
-<script>
-            $(document).ready(function() {
-
-                $('#tblaBody').css('height', (screen.height - 300));
-
-            });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('html,body').css('overflow', 'hidden');
+        });
+    </script>
 @endpush

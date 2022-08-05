@@ -18,18 +18,17 @@ class ProductoFactory extends Factory
     {
         return [
             'codigo'=> $this->faker->randomElement($array = array ('TEL','TAB','CAB','TEC')).''.$this->faker-> bothify('#######'),
-            'nombre'=> $this->faker->randomElement($array = array ('Teléfono','Computadora', 'Parlante', 'Audífonos',
-                                                                    'Protectores', 'Pasta térmica', 'Pantallas', 'Vidrio templado',
-                                                                    'Mouse', 'Memorias USB', 'Memorias SD', 'Cargadores',
-                                                                    'Cables USB', 'Cables HDMI', 'Teclados', 'WebCam', 'Impresoras',
-                                                                    'Routers', 'MousePad', 'Adaptadores')),
-            'modelo'=> $this->faker->randomElement($array = array ('AX65','S8+','7K R56','A50s')),
-            'descripcion'=> $this->faker->text($maxNbChars = 15),
+            'marca'=> $this->faker->randomElement($array = array ('Samsung','Apple','LG','Sony')),
+            'modelo'=> $this->faker->randomElement($array = array ('AX54','S8+ 5G','7KRT','R56T','A50s')),
+            'descripcion'=> $this->faker->randomElement($array = array ('La disponibilidad de los colores puede variar en función del país o proveedor.',
+                'Batería de dos días de duración.',
+                'Resistencia al agua y al polvo con certificación IP67.',
+                'Cámara de alta resolución de 64 MP con OIS.')),
             'existencia'=> $this->faker->numberBetween($min = 1, $max = 500),
             'prec_compra'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
-            'prec_venta_may'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
             'prec_venta_fin'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
-            'id_categoria'=> $this->faker->numberBetween(1,5),
+            'prec_venta_may'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
+            'id_categoria'=> $this->faker->numberBetween(1,3),
             'imagen_producto'=> $this->faker->randomElement($array = array ('playstation.webp','xbox.jpg','mouse.jpeg', 'auriculares.jpg', 'beats.webp')),
         ];
     }
