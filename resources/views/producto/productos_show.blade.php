@@ -11,13 +11,14 @@
 
       <div class="col-md-8 px-3 " style="padding: 15px">
         <div class="ml-3 pb-lg-4">
-        <div style="font-size: 30px; float: left; width: 40%; text-align: justify;"><strong>Nombre:</strong></div> <div style="font-size: 30px; float: right; width: 55%; text-align: none;"> {{$verproducto->nombre}} </div>
+        <div style="font-size: 30px; float: left; width: 40%; text-align: justify;"><strong>Código:</strong></div> <div style="font-size: 30px; float: right; width: 55%; text-align: none;"> {{$verproducto->codigo}} </div>
           <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Descripción:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->descripcion}} </div>
-          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Código:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->codigo}}</div>
+          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Marca:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->marca}}</div>
+            <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Modelo:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->modelo}}</div>
           <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Existencia:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->existencia}}</div>
-          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio de Compra:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->prec_compra}}</div>
-          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio (Mayorista):</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->prec_venta_may}}</div>
-            <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio (Final):</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->prec_venta_fin}}</div>
+          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio de Compra:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> L. {{$verproducto->prec_compra}}</div>
+          <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio (Mayorista):</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> L. {{$verproducto->prec_venta_may}}</div>
+            <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio (Final):</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: none;"> L. {{$verproducto->prec_venta_fin}}</div>
           <!-- <div style="font-size: 25px; float: left; width: 45%; text-align: justify;"><strong>Impuesto:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: justify;"> {{$verproducto->impuesto}}</div> -->
            <!---<p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>-->
 

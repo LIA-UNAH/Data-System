@@ -140,7 +140,7 @@ class ClienteController extends Controller
         $users = User::findOrFail($id);
         $this->validate($request, [
             'name' => ['required', 'string','min:3', 'max:70'],
-            'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id),],
+            'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id)],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required'],
             'address' => ['required', 'string','min:3', 'max:250'],
@@ -175,8 +175,6 @@ class ClienteController extends Controller
         ]);
 
         $input = $request->all();
-
-
 
         if ($image = $request->file('image')) {
             $destinationPath = 'images/uploads/';
