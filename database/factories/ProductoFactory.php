@@ -17,7 +17,7 @@ class ProductoFactory extends Factory
     public function definition()
     {
         return [
-            'codigo'=> $this->faker->randomElement($array = array ('TEL','TAB','CAB','TEC')).''.$this->faker-> bothify('#######'),
+            'codigo'=> $this->faker->randomElement($array = array ('TEL','TAB','CAB','TEC')).''.$this->faker-> bothify('########????'),
             'marca'=> $this->faker->randomElement($array = array ('Samsung','Apple','LG','Sony')),
             'modelo'=> $this->faker->randomElement($array = array ('AX54','S8+ 5G','7KRT','R56T','A50s')),
             'descripcion'=> $this->faker->randomElement($array = array ('La disponibilidad de los colores puede variar en función del país o proveedor.',

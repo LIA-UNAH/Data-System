@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->char('codigo',15)->unique();
             $table->string('marca',40);
-            $table->string('modelo',40);
+            $table->string('modelo',40)->nullable();
             $table->string('descripcion', 255);
             $table->integer('existencia');
             $table->double('prec_compra');

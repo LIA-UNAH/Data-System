@@ -51,8 +51,8 @@ class ProductoController extends Controller
     {
         $request ->validate([
             'codigo'=>  ['required', 'string', 'min:15', 'max:15','unique:productos'],
-            'marca' => ['required', 'string', 'min:5', 'max:40'],
-            'modelo' => ['required', 'string', 'min:5', 'max:40'],
+            'marca' => ['required', 'string', 'min:3', 'max:40'],
+            'modelo' => ['required', 'string', 'max:40'],
             'descripcion' => ['required', 'string', 'min:5', 'max:255'],
             'existencia' =>  ['numeric', 'min:0'],
             'prec_compra'=>  ['required', 'numeric', 'min:0', 'max:99999999'],
@@ -74,12 +74,11 @@ class ProductoController extends Controller
 
             'modelo.required' => '¡Debes ingresar el modelo!',
             'modelo.string' => '¡Debes ingresar el modelo, verifica la información!',
-            'modelo.min' => '¡Debes ingresar un minimo de 5 letras!',
             'modelo.max' => '¡Has excedido el limite máximo de 40 letras!',
 
             'descripcion.required' => '¡Debes ingresar una descripción!',
             'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
-            'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'descripcion.min' => '¡Debes ingresar un minimo de 3 letras!',
             'descripcion.max' => '¡Has excedido el limite máximo de 255 letras!',
 
             'existencia.numeric' => '¡Solo se permite ingresar números!',
@@ -148,8 +147,9 @@ class ProductoController extends Controller
     // Editar Producto
     public function edit($id)
     {
-    $producto = Producto::findOrFail($id);
-     return view('producto.productos_edit')->with('producto',$producto);
+        $producto = Producto::findOrFail($id);
+        $categorias = Categoria::all();
+        return view('producto.productos_edit', compact('categorias'))->with('producto', $producto);
     }
 
     /**
@@ -164,13 +164,13 @@ class ProductoController extends Controller
         $productos = Producto::findOrFail($id);
         $request ->validate([
             'codigo'=>  ['required', 'string', 'min:15', 'max:15',Rule::unique('productos')->ignore($productos->id)],
-            'marca' => ['required', 'string', 'min:5', 'max:40'],
-            'modelo' => ['required', 'string', 'min:5', 'max:40'],
+            'marca' => ['required', 'string', 'min:3', 'max:40'],
+            'modelo' => ['required', 'string', 'max:40'],
             'descripcion' => ['required', 'string', 'min:5', 'max:255'],
             'existencia' =>  ['numeric', 'min:0'],
             'prec_compra'=>  ['required', 'numeric', 'min:0'],
-            'prec_venta_may'=>  ['required', 'numeric', 'min:prec_compra'],
-            'prec_venta_fin'=>  ['required', 'numeric', 'min:prec_venta_may'],
+            'prec_venta_may'=>  ['required', 'numeric'],
+            'prec_venta_fin'=>  ['required', 'numeric'],
             'id_categoria'=>  ['required'],
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ],[
@@ -187,12 +187,11 @@ class ProductoController extends Controller
 
             'modelo.required' => '¡Debes ingresar el modelo!',
             'modelo.string' => '¡Debes ingresar el modelo, verifica la información!',
-            'modelo.min' => '¡Debes ingresar un minimo de 5 letras!',
             'modelo.max' => '¡Has excedido el limite máximo de 40 letras!',
 
             'descripcion.required' => '¡Debes ingresar una descripción!',
             'descripcion.string' => '¡Debes ingresar una descripción, verifica la información!',
-            'descripcion.min' => '¡Debes ingresar un minimo de 5 letras!',
+            'descripcion.min' => '¡Debes ingresar un minimo de 3 letras!',
             'descripcion.max' => '¡Has excedido el limite máximo de 255 letras!',
 
             'existencia.numeric' => '¡Solo se permite ingresar números!',
@@ -215,8 +214,6 @@ class ProductoController extends Controller
             'imagen_producto.required' => '¡Debes cargar una imagen!',
             'imagen_producto.image' => '¡Debes seleccionar una imagen!',
             'imagen_producto.mimes' => '¡Debes seleccionar una imagen en el formato correcto!'
-
-
         ]);
 
         $productos -> codigo=$request->input('codigo');
@@ -230,16 +227,18 @@ class ProductoController extends Controller
         $productos -> id_categoria=$request->input('id_categoria');
 
         if($request->hasFile('imagen_producto')) {
-            $ubicacion = 'imagenes/'.$productos->imagen_producto;
+            $ubicacion = 'images/products/'.$productos->imagen_producto;
             if(File::exists($ubicacion)){
                 File::delete($ubicacion);
             }
             $imagen = $request->file('imagen_producto');
             $extention = $imagen->getClientOriginalExtension();
             $filname = time().'.'.$extention;
-            $imagen->move('imagenes/', $filname);
+            $imagen->move('images/products/', $filname);
             $productos->imagen_producto = $filname;
         }
+        //Salvamos
+
         //Salvamos
         $productos->update();
 

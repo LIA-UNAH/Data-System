@@ -171,8 +171,8 @@
             </div>
         </div>
     </div>
-
-    @push('scripsss')
+@endsection
+@push('scripsss')
     <script>
         function mostrar(){
             if (document.getElementById("image").files.length <= 0) return;
@@ -198,10 +198,10 @@
 
         $("#imgContrasena").click(function () {
 
-        var control = $(this);
-        var estatus = control.data('activo');
+            var control = $(this);
+            var estatus = control.data('activo');
 
-        var image = control.find('img');
+            var image = control.find('img');
             if (estatus == false) {
                 control.data('activo', true);
                 $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-10-256.png');
@@ -216,5 +216,4 @@
             }
         });
     </script>
-    @endpush
-@endsection
+@endpush
