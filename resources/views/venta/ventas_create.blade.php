@@ -21,7 +21,7 @@
     padding: 0;
     margin: 0;
     font-size: 1.75rem;
-    font-weight: 300;
+    font-weight: 100;
 }
 .brc-default-l1 {
     border-color: #dce9f0!important;
@@ -119,6 +119,8 @@ hr {
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
+<div>
+
 <div class="page-content container" >
     <div class="page-header text-blue-d2">
         <h1 class="page-title text-secondary-d1">
@@ -166,9 +168,6 @@ hr {
                             </div>
 
                         <div class="text-grey-m2">
-
-
-
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Tipo de Cliente:</span>
                             <select name="" id="">
@@ -216,9 +215,9 @@ hr {
                             </div>
                         </div>
                     </div>
-                    <hr class="row brc-default-l1 mx-n1 mb-4" />
+                    
                     <!-- HU8 - Buscar producto -->
-                    <div class="bprod" style="float: left">
+                    <div class="bprod" style="float: left; width: 400px;">
                         <form action="{{ route('ventas.buscarpro') }}" method="GET"
                               class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
@@ -232,9 +231,8 @@ hr {
                             </div>
                         </form>
                     </div>
-                    <hr class="row brc-default-l1 mx-n1 mb-4" />
                     <h4>Catalogo de Productos</h4>
-                    <hr class="row brc-default-l1 mx-n1 mb-4" />
+                  
 
                 </div>
 
@@ -245,78 +243,58 @@ hr {
                 <div class="catpro" style=" height: 400px; overflow:scroll;  float:left; ">
                     <section class="NovidadesSection"  >
 
-                            <div class="tb" style="display: grid; grid-template-columns: 180px 180px 180px;">
+                            <div class="producto" id="producto"  style="display: grid; grid-template-columns: 155px 155px 155px 155px;">
 
                                 @foreach($productos as $pro)
-                                    
-
-
-                                    <div class="col mb-5">
-                                        <div class="card h-100">
+                                     <div class="agregar-factura"  id=""  style="display:block;  border:rounded ; height: 155px;width: 155px; ">
+                                        <div class="card h-100 btn" data-id="{{$pro->id}}" >
                                             <!-- Sale badge-->
                                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{$pro->existencia}} unidades</div>
                                             <!-- Product image-->
-                                            <img class="card-img-top" src="/images/products/{{$pro->imagen_producto}}" width="400px" height="130px" alt="..." />
-                                            <!-- Product details-->
-                                            <div class="card-body p-4">
+                                            <img class="card-img-top" src="/images/products/{{$pro->imagen_producto}}" width="00px" height="80px" alt="..." />
+                                            
+                                            <div class="" style="text-align:center ;">
                                                 <div class="text-center">
                                                     <!-- Product name-->
-                                                    <p class="fw-bolder">{{$pro->nombre}}</p>
+                                                    <p class="nombre" id="nombre" ><strong>{{$pro->nombre}}</strong></p>
                                                     <!-- Product reviews-->
-                                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                                        <span class="text-muted text-decoration-line">L. {{$pro->prec_venta_fin}}</span>
+                                                    <div class="pre"  id="pre">
+                                                        <span  class="text-muted text-decoration-line"><strong> L. {{$pro->prec_venta_fin}}</strong></span>
                                                     </div>
 
-                                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                                        <button class="btn btn-primary px-1 me-2"
-                                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                            <i class="fas fa-minus"></i>
-                                                        </button>
-
-                                                        <div class="form-outline">
-                                                            <input style="width : 65px;" id="form1"   min="0" name="quantity" value="1" type="number" class="form-control" />
-                                                        </div>
-
-                                                        <button class="btn btn-primary px-1 ms-2"
-                                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                            <i class="fas fa-plus"></i>
-                                                        </button>
-                                                    </div>
+                                                    
 
                                                 </div>
                                             </div>
-                                            <!-- Product actions-->
-                                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Comprar</a></div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                  
                                 @endforeach
                             </div>
 
+    
+                            </section>
                         </div>
-                        </section>
                 </div>
+
+                
+
+                
                     <!-- or use a table instead -->
 
             <div class="table-responsive" style="width: 40%; float:right;">
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                     <thead class="bg-none bgc-default-tp1">
                         <tr class="text-white">
-                            <th>Descripcion</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unitario</th>
+                            <th colspan="4" >Detalle</th>
                             <th width="140">Total</th>
 
                         </tr>
                     </thead>
 
-                    <tbody class="text-95 text-secondary-d3">
-                        <tr></tr>
-                        <tr>
-
-                        </tr>
+                    <tbody id="content-fac" class="content-fac">
+                        
                     </tbody>
                 </table>
                 <div class="row mt-3">
@@ -325,26 +303,10 @@ hr {
                         </div>
 
                         <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                            <div class="row my-2">
-                                <div class="col-7 text-right">
-                                    SubTotal
-                                </div>
-                                <div class="col-5">
-                                    <span class="text-120 text-secondary-d1"></span>
-                                </div>
-                            </div>
+                            
 
-                            <div class="row my-2">
-                                <div class="col-7 text-right">
-                                    Impuesto (15%)
-                                </div>
-                                <div class="col-5">
-                                    <span class="text-110 text-secondary-d1"></span>
-                                </div>
-                            </div>
-
-                            <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                <div class="col-7 text-right">
+                            <div class=" row my-2 align-items-center bgc-primary-l3 p-2">
+                                <div class="total">
                                     Total
                                 </div>
                                 <div class="col-5">
@@ -371,11 +333,90 @@ hr {
         </div>
     </div>
 
+</div>
 
+<script>
 
+                const Clickbutton = document.querySelectorAll('.btn');
+                const tbody = document.querySelector('#content-fac');
+                let factura = [];
+                let db= document.getElementById('producto')
+                Clickbutton.forEach(btn => {
+                    btn.addEventListener('click', addFactura);
+                });
 
+                function addFactura(e){
+                    const boton = e.target;
+                    console.log(boton);
+                    const item = boton.closest('.agregar-factura');
+                    const itemTitulo = item.querySelector('.nombre').textContent;
+                    
+                    const itemPrecio = item.querySelector('#pre').textContent;
+                    const itemId = item.querySelector(".btn").getAttribute('data-id');
 
+                    const newProducto = {
+                        id: itemId,
+                        titulo: itemTitulo,
+                        cantidad:1,
+                        precio: itemPrecio
+                    }
+                    addItemfactura(newProducto);
+                }
 
+                function addItemfactura(newProducto){
+                    const inputEle = tbody.getElementsByClassName('input_Element');
+                    for (let i = 0; i < factura.length; i++) {
+                        if (factura[i].id.trim() === newProducto.id.trim()) {
+                            factura[i].cantidad ++;
+                            const input = inputEle[i];
+                            input.value++;
+                            console.log(factura);
+                            total()
+                            return null;
+
+                        }  
+                    }
+                    factura.push(newProducto);
+                    renderFactura();
+                }
+
+                function renderFactura(){
+                    tbody.innerHTML = '';
+                    
+                    factura.map(item => {
+                        const tr = document.createElement('tr');
+                        tr.classList.add('itemFac');
+                        const Content = `
+                        <td>${item.titulo}</td>
+                        <td>
+                            <input type = "number" size="5" style ="width :40px;" value ="${item.cantidad}" class="input_Element"> </input>  
+                        </td>
+                        <td>${item.precio}</td>
+                        <td></td>
+                    
+                        <td>
+                            <a href="#" class="borrar-producto fas fa-times-circle" data-id="${item.id}"></a>
+                        </td>
+                        `;
+
+                        tr.innerHTML = Content;
+                        tbody.append(tr);
+                    });
+                    total()
+                }
+
+                function total(){
+                    let total = 0;
+                    let itemTotal =document.querySelector('.total');
+
+                    factura.forEach((item)=>{
+                        let precio = Number(item.precio);
+                        total = total+ precio* item.cantidad;
+                    });
+                    itemTotal.innerHTML=`Total L. ${total}`
+                }
+
+    </script>
 @endsection
 
 
