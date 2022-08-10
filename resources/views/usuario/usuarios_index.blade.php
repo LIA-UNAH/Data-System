@@ -2,6 +2,7 @@
 @section('title', 'Usuarios')
 @section('content')
 
+
     {{-- Mensajes de las operaciones realizadas --}}
     {{--Para los mensajes afirmativos y sin errores --}}
     @if (session()->has('exito'))
@@ -47,13 +48,13 @@
                 <div style="float: right">
                     <!-- Recargar -->
                     <div style="float: left; margin-left: 15px">
-                        <td style="text-align: center"><a class="btn btn-dark" href="/usuarios" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
+                        <td style="text-align: center"><a class="btn btn-dark" href="/usuarios" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i></a>
                     </div>
                     <!-- Recargar -->
 
                     <!-- Añadir -->
                     <div style="float: right; margin-left: 10px">
-                        <td style="text-align: center"><a class="btn btn-success" href="{{route("usuarios.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
+                        <td style="text-align: center"><a class="btn btn-success" href="{{route("usuarios.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i></a>
                     </div>
                     <!-- Añadir -->
                 </div>
@@ -135,18 +136,8 @@
                     @endforelse
                     </tbody>
                 </table>
+                <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $users->links() }}</div>
             </div>
-        </div>
-        <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
-            {{ $users->links() }}
         </div>
     </div>
 @endsection
-
-@push('scripsss')
-    <script>
-        $(document).ready(function() {
-            $('body').css('overflow', 'hidden');
-        });
-    </script>
-@endpush
