@@ -2,20 +2,22 @@
 @section('title', 'Usuarios')
 @section('content')
 
-
     {{-- Mensajes de las operaciones realizadas --}}
     {{--Para los mensajes afirmativos y sin errores --}}
-    @if (session()->has('exito'))
-        <div class="alert alert-success alert-dismissible" role="alert">
-            {{ session('exito') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    @if(session('exito'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('exito') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
-    {{--Para los mensajes de errores --}}
-    @if (session()->has('error'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ session('error') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
     {{-- Terminan los mensajes --}}
@@ -62,7 +64,7 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" style="padding-left: 35px; padding-right: 35px">
             <div class="table-responsive" id="tblaBody">
                 <table class="table table" id="dataTable">
                     <thead class="card-header py-3" style="background: #1a202c; color: white">

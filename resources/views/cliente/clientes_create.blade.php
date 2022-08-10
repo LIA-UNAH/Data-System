@@ -9,11 +9,13 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" style="padding: 15px">
             <!-- Nested Row within Card Body -->
-            <div class="row" style="background: #e9aa0b">
-                <div class="col-lg-5 d-none d-lg-block bg-register-image">
-                    <img id="imagen" src="" alt="" style="height: 500px; width: 100%;">
+            <div class="row" style="background: #4a5568">
+                <div class="col-lg-5 d-none d-lg-block" style="padding-top: 30px">
+                    <div class="text-center" style="padding: 15px">
+                        <img style="background-color: whitesmoke" id="imagen" src="" class="img-fluid rounded" width="550" height="600">
+                    </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
@@ -61,7 +63,7 @@
                                         <select class="form-control @error('type') is-invalid @enderror"  id="type"
                                                 required autocomplete="type" name="type"
                                                 autofocus>
-                                            <option value="cliente">Cliente</option>
+                                            <option value="Cliente">Cliente</option>
                                         </select>
                                         @error('type')
                                         <span class="invalid-feedback" role="alert">
@@ -73,7 +75,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-sm-5 mb-3 mb-sm-0">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                                            name="password" placeholder="{{ __('Contraseña') }}" required
                                            autocomplete="new-password">
@@ -83,20 +85,13 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-sm-5">
+
+                                <div class="col-sm-6 mb-3 mb-sm-0" style="margin-right: -10px">
                                     <input id="password-confirm" name="password_confirmation" type="password"
                                            class="form-control"
                                            placeholder="{{ __('Confirmar') }}" required autocomplete="new-password">
-
-                                </div>
-                                <div class="col-sm-1">
-                                    <span id="imgContrasena" data-activo=false><img  style="width: 25px; height: 25px;" src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png" class="icon"></span>
-                                </div>
-                                <div class="col-sm-1">
-
                                 </div>
                             </div>
-
                             <div class="mb-0">
                                 <textarea class="form-control @error('address') is-invalid @enderror" id="address"
                                           name="address"  required
@@ -168,32 +163,6 @@
                 }
             }
         }
-
-
-        $("#imgContrasena").click(function () {
-
-            var control = $(this);
-            var estatus = control.data('activo');
-
-            var image = control.find('img');
-                if (estatus == false) {
-
-                    control.data('activo', true);
-                    $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-10-256.png');
-                    $("#password").attr('type', 'text');
-                    $("#password-confirm").attr('type', 'text');
-
-
-                }
-                else {
-
-                    control.data('activo', false);
-                    $(image).attr('src', 'https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-09-256.png');
-                    $("#password").attr('type', 'password');
-                    $("#password-confirm").attr('type', 'password');
-                }
-        });
-
     </script>
 @endpush
 @endsection
