@@ -125,11 +125,7 @@
                                               id="descripcion"
                                               name="descripcion" required
                                               autofocus placeholder=""
-                                              minlength="5" maxlength="255" rows="3">@if(old("descripcion"))
-                                            {{old("descripcion")}}
-                                        @else
-                                            {{$producto->descripcion}}
-                                        @endif</textarea>
+                                              minlength="5" maxlength="255" rows="3">@if(old("descripcion")){{old("descripcion")}}@else{{$producto->descripcion}}@endif</textarea>
                                     @error('descripcion')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
