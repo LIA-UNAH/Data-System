@@ -26,8 +26,8 @@
                                            onkeypress="return funcionLempiras(event);">
                                     @error('prec_compra')
                                     <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <strong id="input">{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
@@ -42,8 +42,8 @@
                                            onkeypress="return funcionLempiras(event);">
                                     @error('prec_venta_may')
                                     <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
@@ -58,8 +58,8 @@
                                            onkeypress="return funcionLempiras(event);">
                                     @error('prec_venta_fin')
                                     <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
@@ -73,8 +73,8 @@
                                            onkeypress="return funcionLempiras(event);">
                                     @error('existencia')
                                     <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
@@ -86,8 +86,8 @@
                                            autofocus minlength="15" maxlength="15" style="text-transform: uppercase">
                                     @error('codigo')
                                     <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
@@ -97,15 +97,15 @@
                                             id="id_categoria"
                                             required autocomplete="id_categoria" name="id_categoria"
                                             autofocus>
-                                        <option value=""></option>
+                                        <option value="">Seleccione</option>
                                         @foreach ($categorias as $categoria)
-                                            <option value="{{ $categoria['id'] }}">{{ $categoria['name'] }}</option>
+                                            <option value="{{ $categoria->id }}" {{ old('id_categoria') == $categoria->id ? 'selected' : '' }}>{{ $categoria['name']}}</option>
                                         @endforeach
                                     </select>
                                     @error('id_categoria')
                                     <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
@@ -114,8 +114,8 @@
                                     <textarea class="form-control @error('descripcion') is-invalid @enderror"
                                               id="descripcion"
                                               name="descripcion" required
-                                              autofocus placeholder=""
-                                              minlength="5" maxlength="255" rows="3">{{ old('descripcion') }}</textarea>
+                                              autofocus
+                                              minlength="5" maxlength="255" rows="3">{{old('descripcion')}}</textarea>
                                     @error('descripcion')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -128,13 +128,13 @@
                                     <input type="file" accept="image/*"
                                            class="form-control @error('imagen_producto') is-invalid @enderror"
                                            id="imagen_producto"
-                                           name="imagen_producto" value="{{ old('imagen_producto') }}" required
+                                           name="imagen_producto" value="{{old('imagen_producto')}}" required
                                            autocomplete="imagen_producto"
-                                           autofocus placeholder="{{ __('imagen_producto') }}" onchange="mostrar()">
+                                           autofocus onchange="mostrar()">
                                     @error('imagen_producto')
                                     <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
@@ -143,7 +143,7 @@
                                     <input type="text" class="form-control @error('marca') is-invalid @enderror"
                                            id="marca"
                                            name="marca" value="{{ old('marca') }}" required autocomplete="marca"
-                                           autofocus minlength="5" maxlength="40">
+                                           autofocus minlength="3" maxlength="40">
                                     @error('marca')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -156,7 +156,7 @@
                                     <input type="text" class="form-control @error('modelo') is-invalid @enderror"
                                            id="modelo"
                                            name="modelo" value="{{ old('modelo') }}" required autocomplete="modelo"
-                                           autofocus minlength="5" maxlength="40">
+                                           autofocus minlength="3" maxlength="40">
                                     @error('modelo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -198,12 +198,11 @@
 
                     </div>
                 </div>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>
             </form>
         </div>
         <br>
     </div>
+
 @endsection
 @push('scripsss')
     <script>

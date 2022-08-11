@@ -23,13 +23,13 @@ class ProductoFactory extends Factory
             'descripcion'=> $this->faker->randomElement($array = array ('La disponibilidad de los colores puede variar en función del país o proveedor.',
                 'Batería de dos días de duración.',
                 'Resistencia al agua y al polvo con certificación IP67.',
-                'Cámara de alta resolución de 64 MP con OIS.')),
+                'Cámara de alta resolución de 64 MP.')),
             'existencia'=> $this->faker->numberBetween($min = 1, $max = 500),
             'prec_compra'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
             'prec_venta_fin'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
             'prec_venta_may'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 15, $max = 1000),
             'id_categoria'=> $this->faker->numberBetween(1,3),
-            'imagen_producto'=> $this->faker->randomElement($array = array ('playstation.webp','xbox.jpg','mouse.jpeg', 'auriculares.jpg', 'beats.webp')),
+            'imagen_producto'=> $this->faker->randomElement($array = array ('playstation.jpg','xbox.jpg','usb.png', 'auriculares.jpg', 'cargador.webp')),
         ];
     }
 }

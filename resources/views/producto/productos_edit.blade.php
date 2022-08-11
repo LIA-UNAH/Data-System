@@ -14,7 +14,7 @@
                   method="POST" enctype="multipart/form-data">
                 @csrf
                 @method ('put')
-                <div class="modal-body" style="font-family: 'Nunito', sans-serif; font-size: small; padding: 10px">
+                <div class="modal-body" style="font-family: 'Nunito', sans-serif; font-size: small; padding-top: 10px">
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <div class="form-group row">
@@ -25,7 +25,7 @@
                                            name="prec_compra" value="{{old('prec_compra', $producto->prec_compra)}}"
                                            required
                                            autocomplete="prec_compra"
-                                           autofocus maxlength="10"
+                                           autofocus maxlength="10" step=".01"
                                            onkeypress="return funcionLempiras(event);">
                                     @error('prec_compra')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                                            id="prec_venta_may"
                                            name="prec_venta_may"
                                            value="{{old('prec_venta_may', $producto->prec_venta_may)}}" required
-                                           autocomplete="prec_venta_may"
+                                           autocomplete="prec_venta_may" step=".01"
                                            autofocus maxlength="10"
                                            onkeypress="return funcionLempiras(event);">
                                     @error('prec_venta_may')
@@ -59,7 +59,7 @@
                                            name="prec_venta_fin"
                                            value="{{old('prec_venta_fin', $producto->prec_venta_fin)}}" required
                                            autocomplete="prec_venta_fin"
-                                           autofocus maxlength="10"
+                                           autofocus maxlength="10" step=".01"
                                            onkeypress="return funcionLempiras(event);">
                                     @error('prec_venta_fin')
                                     <span class="invalid-feedback" role="alert">
@@ -138,7 +138,7 @@
                                     <input type="file" accept="image/*"
                                            class="form-control @error('imagen_producto') is-invalid @enderror" id="imagen_producto"
                                            name="imagen_producto" value="{{ old('imagen_producto') }}" autocomplete="imagen_producto"
-                                           autofocus placeholder="{{ __('imagen_producto') }}" onchange="mostrar()">
+                                           autofocus onchange="mostrar()">
                                     @error('imagen_producto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

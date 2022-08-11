@@ -71,7 +71,7 @@
                 <div style="float: left; margin-left: 15px">
                     <td style="text-align: center"><a class="btn btn-dark" href="/productos"
                             style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner"
-                                style="color: white"></i> Recargar</a>
+                                style="color: white"></i></a>
                 </div>
                 <!-- Recargar -->
 
@@ -80,7 +80,7 @@
                     <td style="text-align: center"><a class="btn btn-success"
                             href="{{ route("productos.create") }}"
                             style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
-                                style="color: white"></i> Añadir</a>
+                                style="color: white"></i></a>
                 </div>
                 <!-- Añadir -->
             </div>
@@ -110,7 +110,7 @@
                             <td scope="row" style="text-transform: uppercase; width: 25%"><strong>{{ $producto->categoria->name }} {{ $producto->marca }} {{ $producto->modelo }}</strong></td>
                             <td scope="row" style="width: 40%">{{ $producto->descripcion }}</td>
                             <td scope="row" style="width: 15%">{{ $producto->existencia }} unidades</td>
-                            <td style="width: 15%">L {{ $producto->prec_venta_fin }}</td>
+                            <td scope="row" style="width: 15%">L {{ number_format($producto->prec_venta_fin, 2, ".", ",") }}</td>
 
                             <td><a class="btn btn-info"
                                     href="{{ route('productos.show', ['id' => $producto->id]) }}"><i
@@ -181,10 +181,3 @@
 </div>
 @endsection
 
-@push('scripsss')
-    <script>
-        $(document).ready(function() {
-            $('html,body').css('overflow', 'hidden');
-        });
-    </script>
-@endpush

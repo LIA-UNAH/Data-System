@@ -49,15 +49,19 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $prec_compra = intval($request['prec_compra']);
+        $prec_venta_may = intval($request['prec_venta_may']);
+        $prec_venta_fin = intval($request['prec_venta_fin']);
+
         $request ->validate([
             'codigo'=>  ['required', 'string', 'min:15', 'max:15','unique:productos'],
             'marca' => ['required', 'string', 'min:3', 'max:40'],
-            'modelo' => ['required', 'string', 'max:40'],
+            'modelo' => ['required', 'string','min:3', 'max:40'],
             'descripcion' => ['required', 'string', 'min:5', 'max:255'],
             'existencia' =>  ['numeric', 'min:0'],
-            'prec_compra'=>  ['required', 'numeric', 'min:0', 'max:99999999'],
-            'prec_venta_may'=>  ['required', 'numeric', ],
-            'prec_venta_fin'=>  ['required', 'numeric'],
+            'prec_compra'=>  ['required','numeric','min:1','max:'.$prec_venta_may],
+            'prec_venta_may'=>  ['required', 'numeric','min:'.$prec_compra , 'max:'. $prec_venta_fin],
+            'prec_venta_fin'=>  ['required', 'numeric', 'min:'.$prec_venta_may, 'max:999999999'],
             'id_categoria'=>  ['required'],
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048'
         ],[
@@ -74,6 +78,7 @@ class ProductoController extends Controller
 
             'modelo.required' => '¡Debes ingresar el modelo!',
             'modelo.string' => '¡Debes ingresar el modelo, verifica la información!',
+            'modelo.min' => '¡Debes ingresar un minimo de 5 letras!',
             'modelo.max' => '¡Has excedido el limite máximo de 40 letras!',
 
             'descripcion.required' => '¡Debes ingresar una descripción!',
@@ -86,14 +91,18 @@ class ProductoController extends Controller
 
             'prec_compra.numeric' => '¡Solo se permiten números!',
             'prec_compra.required' => '¡Debes especificar un precio de compra!',
-            'prec_compra.min' => '¡Debes especificar un precio de compra mayor que L. 0.00!',
-            'prec_venta_fin.max' => '¡Debes especificar un precio de compra, superior a los precios de venta!',
+            'prec_compra.min' => '¡El precio de compra debe ser superior a L. 0.00!',
+            'prec_compra.max' => '¡El precio de compra debe ser inferior al precio de venta mayorista!',
 
             'prec_venta_may.numeric' => '¡Solo se permiten números!',
             'prec_venta_may.required' => '¡Debes especificar un precio de venta por mayor!',
+            'prec_venta_may.min' => '¡El precio de venta debe ser superior que precio de compra!',
+            'prec_venta_may.max' => '¡El precio de venta debe ser inferior que precio de venta al detalle!',
 
             'prec_venta_fin.numeric' => '¡Solo se permiten números!',
             'prec_venta_fin.required' => '¡Debes especificar un precio de venta final!',
+            'prec_venta_fin.min' => '¡El precio de venta debe ser superior que precio de venta al por mayor!',
+            'prec_venta_fin.max' => '¡El precio de venta debe ser inferior que L. 999,999,998.99!',
 
             'categoria.required' => '¡Debes seleccionar una categoria!',
 
@@ -113,12 +122,14 @@ class ProductoController extends Controller
         $crearprod->prec_venta_fin = $request->input('prec_venta_fin');
         $crearprod->id_categoria = $request->input('id_categoria');
 
-        if($request->hasFile('imagen_producto')){
-            $imagen = $request->file('imagen_producto');
-            $extention = $imagen->getClientOriginalExtension();
-            $filname = time().'.'.$extention;
-            $imagen->move('images/products', $filname);
-            $crearprod->imagen_producto = $filname;
+        if ($image = $request->file('imagen_producto')) {
+            $destinationPath = 'images/products/';
+            $file_name = $image->getClientOriginalName();
+            $profileImage = $file_name ;
+            $image->move($destinationPath, $profileImage);
+            $crearprod['imagen_producto'] = "$profileImage";
+        }else{
+            unset($crearprod['imagen_producto']);
         }
 
         $crearprod->save();
@@ -162,15 +173,18 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         $productos = Producto::findOrFail($id);
+        $prec_compra = intval($request['prec_compra']);
+        $prec_venta_may = intval($request['prec_venta_may']);
+        $prec_venta_fin = intval($request['prec_venta_fin']);
         $request ->validate([
             'codigo'=>  ['required', 'string', 'min:15', 'max:15',Rule::unique('productos')->ignore($productos->id)],
             'marca' => ['required', 'string', 'min:3', 'max:40'],
             'modelo' => ['required', 'string', 'max:40'],
             'descripcion' => ['required', 'string', 'min:5', 'max:255'],
             'existencia' =>  ['numeric', 'min:0'],
-            'prec_compra'=>  ['required', 'numeric', 'min:0'],
-            'prec_venta_may'=>  ['required', 'numeric'],
-            'prec_venta_fin'=>  ['required', 'numeric'],
+            'prec_compra'=>  ['required','numeric','min:1','max:'.$prec_venta_may],
+            'prec_venta_may'=>  ['required', 'numeric','min:'.$prec_compra , 'max:'. $prec_venta_fin],
+            'prec_venta_fin'=>  ['required', 'numeric', 'min:'.$prec_venta_may, 'max:999999999'],
             'id_categoria'=>  ['required'],
             'imagen_producto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ],[
@@ -199,15 +213,18 @@ class ProductoController extends Controller
 
             'prec_compra.numeric' => '¡Solo se permiten números!',
             'prec_compra.required' => '¡Debes especificar un precio de compra!',
-            'prec_compra.min' => '¡Debes ingresar un precio de compra mínimo de L 0.00!',
+            'prec_compra.min' => '¡El precio de compra debe ser superior a L. 0.00!',
+            'prec_compra.max' => '¡El precio de compra debe ser inferior al precio de venta mayorista!',
 
             'prec_venta_may.numeric' => '¡Solo se permiten números!',
             'prec_venta_may.required' => '¡Debes especificar un precio de venta por mayor!',
-            'prec_venta_may.min' => '¡El precio de venta al por mayor no debe ser menor que el de precio compra!',
+            'prec_venta_may.min' => '¡El precio de venta debe ser superior que precio de compra!',
+            'prec_venta_may.max' => '¡El precio de venta debe ser inferior que precio de venta al detalle!',
 
             'prec_venta_fin.numeric' => '¡Solo se permiten números!',
             'prec_venta_fin.required' => '¡Debes especificar un precio de venta final!',
-            'prec_venta_fin.min' => '¡El precio de venta al detalle no debe ser menor que el precio de mayorista!',
+            'prec_venta_fin.min' => '¡El precio de venta debe ser superior que precio de venta al por mayor!',
+            'prec_venta_fin.max' => '¡El precio de venta debe ser inferior que L. 999,999,998.99!',
 
             'categoria.required' => '¡Debes seleccionar una categoria!',
 
@@ -226,20 +243,16 @@ class ProductoController extends Controller
         $productos -> prec_venta_fin=$request->input('prec_venta_fin');
         $productos -> id_categoria=$request->input('id_categoria');
 
-        if($request->hasFile('imagen_producto')) {
-            $ubicacion = 'images/products/'.$productos->imagen_producto;
-            if(File::exists($ubicacion)){
-                File::delete($ubicacion);
-            }
-            $imagen = $request->file('imagen_producto');
-            $extention = $imagen->getClientOriginalExtension();
-            $filname = time().'.'.$extention;
-            $imagen->move('images/products/', $filname);
-            $productos->imagen_producto = $filname;
+        if ($image = $request->file('imagen_producto')) {
+            $destinationPath = 'images/products/';
+            $file_name = $image->getClientOriginalName();
+            $profileImage = $file_name ;
+            $image->move($destinationPath, $profileImage);
+            $productos['imagen_producto'] = "$profileImage";
+        }else{
+            unset($productos['imagen_producto']);
         }
-        //Salvamos
 
-        //Salvamos
         $productos->update();
 
         return redirect()->route('productos.index')->with('realizado', '¡El producto ha sido actualizado con exito!');
