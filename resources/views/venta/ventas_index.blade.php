@@ -70,15 +70,15 @@
 
                 <!-- Ordenar  -->
 
-                <button style="text-align: center; float: right; margin-left: 15px" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false"><a class="btn btn-secondary dropdown-toggle"
+                <div style="text-align: center; float: right; margin-left: 15px" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false"><a style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
                         href=""><i class="bi bi-calendar-check-fill"></i> Ordenar</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="#">Hoy</a></li>
                         <li><a class="dropdown-item" href="#">Ultima semana</a></li>
                         <li><a class="dropdown-item" href="#">Ultimo mes</a></li>
                     </ul>
-                </button>
+                </div>
 
 
 
@@ -95,14 +95,10 @@
                     <tr>
 
                         <th>N° de factura</th>
-                        <th>Nombre Cliente</th>
                         <th>Vendido Por</th>
                         <th>Total</th>
-                        <th>Saldo</th>
-                        <th>Estado</th>
                         <th>Fecha</th>
                         <th>Ver</th>
-                        <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>

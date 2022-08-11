@@ -258,8 +258,8 @@ hr {
                                                     <!-- Product name-->
                                                     <p class="nombre" id="nombre" ><strong>{{$pro->nombre}}</strong></p>
                                                     <!-- Product reviews-->
-                                                    <div class="pre"  id="pre">
-                                                        <span  class="text-muted text-decoration-line"><strong> L. {{$pro->prec_venta_fin}}</strong></span>
+                                                    <div class="p"  >
+                                                        <span  id="pre" class="pre text-muted text-decoration-line"><strong> L. {{$pro->prec_venta_fin}}</strong></span>
                                                     </div>
 
                                                     
@@ -288,7 +288,7 @@ hr {
                     <thead class="bg-none bgc-default-tp1">
                         <tr class="text-white">
                             <th colspan="4" >Detalle</th>
-                            <th width="140">Total</th>
+                            <th width="140">Quitar</th>
 
                         </tr>
                     </thead>
@@ -335,88 +335,124 @@ hr {
 
 </div>
 
-<script>
+<script >
+    const Clickbutton = document.querySelectorAll('.btn');
+const tbody = document.querySelector('#content-fac');
+let factura = [];
+let db = document.getElementById('producto')
+Clickbutton.forEach(btn => {
+    btn.addEventListener('click', addFactura);
+});
 
-                const Clickbutton = document.querySelectorAll('.btn');
-                const tbody = document.querySelector('#content-fac');
-                let factura = [];
-                let db= document.getElementById('producto')
-                Clickbutton.forEach(btn => {
-                    btn.addEventListener('click', addFactura);
-                });
+function addFactura(e) {
+    const boton = e.target;
+    console.log(boton);
+    const item = boton.closest('.agregar-factura');
+    const itemTitulo = item.querySelector('.nombre').textContent;
 
-                function addFactura(e){
-                    const boton = e.target;
-                    console.log(boton);
-                    const item = boton.closest('.agregar-factura');
-                    const itemTitulo = item.querySelector('.nombre').textContent;
-                    
-                    const itemPrecio = item.querySelector('#pre').textContent;
-                    const itemId = item.querySelector(".btn").getAttribute('data-id');
+    const itemPrecio = item.querySelector('#pre').textContent;
+    const itemId = item.querySelector(".btn").getAttribute('data-id');
 
-                    const newProducto = {
-                        id: itemId,
-                        titulo: itemTitulo,
-                        cantidad:1,
-                        precio: itemPrecio
-                    }
-                    addItemfactura(newProducto);
-                }
+    const newProducto = {
+        id: itemId,
+        titulo: itemTitulo,
+        cantidad: 1,
+        precio: itemPrecio
+    }
+    addItemfactura(newProducto);
+}
 
-                function addItemfactura(newProducto){
-                    const inputEle = tbody.getElementsByClassName('input_Element');
-                    for (let i = 0; i < factura.length; i++) {
-                        if (factura[i].id.trim() === newProducto.id.trim()) {
-                            factura[i].cantidad ++;
-                            const input = inputEle[i];
-                            input.value++;
-                            console.log(factura);
-                            total()
-                            return null;
+function addItemfactura(newProducto) {
+    const inputEle = tbody.getElementsByClassName('input_Element');
+    for (let i = 0; i < factura.length; i++) {
+        if (factura[i].id.trim() === newProducto.id.trim()) {
+            factura[i].cantidad++;
+            const input = inputEle[i];
+            input.value++;
+            total()
+            return null;
 
-                        }  
-                    }
-                    factura.push(newProducto);
-                    renderFactura();
-                }
+        }
+    }
+    factura.push(newProducto);
+    renderFactura();
+}
 
-                function renderFactura(){
-                    tbody.innerHTML = '';
-                    
-                    factura.map(item => {
-                        const tr = document.createElement('tr');
-                        tr.classList.add('itemFac');
-                        const Content = `
-                        <td>${item.titulo}</td>
+function renderFactura() {
+    tbody.innerHTML = '';
+
+
+    factura.map(item => {
+
+        const tr = document.createElement('tr');
+        tr.classList.add('itemFac');
+
+        const Content = `
+                        <td class="titulo">${item.titulo}</td>
                         <td>
-                            <input type = "number" size="5" style ="width :40px;" value ="${item.cantidad}" class="input_Element"> </input>  
+                            <input type="number" min="1" style ="width :40px;" value ="${item.cantidad}" class="input_Element"> </input>  
                         </td>
                         <td>${item.precio}</td>
                         <td></td>
                     
                         <td>
-                            <a href="#" class="borrar-producto fas fa-times-circle" data-id="${item.id}"></a>
+                            <a href="#" class="borrar-producto   fas fa-times-circle" data-id="${item.id}"></a>
                         </td>
+                        
                         `;
 
-                        tr.innerHTML = Content;
-                        tbody.append(tr);
-                    });
-                    total()
-                }
+        tr.innerHTML = Content;
+        tbody.append(tr);
 
-                function total(){
-                    let total = 0;
-                    let itemTotal =document.querySelector('.total');
+        tr.querySelector(".borrar-producto").addEventListener('click', QuitarItemCarrito);
+        tr.querySelector(".input_Element").addEventListener('change', cambCant);
+    });
+    total()
+}
 
-                    factura.forEach((item)=>{
-                        let precio = Number(item.precio);
-                        total = total+ precio* item.cantidad;
-                    });
-                    itemTotal.innerHTML=`Total L. ${total}`
-                }
+function total() {
+    let total = 0;
+    let itemTotal = document.querySelector('.total');
 
-    </script>
+    factura.forEach((item) => {
+        let precio = Number(item.precio.replace("L.", ""));
+        let cant = Number(item.cantidad)
+        total = total + precio * cant;
+
+    });
+    itemTotal.innerHTML = `<h5>Total: L. ${total.toFixed(2)}</h5> `;
+}
+
+function QuitarItemCarrito(e) {
+    const botonEliminar = e.target;
+    const tr = botonEliminar.closest(".itemFac");
+    const titulo = tr.querySelector('.titulo').textContent;
+
+    for (let i = 0; i < factura.length; i++) {
+        if (factura[i].titulo.trim() === titulo.trim()) {
+            factura.splice(i, 1);
+        }
+    }
+    tr.remove();
+    total()
+
+
+}
+
+function cambCant(e) {
+    const cambio = e.target;
+    const tr = cambio.closest(".itemFac");
+    const titulo = tr.querySelector('.titulo').textContent;
+    factura.forEach((item) => {
+        if (item.titulo.trim() === titulo) {
+            cambio.value < 1 ? (cambio.value = 1) : cambio.value;
+            item.cantidad = cambio.value;
+            total()
+        }
+    });
+
+}
+</script>
 @endsection
 
 
