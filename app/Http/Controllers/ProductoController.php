@@ -25,10 +25,11 @@ class ProductoController extends Controller
 
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $productos = Producto::where('nombre', 'like', '%'.$texto.'%')->paginate(5);
-        return view('producto/productos_index')->with('productos', $productos);
+        $productos = Producto::
+            where('marca', 'LIKE', '%'. $texto. '%')
+            ->orWhere('modelo', 'LIKE', '%'. $texto. '%')->paginate(5);
+        return view('producto/productos_index', compact('productos'));
     }
-
 
     /**
      * Show the form for creating a new resource.

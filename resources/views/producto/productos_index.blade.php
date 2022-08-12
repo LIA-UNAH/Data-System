@@ -1,9 +1,5 @@
 @extends('Layouts.Layouts')
-
-
-
 @section('content')
-
 
 {{-- Mensajes de las operaciones realizadas --}}
 {{-- Para los mensajes afirmativos y sin errores --}}
@@ -99,8 +95,7 @@
                         <th>Descripción</th>
                         <th>Existencia</th>
                         <th>Precio</th>
-                        <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden=""
-                                style="display: flex; justify-content: center;"></i></th>
+                        <th colspan="3" style="text-align: center">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>

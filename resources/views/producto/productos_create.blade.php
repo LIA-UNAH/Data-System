@@ -12,7 +12,7 @@
         <div class="container">
             <form action="{{ route('productos.create')}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-body" style="font-family: 'Nunito', sans-serif; font-size: small; padding: 10px">
+                <div class="modal-body" style="font-family: 'Nunito', sans-serif; font-size: small; padding-top: 10px">
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <div class="form-group row">
