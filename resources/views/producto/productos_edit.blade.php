@@ -106,10 +106,12 @@
                                             autofocus>
                                         <option value=""></option>
                                         @foreach ($categorias as $categoria)
+                                            @if($categoria->status == 1)
                                             <option @if ($producto->id_categoria == $categoria['id'])
                                                         selected
                                                     @endif
                                                     value="{{$categoria['id']}}">{{$categoria['name']}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     @error('id_categoria')

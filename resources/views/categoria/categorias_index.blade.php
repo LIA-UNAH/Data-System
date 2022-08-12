@@ -47,13 +47,13 @@
                 <div style="float: right">
                     <!-- Recargar -->
                     <div style="float: left; margin-left: 15px">
-                        <td style="text-align: center"><a class="btn btn-dark" href="/categorias" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i> Recargar</a>
+                        <td style="text-align: center"><a class="btn btn-dark" href="/categorias" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i></a>
                     </div>
                     <!-- Recargar -->
 
                     <!-- Añadir -->
                     <div style="float: right; margin-left: 10px">
-                        <td style="text-align: center"><a class="btn btn-success" href="{{route("categorias.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i> Añadir</a>
+                        <td style="text-align: center"><a class="btn btn-success" href="{{route("categorias.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i></a>
                     </div>
                     <!-- Añadir -->
                 </div>
@@ -77,16 +77,16 @@
                     </thead>
                     <tbody>
                     @forelse($categorias as $valor => $categoria)
-                        <tr>
+                        <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                             <td scope="row"><strong>{{ $valor + $categorias->firstItem() }}</strong></td>
-                            <td scope="row">{{ $categoria->name }}</td>
+                            <td scope="row"><strong>{{ $categoria->name }}</strong></td>
                             <td>{{ $categoria->description}} </td>
 
                             @if( $categoria->status == 0)
-                                <td scope="row"><b style="color: #FFFFFF; background-color: darkred; text-align: center; border-radius: 5px"> Inactivo </b></td>
+                                <td scope="row"><b style="color: darkred; text-align: center"><strong>Inactivo</strong></b></td>
                             @endif
                             @if( $categoria->status == 1)
-                                <td scope="row"><b style="color: #FFFFFF; background-color: darkgreen; text-align: center; border-radius: 5px"> Activo </b></td>
+                                <td scope="row"><b style="color: darkgreen; text-align: center"><strong>Activo</strong></b></td>
                             @endif
 
                             <td style="text-align: center"><a class="btn btn-primary" href="{{route('categorias.show',['id'=>$categoria->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>

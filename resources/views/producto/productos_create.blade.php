@@ -99,7 +99,9 @@
                                             autofocus>
                                         <option value="">Seleccione</option>
                                         @foreach ($categorias as $categoria)
+                                            @if($categoria->status == 1)
                                             <option value="{{ $categoria->id }}" {{ old('id_categoria') == $categoria->id ? 'selected' : '' }}>{{ $categoria['name']}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     @error('id_categoria')
