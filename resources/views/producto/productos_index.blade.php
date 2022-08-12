@@ -102,7 +102,7 @@
                     @forelse($productos as $item=> $producto)
                         <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                             <td scope="row" style="width: 5%"><strong>{{ $item +$productos->firstItem() }}</strong></td>
-                            <td scope="row" style="text-transform: uppercase; width: 25%"><strong>{{ $producto->categoria->name }} {{ $producto->marca }} {{ $producto->modelo }}</strong></td>
+                            <td scope="row" style="text-transform: uppercase; width: 25%"><strong>{{ $producto->name }} {{ $producto->marca }} {{ $producto->modelo }}</strong></td>
                             <td scope="row" style="width: 40%">{{ $producto->descripcion }}</td>
                             <td scope="row" style="width: 15%">{{ $producto->existencia }} unidades</td>
                             <td scope="row" style="width: 15%">L {{ number_format($producto->prec_venta_fin, 2, ".", ",") }}</td>
@@ -139,9 +139,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-body">
-
-                                                ¿Desea eliminar el producto <strong>{{ $producto->nombre }}?</strong>
-
+                                                ¿Desea eliminar el producto: <strong style="text-transform: uppercase">{{ $producto->name }}</strong> de la linea {{ $producto->marca }} y con número de modelo {{ $producto->modelo }}?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary btn-sm"
@@ -153,21 +151,14 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-----------####################################------->
-
-
                         </tr>
                     @empty
                         <tr>
                             <td colspan="4">No hay productos ingresados</td>
                         </tr>
-
                     @endforelse
                 </tbody>
-
             </table>
-
         </div>
         <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
             {{ $productos->links('pagination::bootstrap-4') }}

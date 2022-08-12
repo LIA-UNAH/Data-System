@@ -4,21 +4,6 @@
 
 {{-- Mensajes de las operaciones realizadas --}}
 {{-- Para los mensajes afirmativos y sin errores --}}
-@if(session()->has('suce'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-        {{ session('suce') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-{{-- Para los mensajes de errores --}}
-@if(session()->has('erorr'))
-    <div class="alert alert-danger" role="alert">
-        {{ session('erorr') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-
-{{-- Para los mensajes de creado y actualizado --}}
 @if(session('realizado'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>{{ session('realizado') }}</strong>
@@ -27,8 +12,16 @@
         </button>
     </div>
 @endif
-
-
+{{-- Para los mensajes de errores --}}
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ session('error') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+{{-- Fin de los mensajes --}}
 
 <div class="card shadow mb-4 ">
     <div class="card-header py-3" style="background: #0d6efd">
@@ -55,6 +48,15 @@
                 </form>
                 <!-- HU8 - Buscar usuario -->
             </div>
+
+            <div style="float: right">
+                <!-- Recargar -->
+                <div style="float: left; margin-left: 15px">
+                    <td style="text-align: center"><a class="btn btn-dark" href="/inventario"
+                                                      style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner"
+                                                                                                               style="color: white"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -65,23 +67,26 @@
             <table class="table" id="dataTable">
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                     <tr>
-                        <th>N°</th>
-                        <th>Producto</th>
-                        <th>Modelo</th>
-                        <th>Descripción</th>
-                        <th>Precio Costo</th>
-                        <th>Existencia</th>
+                        <th style="text-align: left">Código</th>
+                        <th style="text-align: left">Producto</th>
+                        <th style="text-align: left">Descripción</th>
+                        <th style="text-align: left">Existencia</th>
+                        <th style="text-align: left">Precio de Compra</th>
+                        <th style="text-align: left">PV al Mayor</th>
+                        <th style="text-align: left">PV al Detalle</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($productos as $item=> $pro)
-                        <tr>
-                            <td scope="row"><strong>{{ ++$item }}</strong></td>
-                            <td scope="row">{{ $pro->nombre }}</td>
-                            <td scope="row">{{ $pro->modelo }}</td>
-                            <td scope="row">{{ $pro->descripcion }}</td>
-                            <td>L. {{  $pro->prec_compra }} </td>
-                            <td>{{  $pro->existencia }} </td>
+                    @forelse($productos as $item=> $producto)
+                        <tr style="font-family: 'Nunito', sans-serif; font-size: small">
+                            <td scope="row" style="width: 10%; text-transform: uppercase"><strong>{{ $producto->codigo }}</strong></td>
+                            <td scope="row" style="text-transform: uppercase; width: 20%">{{ $producto->name }} {{ $producto->marca }} {{ $producto->modelo }}</td>
+                            <td scope="row" style="width: 30%">{{ $producto->descripcion }}</td>
+                            <td scope="row" style="width: 10%">{{ $producto->existencia }} unidades</td>
+                            <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkred">L. {{ number_format($producto->prec_compra, 2, ".", ",") }}</strong></td>
+                            <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkblue">L. {{ number_format($producto->prec_compra, 2, ".", ",") }}</strong></td>
+                            <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkslategrey">L. {{ number_format($producto->prec_compra, 2, ".", ",") }}</strong></td>
                         </tr>
                     @empty
                         <tr>

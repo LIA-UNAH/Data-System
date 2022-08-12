@@ -25,8 +25,16 @@ class ProductoController extends Controller
 
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $productos = Producto::where('codigo', 'like', '%'.$texto.'%')->paginate(5);
-        return view('producto/productos_index')->with('productos', $productos);
+        $productos = DB::table('productos')
+            ->join('categorias', 'categorias.id', '=', 'productos.id_categoria')
+            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
+                'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
+            ->Where('name', 'LIKE', '%'. $texto. '%')
+            ->orWhere('codigo', 'LIKE', '%'. $texto. '%')
+            ->orWhere('marca', 'LIKE', '%'. $texto. '%')
+            ->orWhere('modelo', 'LIKE', '%'. $texto. '%')->paginate(5);
+        return view('producto.productos_index', compact('productos', 'texto'));
+
     }
 
 
@@ -268,19 +276,22 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         Producto::destroy($id);
-        return redirect()->route('productos.index')
-        ->with('error','El producto fue eliminado exitosamente.');
+        return redirect()->route('productos.index')->with('error','El producto fue eliminado exitosamente.');
     }
 
 
     public function index_inventario(Request $request)
     {
         $buscar = trim( $request->get('buscar_producto'));
-        $productos=DB::table('productos')->select('id', 'modelo','nombre','descripcion', 'codigo', 'existencia', 'prec_venta_may',
-        'prec_venta_fin','prec_compra','id_categoria')->where('descripcion', 'like', '%'.$buscar.'%')
-         ->Where('nombre', 'LIKE', '%'. $buscar. '%')
-         ->orWhere('descripcion', 'LIKE', '%'. $buscar. '%')
-         ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')->paginate(5);
+        $productos = DB::table('productos')
+            ->join('categorias', 'categorias.id', '=', 'productos.id_categoria')
+            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
+                'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
+            ->Where('name', 'LIKE', '%'. $buscar. '%')
+            ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')
+            ->orWhere('marca', 'LIKE', '%'. $buscar. '%')
+            ->orWhere('modelo', 'LIKE', '%'. $buscar. '%')->paginate(5);
+
         return view('Inventario.Inventario_index', compact('productos', 'buscar'));
     }
 }
