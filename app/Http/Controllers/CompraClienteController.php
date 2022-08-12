@@ -23,6 +23,13 @@ class CompraClienteController extends Controller
         return view('compra.compras_index')->with('compras', $compras);
     }
 
+    public function search(Request $request)
+    {
+        $texto = trim($request->get('busqueda'));
+        $compras = Compra::where('docummento_compra', 'like', '%' . $texto . '%')->paginate(5);
+        return view('compra/compras_index')->with('compras', $compras);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,8 +39,8 @@ class CompraClienteController extends Controller
     {
         $provedores = Proveedor::all();
         $productos = Producto::all();
-        $compra = Compra::where('estado_compra','=','p')->where('user_id','=',Auth::user()->id)->get();
-        if($compra->count() == 0){
+        $compra = Compra::where('estado_compra', '=', 'p')->where('user_id', '=', Auth::user()->id)->get();
+        if ($compra->count() == 0) {
 
             $compra_nueva = new Compra();
             $compra_nueva->docummento_compra = '';
@@ -44,23 +51,21 @@ class CompraClienteController extends Controller
             $compra_nueva->save();
 
 
-
             return view('compra.compras_create')->with('compra', $compra_nueva)
-                                                ->with('provedores', $provedores)
-                                                ->with('productos', $productos);
+                ->with('provedores', $provedores)
+                ->with('productos', $productos);
         }
 
 
-
         return view('compra.compras_create')->with('compra', $compra[0])
-                                            ->with('provedores', $provedores)
-                                            ->with('productos', $productos);
+            ->with('provedores', $provedores)
+            ->with('productos', $productos);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -87,10 +92,10 @@ class CompraClienteController extends Controller
         $compra->save();
 
 
-        foreach ( $compra->detalle_compra as $key => $value) {
-           $prodcuto = Producto::findOrFail($value->producto_id);
-           $prodcuto->existencia = $prodcuto->existencia + $value->cantidad_detalle_compra;
-           $prodcuto->save();
+        foreach ($compra->detalle_compra as $key => $value) {
+            $prodcuto = Producto::findOrFail($value->producto_id);
+            $prodcuto->existencia = $prodcuto->existencia + $value->cantidad_detalle_compra;
+            $prodcuto->save();
         }
 
 
@@ -98,11 +103,10 @@ class CompraClienteController extends Controller
     }
 
 
-
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -113,7 +117,7 @@ class CompraClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -124,8 +128,8 @@ class CompraClienteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -136,7 +140,7 @@ class CompraClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
