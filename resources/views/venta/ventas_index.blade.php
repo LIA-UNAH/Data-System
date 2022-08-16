@@ -119,28 +119,16 @@
                                 <a class="btn btn-danger" href="#" data-bs-toggle="modal"
                                     data-bs-target="#modal_eliminar_cliente">Eliminar</a>
                             </td>
-
-
                         @empty
                         <tr>
-                            <td colspan="4">No hay Ventas disponibles</td>
+                            <td colspan="8">No hay Ventas disponibles</td>
                         </tr>
 
                     @endforelse
                 </tbody>
-
             </table>
+            <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $ventas->links() }}</div>
         </div>
     </div>
 </div>
 @endsection
-
-@push('scripsss')
-    <script>
-        $(document).ready(function () {
-
-            $('#tblaBody').css('height', (screen.height - 500));
-
-        });
-    </script>
-@endpush

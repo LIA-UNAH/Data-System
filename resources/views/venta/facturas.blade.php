@@ -3,7 +3,7 @@
 
 <style>
     body{
-    margin-top:20px;
+
     color: #484b51;
 }
 .text-secondary-d1 {
@@ -200,7 +200,7 @@ hr {
 
                             <div class="my-2" >
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i>
-                                <span class="text-600 text-90" >Fecha: {{$venta->fecha_factura}}
+                                <span class="text-600 text-90" >Fecha: {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("YYYY")}}
                                 </span>
                             </div>
 
@@ -240,8 +240,8 @@ hr {
                                 <td>{{++$i}}</td>
                                 <td>{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
                                 <td>{{$detalle->cantidad_detalle_venta}}</td>
-                                <td>{{$detalle->precio_venta}}</td>
-                                <td>{{$detalle->precio_venta*$detalle->cantidad_detalle_venta}}</td>
+                                <td>L {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
+                                <td>L {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
                             </tr>
                             @php
                                 $total+=$detalle->precio_venta*$detalle->cantidad_detalle_venta;
@@ -262,17 +262,17 @@ hr {
                                 <div class="col-7 text-right">
                                     SubTotal
                                 </div>
-                                <div class="col-5">
-                                    <span class="text-120 text-secondary-d1">{{$total*0.90}}</span>
+                                <div class="col-5" style="text-align: right">
+                                    <span class="text-150 text-success-d3 opacity-2">L {{ number_format($total *  0.85, 2, ".", ",") }}</span>
                                 </div>
                             </div>
 
                             <div class="row my-2">
                                 <div class="col-7 text-right">
-                                    Impues. (10%)
+                                    Impuesto s/v. (15%)
                                 </div>
-                                <div class="col-5">
-                                    <span class="text-110 text-secondary-d1">{{$total*0.10}}</span>
+                                <div class="col-5" style="text-align: right">
+                                    <span class="text-150 text-success-d3 opacity-2" >L {{ number_format($total *  0.15, 2, ".", ",") }}</span>
                                 </div>
                             </div>
 
@@ -280,8 +280,8 @@ hr {
                                 <div class="col-7 text-right">
                                     Total
                                 </div>
-                                <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2">{{$total}}</span>
+                                <div class="col-5" style="text-align: right">
+                                    <span class="text-150 text-success-d3 opacity-2">L {{ number_format($total, 2, ".", ",") }}</span>
                                 </div>
                             </div>
                         </div>

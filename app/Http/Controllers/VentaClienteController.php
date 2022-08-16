@@ -32,7 +32,6 @@ class VentaClienteController extends Controller
             }
         }
 
-
         return view('venta\ventas_index')->with('ventas', $ventas);
     }
 
@@ -50,8 +49,15 @@ class VentaClienteController extends Controller
 
     public function buscarpro(Request $request){
         $busc =trim($request->get('buscar_producto'));
-        $productos = Producto::where('marca', 'like', '%'.$busc.'%')->get();
-        return view('venta\ventas_create')->with('productos', $productos);
+
+        $productos = Producto::join('categorias', 'categorias.id', '=', 'productos.id_categoria')
+            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
+                'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
+            ->Where('name', 'LIKE', '%'.$busc. '%')
+            ->orWhere('codigo', 'LIKE', '%'. $busc. '%')
+            ->orWhere('marca', 'LIKE', '%'. $busc. '%')
+            ->orWhere('modelo', 'LIKE', '%'. $busc. '%')->paginate(5);
+        return view('venta\ventas_create', compact('productos', 'busc'));
     }
 
     /**
@@ -70,9 +76,7 @@ class VentaClienteController extends Controller
             $num_factura = '001-001-00-00000001';
         }else{
             $num_factura = '001-001-00-';
-
             $num_factura_anterioir = substr($ventas[0]->numero_factura_venta,10,8);
-
             $numero = intval($num_factura_anterioir);
             $numero += 1;
 
@@ -111,11 +115,11 @@ class VentaClienteController extends Controller
         $request ->validate([
             'cliente_id'=>  ['required'],
             'tipo_cliente' => ['required'],
+            'tuplas' => ['required'],
         ],[
             'cliente_id.required' => '¡Debes seleccionar un cliente antes de realizar la venta!',
             'tipo_cliente.required' => '¡Debes seleccionar el tipo de cliente!',
         ]);
-
 
         $venta = new Venta();
         $venta->numero_factura_venta = $request->input('numero_factura');
@@ -125,19 +129,19 @@ class VentaClienteController extends Controller
         $venta->tipo_cliente_factura = $request->input('tipo_cliente');
         $venta->save();
 
-
         for ($i=0; $i < intval($request->input("tuplas")) ; $i++) {
             $array = explode ( ' ', $request->input("detalle-".$i) );
             $detalle_venta = new DetalleVenta();
-             $detalle_venta->venta_id = $venta->id;
-             $detalle_venta->producto_id = $array[0];
-             $detalle_venta->cantidad_detalle_venta = $array[1];
-             if ($request->input('tipo_cliente') == 'Mayorista') {
+            $detalle_venta->venta_id = $venta->id;
+            $detalle_venta->producto_id = $array[0];
+            $detalle_venta->cantidad_detalle_venta = $array[1];
+
+            if ($request->input('tipo_cliente') == 'mayorista') {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_may;
-             } else {
+            } else {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_fin;
-             }
-             $detalle_venta->save();
+            }
+
         }
 
         return redirect()->route('ventas.index');

@@ -161,7 +161,7 @@
                                     <label for="cliente_id" class="text-secondary-d1"><strong>Nombre del cliente:</strong></label>
                                     <select class="form-control @error('cliente_id') is-invalid @enderror"
                                             id="cliente_id"
-                                            required autocomplete="cliente_id" name="cliente_id" autofocus>
+                                            required autocomplete="cliente_id" name="cliente_id" autofocus onchange="funcionObtenerTel()">
                                         <option value="">Seleccione el cliente</option>
                                         @foreach ($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
@@ -200,7 +200,8 @@
                                            id="celular_cliente"
                                            name="celular_cliente" value="{{ old('celular_cliente') }}" required
                                            autocomplete="celular_cliente"
-                                           autofocus maxlength="8" onkeypress="return funcionNumeros(event);">
+                                           autofocus readonly
+                                           style="background-color: white">
                                     @error('celular_cliente')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -359,7 +360,6 @@
                                         <div>
                                             <span class="text-secondary-d1 text-105"></span>
 
-
                                             <a href="#" onclick="guardar_venta()"
                                                class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Guardar</a>
 
@@ -469,8 +469,6 @@
             });
 
             document.formulario_ventas.tuplas.value = factura.length;
-
-
             total()
         }
 
@@ -499,8 +497,6 @@
             }
             tr.remove();
             total()
-
-
         }
 
         function cambCant(e) {
@@ -526,6 +522,18 @@
             } else {
                 return false;
             }
+        }
+
+        function funcionObtenerTel(){
+            var select = document.getElementById("cliente_id");
+            var valor = select.value;
+
+            @foreach ($users as $user)
+            if(valor == {{$user->id}}){
+                var input = document.getElementById("celular_cliente");
+                input.value = "{{$user->telephone}}";
+            }
+            @endforeach
         }
 
     </script>
