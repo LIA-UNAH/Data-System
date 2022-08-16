@@ -19,7 +19,11 @@ class VentaClienteController extends Controller
      */
     public function index()
     {
-        $ventas = Venta::all();
+        $ventas = Venta::select('ventas.id','ventas.numero_factura_venta','ventas.fecha_factura',
+        'a.name as usuario','b.name as cliente', 'tipo_cliente_factura')
+        ->join("users as a", "ventas.user_id", "=", "a.id")
+        ->join("users as b", "ventas.cliente_id", "=", "b.id")
+        ->paginate(5);
 
         foreach ($ventas as $key => $value) {
             $value->total = 0;
@@ -27,6 +31,7 @@ class VentaClienteController extends Controller
                 $value->total += $value2->cantidad_detalle_venta * $value2->precio_venta;
             }
         }
+
 
         return view('venta\ventas_index')->with('ventas', $ventas);
     }
@@ -56,6 +61,7 @@ class VentaClienteController extends Controller
      */
     public function create()
     {
+
         $productos = Producto::all();
         $users = User::where('type', '=', 'cliente')->get();
         $ventas = DB::select('SELECT numero_factura_venta from ventas where id = (SELECT max(id) FROM ventas)');
@@ -103,11 +109,13 @@ class VentaClienteController extends Controller
     public function store(Request $request)
     {
         $request ->validate([
-            'numero_factura_venta'=>  ['required', 'string', 'min:20', 'max:20'],
-            'fecha_factura' => ['required', 'string'],
+            'cliente_id'=>  ['required'],
+            'tipo_cliente' => ['required'],
         ],[
-            'numero_factura_venta.required' => '¡Debes ingresar un número de factura!'
+            'cliente_id.required' => '¡Debes seleccionar un cliente antes de realizar la venta!',
+            'tipo_cliente.required' => '¡Debes seleccionar el tipo de cliente!',
         ]);
+
 
         $venta = new Venta();
         $venta->numero_factura_venta = $request->input('numero_factura');
@@ -131,8 +139,6 @@ class VentaClienteController extends Controller
              }
              $detalle_venta->save();
         }
-
-
 
         return redirect()->route('ventas.index');
     }

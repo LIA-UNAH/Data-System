@@ -166,20 +166,20 @@ hr {
                     <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->nombre_proveedor}}</span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->name}}</span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Direccion:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->direccion_proveedor}}</span>
+                            <span class="text-sm text-grey-m2 align-middle">Teléfono:</span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->telephone}}</span>
                             </div>
                             <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">RTN Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->rtn_proveedor}}</span>
+                            <span class="text-sm text-grey-m2 align-middle">Correo Electrónico:</span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->email}}</span>
                             </div>
                             <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Celular Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->telefono_contacto_proveedor}}</span>
+                            <span class="text-sm text-grey-m2 align-middle">Dirección:</span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->address}}</span>
                             </div>
 
                             </div>

@@ -45,12 +45,11 @@
             </div>
 
             <div style="float: right">
-                <!-- Aniadir -->
+
                 <div style="float: left; margin-left: 15px">
-                    <td style="text-align: center"><a class="btn btn-success"
-                            href="{{ route('ventas.create') }}"
-                            style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
-                                style="color: white"></i> Crear Venta</a>
+                    <td style="text-align: center"><a class="btn btn-dark" href="/ventas"
+                                                      style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner"
+                                                                                                               style="color: white"></i></a>
                 </div>
                 <!-- Vista previa  -->
                 <div style="float: right; margin-left: 5px">
@@ -60,12 +59,15 @@
                                 style="color: white"></i> Vista Previa</a>
 
                 </div>
-
+                <!-- Aniadir -->
                 <div style="float: left; margin-left: 15px">
-                    <td style="text-align: center"><a class="btn btn-dark" href="/ventas"
-                            style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner"
-                                style="color: white"></i> Recargar</a>
+                    <td style="text-align: center"><a class="btn btn-success"
+                                                      href="{{ route('ventas.create') }}"
+                                                      style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
+                                                                                                               style="color: white"></i></a>
                 </div>
+
+
 
 
                 <!-- Ordenar  -->
@@ -93,25 +95,23 @@
             <table class="table table" id="dataTable">
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                     <tr>
-                        <th>N° de factura</th>
-                        <th>Vendido Por</th>
-                        <th>Vendido A</th>
+                        <th>Factura</th>
+                        <th>Empleado</th>
+                        <th>Cliente</th>
                         <th>Total</th>
                         <th>Fecha</th>
-                        <th>Ver</th>
-                        <th>Eliminar</th>
+                        <th colspan="3">Opciones</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($ventas as $i=>  $venta)
-                        <tr>
-                            <td>{{ $venta->numero_factura_venta }} </td>
-                            <td>{{ $venta->user->name }}</td>
-                            <td>{{ $venta->user->name }}</td>
-                            <td>{{ number_format($venta->total,2) }}</td>
-                            <td>{{ $venta->fecha_factura }}</td>
-                            <td>{{ $venta->Saldo }}</td>
-
+                        <tr style="font-family: 'Nunito', sans-serif; font-size: small">
+                            <td> <strong>{{ $venta->numero_factura_venta }}</strong></td>
+                            <td>{{ $venta->usuario }}</td>
+                            <td>{{ $venta->cliente }}</td>
+                            <td>L {{ number_format($venta->total, 2, ".", ",") }}</td>
+                            <td> <strong>{{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("YYYY")}}</strong></td>
 
                             <td><a class="btn btn-info" href="   {{ route('ventas.facturas', ['id'=>$venta->id]) }}">Ver</a>
                                 <a class="btn btn-success" href="">Editar</a>
