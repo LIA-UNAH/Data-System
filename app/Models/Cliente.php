@@ -13,4 +13,9 @@ class Cliente extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function venta()
+    {
+        return $this->hasMany('App\Models\Venta');
+    }
 }

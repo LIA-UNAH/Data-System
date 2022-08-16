@@ -129,7 +129,7 @@ hr {
             Factura
             <small class="page-info">
                 <i class="fa fa-angle-double-right text-80"></i>
-                ID: #111-222
+                ID: {{$venta->numero_factura_venta}}
             </small>
         </h1>
 
@@ -166,20 +166,20 @@ hr {
                     <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle"></span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->nombre_proveedor}}</span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Direccion:</span>
-                            <span class="text-600 text-110 text-blue align-middle"></span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->direccion_proveedor}}</span>
                             </div>
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">RTN Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle"></span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->rtn_proveedor}}</span>
                             </div>
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Celular Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle"></span>
+                            <span class="text-600 text-110 text-blue align-middle">{{$venta->proveedor->telefono_contacto_proveedor}}</span>
                             </div>
 
                             </div>
@@ -195,27 +195,18 @@ hr {
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
                                 </i>
-                                <span class="text-600 text-90">ID:</span>
+                                <span class="text-600 text-90">ID: {{$venta->numero_factura_venta}}</span>
                             </div>
 
                             <div class="my-2" >
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i>
-                                <span class="text-600 text-90" >Fecha:
-                                    <span id="current_date">
-                                        <script>
-                                            date = new Date();
-                                            year = date.getFullYear();
-                                            month = date.getMonth() + 1;
-                                            day = date.getDate();
-                                            document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
-                                        </script>
-                                    </span>
+                                <span class="text-600 text-90" >Fecha: {{$venta->fecha_factura}}
                                 </span>
                             </div>
 
                             <div class="my-2">
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
-                                <span class="text-600 text-90">Vendido Por:{{ Auth::user()->name }}</span>
+                                <span class="text-600 text-90">Vendido Por:  {{$venta->user->name}}</span>
                                 <span class="badge badge-warning badge-pill px-25"></span>
                             </div>
                         </div>
@@ -241,14 +232,21 @@ hr {
                     </thead>
 
                     <tbody class="text-95 text-secondary-d3">
-                        <tr></tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Domain registration</td>
-                            <td>2</td>
-                            <td class="text-95">$10</td>
-                            <td class="text-secondary-d2">$20</td>
-                        </tr>
+                        @php
+                            $total=0;
+                        @endphp
+                        @foreach ($venta->detalle_venta as $i => $detalle )
+                            <tr>
+                                <td>{{++$i}}</td>
+                                <td>{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
+                                <td>{{$detalle->cantidad_detalle_venta}}</td>
+                                <td>{{$detalle->precio_venta}}</td>
+                                <td>{{$detalle->precio_venta*$detalle->cantidad_detalle_venta}}</td>
+                            </tr>
+                            @php
+                                $total+=$detalle->precio_venta*$detalle->cantidad_detalle_venta;
+                            @endphp
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -265,7 +263,7 @@ hr {
                                     SubTotal
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-120 text-secondary-d1"></span>
+                                    <span class="text-120 text-secondary-d1">{{$total*0.90}}</span>
                                 </div>
                             </div>
 
@@ -274,7 +272,7 @@ hr {
                                     Impues. (10%)
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-110 text-secondary-d1"></span>
+                                    <span class="text-110 text-secondary-d1">{{$total*0.10}}</span>
                                 </div>
                             </div>
 
@@ -283,7 +281,7 @@ hr {
                                     Total
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2"></span>
+                                    <span class="text-150 text-success-d3 opacity-2">{{$total}}</span>
                                 </div>
                             </div>
                         </div>

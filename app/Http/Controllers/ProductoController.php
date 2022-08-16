@@ -19,7 +19,11 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $productos = Producto::paginate(5);
+        $productos = DB::table('productos')
+            ->join('categorias', 'categorias.id', '=', 'productos.id_categoria')
+            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
+                'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
+            ->paginate(5);
         return view('producto.productos_index')->with('productos', $productos);
     }
 
@@ -34,7 +38,6 @@ class ProductoController extends Controller
             ->orWhere('marca', 'LIKE', '%'. $texto. '%')
             ->orWhere('modelo', 'LIKE', '%'. $texto. '%')->paginate(5);
         return view('producto.productos_index', compact('productos', 'texto'));
-
     }
 
 

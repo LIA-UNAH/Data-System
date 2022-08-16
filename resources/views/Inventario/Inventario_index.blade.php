@@ -85,8 +85,8 @@
                             <td scope="row" style="width: 30%">{{ $producto->descripcion }}</td>
                             <td scope="row" style="width: 10%">{{ $producto->existencia }} unidades</td>
                             <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkred">L. {{ number_format($producto->prec_compra, 2, ".", ",") }}</strong></td>
-                            <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkblue">L. {{ number_format($producto->prec_compra, 2, ".", ",") }}</strong></td>
-                            <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkslategrey">L. {{ number_format($producto->prec_compra, 2, ".", ",") }}</strong></td>
+                            <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkblue">L. {{ number_format($producto->prec_venta_may, 2, ".", ",") }}</strong></td>
+                            <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkslategrey">L. {{ number_format($producto->prec_venta_fin, 2, ".", ",") }}</strong></td>
                         </tr>
                     @empty
                         <tr>

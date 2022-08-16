@@ -13,8 +13,6 @@ class Compra extends Model
     {
         return $this->belongsTo('App\Models\Proveedor');
     }
-
-
     public function user()
     {
         return $this->belongsTo('App\Models\User');

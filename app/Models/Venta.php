@@ -9,19 +9,19 @@ class Venta extends Model
 {
     use HasFactory;
 
-    public function productos()
+    public function cliente()
     {
-        return $this->hasMany('App\Models\Producto');
+        return $this->belongsTo('App\Models\User');
     }
-
 
     public function user()
     {
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
-    public function cliente()
+    public function detalle_venta()
     {
-        return $this->hasOne('App\Models\Cliente');
+        return $this->hasMany('App\Models\DetalleVenta');
     }
+
 }

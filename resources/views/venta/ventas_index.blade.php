@@ -55,7 +55,7 @@
                 <!-- Vista previa  -->
                 <div style="float: right; margin-left: 5px">
                     <td style="text-align: center"><a class="btn btn-secondary"
-                            href="{{ route('ventas.facturas') }}"
+                            href=""
                             style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
                                 style="color: white"></i> Vista Previa</a>
 
@@ -93,9 +93,9 @@
             <table class="table table" id="dataTable">
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                     <tr>
-
                         <th>N° de factura</th>
                         <th>Vendido Por</th>
+                        <th>Vendido A</th>
                         <th>Total</th>
                         <th>Fecha</th>
                         <th>Ver</th>
@@ -105,17 +105,15 @@
                 <tbody>
                     @forelse($ventas as $i=>  $venta)
                         <tr>
-                            <td scope="row">{{ ++$i }}</td>
-                            <td>{{ $venta->Nfactura }} </td>
-
-                            <td>{{ $venta->Cliente }}</td>
-                            <td>{{ $venta->VendidoPor }}</td>
-                            <td>{{ $venta->Total }}</td>
+                            <td>{{ $venta->numero_factura_venta }} </td>
+                            <td>{{ $venta->user->name }}</td>
+                            <td>{{ $venta->user->name }}</td>
+                            <td>{{ number_format($venta->total,2) }}</td>
+                            <td>{{ $venta->fecha_factura }}</td>
                             <td>{{ $venta->Saldo }}</td>
-                            <td>{{ $venta->Estado }}</td>
-                            <td scope="row">{{ $venta->fecha }}</td>
 
-                            <td><a class="btn btn-info" href="">Ver</a>
+
+                            <td><a class="btn btn-info" href="   {{ route('ventas.facturas', ['id'=>$venta->id]) }}">Ver</a>
                                 <a class="btn btn-success" href="">Editar</a>
 
                                 <a class="btn btn-danger" href="#" data-bs-toggle="modal"

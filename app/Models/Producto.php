@@ -17,4 +17,9 @@ class Producto extends Model
     {
         return $this->hasOne('App\Models\DetalleCompra');
     }
+
+    public function detalle_venta()
+    {
+        return $this->hasOne('App\Models\DetalleVenta');
+    }
 }

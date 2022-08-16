@@ -207,14 +207,14 @@ Route::get("/ventas/create", [App\Http\Controllers\VentaClienteController::class
     ->name("ventas.create");
 
 Route::post("/ventas/create", [App\Http\Controllers\VentaClienteController::class, "store"])
-    ->name("ventas.create");
+    ->name("ventas.store");
 
 // Buscar ventas
 Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::class, 'search'])
     ->name('ventas.searchIndex');
 
 // Factura ventas
-Route::get('/ventas/facturas', [App\Http\Controllers\VentaClienteController::class, 'factura'])
+Route::get('/ventas/facturas/{id}', [App\Http\Controllers\VentaClienteController::class, 'factura'])
     ->name('ventas.facturas');
 
 //buscar producto en ventas create
