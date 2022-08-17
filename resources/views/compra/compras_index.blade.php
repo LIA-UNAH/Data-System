@@ -89,7 +89,7 @@
                     <tbody>
                     @forelse($compras as $compra)
                         <tr style="font-family: 'Nunito', sans-serif; font-size: small">
-                                <td scope="row"><strong>{{ $compra->docummento_compra }}</strong></td>
+                                <td scope="row" style="text-transform: uppercase"><strong>{{ $compra->docummento_compra }}</strong></td>
                                 <td> <strong>{{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("YYYY")}}</strong></td>
                                 <td scope="row">{{ $compra->proveedor->nombre_proveedor }}</td>
                                 @if($compra->estado_compra == 'p')

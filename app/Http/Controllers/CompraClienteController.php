@@ -9,6 +9,7 @@ use App\Models\Proveedor;
 use Faker\Provider\ar_EG\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CompraClienteController extends Controller
 {
@@ -38,7 +39,10 @@ class CompraClienteController extends Controller
     public function create()
     {
         $provedores = Proveedor::all();
-        $productos = Producto::all();
+        $productos = Producto::join('categorias', 'categorias.id', '=', 'productos.id_categoria')
+            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
+                'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
+            ->get();
         $compra = Compra::where('estado_compra', '=', 'p')->where('user_id', '=', Auth::user()->id)->get();
         if ($compra->count() == 0) {
 
@@ -72,7 +76,7 @@ class CompraClienteController extends Controller
     {
         $detalles = new DetalleCompra();
         $detalles->compra_id = $request->input('compra_id');
-        $detalles->producto_id = $request->input('productos_id');
+        $detalles->producto_id = $request->input('producto_id');
         $detalles->cantidad_detalle_compra = $request->input('cantidad_detalle_compra');
         $detalles->precio = $request->input('precio');
         $detalles->save();

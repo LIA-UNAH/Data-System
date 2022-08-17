@@ -2,7 +2,7 @@
 @section('title', 'Compras')
 @section('content')
 
-    <div class="card shadow mb-4 " >
+    <div class="card shadow mb-4" >
         <div class="card-header py-2" style="background: #0d6efd">
             <div style="float: left">
                 <h2 class="m-0 font-bold" style="color: white">Crear Compra</h2>
@@ -22,21 +22,20 @@
 
         </div>
 
-        <div class="card-body">
+        <div class="card-body" style="font-family: 'Nunito', sans-serif; font-size: small">
             <!-- Nested Row within Card Body -->
             <div class="row" id="tblaBody">
                 <div class="col-lg-5 d-lg-block">
-                    <div class="p-5">
                     <form method="POST" class="user" action="{{route("compras.guardar_compra")}}" >
                         @csrf
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input type="text" name="compra_id" id="compra_id" value="{{ $compra->id }}" hidden>
+                                <label for="docummento_compra">Factura:</label>
                                 <input type="text" class="form-control @error('docummento_compra') is-invalid @enderror" id="docummento_compra"
-                                       name="docummento_compra" value="{{ old('docummento_compra') }}" required autocomplete="docummento_compra"
-                                       autofocus placeholder="{{ __('N# Documento') }}"
-
-                                       style="text-transform: capitalize;">
+                                       name="docummento_compra" value="CP{{Carbon\Carbon::now()->format('Ymdhms')}}" required autocomplete="docummento_compra"
+                                       autofocus placeholder="{{ __('') }}"
+                                       style="text-transform: uppercase; background-color: white" readonly>
                                 @error('docummento_compra')
                                 <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -44,14 +43,18 @@
                                 @enderror
                             </div>
                             <div class="col-sm-6">
-                                <input type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control @error('fecha_compra') is-invalid @enderror" id="fecha_compra"
-                                       name="fecha_compra" value="{{ old('fecha_compra') }}" required autocomplete="fecha_compra"
-                                       autofocus placeholder="{{ __('Fecha') }}"
-                                       >
+                                <label for="fecha_compra">Fecha:</label>
+                                <input type="date" class="form-control @error('fecha_compra') is-invalid @enderror"
+                                       id="fecha_compra"
+                                       name="fecha_compra" value="{{Carbon\Carbon::now()->format('Y-m-d')}}"
+                                       required
+                                       autocomplete="fecha_compra"
+                                       autofocus readonly
+                                       style="background-color: white">
                                 @error('fecha_compra')
                                 <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -59,17 +62,18 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label for="s">Proveedor</label>
-                                    <select class="form-control @error('type') is-invalid @enderror"  id="proveedor_id"
-                                            required autocomplete="type" name="proveedor_id"
+                                    <label for="proveedor_id">Proveedor:</label>
+                                    <select class="form-control @error('proveedor_id') is-invalid @enderror"  id="proveedor_id"
+                                            required autocomplete="proveedor_id" name="proveedor_id"
                                             autofocus>
+                                            <option value="">Seleccione el proveedor</option>
                                             @forelse ($provedores as $provedore)
                                               <option value="{{ $provedore->id }}">{{ $provedore->nombre_proveedor }}</option>
                                             @empty
                                               <option value="0">Proveedor</option>
                                             @endforelse
                                     </select>
-                                    @error('type')
+                                    @error('proveedor_id')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -80,14 +84,14 @@
 
 
                         <div class="mb-0">
-                            <textarea class="form-control @error('descripcion_compra') is-invalid @enderror" id="descripcion_compra"
-                                      name="descripcion_compra"  required
-                                      autofocus placeholder="{{ __('Descripción') }}"
+                            <textarea class="form-control @error('descripcion_compra') is-invalid @enderror"
+                                      id="descripcion_compra"
+                                      name="descripcion_compra"  required autofocus
                                       minlength="3" maxlength="250" rows="3">{{ old('descripcion_compra') }}</textarea>
                             @error('descripcion_compra')
                             <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
 
@@ -117,7 +121,6 @@
                             </div>
                         </div>
                     </form>
-                    </div>
                 </div>
 
                 <div class="col-lg-7">
@@ -125,13 +128,11 @@
                         <table class="table table" id="dataTable">
                             <thead class="card-header py-3" style="background: #1a202c; color: white">
                             <tr>
-                                <th>#</th>
-                                <th>Codigo</th>
-                                <th>Descripción</th>
+                                <th>N°</th>
+                                <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Total</th>
-                                <th colspan="3">Opciones</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -141,13 +142,10 @@
                                     @forelse($compra->detalle_compra as $i => $detalle)
                                     <tr>
                                         <td scope="row">{{ ++$i }}</td>
-                                        <td scope="row">{{ $detalle->producto->codigo }}</td>
-                                        <td>{{ $detalle->producto->descripcion}} </td>
+                                        <td>{{ $detalle->producto->marca}} - {{ $detalle->producto->modelo}} </td>
                                         <td scope="row">{{ $detalle->cantidad_detalle_compra }}</td>
-                                        <td scope="row">{{ $detalle->precio }}</td>
-                                        <td scope="row">{{ $detalle->precio*$detalle->cantidad_detalle_compra }}</td>
-                                        <td style="text-align: center"><a class="btn btn-secondary" href="#" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente">
-                                            <i class="fa fa-edit" style="color: white"></i></a></td>
+                                        <td scope="row">L {{ number_format($detalle->precio, 2, ".", ",") }}</td>
+                                        <td scope="row">L {{ number_format($detalle->precio*$detalle->cantidad_detalle_compra, 2, ".", ",") }}</td>
                                     </tr>
                                     @php
                                         $sum += $detalle->precio*$detalle->cantidad_detalle_compra;
@@ -162,10 +160,8 @@
                                 <td scope="row"></td>
                                 <td scope="row"></td>
                                 <td></td>
-                                <td scope="row"></td>
                                 <td scope="row">Total</td>
-                                <td scope="row">{{ $sum }}</td>
-                                <td></td>
+                                <td scope="row">L {{ number_format($sum, 2, ".", ",") }}</td>
                             </tfoot>
                         </table>
                     </div>
@@ -194,20 +190,37 @@
                    <div class="row g-3">
                         <input type="text" name="compra_id" id="compra_id" value="{{ $compra->id }}" hidden>
                        <div class="col-sm-12">
-
-                           <label for="firstName" class="form-label">Producto:</label>
-                           <select name="productos_id" id="productos_id" style="z-index: 999">
-                                <option value="">Seleccione</option>
-                                @foreach ($productos as $producto)
-                                    <option value="{{ $producto->id }}">{{ $producto->codigo.'-'.$producto->descripcion }}</option>
-                                @endforeach
+                           <label for="producto_id" class="form-label">Producto:</label>
+                           <select class="form-control @error('producto_id') is-invalid @enderror"
+                                   id="producto_id"
+                                   required autocomplete="producto_id" name="producto_id" autofocus onchange="funcionObtenerCosto()">
+                               <option value="">Seleccione el producto</option>
+                               @foreach ($productos as $producto)
+                                   <option value="{{ $producto->id }}" {{ old('producto_id') == $producto->id ? 'selected' : '' }}>{{$producto['name']}} {{$producto['marca']}} - {{$producto['modelo']}}</option>
+                               @endforeach
                            </select>
+                           @error('producto_id')
+                           <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                           @enderror
                        </div>
 
                        <div class="col-sm-6">
-                           <label for="firstName" class="form-label">Precio</label>
-                           <input type="number" class="form-control" id="precio"
-                                  name="precio" value="" required>
+                           <label for="precio" class="text-secondary-d1"><strong>Precio:</strong></label>
+                           <input type="text"
+                                  class="form-control @error('precio') is-invalid @enderror"
+                                  id="precio"
+                                  name="precio" value="{{ old('precio') }}" required
+                                  autocomplete="precio"
+                                  autofocus readonly
+                                  style="background-color: white">
+                           @error('precio')
+                           <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                           @enderror
+
 
                        </div>
                        <div class="col-sm-6">
@@ -216,13 +229,6 @@
                                   name="cantidad_detalle_compra" value="" required>
 
                        </div>
-                       <div class="col-sm-6">
-                       </div>
-                       <div class="col-sm-6">
-                       </div>
-                       <div class="col-sm-6">
-                       </div>
-
                    </div>
                </div>
 
@@ -238,22 +244,19 @@
        </div>
    </div>
 </div>
-@endsection
 
-@push('scripsss')
 <script>
-            $(document).ready(function() {
+    function funcionObtenerCosto(){
+        var select = document.getElementById("producto_id");
+        var valor = select.value;
 
-                $('#tblaBody').css('height', (screen.height - 450));
-
-                new TomSelect("#productos_id",{
-                    create: false,
-                    sortField: {
-                        field: "text",
-                        direction: "asc"
-                    }
-                });
-
-            });
+        @foreach ($productos as $producto)
+        if(valor == {{$producto->id}}){
+            var input = document.getElementById("precio");
+            input.value = "{{$producto->prec_compra}}";
+        }
+        @endforeach
+    }
 </script>
-@endpush
+
+@endsection
