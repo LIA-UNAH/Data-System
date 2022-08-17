@@ -164,7 +164,7 @@
                                             required autocomplete="cliente_id" name="cliente_id" autofocus onchange="funcionObtenerTel()">
                                         <option value="">Seleccione el cliente</option>
                                         @foreach ($users as $user)
-                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                            <option value="{{ $user->id }}" {{ old('cliente_id') == $user->id ? 'selected' : '' }}>{{$user['name']}}</option>
                                         @endforeach
                                     </select>
                                     @error('cliente_id')
@@ -181,8 +181,8 @@
                                             id="tipo_cliente"
                                             required autocomplete="tipo_cliente" name="tipo_cliente" autofocus>
                                         <option value="">Seleccione el tipo de cliente</option>
-                                        <option value="consumidor_final" id="name">Consumidor Final</option>
-                                        <option value="mayorista" id="name">Mayorista</option>
+                                        <option value="consumidor_final" @if (old('tipo_cliente') == "consumidor_final") {{ 'selected' }} @endif>Consumidor Final</option>
+                                        <option value="mayorista" @if (old('tipo_cliente') == "mayorista") {{ 'selected' }} @endif>Mayorista</option>
                                     </select>
                                     @error('tipo_cliente')
                                     <span class="invalid-feedback" role="alert">
@@ -254,18 +254,6 @@
                             </div>
                         </div>
 
-                        <!-- Subtitulos omitidos para ahorrar espacio
-                        <div class="col-sm-12">
-                            <div class="form-group row">
-                                <div class="col-sm-7 mb-3 mb-sm-0">
-                                    <h6 class="text-secondary-d1"><strong>Catalogo</strong></h6>
-                                </div>
-
-                                <div class="col-sm-5 mb-3 mb-sm-0">
-                                    <h6 class="text-secondary-d1"><strong>Venta</strong></h6>
-                                </div>
-                            </div>
-                        </div> -->
 
                         <div class="col-sm-12">
                             <div class="form-group row">
@@ -332,17 +320,14 @@
                                             </thead>
 
                                             <tbody id="content-fac" class="content-fac">
-
                                             </tbody>
                                             <input type="text" name="tuplas" hidden>
                                         </table>
                                         <div class="row mt-3">
                                             <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                                                Reaizar Pago imediato de factura
+                                                Realizar Pago imediato de factura
                                             </div>
-
                                             <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-
 
                                                 <div class=" row my-2 align-items-center bgc-primary-l3 p-2">
                                                     <div class="total">

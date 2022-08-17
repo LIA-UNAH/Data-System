@@ -9,7 +9,6 @@ class DetalleVenta extends Model
 {
     use HasFactory;
 
-
     public function venta()
     {
         return $this->belongsTo('App\Models\Venta');

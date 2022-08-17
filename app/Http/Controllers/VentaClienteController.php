@@ -129,19 +129,19 @@ class VentaClienteController extends Controller
         $venta->tipo_cliente_factura = $request->input('tipo_cliente');
         $venta->save();
 
+
         for ($i=0; $i < intval($request->input("tuplas")) ; $i++) {
             $array = explode ( ' ', $request->input("detalle-".$i) );
             $detalle_venta = new DetalleVenta();
             $detalle_venta->venta_id = $venta->id;
             $detalle_venta->producto_id = $array[0];
             $detalle_venta->cantidad_detalle_venta = $array[1];
-
             if ($request->input('tipo_cliente') == 'mayorista') {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_may;
             } else {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_fin;
             }
-
+            $detalle_venta->save();
         }
 
         return redirect()->route('ventas.index');
