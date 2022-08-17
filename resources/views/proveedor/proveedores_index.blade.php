@@ -81,24 +81,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($proveedor as $item=> $proved)
+                    @forelse($proveedores as $item=> $proveedor)
                         <tr style="font-family: 'Nunito', sans-serif; font-size: small">
-                            <td scope="row" ><strong>{{ $item +$proveedor->firstItem() }}</strong></td>
-                            <td><strong>{{ $proved->nombre_proveedor }}</strong></td>
-                            <td>{{ $proved->rtn_proveedor }} </td>
-                            <td>{{ $proved->telefono_proveedor }} </td>
-                            <td>{{ $proved->contacto_proveedor }} </td>
-                            <td>{{ $proved->telefono_contacto_proveedor }} </td>
-                            <td colspan="4"><button type="button" class="btn btn-info" href=""><i class="fa fa-eye"
-                                        aria-hidden="true" style="color: white; "></i></button></td>
+                            <td scope="row" ><strong>{{ $item +$proveedores->firstItem() }}</strong></td>
+                            <td><strong>{{ $proveedor->nombre_proveedor }}</strong></td>
+                            <td>{{ $proveedor->rtn_proveedor }} </td>
+                            <td>{{ $proveedor->telefono_proveedor }} </td>
+                            <td>{{ $proveedor->contacto_proveedor }} </td>
+                            <td>{{ $proveedor->telefono_contacto_proveedor }} </td>
+                            <td style="text-align: center"><a class="btn btn-primary" href="{{route('proveedor.show',['id'=>$proveedor->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
+
                             <td><a class="btn btn-success"
-                                    href="{{ route('proveedor.edit', $proved->id) }}">
+                                    href="{{ route('proveedor.edit', $proveedor->id) }}">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                     <!--boton de editar--->
                                     @csrf</a> </td>
                                     <!---ACA EMPIEZA EL BOTON DE ELIMINAR--->
                             <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" style="float:right"
-                                    data-bs-target="#modalEliminarProveedor{{ $proved->id }}">
+                                    data-bs-target="#modalEliminarProveedor{{ $proveedor->id }}">
                                     <i class="fa fa-window-close" aria-hidden="true"></i>
                                     <!--boton de eliminar--->
                                 </button></td>
@@ -107,7 +107,7 @@
                             <!-----------MODAL PARA ELIMINAR UN PROVEEDOR---------------->
 
 
-                            <div class="modal fade" id="modalEliminarProveedor{{ $proved->id }}"
+                            <div class="modal fade" id="modalEliminarProveedor{{ $proveedor->id }}"
                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -119,14 +119,14 @@
                                         </div>
 
                                         <form
-                                            action="{{ route('proveedor.destroy',$proved->id) }}"
+                                            action="{{ route('proveedor.destroy',$proveedor->id) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-body">
 
                                                 ¿Desea eliminar al proveedor
-                                                <strong>{{ $proved->nombre_proveedor }}?</strong>
+                                                <strong>{{ $proveedor->nombre_proveedor }}?</strong>
 
                                             </div>
                                             <div class="modal-footer">
@@ -153,7 +153,7 @@
 
         </div>
         <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
-            {{ $proveedor->links('pagination::bootstrap-4') }}
+            {{ $proveedores->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </div>

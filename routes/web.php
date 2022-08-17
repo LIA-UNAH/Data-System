@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraClienteController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
@@ -172,25 +173,29 @@ Route::put('/pedidos/{id}/editar', [App\Http\Controllers\PedidoController::class
 |--------------------------------------------------------------------------
 */
 
-// Visualizar proveedor
-Route::get('/proveedor', [App\Http\Controllers\ProveedorController::class, 'index'])
+// Listar proveedores
+Route::get('/proveedor', [ProveedorController::class, 'index'])
     ->name('proveedor.index');
 
 // Crear proveedor
-Route::post('/proveedor/crear', [App\Http\Controllers\ProveedorController::class, 'store'])
+Route::post('/proveedor/crear', [ProveedorController::class, 'store'])
     ->name('proveedor.store');
 
 // Eliminar proveedor
-Route::delete('/proveedor/{proved}', [App\Http\Controllers\ProveedorController::class, 'destroy'])
+Route::delete('/proveedor/{proved}', [ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
 
 // Editar proveedor
-Route::get('/proveedor/{id}/edit', [App\Http\Controllers\ProveedorController::class, 'edit'])
+Route::get('/proveedor/{id}/edit', [ProveedorController::class, 'edit'])
     ->name('proveedor.edit');
 
 // Editar proveedor
-Route::put('/proveedor/{id}/editar', [App\Http\Controllers\ProveedorController::class, 'update'])
+Route::put('/proveedor/{id}/editar', [ProveedorController::class, 'update'])
     ->name('proveedor.update');
+
+// Visualizar usuarios
+    Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])
+        ->name("proveedor.show")->where('id', '[0-9]+');
 
 /*
 |--------------------------------------------------------------------------

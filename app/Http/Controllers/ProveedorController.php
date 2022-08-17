@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,11 +17,11 @@ class ProveedorController extends Controller
     public function index(Request $request)
     {
         $buscar = trim( $request->get('buscar_texto'));
-        $proveedor=DB::table('proveedors')->select('id','nombre_proveedor',
+        $proveedores =DB::table('proveedors')->select('id','nombre_proveedor',
         'rtn_proveedor','telefono_proveedor','direccion_proveedor','contacto_proveedor','telefono_contacto_proveedor')
         ->where('nombre_proveedor', 'like', '%'.$buscar.'%')
         ->orWhere('rtn_proveedor', 'LIKE', '%'. $buscar. '%')->paginate(5);
-        return view('proveedor.proveedores_index', compact('proveedor', 'buscar'));// ESTAS 2 VARIABLES SON LAS QUE SE INICIALIZARON ARRIBA
+        return view('proveedor.proveedores_index', compact('proveedores', 'buscar'));// ESTAS 2 VARIABLES SON LAS QUE SE INICIALIZARON ARRIBA
     }
 
     /**
@@ -62,7 +63,8 @@ class ProveedorController extends Controller
      */
     public function show($id)
     {
-        //
+        $proveedor = Proveedor::findOrFail($id);
+        return view("proveedor.proveedores_show")->with("proveedor", $proveedor);
     }
 
     /**
