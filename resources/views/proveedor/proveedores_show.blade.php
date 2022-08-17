@@ -35,12 +35,11 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 text-center">
+                <div class="col-lg-4 text-center" style="padding-bottom: 10px">
                     <div>
                         <img src="/images/resources/bg_proveedor.jpg" width="290px" height="290px"
                              style="border-radius: 10%; padding: 15px">
                     </div>
-
 
                     <div class="text-center">
                         <a href="{{route("proveedor.edit",["id"=>$proveedor->id])}}" style=" width: 130px; display: inline-block; background: #0d6efd; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"

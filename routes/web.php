@@ -193,7 +193,7 @@ Route::get('/proveedor/{id}/edit', [ProveedorController::class, 'edit'])
 Route::put('/proveedor/{id}/editar', [ProveedorController::class, 'update'])
     ->name('proveedor.update');
 
-// Visualizar usuarios
+// Visualizar proveedor
     Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])
         ->name("proveedor.show")->where('id', '[0-9]+');
 
@@ -247,7 +247,7 @@ Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::c
 
 // Visualizar Inventario
 
-Route::get('/inventario', [App\Http\Controllers\ProductoController::class, 'index_inventario'])
+Route::get('/inventario', [ProductoController::class, 'index_inventario'])
     ->name('inventario.index');
 
 });
@@ -281,11 +281,11 @@ Route::get("/categorias/{id}/edit", [CategoriaController::class, "edit"])
 Route::put("/categorias/{id}/edit", [CategoriaController::class, "update"])
     ->name("categorias.edit")->where('id', '[0-9]+');
 
-// Eliminar categorias
+// Eliminar categoria
 Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy'])
     ->name('categorias.destroy');
 
-// Visualizar categorias
+// Visualizar categoria
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
 
