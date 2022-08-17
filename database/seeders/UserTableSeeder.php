@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
     {
         $us = User::create(
             [
-                'name'=>'Administrador Principal',
+                'name'=>'Administrador',
                 'email'=>'admin@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Administrador',
@@ -106,6 +106,70 @@ class UserTableSeeder extends Seeder
         );
         $us->assignRole('Cliente');
 
+        $us = User::create(
+            [
+                'name'=>'Manuel Gonzalez',
+                'email'=>'megonzalezl@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'99999999',
+                'image'=>'Perfil (35).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Jorge Caceres',
+                'email'=>'jcaceresb@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'99999999',
+                'image'=>'Perfil (34).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Kimberly Martinez',
+                'email'=>'kimberly.licona@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'99999999',
+                'image'=>'Perfil (34).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Meylin Merlo',
+                'email'=>'meylin.merlo@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'99999999',
+                'image'=>'Perfil (34).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Silvia Palma',
+                'email'=>'silvia.palma@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'99999999',
+                'image'=>'Perfil (34).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
 
     }
 }

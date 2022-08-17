@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-14">
                 <div class="card o-hidden border-0 shadow-lg my-4">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -61,7 +61,7 @@
                                                        placeholder="{{ __('Confirmar') }}" required autocomplete="new-password">
                                             </div>
                                             <div class="col-sm-1" style="margin-right: -8px">
-                                                <button id="show_password" class="btn btn-primary" style="display: inline-block; background: #1a202c; color: white; " type="button" onclick="fShowPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                                <button id="show_password" class="btn btn-primary" style="display: inline-block; background: #0c63e4; color: white; " type="button" onclick="fShowPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
                                             </div>
                                         </div>
 
@@ -113,7 +113,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <button type="submit" style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                                                <button type="submit" style="background-color: #0c63e4;display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
                                                         class="btn btn-primary btn-user btn-block">
                                                     {{ __('Registrar') }}
                                                 </button>
@@ -170,7 +170,6 @@
                 $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
             }
         }
-
     </script>
 @endpush
 
