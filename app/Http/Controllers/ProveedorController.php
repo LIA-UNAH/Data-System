@@ -15,13 +15,11 @@ class ProveedorController extends Controller
      */
     public function index(Request $request)
     {
-        //$proveedor = Proveedor::all();
-        //SE AGREGO BUSCAR Y SE ESTA PAGINANDO DE 10 EN 10 
         $buscar = trim( $request->get('buscar_texto'));
         $proveedor=DB::table('proveedors')->select('id','nombre_proveedor',
         'rtn_proveedor','telefono_proveedor','direccion_proveedor','contacto_proveedor','telefono_contacto_proveedor')
         ->where('nombre_proveedor', 'like', '%'.$buscar.'%')
-        ->orWhere('rtn_proveedor', 'LIKE', '%'. $buscar. '%')->paginate(10);
+        ->orWhere('rtn_proveedor', 'LIKE', '%'. $buscar. '%')->paginate(5);
         return view('proveedor.proveedores_index', compact('proveedor', 'buscar'));// ESTAS 2 VARIABLES SON LAS QUE SE INICIALIZARON ARRIBA
     }
 

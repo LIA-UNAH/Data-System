@@ -48,102 +48,20 @@
                 <div style="float: left; margin-left: 15px">
                     <td style="text-align: center"><a class="btn btn-dark" href="/proveedor"
                             style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner"
-                                style="color: white"></i> Recargar</a>
+                                style="color: white"></i></a>
                 </div>
 
                 <!-- Añadir -->
                 <div style="float: right; margin-left: 10px">
                     <td style="text-align: center"><a class="btn btn-success" href=""
                             style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
-                                style="color: white"></i> Añadir</a>
+                                style="color: white"></i></a>
                 </div>
                 <!--fin Añadir -->
             </div>
 
         </div>
     </div>
-
-    <!--<div style="margin-left: 15px; margin-bottom:-15px">
-    <button type="button" class="btn btn-primary shadow-lg rounded my-4"
-            data-bs-toggle="modal" data-bs-target="#modal_nuevo_proveedor" >
-        Crear nuevo
-    </button>
-    </div>
-
-    <div class="modal fade" id="modal_nuevo_proveedor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Crear nuevo Proveedor</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <form action="{{ route('proveedor.store') }}" method="POST">
-
-            <div class="modal-body">
-          <div class="row g-3">
-                  <div class="col-sm-6">
-                    <label for="firstName" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor" placeholder="Ingrese el nombre" required>
-                    <div class="invalid-feedback">
-                      Valid first Nombre is required.
-                    </div>
-                  </div>
-
-                  <div class="col-sm-6">
-                    <label for="firstName" class="form-label">RTN:</label>
-                    <input type="number" class="form-control" id="rtn_proveedor" name="rtn_proveedor" placeholder="Ingrese el RTN" required>
-                    <div class="invalid-feedback">
-                      Valid first rtn is required.
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="firstName" class="form-label">Teléfono:</label>
-                    <input type="number" class="form-control" id="telefono_proveedor" name="telefono_proveedor" placeholder="Ingrese el Teléfono" required>
-                    <div class="invalid-feedback">
-                      Valid first Telefono is required.
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="firstName" class="form-label">Nombre Contacto:</label>
-                    <input type="text" class="form-control" id="contacto_proveedor" name="contacto_proveedor" placeholder="Ingrese el nombre del contacto" required>
-                    <div class="invalid-feedback">
-                      Valid Nombre Contacto is required.
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="firstName" class="form-label">Teléfono Contacto:</label>
-                    <input type="number" class="form-control" id="telefono_contacto_proveedor" name="telefono_contacto_proveedor" placeholder="Ingrese el Teléfono contacto" required>
-                    <div class="invalid-feedback">
-                      Valid Telefono is required.
-                    </div>
-                  </div>
-
-                   <div class="col-sm-6">
-                        <label for="firstName" class="form-label">Dirección:</label>
-                        <input type="text" class="form-control" name="direccion_proveedor" id="direccion_proveedor" required ></input>
-                        <div class="invalid-feedback">
-                        Valid first direccion is required.
-                        </div>
-                  </div>
-                  <div class="col-sm-6">
-                </div>
-
-                  </div>
-              </div>
-
-
-              ---ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO---
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-              </div>
-
-
-              </form>
-              </div>
-          </div>
-        </div>-->
 
     <!---Tabla--->
     <div class="card-body">
@@ -154,10 +72,9 @@
                         <th>N°</th>
                         <th>Nombre</th>
                         <th>RTN</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Contacto</th>
-                        <th>Teléfono contacto</th>
+                        <th>Teléfono empresa</th>
+                        <th>Encargado</th>
+                        <th>Teléfono encargado</th>
                         <th colspan="6"><i class="fa fa-exclamation-circle" aria-hidden=""
                                 style="display: flex; justify-content: center;"></i></th>
 
@@ -167,10 +84,9 @@
                     @forelse($proveedor as $item=> $proved)
                         <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                             <td scope="row" ><strong>{{ $item +$proveedor->firstItem() }}</strong></td>
-                            <td>{{ $proved->nombre_proveedor }} </td>
+                            <td><strong>{{ $proved->nombre_proveedor }}</strong></td>
                             <td>{{ $proved->rtn_proveedor }} </td>
                             <td>{{ $proved->telefono_proveedor }} </td>
-                            <td>{{ $proved->direccion_proveedor }} </td>
                             <td>{{ $proved->contacto_proveedor }} </td>
                             <td>{{ $proved->telefono_contacto_proveedor }} </td>
                             <td colspan="4"><button type="button" class="btn btn-info" href=""><i class="fa fa-eye"
@@ -241,15 +157,4 @@
         </div>
     </div>
 </div>
-
 @endsection
-
-@push('scripsss')
-<script>
-            $(document).ready(function() {
-
-                $('#tblaBody').css('height', (screen.height - 500));
-
-            });
-</script>
-@endpush
