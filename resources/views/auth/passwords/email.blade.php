@@ -1,22 +1,22 @@
 @extends('layouts.app')
-
+@section('title', 'Reestablecer contraseña')
 @section('content')
 <div class="container">
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
-        <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="col-xl-11 col-lg-12 col-md-9">
 
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                        <img class="col-lg-6 d-none d-lg-block" src="/images/resources/bg_password_reset.jpg">
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-2">Reestablecer contrseña</h1>
+                                    <h1 class="h4 text-gray-900 mb-2">Reestablecer contraseña</h1>
                                     <p class="mb-4">¡Que las cosas suceden; sólo tienes que introducir tu dirección de correo electrónico a continuación y te enviaremos un enlace para restablecer tu contraseña! </p>
                                 </div>
                                 <form method="POST" class="user" action="{{ route('password.email') }}">

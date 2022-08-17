@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <img class="col-lg-6 d-none d-lg-block" src="/images/resources/bg_login.jpg">
+                        <img class="col-lg-6 d-lg-block" src="/images/resources/bg_login.jpg">
 
                         <div class="col-lg-6">
                             <div class="p-5">
