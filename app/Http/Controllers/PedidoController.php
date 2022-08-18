@@ -100,7 +100,9 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+
     {
-        //
+        Pedido::destroy($id);
+        return redirect()->route('pedidos.index')->with('error','El pedido fue eliminado exitosamente.');
     }
 }

@@ -100,43 +100,39 @@
                 <td><a class="btn btn-success" href="{{ route('pedido.edit', ['id' => $pedid->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td> 
 
                 <td><a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modalEliminarProveedor"> <i class="fa fa-window-close" aria-hidden="true"></i> </a></td> 
-
-                
-                          
-                </div> 
-                                 
-                             
-
-                    <!-- <div class="modal fade" id="modal_eliminar_cliente" tabindex="-1"
+                                    data-bs-target="#modal_eliminar_pedido{{ $pedid->id }}"> <i class="fa fa-window-close" aria-hidden="true"></i> </a>
+                </td> 
+                <div class="modal fade" id="modal_eliminar_pedido{{ $pedid->id }}" tabindex="-1"
                          aria-labelledby="modal_eliminar_cliente" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalLabel">Eliminar Usuario</h5>
+                                    <h5 class="modal-title" id="ModalLabel">Eliminar pedido</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    ¿Desea eliminar a ""
-                                </div>
+                                
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerra
-                                    </button>
-                                    <form action=""
-                                          method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
+                                    <form action="{{ route('pedidos.destroy', ['id'=>$pedid->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="modal-body">
+                                                    ¿Desea eliminar el pedido de la cuidad de: {{$pedid->ciudad}}, Con fecha de orden de: {{$pedid->fecha_de_orden}}  <strong style="text-transform: uppercase"></strong> ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-sm"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                </div>                            
+
+                                            </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                {{-- Hasta aqui el modal de eliminar --}} -->
-
-
+         
+                </div> 
             </tr>
         @empty
             <tr>

@@ -167,6 +167,10 @@ Route::put('/pedidos/{id}/editar', [App\Http\Controllers\PedidoController::class
 ->name('pedido.update')
 ->where('id','[0-9]+');
 
+Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])
+    ->name('pedidos.destroy');
+
+
 /*
 |--------------------------------------------------------------------------
 | Proveedores
@@ -225,6 +229,8 @@ Route::get('/ventas/facturas/{id}', [App\Http\Controllers\VentaClienteController
 //buscar producto en ventas create
 Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])
     ->name('ventas.buscarpro');
+
+
 
 
 /*
