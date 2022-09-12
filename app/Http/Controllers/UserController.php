@@ -84,8 +84,7 @@ class UserController extends Controller
             $input['image'] = "$profileImage";
         }
 
-        User::create($input);
-
+        User::create($input)->assignRole($request->input('type'));
         return redirect()->route("usuarios.index")->with("exito", "Se creó exitosamente el usuario");
     }
 
@@ -174,7 +173,6 @@ class UserController extends Controller
         }
 
         $users->update($input);
-
         return redirect()->route("usuarios.index")->with("exito", "Se editó exitosamente el usuario");
     }
 

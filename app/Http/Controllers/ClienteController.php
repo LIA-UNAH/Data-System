@@ -96,8 +96,7 @@ class ClienteController extends Controller
             $input['image'] = "$profileImage";
         }
 
-        User::create($input);
-
+        User::create($input)->assignRole('Cliente');
         return redirect()->route("clientes.index")->with("exito", "Se creó exitosamente el cliente");
     }
 
