@@ -42,6 +42,45 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nombre_proveedor' => ['required', 'string','min:3', 'max:70'],
+            'rtn_proveedor' => ['required', 'string','min:16', 'max:16'],
+            'telefono_proveedor' => ['required', 'numeric','min:2', 'max:99999999'],
+            'direccion_proveedor' => ['required', 'string','min:3', 'max:250'],
+            'contacto_proveedor' => ['required', 'string','min:3', 'max:70'],
+            'telefono_contacto_proveedor' => ['required', 'numeric','min:2', 'max:99999999'],
+        ], [
+            'nombre_proveedor.required' => '¡Debes ingresar tu nombre completo!',
+            'nombre_proveedor.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'nombre_proveedor.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
+            'nombre_proveedor.max' => '¡Has excedido el limite máximo de 70 letras!',
+
+            'rtn_proveedor.required' => '¡Debes ingresar tu nombre completo!',
+            'rtn_proveedor.string' => '¡Debes ingresar tu RTN, solo se permiten números separados por guión!',
+            'rtn_proveedor.min' => '¡Has ingresado menos de 16 valores!',
+            'rtn_proveedor.max' => '¡Has ingresado más de 16 valores!',
+
+            'telefono_proveedor.required' => '¡Debes ingresar un número de teléfono!',
+            'telefono_proveedor.numeric' => '¡Debes ingresar un teléfono, solo se permiten números!',
+            'telefono_proveedor.min' => '¡Ingresa tu número un teléfono completo!',
+            'telefono_proveedor.max' => '¡Ingresa tu número un teléfono completo, sin exceder el límite!',
+
+            'direccion_proveedor.required' => '¡Debes ingresar tu dirección!',
+            'direccion_proveedor.string' => '¡Debes ingresar tu dirección, verifica la información!',
+            'direccion_proveedor.min' => '¡Ingresa tu dirección completa, sin abreviaturas!',
+            'direccion_proveedor.max' => '¡Has excedido el limite máximo de 250 letras!',
+
+            'contacto_proveedor.required' => '¡Debes ingresar tu nombre completo!',
+            'contacto_proveedor.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'contacto_proveedor.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
+            'contacto_proveedor.max' => '¡Has excedido el limite máximo de 70 letras!',
+
+            'telefono_contacto_proveedor.required' => '¡Debes ingresar un número de teléfono!',
+            'telefono_contacto_proveedor.numeric' => '¡Debes ingresar un teléfono, solo se permiten números!',
+            'telefono_contacto_proveedor.min' => '¡Ingresa tu número un teléfono completo!',
+            'telefono_contacto_proveedor.max' => '¡Ingresa tu número un teléfono completo, sin exceder el límite!',
+        ]);
+
         $proveedor = new Proveedor();
         $proveedor->nombre_proveedor = $request->input('nombre_proveedor');
         $proveedor->rtn_proveedor = $request->input('rtn_proveedor');
@@ -76,7 +115,7 @@ class ProveedorController extends Controller
     public function edit($id)
     {
         $proveedor=Proveedor::FindOrFail($id);
-        return view('proveedor.proveedores_update', compact('proveedor'));
+        return view('proveedor.proveedores_edit', compact('proveedor'));
     }
 
     /**
@@ -84,10 +123,49 @@ class ProveedorController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nombre_proveedor' => ['required', 'string','min:3', 'max:70'],
+            'rtn_proveedor' => ['required', 'string','min:16', 'max:16'],
+            'telefono_proveedor' => ['required', 'numeric','min:2', 'max:99999999'],
+            'direccion_proveedor' => ['required', 'string','min:3', 'max:250'],
+            'contacto_proveedor' => ['required', 'string','min:3', 'max:70'],
+            'telefono_contacto_proveedor' => ['required', 'numeric','min:2', 'max:99999999'],
+        ], [
+            'nombre_proveedor.required' => '¡Debes ingresar el nombre de la empresa!',
+            'nombre_proveedor.string' => '¡Debes ingresar el nombre completo de la empresa, solo se permiten letras!',
+            'nombre_proveedor.min' => '¡Ingresa el nombre completo de la empresa, sin abreviaturas!',
+            'nombre_proveedor.max' => '¡Has excedido el limite máximo de 70 letras!',
+
+            'rtn_proveedor.required' => '¡Debes ingresar el RTN!',
+            'rtn_proveedor.string' => '¡Debes ingresar el RTN, solo se permiten números separados por guión!',
+            'rtn_proveedor.min' => '¡Has ingresado menos de 16 valores!',
+            'rtn_proveedor.max' => '¡Has ingresado más de 16 valores!',
+
+            'telefono_proveedor.required' => '¡Debes ingresar un número de teléfono para la empresa!',
+            'telefono_proveedor.numeric' => '¡Debes ingresar un teléfono, solo se permiten números!',
+            'telefono_proveedor.min' => '¡Ingresa tu número un teléfono completo!',
+            'telefono_proveedor.max' => '¡Ingresa tu número un teléfono completo, sin exceder el límite!',
+
+            'direccion_proveedor.required' => '¡Debes ingresar la dirección de la empresa!',
+            'direccion_proveedor.string' => '¡Debes ingresar la dirección, verifica la información!',
+            'direccion_proveedor.min' => '¡Ingresa tu dirección completa, sin abreviaturas!',
+            'direccion_proveedor.max' => '¡Has excedido el limite máximo de 250 letras!',
+
+            'contacto_proveedor.required' => '¡Debes ingresar tu nombre completo!',
+            'contacto_proveedor.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'contacto_proveedor.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
+            'contacto_proveedor.max' => '¡Has excedido el limite máximo de 70 letras!',
+
+            'telefono_contacto_proveedor.required' => '¡Debes ingresar un número de teléfono!',
+            'telefono_contacto_proveedor.numeric' => '¡Debes ingresar un teléfono, solo se permiten números!',
+            'telefono_contacto_proveedor.min' => '¡Ingresa tu número un teléfono completo!',
+            'telefono_contacto_proveedor.max' => '¡Ingresa tu número un teléfono completo, sin exceder el límite!',
+        ]);
+
         $proveedor=Proveedor::findOrfail($id);
         $proveedor->nombre_proveedor =$request->input('nombre_proveedor');
         $proveedor->rtn_proveedor = $request->input('rtn_proveedor');
@@ -97,7 +175,7 @@ class ProveedorController extends Controller
         $proveedor->telefono_contacto_proveedor = $request->input('telefono_contacto_proveedor');
 
         $proveedor->save();
-        return redirect()->route('proveedor.index');
+        return redirect()->route("proveedor.index")->with("exito", "Se editó exitosamente el proveedor");
     }
 
     /**

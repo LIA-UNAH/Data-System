@@ -189,13 +189,12 @@ Route::post('/proveedor/crear', [ProveedorController::class, 'store'])
 Route::delete('/proveedor/{proved}', [ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
 
-// Editar proveedor
-Route::get('/proveedor/{id}/edit', [ProveedorController::class, 'edit'])
-    ->name('proveedor.edit');
+// Editar proveedores
+    Route::get("/proveedor/{id}/edit", [ProveedorController::class, "edit"])
+        ->name("proveedor.edit")->where('id', '[0-9]+');
 
-// Editar proveedor
-Route::put('/proveedor/{id}/editar', [ProveedorController::class, 'update'])
-    ->name('proveedor.update');
+    Route::put("/proveedor/{id}/edit", [ProveedorController::class, "update"])
+        ->name("proveedor.edit")->where('id', '[0-9]+');
 
 // Visualizar proveedor
     Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])

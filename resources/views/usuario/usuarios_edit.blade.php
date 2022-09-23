@@ -173,7 +173,29 @@
     </div>
 @endsection
 @push('scripsss')
-    <script>
+    <script type="text/javascript">
+        function funcionLetras(evt) {
+            var code = (evt.which) ? evt.which : evt.keyCode;
+            if (code == 8 || code == 32) {
+                return true;
+            } else if (code >= 65) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function funcionNumeros(evt) {
+            var code = (evt.which) ? evt.which : evt.keyCode;
+            if (code == 8) {
+                return true;
+            } else if (code >= 48 && code <= 57) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         function mostrar(){
             if (document.getElementById("image").files.length <= 0) return;
 

@@ -145,6 +145,7 @@
                                                 {{ __('Regresar') }}
                                             </a>
                                         </div>
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <button type="submit"
                                                     style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
@@ -168,7 +169,6 @@
 @endsection
 @push('scripsss')
     <script type="text/javascript">
-
         function funcionLetras(evt) {
             var code = (evt.which) ? evt.which : evt.keyCode;
             if (code == 8 || code == 32) {
