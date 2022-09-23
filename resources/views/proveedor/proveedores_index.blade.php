@@ -1,19 +1,17 @@
 @extends('Layouts.Layouts')
 @section('content')
-
-
 {{-- Mensajes de las operaciones realizadas --}}
 {{-- Para los mensajes afirmativos y sin errores --}}
-@if(session()->has('suce'))
+@if(session()->has('realizado'))
     <div class="alert alert-success alert-dismissible" role="alert">
-        {{ session('suce') }}
+        {{ session('realizado') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
 {{-- Para los mensajes de errores --}}
-@if(session()->has('erorr'))
+@if(session()->has('error'))
     <div class="alert alert-danger" role="alert">
-        {{ session('erorr') }}
+        {{ session('error') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
@@ -53,8 +51,8 @@
 
                 <!-- Añadir -->
                 <div style="float: right; margin-left: 10px">
-                    <td style="text-align: center"><a class="btn btn-success" href=""
-                            style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
+                    <td style="text-align: center"><a class="btn btn-success" href="{{route("proveedor.create")}}"
+                                                      style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
                                 style="color: white"></i></a>
                 </div>
                 <!--fin Añadir -->

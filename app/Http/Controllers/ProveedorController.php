@@ -31,7 +31,8 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        $proveedor = Proveedor::all();
+        return view('proveedor.proveedores_create', compact('proveedor'));
     }
 
     /**
@@ -89,9 +90,7 @@ class ProveedorController extends Controller
         $proveedor->contacto_proveedor = $request->input('contacto_proveedor');
         $proveedor->telefono_contacto_proveedor = $request->input('telefono_contacto_proveedor');
         $proveedor->save();
-
-        session()->put('suce', 'Se Creo con exito.');
-        return redirect()->back()->withInput();
+        return redirect()->route('proveedor.index')->with('realizado', '¡El proveedor ha sido creado con exito!');
     }
 
     /**
@@ -175,7 +174,7 @@ class ProveedorController extends Controller
         $proveedor->telefono_contacto_proveedor = $request->input('telefono_contacto_proveedor');
 
         $proveedor->save();
-        return redirect()->route("proveedor.index")->with("exito", "Se editó exitosamente el proveedor");
+        return redirect()->route("proveedor.index")->with("realizado", "Se editó exitosamente el proveedor");
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('Layouts.Layouts')
-@section('title', 'Usuarios')
+@section('title', 'Proveedores')
 @section('content')
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">

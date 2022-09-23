@@ -1,22 +1,6 @@
 @extends('Layouts.Layouts')
 @section('content')
 
-{{-- Mensajes de las operaciones realizadas --}}
-{{-- Para los mensajes afirmativos y sin errores --}}
-@if(session()->has('suce'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-        {{ session('suce') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-{{-- Para los mensajes de errores --}}
-@if(session()->has('erorr'))
-    <div class="alert alert-danger" role="alert">
-        {{ session('erorr') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-
 {{-- Para los mensajes de creado y actualizado --}}
 @if(session('realizado'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">

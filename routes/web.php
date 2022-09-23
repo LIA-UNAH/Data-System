@@ -181,9 +181,12 @@ Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])
 Route::get('/proveedor', [ProveedorController::class, 'index'])
     ->name('proveedor.index');
 
-// Crear proveedor
-Route::post('/proveedor/crear', [ProveedorController::class, 'store'])
-    ->name('proveedor.store');
+// Agregar usuarios
+    Route::get("/proveedor/create", [ProveedorController::class, "create"])
+        ->name("proveedor.create");
+
+    Route::post("/proveedor/create", [ProveedorController::class, "store"])
+        ->name("proveedor.create");
 
 // Eliminar proveedor
 Route::delete('/proveedor/{proved}', [ProveedorController::class, 'destroy'])
