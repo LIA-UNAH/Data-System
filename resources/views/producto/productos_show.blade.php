@@ -3,58 +3,65 @@
     <link href="/verproducto.css" rel="stylesheet" type="text/css"/>
 
     <div class="container py-1">
-        <div class=" text-center" style="font-size: 3em;"><strong>Detalles del Producto</strong>
-            <a class="btn btn-success" href="{{ route('productos.edit', ['id' => $verproducto->id]) }}"><i
-                    class="fa fa-edit" aria-hidden="true"></i></a></div>
+        <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>Detalles del Producto</strong>
+           </div>
         <!-- Card Start -->
         <div class="card">
             <div class="row ">
 
-                <div class="col-md-8 px-3 " style="padding: 15px">
-                    <div class="ml-3 pb-lg-4">
-                        <div style="font-size: 30px; float: left; width: 40%; text-align: justify;">
+            <div class="col-lg-8" style="background: whitesmoke; color: ; font-family: 'Nunito', sans-serif; font-size: small; text-align: ">
+                    <div class="p-4">
+                    <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Código:</strong></div>
                         <div
-                            style="font-size: 30px; float: right; width: 55%; text-align: none;"> {{$verproducto->codigo}} </div>
-                        <div style="font-size: 25px; float: left; width: 40%; text-align: justify;">
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$verproducto->codigo}} </div>
+                            <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Marca:</strong></div>
                         <div
-                            style="font-size: 25px; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->marca}}</div>
-                        <div style="font-size: 25px; float: left; width: 40%; text-align: justify;">
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->marca}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Modelo:</strong></div>
                         <div
-                            style="font-size: 25px; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->modelo}}</div>
-                        <div style="font-size: 25px; float: left; width: 40%; text-align: justify;">
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$verproducto->modelo}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Existencia:</strong></div>
                         <div
-                            style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->existencia}} unidades</div>
-                        <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio de
+                              style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$verproducto->existencia}} unidades</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;"><strong>Precio de
                                 Compra:</strong></div>
-                        <div style="font-size: 25px; float: right; width: 55%; text-align: none;">
+                        <div style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">
                             L. {{ number_format($verproducto->prec_compra, 2, ".", ",") }}</div>
-                        <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio
+                        <div 
+                              style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;"><strong>Precio
                                 (Mayorista):</strong></div>
-                        <div style="font-size: 25px; float: right; width: 55%; text-align: none;">
+                        <div style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">
                             L. {{ number_format($verproducto->prec_venta_may, 2, ".", ",") }}</div>
-                        <div style="font-size: 25px; float: left; width: 40%; text-align: justify;"><strong>Precio
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;"><strong>Precio
                                 (Final):</strong></div>
-                        <div style="font-size: 25px; float: right; width: 55%; text-align: none;">
+                        <div style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">
                             L. {{ number_format($verproducto->prec_venta_fin, 2, ".", ",") }}</div>
-                        <div style="font-size: 25px; float: left; width: 40%; text-align: justify;">
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Descripción:</strong></div>
-                        <div
-                            style="font-size: 25px; float: right; width: 55%; text-align: none;"> {{$verproducto->descripcion}} </div>
+                        <div 
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$verproducto->descripcion}} </div>
 
                         <!-- <div style="font-size: 25px; float: left; width: 45%; text-align: justify;"><strong>Impuesto:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: justify;"> {{$verproducto->impuesto}}</div> -->
                         <!---<p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>-->
-
-                        <a href="/productos" class="mt-4 btn btn-dark">Volver</a>
                         <br>
                     </div>
                 </div>
-                <div class="col-sm-4" style="margin-left: -100px;">
-                    <img src="/images/products/{{$verproducto->imagen_producto}}" width="400px" height="400px"
+                <div class="col-lg-4 text-center" style="padding-bottom: 10px;">
+                    <img src="/images/products/{{$verproducto->imagen_producto}}" width="290px" height="290px"
                          style="border-radius: 10%; padding: 15px">
+
+                         <div class="text-center">
+                             <a href="{{ route('productos.edit', ['id' => $verproducto->id]) }}" 
+                              style=" width: 130px; display: inline-block; background: #0d6efd; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                              class="btn btn-google btn-user">Editar</a>
+
+                            <a href="/productos" style="width: 130px; display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large" 
+                            class="btn btn-google btn-user">Volver</a>
+                          </div>
                 </div>
             </div>
         </div>
