@@ -161,7 +161,6 @@ class UserController extends Controller
         ]);
 
         $input = $request->all();
-
         if ($image = $request->file('image')) {
             $destinationPath = 'images/uploads/';
             $file_name = $image->getClientOriginalName();
@@ -173,6 +172,9 @@ class UserController extends Controller
         }
 
         $users->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $users->assignRole($request->input('type'));
+
         return redirect()->route("usuarios.index")->with("exito", "Se editó exitosamente el usuario");
     }
 
