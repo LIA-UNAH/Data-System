@@ -129,13 +129,13 @@
                                  style="display: flex; align-items: center; justify-content: center;padding: 10px">
                                 <div class="col-lg-7 d-none d-lg-block">
                                     <div class="text-center">
-                                        <img id="imagen" src="" class="img-fluid rounded" width="1200" height="1200">
+                                        <img id="imagen" style="background-color: #0d6efd" src="" class="img-fluid rounded" width="1200" height="1200">
                                     </div>
 
                                     <div class="form-group row" style="margin-top: 15px">
                                         <div class="col-sm-6">
-                                            <a href="/clientes"
-                                               style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                                            <a href="javascript:history.back()"
+                                               style="display: inline-block; background: #1a202c; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
                                                class="btn btn-google btn-user btn-block">
                                                 {{ __('Regresar') }}
                                             </a>

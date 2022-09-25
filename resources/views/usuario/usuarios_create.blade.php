@@ -139,7 +139,7 @@
 
                                     <div class="form-group row" style="margin-top: 15px">
                                         <div class="col-sm-6">
-                                            <a href="/usuarios"
+                                            <a href="javascript:history.back()"
                                                style="display: inline-block; background: #1a202c; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
                                                class="btn btn-google btn-user btn-block">
                                                 {{ __('Regresar') }}
