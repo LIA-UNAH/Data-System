@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reparacion;
 use Illuminate\Http\Request;
 
 class ReparacionController extends Controller
@@ -13,8 +14,12 @@ class ReparacionController extends Controller
      */
     public function index()
     {
-        $verproducto = Producto::find($id);
-        return view('producto.productos_show', compact('verproducto'));
+        $reparaciones = Reparacion::select('reparacions.id','reparacions.fecha_entrada','reparacions.fecha_salida',
+            'reparacions.costo_reparacion','a.name as cliente')
+            ->join("users as a", "reparacions.cliente_id", "=", "a.id")
+            ->paginate(5);
+
+        return view('reparacion.reparaciones_index')->with('reparaciones', $reparaciones);
     }
 
     /**

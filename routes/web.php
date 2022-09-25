@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraClienteController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
@@ -37,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Visualizar usuarios
+// Listar usuarios
     Route::get('/usuarios', [UserController::class, 'index'])
         ->name('usuarios.index');
 
@@ -258,9 +259,6 @@ Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::c
 Route::get('/inventario', [ProductoController::class, 'index_inventario'])
     ->name('inventario.index');
 
-});
-
-
 /*
 |--------------------------------------------------------------------------
 | Categorias
@@ -296,4 +294,36 @@ Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy']
 // Visualizar categoria
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
+
+// Listar reparaciones
+Route::get('/reparaciones', [ReparacionController::class, 'index'])
+    ->name('reparaciones.index');
+
+// Buscar reparaciones
+Route::get('/reparaciones/busqueda', [ReparacionController::class, 'search'])
+    ->name('reparaciones.searchIndex');
+
+// Agregar reparaciones
+Route::get("/reparaciones/create", [ReparacionController::class, "create"])
+    ->name("reparaciones.create");
+
+Route::post("/reparaciones/create", [ReparacionController::class, "store"])
+    ->name("reparaciones.create");
+
+// Editar reparaciones
+Route::get("/reparaciones/{id}/edit", [ReparacionController::class, "edit"])
+    ->name("reparaciones.edit")->where('id', '[0-9]+');
+
+Route::put("/reparaciones/{id}/edit", [ReparacionController::class, "update"])
+    ->name("reparaciones.edit")->where('id', '[0-9]+');
+
+// Eliminar reparaciones
+Route::delete('/reparaciones/{reparacion}', [ReparacionController::class, 'destroy'])
+    ->name('reparaciones.destroy');
+
+// Visualizar reparaciones
+Route::get("/reparaciones/{id}/", [UserController::class, "show"])
+    ->name("reparaciones.show")->where('id', '[0-9]+');
+
+});
 
