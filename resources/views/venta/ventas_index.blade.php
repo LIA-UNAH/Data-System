@@ -29,19 +29,18 @@
             <div style="float: left">
                 <!-- HU8 - Buscar y recargar producto -->
 
-                <form action="" method="GET"
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form action="{{ route('ventas.searchIndex') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" name="busqueda" class="form-control bg-light border-0 small"
+                        <input type="text" name="buscar_venta" id="buscar_venta" class="form-control bg-light border-0 small"
                             placeholder="Buscar" aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn" type="submit" value="Buscar" style="background: white">
-                                <i class="fas fa-search fa-sm" style="color: black"></i>
+                            <button class="btn btn-dark" type="submit" value="Buscar" style="background: white" >
+                                <i class="fas fa-search fa-sm" style="color: black" ></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <!-- HU8 - Buscar y recargar usuario -->
+                <!-- HU8 - Buscar y recargar venta -->
             </div>
 
             <div style="float: right">
@@ -54,9 +53,10 @@
                 <!-- Vista previa  -->
                 <div style="float: right; margin-left: 5px">
                     <td style="text-align: center"><a class="btn btn-secondary"
-                            href=""
-                            style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
-                                style="color: white"></i> Vista Previa</a>
+                                                    href="{{ route('ventas.factura') }}"
+                                                    style=" border: 2px solid #ffffff;border-radius: 4px">
+                                                        <i class="fa fa-plus-square"
+                                                        style="color: white"></i> Vista Previa</a>
 
                 </div>
                 <!-- Aniadir -->
@@ -131,4 +131,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function buscarVenta() {
+            var impu_buscar = document.getElementById("buscar_venta");
+            window.location.href = "{{ route('ventas.searchIndex') }}?buscar_venta=" + impu_buscar.value;
+    }
+
+</script>
 @endsection

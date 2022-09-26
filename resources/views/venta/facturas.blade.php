@@ -1,9 +1,8 @@
 @extends('Layouts.Layouts')
 @section('content')
 
-<style>
-    body{
-
+<style>body{
+    margin-top:20px;
     color: #484b51;
 }
 .text-secondary-d1 {
@@ -120,16 +119,15 @@ hr {
 }
 
 </style>
-
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
+st
 <div class="page-content container">
-    <div class="page-header text-blue-d2">
+<div class="page-header text-blue-d2">
         <h1 class="page-title text-secondary-d1">
             Factura
             <small class="page-info">
                 <i class="fa fa-angle-double-right text-80"></i>
-                ID: {{$venta->numero_factura_venta}}
+                ID: 001-001-00-00000001
             </small>
         </h1>
 
@@ -166,20 +164,20 @@ hr {
                     <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->name}}</span>
+                            <span class="text-600 text-110 text-blue align-middle">Carlos Mejia</span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Teléfono:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->telephone}}</span>
+                            <span class="text-600 text-110 text-blue align-middle"> 99178932</span>
                             </div>
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Correo Electrónico:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->email}}</span>
+                            <span class="text-600 text-110 text-blue align-middle">lester-bogran@unah.edu.hn</span>
                             </div>
                             <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Dirección:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->address}}</span>
+                            <span class="text-600 text-110 text-blue align-middle">1901 W Hwy 77 San Benito TX 78586 USA</span>
                             </div>
 
                             </div>
@@ -195,18 +193,18 @@ hr {
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
                                 </i>
-                                <span class="text-600 text-90">ID: {{$venta->numero_factura_venta}}</span>
+                                <span class="text-600 text-90">ID: 001-001-00-00000001</span>
                             </div>
 
                             <div class="my-2" >
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"  ></i>
-                                <span class="text-600 text-90" >Fecha: {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("YYYY")}}
+                                <span class="text-600 text-90" >Fecha: 23 de septiembre, 2022
                                 </span>
                             </div>
 
                             <div class="my-2">
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
-                                <span class="text-600 text-90">Vendido Por:  {{$venta->user->name}}</span>
+                                <span class="text-600 text-90">Vendido Por:  Jose Almendares</span>
                                 <span class="badge badge-warning badge-pill px-25"></span>
                             </div>
                         </div>
@@ -214,47 +212,81 @@ hr {
 
                 </div>
 
+                <div class="mt-4">
+                    <div class="row text-600 text-white bgc-default-tp1 py-25">
+                        <div class="d-none d-sm-block col-1">#</div>
+                        <div class="col-9 col-sm-5">Description</div>
+                        <div class="d-none d-sm-block col-4 col-sm-2">  Cantidad</div>
+                        <div class="d-none d-sm-block col-sm-2">Precio Unitario</div>
+                        <div class="col-2">Precio</div>
+                    </div>
 
+                    <div class="text-95 text-secondary-d3">
+                        <div class="row mb-2 mb-sm-0 py-25">
+                            <div class="d-none d-sm-block col-1">1</div>
+                            <div class="col-9 col-sm-5">Domain registration</div>
+                            <div class="d-none d-sm-block col-2">2</div>
+                            <div class="d-none d-sm-block col-2 text-95">$10</div>
+                            <div class="col-2 text-secondary-d2">$20</div>
+                        </div>
 
+                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
+                            <div class="d-none d-sm-block col-1">2</div>
+                            <div class="col-9 col-sm-5">Web hosting</div>
+                            <div class="d-none d-sm-block col-2">1</div>
+                            <div class="d-none d-sm-block col-2 text-95">$15</div>
+                            <div class="col-2 text-secondary-d2">$15</div>
+                        </div>
+
+                        <div class="row mb-2 mb-sm-0 py-25">
+                            <div class="d-none d-sm-block col-1">3</div>
+                            <div class="col-9 col-sm-5">Software development</div>
+                            <div class="d-none d-sm-block col-2">--</div>
+                            <div class="d-none d-sm-block col-2 text-95">$1,000</div>
+                            <div class="col-2 text-secondary-d2">$1,000</div>
+                        </div>
+
+                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
+                            <div class="d-none d-sm-block col-1">4</div>
+                            <div class="col-9 col-sm-5">Consulting</div>
+                            <div class="d-none d-sm-block col-2">1 Year</div>
+                            <div class="d-none d-sm-block col-2 text-95">$500</div>
+                            <div class="col-2 text-secondary-d2">$500</div>
+                        </div>
+                    </div>
+
+                    <div class="row border-b-2 brc-default-l2"></div>
 
                     <!-- or use a table instead -->
-
-            <div class="table-responsive" id="tblaBody">
+                    <!--
+            <div class="table-responsive">
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                     <thead class="bg-none bgc-default-tp1">
                         <tr class="text-white">
-                            <th class="opacity-2">Numero</th>
-                            <th>Descripcion</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unitario</th>
-                            <th width="140">Total</th>
+                            <th class="opacity-2">#</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th width="140">Amount</th>
                         </tr>
                     </thead>
 
                     <tbody class="text-95 text-secondary-d3">
-                        @php
-                            $total=0;
-                        @endphp
-                        @foreach ($venta->detalle_venta as $i => $detalle )
-                            <tr>
-                                <td>{{++$i}}</td>
-                                <td>{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
-                                <td>{{$detalle->cantidad_detalle_venta}}</td>
-                                <td>L {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
-                                <td>L {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
-                            </tr>
-                            @php
-                                $total+=$detalle->precio_venta*$detalle->cantidad_detalle_venta;
-                            @endphp
-                        @endforeach
+                        <tr></tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Domain registration</td>
+                            <td>2</td>
+                            <td class="text-95">$10</td>
+                            <td class="text-secondary-d2">$20</td>
+                        </tr> 
                     </tbody>
                 </table>
             </div>
-
+            -->
 
                     <div class="row mt-3">
                         <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                            Reaizar Pago imediato de factura
                         </div>
 
                         <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
@@ -262,26 +294,26 @@ hr {
                                 <div class="col-7 text-right">
                                     SubTotal
                                 </div>
-                                <div class="col-5" style="text-align: right">
-                                    <span class="text-150 text-success-d3 opacity-2">L {{ number_format($total *  0.85, 2, ".", ",") }}</span>
+                                <div class="col-5">
+                                    <span class="text-120 text-secondary-d1">$2,250</span>
                                 </div>
                             </div>
 
                             <div class="row my-2">
                                 <div class="col-7 text-right">
-                                    Impuesto s/v. (15%)
+                                    Impuesto (15%)
                                 </div>
-                                <div class="col-5" style="text-align: right">
-                                    <span class="text-150 text-success-d3 opacity-2" >L {{ number_format($total *  0.15, 2, ".", ",") }}</span>
+                                <div class="col-5">
+                                    <span class="text-110 text-secondary-d1">$225</span>
                                 </div>
                             </div>
 
                             <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                 <div class="col-7 text-right">
-                                    Total
+                                    Total 
                                 </div>
-                                <div class="col-5" style="text-align: right">
-                                    <span class="text-150 text-success-d3 opacity-2">L {{ number_format($total, 2, ".", ",") }}</span>
+                                <div class="col-5">
+                                    <span class="text-150 text-success-d3 opacity-2">$2,475</span>
                                 </div>
                             </div>
                         </div>
@@ -290,13 +322,13 @@ hr {
                     <hr />
 
                     <div>
-                        <span class="text-secondary-d1 text-105">Gracias Por Comprar En Nuestro Negocio</span>
-                        <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Guardar</a>
+                        <span class="text-secondary-d1 text-105">Thank you for your business</span>
+                        <a href="/ventas" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">cerrar</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 
 @endsection

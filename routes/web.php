@@ -4,7 +4,6 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraClienteController;
 use App\Http\Controllers\ProveedorController;
-use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
@@ -38,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Listar usuarios
+// Visualizar usuarios
     Route::get('/usuarios', [UserController::class, 'index'])
         ->name('usuarios.index');
 
@@ -182,23 +181,21 @@ Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])
 Route::get('/proveedor', [ProveedorController::class, 'index'])
     ->name('proveedor.index');
 
-// Agregar usuarios
-    Route::get("/proveedor/create", [ProveedorController::class, "create"])
-        ->name("proveedor.create");
-
-    Route::post("/proveedor/create", [ProveedorController::class, "store"])
-        ->name("proveedor.create");
+// Crear proveedor
+Route::post('/proveedor/crear', [ProveedorController::class, 'store'])
+    ->name('proveedor.store');
 
 // Eliminar proveedor
 Route::delete('/proveedor/{proved}', [ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
 
-// Editar proveedores
-    Route::get("/proveedor/{id}/edit", [ProveedorController::class, "edit"])
-        ->name("proveedor.edit")->where('id', '[0-9]+');
+// Editar proveedor
+Route::get('/proveedor/{id}/edit', [ProveedorController::class, 'edit'])
+    ->name('proveedor.edit');
 
-    Route::put("/proveedor/{id}/edit", [ProveedorController::class, "update"])
-        ->name("proveedor.edit")->where('id', '[0-9]+');
+// Editar proveedor
+Route::put('/proveedor/{id}/editar', [ProveedorController::class, 'update'])
+    ->name('proveedor.update');
 
 // Visualizar proveedor
     Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])
@@ -226,8 +223,11 @@ Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::cla
     ->name('ventas.searchIndex');
 
 // Factura ventas
-Route::get('/ventas/facturas/{id}', [App\Http\Controllers\VentaClienteController::class, 'factura'])
+Route::get('/ventas/facturas/{id}', [App\Http\Controllers\VentaClienteController::class, 'show'])
     ->name('ventas.facturas');
+    // Vista Previa Factura
+Route::get('/ventas/factura/', [App\Http\Controllers\VentaClienteController::class, 'factura'])
+->name('ventas.factura');
 
 //buscar producto en ventas create
 Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])
@@ -258,6 +258,9 @@ Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::c
 
 Route::get('/inventario', [ProductoController::class, 'index_inventario'])
     ->name('inventario.index');
+
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -294,36 +297,4 @@ Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy']
 // Visualizar categoria
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
-
-// Listar reparaciones
-Route::get('/reparaciones', [ReparacionController::class, 'index'])
-    ->name('reparaciones.index');
-
-// Buscar reparaciones
-Route::get('/reparaciones/busqueda', [ReparacionController::class, 'search'])
-    ->name('reparaciones.searchIndex');
-
-// Agregar reparaciones
-Route::get("/reparaciones/create", [ReparacionController::class, "create"])
-    ->name("reparaciones.create");
-
-Route::post("/reparaciones/create", [ReparacionController::class, "store"])
-    ->name("reparaciones.create");
-
-// Editar reparaciones
-Route::get("/reparaciones/{id}/edit", [ReparacionController::class, "edit"])
-    ->name("reparaciones.edit")->where('id', '[0-9]+');
-
-Route::put("/reparaciones/{id}/edit", [ReparacionController::class, "update"])
-    ->name("reparaciones.edit")->where('id', '[0-9]+');
-
-// Eliminar reparaciones
-Route::delete('/reparaciones/{reparacion}', [ReparacionController::class, 'destroy'])
-    ->name('reparaciones.destroy');
-
-// Visualizar reparaciones
-Route::get("/reparaciones/{id}/", [UserController::class, "show"])
-    ->name("reparaciones.show")->where('id', '[0-9]+');
-
-});
 

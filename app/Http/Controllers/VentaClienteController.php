@@ -9,6 +9,7 @@ use App\Models\Venta;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\If_;
 
 class VentaClienteController extends Controller
 {
@@ -35,21 +36,35 @@ class VentaClienteController extends Controller
         return view('venta\ventas_index')->with('ventas', $ventas);
     }
 
-    public function factura($id)
+   
+
+    public function factura()
     {
-        $venta = Venta::findOrFail($id);
-        return view('venta.facturas')->with("venta",$venta);
+        
+        return view('venta.facturas');
     }
 
     public function search(Request $request){
-        $texto =trim($request->get('busqueda'));
-        $ventas = Venta::where('numero_factura_venta', 'like', '%'.$texto.'%')->get();
-        return view('venta\ventas_index')->with('ventas', $ventas);
+        $texto =trim($request->get('buscar_venta'));
+        $ventas = DB::table('ventas')->select('fecha_factura')
+
+        /** */
+            //->join('detalle_ventas', 'detalle_ventas.venta_id', '=', 'ventas.id')
+            //->join('clientes','clientes.id','=','ventas.cliente_id')
+            //->join('users','user.id','=','ventas.user_id')
+            //->select('ventas.id','ventas.numero_factura_venta', 'ventas.fecha_factura','ventas.tipo_cliente_factura',
+            //'detalle_venta.cantidad_detalle_venta','clientes.name','users.name as name_vendedor')
+            ->Where('fecha_factura', 'LIKE', '%'. $texto. '%')->paginate(5);
+            //->orWhere('numero_factura_venta', 'LIKE', '%'. $texto. '%')
+            //->orWhere('fecha_factura', 'LIKE', '%'. $texto. '%')
+            //->orWhere('name', 'LIKE', '%'. $texto. '%')
+           // ->orWhere('name_vendedor', 'LIKE', '%'. $texto. '%')
+           // ->orWhere('cantidad_detalle_venta', 'LIKE', '%'. $texto. '%')->paginate(5);
+        return view('venta.ventas_index', compact('ventas', 'texto'));
     }
 
     public function buscarpro(Request $request){
         $busc =trim($request->get('buscar_producto'));
-
         $productos = Producto::join('categorias', 'categorias.id', '=', 'productos.id_categoria')
             ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
                 'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
@@ -156,10 +171,11 @@ class VentaClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
 
-        return view('venta.facturas');
+        $venta = Venta::findOrFail($id);
+        return view('venta.ventas_show')->with("venta",$venta);
     }
 
     /**
