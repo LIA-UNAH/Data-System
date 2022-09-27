@@ -305,29 +305,35 @@ Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy']
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
 
-// Listar usuarios
+/*
+|--------------------------------------------------------------------------
+| Reparaciones
+|--------------------------------------------------------------------------
+*/
+
+// Listar reparaciones
 Route::get('/reparaciones', [ReparacionController::class, 'index'])
     ->name('reparaciones.index');
 
-// Buscar usuarios
+// Buscar reparaciones
 Route::get('/reparaciones/busqueda', [ReparacionController::class, 'search'])
     ->name('reparaciones.searchIndex');
 
-// Agregar usuarios
+// Agregar reparaciones
 Route::get("/reparaciones/create", [ReparacionController::class, "create"])
     ->name("reparaciones.create");
 
 Route::post("/reparaciones/create", [ReparacionController::class, "store"])
     ->name("reparaciones.create");
 
-// Editar usuarios
+// Editar reparaciones
 Route::get("/reparaciones/{id}/edit", [ReparacionController::class, "edit"])
     ->name("reparaciones.edit")->where('id', '[0-9]+');
 
 Route::put("/reparaciones/{id}/edit", [ReparacionController::class, "update"])
     ->name("reparaciones.edit")->where('id', '[0-9]+');
 
-// Eliminar usuarios
+// Eliminar reparaciones
 Route::delete('/reparaciones/{reparacion}', [ReparacionController::class, 'destroy'])
     ->name('reparaciones.destroy');
 

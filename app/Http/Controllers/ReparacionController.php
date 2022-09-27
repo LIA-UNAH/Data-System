@@ -138,8 +138,9 @@ class ReparacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+
+    public function destroy(Reparacion $reparacion){
+        $reparacion->delete();
+        return redirect()->route("reparaciones.index")->with("error", "Se eliminó exitosamente la reparación.");
     }
 }
