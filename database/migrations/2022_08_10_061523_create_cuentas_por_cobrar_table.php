@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\CuentasPorCobrar;
 
 return new class extends Migration
 {
@@ -15,6 +16,14 @@ return new class extends Migration
     {
         Schema::create('cuentas_por_cobrar', function (Blueprint $table) {
             $table->id();
+            $table->string('cobros_Pendientes');
+            $table->string('nombre_cliente');
+            $table->string('identidad');
+            $table->string('domicilio');
+            $table->string('numTelefono');
+            $table->string('forma_de_pago');
+            $table->date('fecha');
+            $table->string('venta');
             $table->timestamps();
         });
     }
