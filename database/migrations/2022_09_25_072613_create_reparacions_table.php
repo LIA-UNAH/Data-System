@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('reparacions', function (Blueprint $table) {
             $table->id();
-            $table->date("fecha_entrada");
+            $table->string("fecha_entrada");
             $table->date("fecha_salida");
+            $table->string("hora_salida", 8);
             $table->string('marca',40);
             $table->string('modelo',40)->nullable();
             $table->string('descripcion', 255);

@@ -299,11 +299,3 @@ Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy']
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
 
-/*
-|--------------------------------------------------------------------------
-| Cuentas por cobrar
-|--------------------------------------------------------------------------
-*/
-
-//index, create, store, show, edit, updare, destroy
-Route::resource('/cobros', CuentasPorCobrarController::class);
