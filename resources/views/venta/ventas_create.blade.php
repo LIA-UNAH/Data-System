@@ -350,6 +350,9 @@
 
                                             <a href="/ventas"
                                                class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0">Cancelar</a>
+
+                                            <a href="" onclick=""
+                                               class="btn btn-info btn-bold px-1 float-left mt-3 mt-lg-0">Guardar Preventa</a>
                                         </div>
                                     </div>
 
