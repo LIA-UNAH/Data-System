@@ -51,12 +51,18 @@
                                                                                                                style="color: white"></i></a>
                 </div>
                 <!-- Vista previa  -->
-                <div style="float: right; margin-left: 5px">
+                <div style="float: left; margin-left: 5px">
                     <td style="text-align: center"><a class="btn btn-secondary"
                                                     href="{{ route('ventas.factura') }}"
                                                     style=" border: 2px solid #ffffff;border-radius: 4px">
                                                         <i class="fa fa-plus-square"
                                                         style="color: white"></i> Vista Previa</a>
+
+                  <!-- Lista pre-venta  -->
+                  <div style="float: right; margin-left: 1px">
+                    <td style="text-align: center"><a class="btn btn-success"
+                        href="" style=" border: 2px solid #ffffff;border-radius: 4px">
+                        <i class="" style="color: white"></i>Preventas</a>
 
                 </div>
                 <!-- Aniadir -->
@@ -68,11 +74,9 @@
                 </div>
 
 
-
-
                 <!-- Ordenar  -->
 
-                <div style="text-align: center; float: right; margin-left: 15px" id="dropdownMenuButton1"
+                <div style="text-align: center; float: left; margin-left: 15px" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false"><a style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
                         href=""><i class="bi bi-calendar-check-fill"></i> Ordenar</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -82,17 +86,17 @@
                     </ul>
                 </div>
 
-
-
                 <!-- Añadir -->
             </div>
 
         </div>
     </div>
 
-    <div class="card-body">
+    </div>
+</div>
+<div class="card-body">
         <div class="table-responsive" id="tblaBody">
-            <table class="table table" id="dataTable">
+            <table class="table" id="dataTable">
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                     <tr>
                         <th>Factura</th>
@@ -129,9 +133,7 @@
             </table>
             <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $ventas->links() }}</div>
         </div>
-    </div>
 </div>
-
 <script>
     function buscarVenta() {
             var impu_buscar = document.getElementById("buscar_venta");
