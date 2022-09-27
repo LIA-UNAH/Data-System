@@ -3,7 +3,9 @@
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraClienteController;
+use App\Http\Controllers\CuentasPorCobrarController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
@@ -11,7 +13,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
-use App\Http\Controllers\CuentasPorCobrarController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,130 +22,127 @@ use App\Http\Controllers\CuentasPorCobrarController;
 |
 */
 
-
-
 Auth::routes();
 Route::get('sendmail', [MailController::class, 'index']);
 Route::group(['middleware' => 'auth'], function () {
 
-
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Información del sistema
-    Route::get('/info', [UserController::class, 'info'])->name('info');
+Route::get('/info', [UserController::class, 'info'])->name('info');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Usuarios
-    |--------------------------------------------------------------------------
-    */
+/*
+|--------------------------------------------------------------------------
+| Usuarios
+|--------------------------------------------------------------------------
+*/
 
-// Visualizar usuarios
-    Route::get('/usuarios', [UserController::class, 'index'])
-        ->name('usuarios.index');
+// Listar usuarios
+Route::get('/usuarios', [UserController::class, 'index'])
+    ->name('usuarios.index');
 
 // Buscar usuarios
-    Route::get('/usuarios/busqueda', [UserController::class, 'search'])
-        ->name('usuarios.searchIndex');
+Route::get('/usuarios/busqueda', [UserController::class, 'search'])
+    ->name('usuarios.searchIndex');
 
 // Agregar usuarios
-    Route::get("/usuarios/create", [UserController::class, "create"])
-        ->name("usuarios.create");
+Route::get("/usuarios/create", [UserController::class, "create"])
+    ->name("usuarios.create");
 
-    Route::post("/usuarios/create", [UserController::class, "store"])
-        ->name("usuarios.create");
+Route::post("/usuarios/create", [UserController::class, "store"])
+    ->name("usuarios.create");
 
 // Editar usuarios
-    Route::get("/usuarios/{id}/edit", [UserController::class, "edit"])
-        ->name("usuarios.edit")->where('id', '[0-9]+');
+Route::get("/usuarios/{id}/edit", [UserController::class, "edit"])
+    ->name("usuarios.edit")->where('id', '[0-9]+');
 
-    Route::put("/usuarios/{id}/edit", [UserController::class, "update"])
-        ->name("usuarios.edit")->where('id', '[0-9]+');
+Route::put("/usuarios/{id}/edit", [UserController::class, "update"])
+    ->name("usuarios.edit")->where('id', '[0-9]+');
 
 // Eliminar usuarios
-    Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])
-        ->name('usuarios.destroy');
+Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])
+    ->name('usuarios.destroy');
 
 // Visualizar usuarios
-    Route::get("/usuarios/{id}/", [UserController::class, "show"])
-        ->name("usuarios.show")->where('id', '[0-9]+');
+Route::get("/usuarios/{id}/", [UserController::class, "show"])
+    ->name("usuarios.show")->where('id', '[0-9]+');
 
 // Perfil de usuario
-    Route::get("/profile", [UserController::class, "profile"])
-        ->name("usuarios.profile")->where('id', '[0-9]+');
+Route::get("/profile", [UserController::class, "profile"])
+    ->name("usuarios.profile")->where('id', '[0-9]+');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Clientes
-    |--------------------------------------------------------------------------
-    */
+/*
+|--------------------------------------------------------------------------
+| Clientes
+|--------------------------------------------------------------------------
+*/
 
 // Visualizar clientes
-    Route::get('/clientes', [ClienteController::class, 'index'])
-        ->name('clientes.index');
+Route::get('/clientes', [ClienteController::class, 'index'])
+    ->name('clientes.index');
 
 // Buscar clientes
-    Route::get('/clientes/busqueda', [ClienteController::class, 'search'])
-        ->name('clientes.searchIndex');
+Route::get('/clientes/busqueda', [ClienteController::class, 'search'])
+    ->name('clientes.searchIndex');
 
 // Agregar clientes
-    Route::get("/clientes/create", [ClienteController::class, "create"])
-        ->name("clientes.create");
+Route::get("/clientes/create", [ClienteController::class, "create"])
+    ->name("clientes.create");
 
-    Route::post("/clientes/create", [ClienteController::class, "store"])
-        ->name("clientes.create");
+Route::post("/clientes/create", [ClienteController::class, "store"])
+    ->name("clientes.create");
 
 // Editar clientes
-    Route::get("/clientes/{id}/edit", [ClienteController::class, "edit"])
-        ->name("clientes.edit")->where('id', '[0-9]+');
+Route::get("/clientes/{id}/edit", [ClienteController::class, "edit"])
+    ->name("clientes.edit")->where('id', '[0-9]+');
 
-    Route::put("/clientes/{id}/edit", [ClienteController::class, "update"])
-        ->name("clientes.edit")->where('id', '[0-9]+');
+Route::put("/clientes/{id}/edit", [ClienteController::class, "update"])
+    ->name("clientes.edit")->where('id', '[0-9]+');
 
 // Eliminar clientes
-    Route::delete('/clientes/{user}', [ClienteController::class, 'destroy'])
-        ->name('clientes.destroy');
+Route::delete('/clientes/{user}', [ClienteController::class, 'destroy'])
+    ->name('clientes.destroy');
 
 // Visualizar clientes
-    Route::get("/clientes/{id}/", [ClienteController::class, "show"])
-        ->name("clientes.show")->where('id', '[0-9]+');
+Route::get("/clientes/{id}/", [ClienteController::class, "show"])
+    ->name("clientes.show")->where('id', '[0-9]+');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Productos
-    |--------------------------------------------------------------------------
-    */
+/*
+|--------------------------------------------------------------------------
+| Productos
+|--------------------------------------------------------------------------
+*/
 
 //HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
 // Listar productos
-    Route::get('/productos', [ProductoController::class, 'index'])
-        ->name('productos.index');
+Route::get('/productos', [ProductoController::class, 'index'])
+    ->name('productos.index');
 
 // Buscar productos
-    Route::get('/productos/busqueda', [ProductoController::class, 'search'])
-        ->name('productos.searchIndex');
+Route::get('/productos/busqueda', [ProductoController::class, 'search'])
+    ->name('productos.searchIndex');
 
 // Agregar productos
 Route::get("/productos/create", [ProductoController::class, "create"])
-        ->name("productos.create");
+    ->name("productos.create");
 
 Route::post("/productos/create", [ProductoController::class, "store"])
-        ->name("productos.create");
+    ->name("productos.create");
 
 // Editar productos
 Route::get("/productos/{id}/edit", [ProductoController::class, "edit"])
-        ->name("productos.edit")->where('id', '[0-9]+');
+    ->name("productos.edit")->where('id', '[0-9]+');
 
 Route::put("/productos/{id}/edit", [ProductoController::class, "update"])
-        ->name("productos.edit")->where('id', '[0-9]+');
+    ->name("productos.edit")->where('id', '[0-9]+');
 
 // Visualizar productos
 Route::get("/productos/{id}/", [ProductoController::class, "show"])
-        ->name("productos.show")->where('id', '[0-9]+');
+    ->name("productos.show")->where('id', '[0-9]+');
 
 // Eliminar productos
-    Route::delete('/productos/{user}', [ProductoController::class, 'destroy'])
-        ->name('productos.destroy');
+Route::delete('/productos/{user}', [ProductoController::class, 'destroy'])
+    ->name('productos.destroy');
 
 /*
 |--------------------------------------------------------------------------
@@ -151,23 +150,23 @@ Route::get("/productos/{id}/", [ProductoController::class, "show"])
 |--------------------------------------------------------------------------
 */
 
-//HU23 - index, create, store, show, edit, updare, destroy
+//Listar pedidos
 Route::resource('/pedidos', PedidoController::class);
 
-// ver pedido
-Route::get('pedidos/{id}/show', [App\Http\Controllers\PedidoController::class, 'show']
-)->name('pedidos.mostrar');
+// Visualizar pedido
+Route::get('pedidos/{id}/show', [App\Http\Controllers\PedidoController::class, 'show'])
+    ->name('pedidos.mostrar');
 
-// editar pedido
-Route::get('/pedidos/{id}/editar',  [App\Http\Controllers\PedidoController::class, 'edit'])
-->name('pedido.edit')
-->where('id','[0-9]+');
+// Editar pedido
+Route::get('/pedidos/{id}/editar', [App\Http\Controllers\PedidoController::class, 'edit'])
+    ->name('pedido.edit')
+    ->where('id', '[0-9]+');
 
-//Actualizar Pedido
 Route::put('/pedidos/{id}/editar', [App\Http\Controllers\PedidoController::class, 'update'])
-->name('pedido.update')
-->where('id','[0-9]+');
+    ->name('pedido.update')
+    ->where('id', '[0-9]+');
 
+// Eliminar pedido
 Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])
     ->name('pedidos.destroy');
 
@@ -182,25 +181,31 @@ Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])
 Route::get('/proveedor', [ProveedorController::class, 'index'])
     ->name('proveedor.index');
 
-// Crear proveedor
-Route::post('/proveedor/crear', [ProveedorController::class, 'store'])
-    ->name('proveedor.store');
+// Agregar proveedor
+Route::get("/proveedor/create", [UserController::class, "create"])
+    ->name("proveedor.create");
+
+Route::post("/proveedor/create", [UserController::class, "store"])
+    ->name("proveedor.create");
 
 // Eliminar proveedor
 Route::delete('/proveedor/{proved}', [ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
 
 // Editar proveedor
-Route::get('/proveedor/{id}/edit', [ProveedorController::class, 'edit'])
-    ->name('proveedor.edit');
+Route::get("/proveedor/{id}/edit", [UserController::class, "edit"])
+    ->name("proveedor.edit")->where('id', '[0-9]+');
+
+Route::put("/proveedor/{id}/edit", [UserController::class, "update"])
+    ->name("proveedor.edit")->where('id', '[0-9]+');
 
 // Editar proveedor
 Route::put('/proveedor/{id}/editar', [ProveedorController::class, 'update'])
     ->name('proveedor.update');
 
 // Visualizar proveedor
-    Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])
-        ->name("proveedor.show")->where('id', '[0-9]+');
+Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])
+    ->name("proveedor.show")->where('id', '[0-9]+');
 
 /*
 |--------------------------------------------------------------------------
@@ -211,8 +216,7 @@ Route::put('/proveedor/{id}/editar', [ProveedorController::class, 'update'])
 // Visualizar ventas
 Route::resource('/ventas', VentaClienteController::class);
 
-//Crear venta
-
+// Registrar venta
 Route::get("/ventas/create", [App\Http\Controllers\VentaClienteController::class, "create"])
     ->name("ventas.create");
 
@@ -226,16 +230,14 @@ Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::cla
 // Factura ventas
 Route::get('/ventas/facturas/{id}', [App\Http\Controllers\VentaClienteController::class, 'show'])
     ->name('ventas.facturas');
-    // Vista Previa Factura
+
+// Vista Previa Factura
 Route::get('/ventas/factura/', [App\Http\Controllers\VentaClienteController::class, 'factura'])
-->name('ventas.factura');
+    ->name('ventas.factura');
 
-//buscar producto en ventas create
+//Buscar producto al registrar venta
 Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])
-    ->name('ventas.buscarpro');
-
-
-
+        ->name('ventas.buscarpro');
 
 /*
 |--------------------------------------------------------------------------
@@ -245,9 +247,9 @@ Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteContr
 
 // Visualizar Compras
 Route::resource('/compras', CompraClienteController::class);
-Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::class, 'compra_guardar'])
-    ->name('compras.guardar_compra');
 
+Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::class, 'compra_guardar'])
+        ->name('compras.guardar_compra');
 
 /*
 |--------------------------------------------------------------------------
@@ -255,13 +257,9 @@ Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::c
 |--------------------------------------------------------------------------
 */
 
-// Visualizar Inventario
-
+// Visualizar inventario
 Route::get('/inventario', [ProductoController::class, 'index_inventario'])
     ->name('inventario.index');
-
-});
-
 
 /*
 |--------------------------------------------------------------------------
@@ -299,3 +297,50 @@ Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy']
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
 
+/*
+|--------------------------------------------------------------------------
+| Reparaciones
+|--------------------------------------------------------------------------
+*/
+
+// Listar reparaciones
+Route::get('/reparaciones', [ReparacionController::class, 'index'])
+    ->name('reparaciones.index');
+
+// Buscar reparaciones
+Route::get('/reparaciones/busqueda', [ReparacionController::class, 'search'])
+    ->name('reparaciones.searchIndex');
+
+// Agregar reparaciones
+Route::get("/reparaciones/create", [ReparacionController::class, "create"])
+    ->name("reparaciones.create");
+
+Route::post("/reparaciones/create", [ReparacionController::class, "store"])
+    ->name("reparaciones.create");
+
+// Editar reparaciones
+Route::get("/reparaciones/{id}/edit", [ReparacionController::class, "edit"])
+    ->name("reparaciones.edit")->where('id', '[0-9]+');
+
+Route::put("/reparaciones/{id}/edit", [ReparacionController::class, "update"])
+    ->name("reparaciones.edit")->where('id', '[0-9]+');
+
+// Eliminar reparaciones
+Route::delete('/reparaciones/{reparacion}', [ReparacionController::class, 'destroy'])
+    ->name('reparaciones.destroy');
+
+// Visualizar reparaciones
+Route::get("/reparaciones/{id}/", [ReparacionController::class, "show"])
+    ->name("reparaciones.show")->where('id', '[0-9]+');
+
+/*
+|--------------------------------------------------------------------------
+| Cobros
+|--------------------------------------------------------------------------
+*/
+
+// Listar cobros
+Route::get('/cobros', [CuentasPorCobrarController::class, 'index'])
+    ->name('cobros.index');
+
+});
