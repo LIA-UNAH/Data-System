@@ -11,6 +11,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
+use App\Http\Controllers\CuentasPorCobrarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -298,3 +299,11 @@ Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy']
 Route::get("/categorias/{id}/", [CategoriaController::class, "show"])
     ->name("categorias.show")->where('id', '[0-9]+');
 
+/*
+|--------------------------------------------------------------------------
+| Cuentas por cobrar
+|--------------------------------------------------------------------------
+*/
+
+//index, create, store, show, edit, updare, destroy
+Route::resource('/cobros', CuentasPorCobrarController::class);
