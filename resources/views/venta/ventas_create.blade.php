@@ -307,7 +307,7 @@
                                 </div>
 
                                 <div class="col-sm-5 mb-3 mb-sm-0" style="padding: 3px">
-                                    <div class="table-responsive">
+                                    <div class="table">
                                         <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                                             <thead class="bg-none bgc-default-tp1">
                                             <tr class="text-white">
@@ -346,13 +346,13 @@
                                             <span class="text-secondary-d1 text-105"></span>
 
                                             <a href="#" onclick="guardar_venta()"
-                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Guardar</a>
+                                               class="btn btn-info btn-bold px-3 float-right mt-3 mt-lg-0">Guardar</a>
 
                                             <a href="/ventas"
-                                               class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0">Cancelar</a>
+                                               class="btn btn-danger btn-bold px-3 float-right mt-2 mt-lg-0">Cancelar</a>
 
                                             <a href="" onclick=""
-                                               class="btn btn-info btn-bold px-1 float-left mt-3 mt-lg-0">Guardar Preventa</a>
+                                               class="btn btn-info btn-bold px-2 float-left mt-3 mt-lg-0">Guardar Preventa</a>
                                         </div>
                                     </div>
 
