@@ -71,8 +71,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Cliente</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
+                        <th>Fecha de entrega</th>
+                        <th>Hora de entrega</th>
                         <th>Precio</th>
                         <th style="text-align: center">Visualizar</th>
                         <th style="text-align: center">Editar</th>
@@ -81,12 +81,11 @@
                     </thead>
                     <tbody>
                     @forelse($reparaciones as $valor=> $reparacion)
-
                             <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                                 <td scope="row"><strong>{{ $valor +$reparaciones->firstItem() }}</strong></td>
                                 <td scope="row">{{ $reparacion->cliente }}</td>
-                                <td> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_entrada)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_entrada)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($reparacion->fecha_entrada)->isoFormat("YYYY")}}</strong></td>
                                 <td> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("YYYY")}}</strong></td>
+                                <td> <strong>{{ $reparacion->hora_salida }}</strong></td>
                                 <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkred">L. {{ number_format($reparacion->costo_reparacion, 2, ".", ",") }}</strong></td>
                                 <td style="text-align: center"><a class="btn btn-primary" href="{{route('reparaciones.show',['id'=>$reparacion->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
                                 <td style="text-align: center"><a class="btn btn-success" href="{{route("reparaciones.edit",["id"=>$reparacion->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
