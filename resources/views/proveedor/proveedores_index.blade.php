@@ -122,17 +122,14 @@
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-body">
-
                                                 ¿Desea eliminar al proveedor
                                                 <strong>{{ $proveedor->nombre_proveedor }}?</strong>
-
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary btn-sm"
                                                     data-bs-dismiss="modal">Cerrar</button>
                                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>

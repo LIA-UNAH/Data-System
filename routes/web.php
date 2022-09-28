@@ -182,10 +182,10 @@ Route::get('/proveedor', [ProveedorController::class, 'index'])
     ->name('proveedor.index');
 
 // Agregar proveedor
-Route::get("/proveedor/create", [UserController::class, "create"])
+Route::get("/proveedor/create", [ProveedorController::class, "create"])
     ->name("proveedor.create");
 
-Route::post("/proveedor/create", [UserController::class, "store"])
+Route::post("/proveedor/create", [ProveedorController::class, "store"])
     ->name("proveedor.create");
 
 // Eliminar proveedor
@@ -193,10 +193,10 @@ Route::delete('/proveedor/{proved}', [ProveedorController::class, 'destroy'])
     ->name('proveedor.destroy');
 
 // Editar proveedor
-Route::get("/proveedor/{id}/edit", [UserController::class, "edit"])
+Route::get("/proveedor/{id}/edit", [ProveedorController::class, "edit"])
     ->name("proveedor.edit")->where('id', '[0-9]+');
 
-Route::put("/proveedor/{id}/edit", [UserController::class, "update"])
+Route::put("/proveedor/{id}/edit", [ProveedorController::class, "update"])
     ->name("proveedor.edit")->where('id', '[0-9]+');
 
 // Editar proveedor

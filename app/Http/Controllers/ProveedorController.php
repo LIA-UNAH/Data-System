@@ -186,7 +186,7 @@ class ProveedorController extends Controller
     public function destroy($id)
     {
         Proveedor::destroy($id);
-        return redirect()->route('proveedor.index');
+        return redirect()->route('proveedor.index')->with("error", "Se eliminó exitosamente el proveedor.");
     }
 
 
