@@ -17,9 +17,9 @@ class UserTableSeeder extends Seeder
     {
         $us = User::create(
             [
-                'name'=>'Administrador',
-                'email'=>'admin@unah.hn',
-                'password' => bcrypt('12345678'),
+                'name'=>'Data System',
+                'email'=>'data-system@outlook.es',
+                'password' => bcrypt('DSA12345678.'),
                 'type'=>'Administrador',
                 'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
                 'telephone'=>'99999999',

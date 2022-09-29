@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -122,9 +123,12 @@ class CreatePermissionTables extends Migration
 
 
 
-            $role = Role::create(['name' => 'Administrador']);
-            $role = Role::create(['name' => 'Empleado']);
-            $role = Role::create(['name' => 'Cliente']);
+        $role = Role::create(['name' => 'Administrador']);
+        $role2 = Role::create(['name' => 'Empleado']);
+        $role3 = Role::create(['name' => 'Cliente']);
+        Permission::create(['name'=> 'controlTotal'])->syncRoles([$role]);
+        Permission::create(['name'=> 'controlParcial'])->syncRoles([$role,$role2]);
+        Permission::create(['name'=> 'controlDeCliente'])->syncRoles([$role,$role2,$role3]);
     }
 
     /**
