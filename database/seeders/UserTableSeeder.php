@@ -17,12 +17,12 @@ class UserTableSeeder extends Seeder
     {
         $us = User::create(
             [
-                'name'=>'Data System',
+                'name'=>'Aleksandr Nolasco',
                 'email'=>'data-system@outlook.es',
                 'password' => bcrypt('DSA12345678.'),
                 'type'=>'Administrador',
-                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
-                'telephone'=>'99999999',
+                'address'=>'La Esperanza, Intibuca; barrio el centro, frente emprendedores agrícolas negocio DSA',
+                'telephone'=>'32042936',
                 'image'=>'Perfil (39).jpg'
             ]
         );
