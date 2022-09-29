@@ -344,3 +344,4 @@ Route::get('/cobros', [CuentasPorCobrarController::class, 'index'])->middleware(
     ->name('cobros.index');
 
 });
+

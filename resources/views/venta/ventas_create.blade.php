@@ -243,12 +243,7 @@
                                     <div class="input-group">
                                         <input type="text" name="buscar_producto" id="buscar_producto"
                                                class="form-control border-0 small" placeholder="Buscar producto"
-                                               aria-label="Search" aria-describedby="basic-addon2" style="">
-                                        <div class="input-group-append">
-                                            <a href="#" class="btn btn-primary" onclick="buscar()">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </a>
-                                        </div>
+                                               aria-label="Search" aria-describedby="basic-addon2" style=""  onkeyup="filtrar_productos()">
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +302,7 @@
                                 </div>
 
                                 <div class="col-sm-5 mb-3 mb-sm-0" style="padding: 3px">
-                                    <div class="table">
+                                    <div class="table-responsive">
                                         <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                                             <thead class="bg-none bgc-default-tp1">
                                             <tr class="text-white">
@@ -346,13 +341,13 @@
                                             <span class="text-secondary-d1 text-105"></span>
 
                                             <a href="#" onclick="guardar_venta()"
-                                               class="btn btn-info btn-bold px-3 float-right mt-3 mt-lg-0">Guardar</a>
+                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Guardar</a>
 
                                             <a href="/ventas"
-                                               class="btn btn-danger btn-bold px-3 float-right mt-2 mt-lg-0">Cancelar</a>
+                                               class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0">Cancelar</a>
 
                                             <a href="" onclick=""
-                                               class="btn btn-info btn-bold px-2 float-left mt-3 mt-lg-0">Guardar Preventa</a>
+                                               class="btn btn-info btn-bold px-1 float-left mt-3 mt-lg-0">Guardar Preventa</a>
                                         </div>
                                     </div>
 
@@ -368,6 +363,64 @@
 
     </form>
     <script>
+        let productos = @json($productos);
+        let busqueda = [];
+        function filtrar_productos() {
+            let textobusqueda = document.getElementById("buscar_producto").value;
+            busqueda = [];
+            productos.forEach(function(product){
+                let texto = product.marca + " " + product.modelo;
+                if(texto.toLowerCase().includes(textobusqueda.toLowerCase())){
+                    busqueda.push(product);
+                }
+            });
+
+            let contenedor = document.getElementById('producto');
+            contenedor.innerHTML = '';
+
+            busqueda.forEach(function(params) {
+
+                let componente =  '<div class="agregar-factura" id="" \
+                                    style="display:block;  height: 170px; width: 140px; padding: 3px">\
+                                    <div class="card h-100 btn" data-id="'+params.id+'">\
+                                                            <!-- Cantidad en existencia -->\
+                                                            <div class="badge bg-dark text-white position-absolute"\
+                                                                 style="top: 0.5rem; right: 0.5rem">\
+                                                                 '+params.existencia+' unidades\
+                                                            </div>\
+                                                            <!-- Imagen del producto-->\
+                                                            <img class="card-img-top"\
+                                                                 src="/images/products/'+params.imagen_producto+'"\
+                                                                 width="00px"\
+                                                                 height="80px" alt="..."/>\
+                                                            <div class="" style="text-align:center ;">\
+                                                                <div class="text-center">\
+                                                                    <!-- Nombre del producto -->\
+                                                                    <p class="nombre" id="nombre">\
+                                                                        <strong style="font-size: 12px">'+params.marca+' '+params.modelo+'</strong>\
+                                                                    </p>\
+                                                                    <!-- Precio del producto-->\
+                                                                    <div class="p">\
+                                                                        <span id="pre" class="pre text-muted text-decoration-line">\
+                                                                            <strong style="font-size: 15px"> L. '+params.prec_venta_fin+'</strong>\
+                                                                        </span>\
+                                                                    </div>\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>';
+                contenedor.innerHTML+=componente;
+
+                const Clickbutton = document.querySelectorAll('.btn');
+
+                Clickbutton.forEach(btn => {
+                    btn.addEventListener('click', addFactura);
+                });
+            });
+
+
+
+        }
         function buscar() {
             var impu_buscar = document.getElementById("buscar_producto");
             window.location.href = "{{ route('ventas.buscarpro') }}?buscar_producto=" + impu_buscar.value;
@@ -526,5 +579,6 @@
 
     </script>
 @endsection
+
 
 
