@@ -337,18 +337,14 @@
 
                                         <hr/>
 
-                                        <div class="d-flex flex-row justify-content-center">
-
-                                            <input type="text" name="pagado" hidden>
-
-                                            <a href="#" onclick="guardar_venta_pagada()"
-                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 mr-2">Guardar y Pagar</a>
+                                        <div>
+                                            <span class="text-secondary-d1 text-105"></span>
 
                                             <a href="#" onclick="guardar_venta()"
-                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 mr-2">Guardar</a>
+                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Guardar</a>
 
                                             <a href="/ventas"
-                                               class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0 mr-2">Cancelar</a>
+                                               class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0">Cancelar</a>
 
                                         </div>
                                     </div>
@@ -434,14 +430,6 @@
 
             formul.submit();
         }
-
-        function guardar_venta_pagada() {
-            var formul = document.getElementById("formulario_ventas")
-            formul.pagado.value = "true"
-            formul.submit();
-        }
-
-        
 
         const Clickbutton = document.querySelectorAll('.btn');
         const tbody = document.querySelector('#content-fac');

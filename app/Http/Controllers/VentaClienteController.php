@@ -21,9 +21,10 @@ class VentaClienteController extends Controller
     public function index()
     {
         $ventas = Venta::select('ventas.id','ventas.numero_factura_venta','ventas.fecha_factura',
-        'a.name as usuario','b.name as cliente', 'tipo_cliente_factura')
+        'a.name as usuario','b.name as cliente', 'tipo_cliente_factura', 'ventas.estado')
         ->join("users as a", "ventas.user_id", "=", "a.id")
         ->join("users as b", "ventas.cliente_id", "=", "b.id")
+        ->where('estado', '=', 'en_proceso')
         ->paginate(5);
 
         foreach ($ventas as $key => $value) {
@@ -142,6 +143,7 @@ class VentaClienteController extends Controller
         $venta->user_id = $request->input('usuario_id');
         $venta->cliente_id = $request->input('cliente_id');
         $venta->tipo_cliente_factura = $request->input('tipo_cliente');
+        $venta->estado = $request->input("pagado") == "true" ? "pagado" : "en_proceso";
         $venta->save();
 
 
@@ -161,8 +163,6 @@ class VentaClienteController extends Controller
 
         return redirect()->route('ventas.index');
     }
-
-
 
 
     /**
@@ -213,5 +213,21 @@ class VentaClienteController extends Controller
 
         session()->put('suce', 'Eliminado con exito.');
         return redirect()->back()->withInput();
+    }
+
+    /**
+     * Marca en estado pagado la venta
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function pagar_factura($id){
+        $venta = Venta::FindOrfail($id);
+
+        $venta->estado = 'pagado';
+        $venta->save();
+
+        return redirect()->back();
+
     }
 }

@@ -150,12 +150,26 @@ hr {
     <div class="container px-0">
         <div class="row mt-4">
             <div class="col-12 col-lg-12">
-                <div class="row">
-                    <div class="col-12">
+                <div class="d-flex flex-row-reverse">
+                    <div class="col">
+                        <div class="text-right text-150">
+                            <span class="text-default-d3">Estado</span>
+                            @if ($venta->estado == "en_proceso")
+                                <i class="fas fa-circle text-blue-m2" title="En Proceso"></i>
+                                
+                            @else
+                                <i class="fas fa-circle text-success-m2" title="Pagado"></i>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col">
                         <div class="text-center text-150">
                             <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
                             <span class="text-default-d3">Data-System</span>
                         </div>
+                    </div>
+                    <div class="col">
+                        
                     </div>
                 </div>
 
@@ -291,6 +305,9 @@ hr {
 
                     <div>
                         <span class="text-secondary-d1 text-105">Gracias Por Comprar En Nuestro Negocio</span>
+                        @if ($venta->estado == "en_proceso")
+                            <a href="{{route('ventas.pagar', $venta->id)}}" class="btn btn-success btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pagar</a>
+                        @endif                            
                         <a href="/ventas" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Cerrar</a>
                     </div>
                 </div>

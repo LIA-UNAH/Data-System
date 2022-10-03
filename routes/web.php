@@ -237,7 +237,11 @@ Route::get('/ventas/factura/', [App\Http\Controllers\VentaClienteController::cla
 
 //Buscar producto al registrar venta
 Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])->middleware('can:controlParcial')
-        ->name('ventas.buscarpro');
+    ->name('ventas.buscarpro');
+
+//marcar venta como pagada
+Route::get('/ventas/pagar/{id}', [VentaClienteController::class, 'pagar_factura'])->middleware('can:controlParcial')
+    ->name('ventas.pagar');
 
 /*
 |--------------------------------------------------------------------------
