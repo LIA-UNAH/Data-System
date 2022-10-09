@@ -12,4 +12,5 @@ class CuentasPorCobrarController extends Controller
         $cobros = CuentasPorCobrar::paginate(10);
         return view('cobros.cobros_index')->with('cobros', $cobros);
     }
+    
 }
