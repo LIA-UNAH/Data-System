@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reparacion;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReparacionController extends Controller
 {
@@ -23,11 +24,22 @@ class ReparacionController extends Controller
         return view('reparacion.reparaciones_index')->with('reparaciones', $reparaciones);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //H49 - Recargar y buscar reparación
+    public function search(Request $request){
+        $texto =trim($request->get('busqueda'));
+        $reparaciones = DB::table('reparacions')
+            ->join('users', 'users.id', '=', 'reparacions.cliente_id')
+            ->select('reparacions.id','reparacions.fecha_entrada','reparacions.fecha_salida',
+                'reparacions.costo_reparacion', 'reparacions.hora_salida', 'users.name as cliente')
+            ->Where('name', 'LIKE', '%'. $texto. '%')
+            ->orWhere('fecha_entrada', 'LIKE', '%'. $texto. '%')
+            ->orWhere('fecha_salida', 'LIKE', '%'. $texto. '%')
+            ->orWhere('hora_salida', 'LIKE', '%'. $texto. '%')->paginate(5);
+
+        return view('reparacion.reparaciones_index', compact('reparaciones', 'texto'));
+    }
+
+    //H48 - Registrar reparación
     public function create()
     {
         $usuarios = User::where('type', '=', 'cliente')->get();
@@ -99,12 +111,7 @@ class ReparacionController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //H45 - Editar reparaciones
     public function edit(Request $request, $id)
     {
         $reparacion = Reparacion::findOrFail($id);
@@ -112,13 +119,6 @@ class ReparacionController extends Controller
         return view('reparacion.reparaciones_edit', compact('usuarios'))->with('reparacion', $reparacion);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $reparaciones = Reparacion::findOrFail($id);
@@ -176,13 +176,7 @@ class ReparacionController extends Controller
         return redirect()->route('reparaciones.index')->with('exito', '¡La reparación ha sido actualizada con exito!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
+    //H46 - Eliminar reparación
     public function destroy(Reparacion $reparacion){
         $reparacion->delete();
         return redirect()->route("reparaciones.index")->with("error", "Se eliminó exitosamente la reparación.");
