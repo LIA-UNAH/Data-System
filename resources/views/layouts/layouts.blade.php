@@ -24,9 +24,16 @@
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.1.0/dist/css/tom-select.css" rel="stylesheet">
 
+    {{-- AlpineJS --}}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    {{-- Liviwire --}}
+    @livewireStyles
+
 </head>
 
 <body id="page-top" >
+    @livewireScripts
 
 <!-- Page Wrapper -->
 <div id="wrapper">

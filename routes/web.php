@@ -13,6 +13,8 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
+use App\Http\Livewire\Ventas\VentaCreate;
+use App\Http\Livewire\Ventas\VentaIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -214,14 +216,14 @@ Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])->middleware
 */
 
 // Visualizar ventas
-Route::resource('/ventas', VentaClienteController::class)->middleware('can:controlParcial');
+// Route::resource('/ventas', VentaClienteController::class)->middleware('can:controlParcial');
+Route::get('/ventas', VentaIndex::class)->name('ventas.index')->middleware('can:controlParcial');
 
 // Registrar venta
-Route::get("/ventas/create", [App\Http\Controllers\VentaClienteController::class, "create"])->middleware('can:controlParcial')
-    ->name("ventas.create");
+Route::get('/ventas/create', VentaCreate::class)->name('ventas.create')->middleware('can:controlParcial');
 
-Route::post("/ventas/create", [App\Http\Controllers\VentaClienteController::class, "store"])->middleware('can:controlParcial')
-    ->name("ventas.store");
+// //Editar venta
+Route::get('/ventas/{id}/editar', VentaCreate::class)->name('ventas.edit')->middleware('can:controlParcial');
 
 // Buscar ventas
 Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::class, 'search'])->middleware('can:controlParcial')
@@ -239,9 +241,11 @@ Route::get('/ventas/factura/', [App\Http\Controllers\VentaClienteController::cla
 Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])->middleware('can:controlParcial')
     ->name('ventas.buscarpro');
 
-//marcar venta como pagada
+//Marcar venta como pagada
 Route::get('/ventas/pagar/{id}', [VentaClienteController::class, 'pagar_factura'])->middleware('can:controlParcial')
     ->name('ventas.pagar');
+
+
 
 /*
 |--------------------------------------------------------------------------

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('users');
             $table->string("tipo_cliente_factura",25);
+            $table->double("total", 12, 2);
             $table->enum("estado", ['en_proceso', 'pagado'])->default("en_proceso");
             $table->timestamps();
         });

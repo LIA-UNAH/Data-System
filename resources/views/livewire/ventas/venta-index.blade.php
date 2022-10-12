@@ -1,5 +1,4 @@
-@extends('Layouts.Layouts')
-@section('content')
+<div>
     {{-- Mensajes de las operaciones realizadas --}}
     {{-- Para los mensajes afirmativos y sin errores --}}
     @if (session()->has('suce'))
@@ -16,7 +15,7 @@
         </div>
     @endif
     {{-- Terminan los mensajes --}}
-
+    
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
             <div style="float: left">
@@ -51,7 +50,7 @@
                                     style="color: white"></i></a>
                     </div>
                     <!-- Vista previa  -->
-                    <div style="float: left; margin-left: 5px">
+                    <div style="float: left; margin-left: 15px">
                         <td style="text-align: center"><a class="btn btn-secondary" href="{{ route('ventas.factura') }}"
                                 style=" border: 2px solid #ffffff;border-radius: 4px">
                                 <i class="fa fa-plus-square" style="color: white"></i> Vista Previa</a>
@@ -73,7 +72,7 @@
 
                     <!-- Ordenar  -->
 
-                    <div style="text-align: center; float: left; margin-left: 15px" id="dropdownMenuButton1"
+                    <div style="text-align: center; float: left; margin-left: 15px;" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false"><a
                             style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
                             href=""><i class="bi bi-calendar-check-fill"></i> Ordenar</a>
@@ -84,17 +83,16 @@
                         </ul>
                     </div>
 
-                    <div style="text-align: center; float: left; margin-left: 15px" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false"><a
-                            style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
-                            href=""><i class="bi bi-calendar-check-fill"></i> Estado</a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">En Proceso</a></li>
-                            <li><a class="dropdown-item" href="#">Pagado</a></li>
+                    <div style="text-align: center; float: left; margin-left: 15px; margin-right: 15px;" class="dropdown">
+                        <button style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Estado
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#" wire:click.prevent="$set('filtros.estado', 'en_proceso')">En proceso</a></li>
+                          <li><a class="dropdown-item" href="#" wire:click.prevent="$set('filtros.estado', 'pagado')">Pagado</a></li>
                         </ul>
                     </div>
 
-                    <!-- Añadir -->
                 </div>
 
             </div>
@@ -118,11 +116,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($ventas as $i=>  $venta)
+                    @forelse($ventas as $venta)
                         <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                             <td> <strong>{{ $venta->numero_factura_venta }}</strong></td>
-                            <td>{{ $venta->usuario }}</td>
-                            <td>{{ $venta->cliente }}</td>
+                            <td>{{ $venta->user->name }}</td>
+                            <td>{{ $venta->cliente->name }}</td>
                             <td>L {{ number_format($venta->total, 2, '.', ',') }}</td>
                             <td> <strong>{{ \Carbon\Carbon::parse($venta->fecha_factura)->isoFormat('DD') }} de
                                     {{ \Carbon\Carbon::parse($venta->fecha_factura)->isoFormat('MMMM') }},
@@ -153,10 +151,4 @@
             <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $ventas->links() }}</div>
         </div>
     </div>
-    <script>
-        function buscarVenta() {
-            var impu_buscar = document.getElementById("buscar_venta");
-            window.location.href = "{{ route('ventas.searchIndex') }}?buscar_venta=" + impu_buscar.value;
-        }
-    </script>
-@endsection
+</div>

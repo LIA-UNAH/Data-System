@@ -141,14 +141,15 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
-    <form action="{{ route('ventas.store') }}" id="formulario_ventas" name="formulario_ventas" method="POST">
+    <form action="{{ route('ventas.update', $venta->id) }}" id="formulario_ventas" name="formulario_ventas" method="POST">
         @csrf
+        @method('PUT')
 
         <div class="modal-body" style="font-family: 'Nunito', sans-serif; font-size: small; padding-top: 10px">
             <div class="page-content container-fluid">
                 <div class="page-header text-blue-d2">
-                    <h5 class="text-secondary-d1">Factura: <strong>{{$num_factura}}</strong></h5>
-                    <input name="numero_factura" value="{{$num_factura}}" type="text" readonly hidden>
+                    <h5 class="text-secondary-d1">Factura: 001-001-00-00000001</strong></h5>
+                    <input name="numero_factura" value="" type="text" readonly hidden>
                     <input name="usuario_id" value="{{Auth::user()->id}}" type="number" readonly hidden>
                 </div>
 
@@ -162,7 +163,7 @@
                                     <select class="form-control @error('cliente_id') is-invalid @enderror"
                                             id="cliente_id"
                                             required autocomplete="cliente_id" name="cliente_id" autofocus onchange="funcionObtenerTel()">
-                                        <option value="">Seleccione el cliente</option>
+                                        <option value="{{$venta->cliente->name}}">{{$venta->cliente->name}}</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}" {{ old('cliente_id') == $user->id ? 'selected' : '' }}>{{$user['name']}}</option>
                                         @endforeach
@@ -180,7 +181,7 @@
                                     <select class="form-control @error('tipo_cliente') is-invalid @enderror"
                                             id="tipo_cliente"
                                             required autocomplete="tipo_cliente" name="tipo_cliente" autofocus>
-                                        <option value="">Seleccione el tipo de cliente</option>
+                                        <option value="{{$venta->tipo_cliente_factura}}" style="display: none">{{$venta->tipo_cliente_factura == "consumidor_final" ? "Consumidor Final" : "Mayorista"}}</option>
                                         <option value="consumidor_final" @if (old('tipo_cliente') == "consumidor_final") {{ 'selected' }} @endif>Consumidor Final</option>
                                         <option value="mayorista" @if (old('tipo_cliente') == "mayorista") {{ 'selected' }} @endif>Mayorista</option>
                                     </select>
@@ -198,7 +199,7 @@
                                     <input type="text"
                                            class="form-control @error('celular_cliente') is-invalid @enderror"
                                            id="celular_cliente"
-                                           name="celular_cliente" value="{{ old('celular_cliente') }}" required
+                                           name="celular_cliente" value="{{ $venta->cliente->telephone }}" required
                                            autocomplete="celular_cliente"
                                            autofocus readonly
                                            style="background-color: white">
@@ -213,7 +214,7 @@
                                 <div class="col-sm-2 mb-3 mb-sm-0">
                                     <label class="text-secondary-d1"><strong>Nombre del vendedor:</strong></label>
                                     <input type="text" class="form-control"
-                                           value="{{ Auth::user()->name }}" required
+                                           value="{{ $venta->user->name }}" required
                                            autofocus readonly
                                            style="background-color: white" >
                                 </div>
@@ -223,7 +224,7 @@
                                     <label for="current_date" class="text-secondary-d1"><strong>Fecha:</strong></label>
                                     <input type="date" class="form-control @error('current_date') is-invalid @enderror"
                                            id="current_date"
-                                           name="current_date" value="{{Carbon\Carbon::now()->format('Y-m-d')}}"
+                                           name="current_date" value="{{$venta->fecha_factura}}"
                                            required
                                            autocomplete="current_date"
                                            autofocus readonly
@@ -303,7 +304,7 @@
 
                                 <div class="col-sm-5 mb-3 mb-sm-0" style="padding: 3px">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
+                                        <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1" id="tabla_detalle">
                                             <thead class="bg-none bgc-default-tp1">
                                             <tr class="text-white">
                                                 <th colspan="3">Detalle</th>
@@ -315,6 +316,20 @@
                                             </thead>
 
                                             <tbody id="content-fac" class="content-fac">
+                                                {{-- @foreach ($venta->detalle_venta as $item)
+                                                    <tr>
+                                                        <td colspan="3" class="titulo">{{$item->producto->marca}} {{$item->producto->modelo}}</td>
+                                                        <td>
+                                                            <input onchange="renderFactura()" type="number" min="1" style ="width :40px;" value ="{{$item->cantidad_detalle_venta}}" class="input_Element"></input>
+                                                        </td>
+                                                        <td  width="140">{{$item->precio_venta}}</td>
+                                                        <td  width="140">L. {{($item->precio_venta * $item->cantidad_detalle_venta)}}</td>
+                            
+                                                        <td width="140">
+                                                            <button type="button" class="borrar-producto fas fa-times-circle" onclick="deleteRow"></button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach --}}
                                             </tbody>
                                             <input type="text" name="tuplas" hidden>
                                         </table>
@@ -337,14 +352,18 @@
 
                                         <hr/>
 
-                                        <div>
-                                            <span class="text-secondary-d1 text-105"></span>
+                                        <div class="d-flex flex-row justify-content-center">
+
+                                            <input type="text" name="pagado" hidden>
+
+                                            <a href="#" onclick="guardar_venta_pagada()"
+                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 mr-2">Guardar y Pagar</a>
 
                                             <a href="#" onclick="guardar_venta()"
-                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Guardar</a>
+                                               class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 mr-2">Guardar</a>
 
                                             <a href="/ventas"
-                                               class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0">Cancelar</a>
+                                               class="btn btn-danger btn-bold px-4 float-right mt-2 mt-lg-0 mr-2">Cancelar</a>
 
                                         </div>
                                     </div>
@@ -361,6 +380,36 @@
 
     </form>
     <script>
+        // function oninit(){
+        //     console.log(@json($venta))
+        //     cargar_detalle_venta()
+        // }
+
+        // oninit();
+
+        // function cargar_detalle_venta(){
+        //     tabla = document.getElementById("tabla_detalle");
+        //     filas = [];
+
+        //     @foreach (@json($venta->detalle_venta) as $item)
+        //         fila = `
+        //             <tr>
+        //                 <td colspan="3" class="titulo">${@json($item->producto->marca)} ${@json($item->producto->modelo)}</td>
+        //                 <td>
+        //                     <input onchange="renderFactura()" type="number" min="1" style ="width :40px;" value ="${item.cantidad_detalle_venta}" class="input_Element"></input>
+        //                 </td>
+        //                 <td  width="140">${item.precio_venta}</td>
+        //                 <td  width="140">L. ${($item.precio_venta * $item.cantidad_detalle_venta)}</td>
+        //             </tr>`
+        //         filas.append(fila);
+        //     @endforeach
+        //     // .forEach(item => {
+                
+        //     // });
+
+        //     tabla.querySelector('tbody').append(filas);
+        // }
+        
         let productos = @json($productos);
         let busqueda = [];
         function filtrar_productos() {
@@ -431,6 +480,14 @@
             formul.submit();
         }
 
+        function guardar_venta_pagada() {
+            var formul = document.getElementById("formulario_ventas")
+            formul.pagado.value = "true"
+            formul.submit();
+        }
+
+        
+
         const Clickbutton = document.querySelectorAll('.btn');
         const tbody = document.querySelector('#content-fac');
         let factura = [];
@@ -443,7 +500,6 @@
 
         function addFactura(e) {
             const boton = e.target;
-            console.log(boton);
             const item = boton.closest('.agregar-factura');
             const itemTitulo = item.querySelector('.nombre').textContent;
 
@@ -476,7 +532,8 @@
         }
 
         function renderFactura() {
-            tbody.innerHTML = '';
+            // tbody.innerHTML = "";
+            tabla = document.getElementById('tabla_detalle');
 
             var i = 0;
             factura.map(item => {
@@ -499,7 +556,7 @@
                             `;
 
                 tr.innerHTML = Content;
-                tbody.append(tr);
+                tabla.querySelector('tbody').append(tr);
 
                 tr.querySelector(".borrar-producto").addEventListener('click', QuitarItemCarrito);
                 tr.querySelector(".input_Element").addEventListener('change', cambCant);
@@ -525,17 +582,18 @@
         }
 
         function QuitarItemCarrito(e) {
-            const botonEliminar = e.target;
-            const tr = botonEliminar.closest(".itemFac");
-            const titulo = tr.querySelector('.titulo').textContent;
+            console.log(e.target)
+            // const botonEliminar = e.target;
+            // const tr = botonEliminar.closest(".itemFac");
+            // const titulo = tr.querySelector('.titulo').textContent;
 
-            for (let i = 0; i < factura.length; i++) {
-                if (factura[i].titulo.trim() === titulo.trim()) {
-                    factura.splice(i, 1);
-                }
-            }
-            tr.remove();
-            total()
+            // for (let i = 0; i < factura.length; i++) {
+            //     if (factura[i].titulo.trim() === titulo.trim()) {
+            //         factura.splice(i, 1);
+            //     }
+            // }
+            // tr.remove();
+            // total()
         }
 
         function cambCant(e) {
@@ -577,6 +635,3 @@
 
     </script>
 @endsection
-
-
-

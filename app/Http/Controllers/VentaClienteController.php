@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
+use App\Http\Livewire\Ventas\VentaCreate;
 use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Venta;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\If_;
 
 class VentaClienteController extends Controller
 {
@@ -185,8 +184,16 @@ class VentaClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $venta = Venta::findOrFail($id);
+        $productos = Producto::all();
+        $users = User::where('type', '=', 'cliente')->get();
+
+        return view('venta.ventas_edit', [
+            "venta" => $venta,
+            "productos" => $productos,
+            "users" => $users
+        ]);
     }
 
     /**
@@ -224,6 +231,8 @@ class VentaClienteController extends Controller
     public function pagar_factura($id){
         $venta = Venta::FindOrfail($id);
 
+        #metodo que esta en el controlador de livewire
+        $venta->numero_factura_venta = VentaCreate::generar_numero_factura();
         $venta->estado = 'pagado';
         $venta->save();
 
