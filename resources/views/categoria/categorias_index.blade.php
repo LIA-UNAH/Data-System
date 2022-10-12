@@ -6,14 +6,14 @@
     {{--Para los mensajes afirmativos y sin errores --}}
     @if (session()->has('exito'))
         <div class="alert alert-success alert-dismissible" role="alert">
-            {{ session('exito') }}
+            <strong>{{ session('exito') }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     {{--Para los mensajes de errores --}}
     @if (session()->has('error'))
         <div class="alert alert-danger" role="alert">
-            {{ session('error') }}
+            <strong>{{ session('error') }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif

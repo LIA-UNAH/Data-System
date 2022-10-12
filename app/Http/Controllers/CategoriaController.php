@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class CategoriaController extends Controller
 {
@@ -27,7 +28,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -61,7 +62,8 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        return view('categoria.categorias_edit', compact('categoria'));
     }
 
     /**
@@ -73,7 +75,30 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categorias = Categoria::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => ['required', 'string', 'min:2', 'max:20', Rule::unique('categorias')->ignore($categorias->id),],
+            'description' => ['required', 'string', 'min:2', 'max:255'],
+            'status' => ['required'],
+        ], [
+            'name.required' => '¡Debes ingresar el nombre de la categoria!',
+            'name.string' => '¡Debes ingresar el nombre de la categoria, solo se permiten letras!',
+            'name.min' => '¡Ingresa el nombre completo de la categoria, sin abreviaturas!',
+            'name.max' => '¡Has excedido el limite máximo de 20 letras!',
+
+            'description.required' => '¡Debes ingresar la descripción de la categoria!',
+            'description.string' => '¡Debes ingresar la descripción, verifica la información!',
+            'description.min' => '¡Ingresa la descripción completa, sin abreviaturas!',
+            'description.max' => '¡Has excedido el limite máximo de 255 letras!',
+
+            'status.required' => '¡Debes seleccionar un estado para la categoria!',
+        ]);;
+
+        $input = $request->all();
+        $categorias->update($input);
+
+        return redirect()->route("categorias.index")->with("exito", "Se editó exitosamente la categoria");
     }
 
     /**
