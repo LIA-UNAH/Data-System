@@ -8,7 +8,6 @@
                 <div style="float: left">
                     <h2 class="m-0 font-weight-bold" style="color: white">Detalle del Pedidos de <strong>{{$pedido->nombre_Cliente}}</strong></h2>
                   </div>
-                  <a class="btn btn-success" href="{{ route('pedido.edit', ['id' => $pedido->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                 </div>
 <br>
 
@@ -77,9 +76,9 @@
                           <div style="float:center">
                           
                               <a class="btn btn-dark" href="/pedidos">Volver</a>                   
-            
+                              <a class="btn btn-success" href="{{ route('pedido.edit', ['id' => $pedido->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                           </div>
-
+                        <br>
                           </form>
                 </div>
                 <br>
