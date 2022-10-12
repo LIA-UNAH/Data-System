@@ -75,7 +75,7 @@
             <div class="table-responsive" id="tblaBody">
                       <table class="table table" id="dataTable" width="100%" >
                           <thead class="card-header py-3" style="background: #1a202c; color:white">
-        <tr>
+        <tr style="font-family: 'Nunito', sans-serif; font-size: small">
             <th>N°</th>
             <th>Ciudad</th>
             <th>Fecha De Orden</th>

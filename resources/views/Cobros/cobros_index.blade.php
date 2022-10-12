@@ -101,7 +101,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="4">No hay pedidos ingresados</td>
+                <td colspan="4">No hay cobros ingresados</td>
             </tr>
 
         @endforelse
