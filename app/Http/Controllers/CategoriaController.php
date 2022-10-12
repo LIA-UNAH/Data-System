@@ -11,7 +11,7 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = DB::table('categorias')->paginate(10);
+        $categorias = DB::table('categorias')->paginate(4);
         return view('categoria/categorias_index')->with('categorias', $categorias);
     }
 
@@ -28,7 +28,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-
+        return view('categoria.categorias_create');
     }
 
     /**
@@ -39,7 +39,27 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'min:2', 'max:20'],
+            'description' => ['required', 'string', 'min:2', 'max:255'],
+            'status' => ['required'],
+        ], [
+            'name.required' => '¡Debes ingresar el nombre de la categoria!',
+            'name.string' => '¡Debes ingresar el nombre de la categoria, solo se permiten letras!',
+            'name.min' => '¡Ingresa el nombre completo de la categoria, sin abreviaturas!',
+            'name.max' => '¡Has excedido el limite máximo de 20 letras!',
+
+            'description.required' => '¡Debes ingresar la descripción de la categoria!',
+            'description.string' => '¡Debes ingresar la descripción, verifica la información!',
+            'description.min' => '¡Ingresa la descripción completa, sin abreviaturas!',
+            'description.max' => '¡Has excedido el limite máximo de 255 letras!',
+
+            'status.required' => '¡Debes seleccionar un estado para la categoria!',
+        ]);;
+
+        $input = $request->all();
+        Categoria::create($input);
+        return redirect()->route("categorias.index")->with("exito", "Se creó exitosamente la categoria");
     }
 
     /**
