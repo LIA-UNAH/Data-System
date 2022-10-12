@@ -17,8 +17,10 @@ class ReparacionController extends Controller
     public function index()
     {
         $reparaciones = Reparacion::select('reparacions.id','reparacions.fecha_entrada','reparacions.fecha_salida',
-            'reparacions.costo_reparacion', 'reparacions.hora_salida','a.name as cliente')
+            'reparacions.costo_reparacion', 'reparacions.hora_salida','reparacions.marca','reparacions.modelo','a.name as cliente','a.telephone as telefono')
             ->join("users as a", "reparacions.cliente_id", "=", "a.id")
+            ->orderBy('fecha_salida','ASC')
+            ->orderBy('hora_salida','ASC')
             ->paginate(5);
 
         return view('reparacion.reparaciones_index')->with('reparaciones', $reparaciones);
@@ -29,12 +31,15 @@ class ReparacionController extends Controller
         $texto =trim($request->get('busqueda'));
         $reparaciones = DB::table('reparacions')
             ->join('users', 'users.id', '=', 'reparacions.cliente_id')
-            ->select('reparacions.id','reparacions.fecha_entrada','reparacions.fecha_salida',
-                'reparacions.costo_reparacion', 'reparacions.hora_salida', 'users.name as cliente')
+            ->select('reparacions.id','reparacions.fecha_entrada','reparacions.fecha_salida', 'reparacions.marca',
+                'reparacions.modelo', 'reparacions.costo_reparacion', 'reparacions.hora_salida', 'users.name as cliente', 'users.telephone as telefono')
             ->Where('name', 'LIKE', '%'. $texto. '%')
             ->orWhere('fecha_entrada', 'LIKE', '%'. $texto. '%')
             ->orWhere('fecha_salida', 'LIKE', '%'. $texto. '%')
-            ->orWhere('hora_salida', 'LIKE', '%'. $texto. '%')->paginate(5);
+            ->orWhere('hora_salida', 'LIKE', '%'. $texto. '%')
+            ->orderBy('fecha_salida','ASC')
+            ->orderBy('hora_salida','ASC')
+            ->paginate(5);
 
         return view('reparacion.reparaciones_index', compact('reparaciones', 'texto'));
     }
@@ -108,7 +113,8 @@ class ReparacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $reparacion = Reparacion::find($id);
+        return view('reparacion.reparaciones_show', compact('reparacion'));
     }
 
     //H45 - Editar reparaciones

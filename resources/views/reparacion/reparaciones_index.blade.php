@@ -71,58 +71,25 @@
                     <tr>
                         <th>Id</th>
                         <th>Cliente</th>
-                        <th>Fecha de entrega</th>
-                        <th>Hora de entrega</th>
+                        <th>Teléfono</th>
+                        <th>Dispositivo</th>
+                        <th>Fecha de entrada</th>
+                        <th>Fecha de salida</th>
                         <th>Precio</th>
                         <th style="text-align: center">Visualizar</th>
-                        <th style="text-align: center">Editar</th>
-                        <th style="text-align: center">Desactivar</th>
                     </tr>
                     </thead>
                     <tbody>
                     @forelse($reparaciones as $valor=> $reparacion)
                             <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                                 <td scope="row"><strong>{{ $valor +$reparaciones->firstItem() }}</strong></td>
-                                <td scope="row">{{ $reparacion->cliente }}</td>
-                                <td> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("YYYY")}}</strong></td>
-                                <td> <strong>{{ $reparacion->hora_salida }}</strong></td>
-                                <td scope="row" style="width: 10%"><strong style="text-align: left; color: darkred">L. {{ number_format($reparacion->costo_reparacion, 2, ".", ",") }}</strong></td>
+                                <td scope="row"><strong>{{ $reparacion->cliente }}</strong></td>
+                                <td scope="row">{{ $reparacion->telefono }}</td>
+                                <td scope="row"> <strong>{{ $reparacion->marca }} {{ $reparacion->modelo }}</strong></td>
+                                <td style="color: #b02a37"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_entrada)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_entrada)->isoFormat("MMMM")}}</strong></td>
+                                <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las {{ $reparacion->hora_salida }}</strong></td>
+                                <td scope="row" style="width: 10%"><strong style="text-align: left">L. {{ number_format($reparacion->costo_reparacion, 2, ".", ",") }}</strong></td>
                                 <td style="text-align: center"><a class="btn btn-primary" href="{{route('reparaciones.show',['id'=>$reparacion->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
-                                <td style="text-align: center"><a class="btn btn-success" href="{{route("reparaciones.edit",["id"=>$reparacion->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
-                                {{-- Eliminar usuario se valiada para evitar que el usuario
-                                actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
-
-                                    <td style="text-align: center">
-                                        <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                           data-bs-target={{"#modal_eliminar_cliente".$reparacion->id}}><i class="fa fa-window-close" style="color: white"></i></a>
-                                    </td>
-
-                                    <div class="modal fade" id={{"modal_eliminar_cliente".$reparacion->id}} tabindex="-1"
-                                         aria-labelledby={{"modal_eliminar_cliente".$reparacion->id}} aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header" style="background: darkred; color: white">
-                                                    <h5 class="modal-title"  id="ModalLabel">Eliminar reparación</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close" style="color: white"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ¿Desea eliminar la reparación?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
-                                                    </button>
-                                                    <form action="{{ route('reparaciones.destroy', ['reparacion'=>$reparacion->id ]) }}"
-                                                          method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {{-- Hasta aqui el modal de eliminar --}}
                             </tr>
                             @empty
                                 <tr>

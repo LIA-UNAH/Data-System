@@ -17,9 +17,9 @@ class ReparacionFactory extends Factory
     public function definition()
     {
         return [
-            'fecha_entrada'=> $this->faker->numberBetween(01,28 ).$this->faker->randomElement($array = array (' de septiembre, 2022',' de octubre, 2022')),
-            'fecha_salida'=>$this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'hora_salida'=> '0'.$this->faker->numberBetween(1,8 ).':00'.$this->faker->randomElement($array = array (' PM',' AM')),
+            'fecha_entrada'=> '2022-11-'.$this->faker->numberBetween(05,11 ),
+            'fecha_salida'=> '2022-11-'.$this->faker->numberBetween(12,15 ),
+            'hora_salida'=> '0'.$this->faker->numberBetween(1,5 ).':00'.$this->faker->randomElement($array = array (' PM')),
             'marca'=> $this->faker->randomElement($array = array ('Samsung','Apple','LG','Sony')),
             'modelo'=> $this->faker->randomElement($array = array ('AX54','S8+ 5G','7KRT','R56T','A50s')),
             'descripcion'=> $this->faker->randomElement($array = array ('Mantenimiento general preventivo y correctivo.',
