@@ -46,20 +46,13 @@ class VentaClienteController extends Controller
 
     public function search(Request $request){
         $texto =trim($request->get('buscar_venta'));
-        $ventas = DB::table('ventas')->select('fecha_factura')
-
-        /** */
-            //->join('detalle_ventas', 'detalle_ventas.venta_id', '=', 'ventas.id')
-            //->join('clientes','clientes.id','=','ventas.cliente_id')
-            //->join('users','user.id','=','ventas.user_id')
-            //->select('ventas.id','ventas.numero_factura_venta', 'ventas.fecha_factura','ventas.tipo_cliente_factura',
-            //'detalle_venta.cantidad_detalle_venta','clientes.name','users.name as name_vendedor')
-            ->Where('fecha_factura', 'LIKE', '%'. $texto. '%')->paginate(5);
-            //->orWhere('numero_factura_venta', 'LIKE', '%'. $texto. '%')
-            //->orWhere('fecha_factura', 'LIKE', '%'. $texto. '%')
-            //->orWhere('name', 'LIKE', '%'. $texto. '%')
-           // ->orWhere('name_vendedor', 'LIKE', '%'. $texto. '%')
-           // ->orWhere('cantidad_detalle_venta', 'LIKE', '%'. $texto. '%')->paginate(5);
+        $ventas = Venta::select('ventas.id','ventas.numero_factura_venta','ventas.fecha_factura',
+        'a.name as usuario','b.name as cliente', 'tipo_cliente_factura', 'ventas.estado')
+        ->join("users as a", "ventas.user_id", "=", "a.id")
+        ->join("users as b", "ventas.cliente_id", "=", "b.id")
+        ->Where('fecha_factura', 'LIKE', '%'. $texto. '%')
+        ->orWhere('a.name', 'LIKE', '%'. $texto. '%')
+        ->orWhere('b.name', 'LIKE', '%'. $texto. '%')->paginate(5);
         return view('venta.ventas_index', compact('ventas', 'texto'));
     }
 
