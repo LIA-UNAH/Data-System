@@ -244,6 +244,11 @@ Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteContr
 //Marcar venta como pagada
 Route::get('/ventas/pagar/{id}', [VentaClienteController::class, 'pagar_factura'])->middleware('can:controlParcial')
     ->name('ventas.pagar');
+//pdf de venta
+Route::get('/ventas/facturas/descargarPDF/{id}', [VentaClienteController::class, 'pdf'])->middleware('can:controlParcial')
+->name('ventas.pdf');
+//Route::get('/ventas/pdf/{id}', [App\Http\Controllers\VentaClienteController::class, 'pdf'])->middleware('can:controlParcial')
+   // ->name('ventas.pdf');
 
 
 

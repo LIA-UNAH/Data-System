@@ -9,6 +9,7 @@ use App\Models\Venta;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class VentaClienteController extends Controller
 {
@@ -36,12 +37,22 @@ class VentaClienteController extends Controller
         return view('venta\ventas_index')->with('ventas', $ventas);
     }
 
+    public function pdf($id)
+    {
+        $venta = Venta::findOrFail($id);
+
+        $pdf = PDF::loadView('venta/ventas_show', compact('venta'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->download('invoice.pdf'); 
+        
+        
+    }
+
    
 
     public function factura()
     {
-        
         return view('venta.facturas');
+       
     }
 
     public function search(Request $request){
@@ -53,7 +64,15 @@ class VentaClienteController extends Controller
         ->Where('fecha_factura', 'LIKE', '%'. $texto. '%')
         ->orWhere('a.name', 'LIKE', '%'. $texto. '%')
         ->orWhere('b.name', 'LIKE', '%'. $texto. '%')->paginate(5);
+        
+        foreach ($ventas as $key => $value) {
+            $value->total = 0;
+            foreach ($value->detalle_venta as $key => $value2) {
+                $value->total += $value2->cantidad_detalle_venta * $value2->precio_venta;
+            }
+        }
         return view('venta.ventas_index', compact('ventas', 'texto'));
+        
     }
 
     public function buscarpro(Request $request){
