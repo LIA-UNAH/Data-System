@@ -16,13 +16,12 @@ return new class extends Migration
     {
         Schema::create('cuentas_por_cobrar', function (Blueprint $table) {
             $table->id();
-            $table->string('cobros_Pendientes');
             $table->string('nombre_cliente');
             $table->string('identidad');
             $table->string('domicilio');
             $table->string('numTelefono');
-            $table->string('forma_de_pago');
-            $table->date('fecha');
+            $table->string('estado');
+            $table->string('fecha');
             $table->string('venta');
             $table->timestamps();
         });
