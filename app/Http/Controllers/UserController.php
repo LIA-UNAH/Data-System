@@ -12,15 +12,19 @@ class UserController extends Controller
 {
     //HU5 - Visualizar usuarios
     public function index(){
-        $users = DB::table('users')->where('type', '=', 'cliente', 'not')
-            ->paginate(5);
+        $users = DB::table('users')
+            ->whereNotIn('type', ['Cliente'])
+            ->paginate(4);
         return view('usuario/usuarios_index')->with('users', $users);
     }
 
     //HU8 - Recargar y buscar usuario
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $users = User::where('name', 'like', '%'.$texto.'%')->paginate(5);
+        $users = DB::table('users')
+            ->where('name', 'like', '%'.$texto.'%')
+            ->whereNotIn('type', ['Cliente'])
+            ->paginate(4);
         return view('usuario/usuarios_index')->with('users', $users);
     }
 

@@ -3799,7 +3799,7 @@ textarea.form-control-lg {
 }
 
 .navbar {
-  position: fixed;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

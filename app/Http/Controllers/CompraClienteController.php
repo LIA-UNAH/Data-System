@@ -27,8 +27,8 @@ class CompraClienteController extends Controller
     public function search(Request $request)
     {
         $texto = trim($request->get('busqueda'));
-        $compras = Compra::where('docummento_compra', 'like', '%' . $texto . '%')->paginate(5);
-        return view('compra/compras_index')->with('compras', $compras);
+        $compras = Compra::where('docummento_compra', 'like', '%'.$texto.'%')->paginate(5);
+        return view('compra.compras_index')->with('compras', $compras);
     }
 
     /**

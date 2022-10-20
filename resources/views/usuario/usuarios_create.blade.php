@@ -128,13 +128,19 @@
 
                             </div>
                         </div>
-
+                        {{old('image')}}
                         <div class="col-sm-6">
                             <div class="col-sm-12 mb-3 mb-sm-0"
                                  style="display: flex; align-items: center; justify-content: center;padding: 10px">
                                 <div class="col-lg-7 d-none d-lg-block">
                                     <div class="text-center">
-                                        <img id="imagen" src="" style="background-color: #0d6efd" class="img-fluid rounded" width="1200" height="1200">
+                                        <input type="text" id="imgRender" hidden name="imgRender">
+                                        <img id="imagen" @if(old('imgRender'))
+                                            src="{{old('imgRender')}}"
+                                             @else
+                                                 src=""
+                                             @endif
+                                             style="background-color: #0d6efd" class="img-fluid rounded" width="1200" height="1200">
                                     </div>
 
                                     <div class="form-group row" style="margin-top: 15px">
@@ -224,6 +230,7 @@
                     reader.readAsDataURL(archivo);
                     reader.onloadend = function () {
                         document.getElementById("imagen").src = reader.result;
+                        document.getElementById("imgRender").value = reader.result;
                     }
                 }
             }

@@ -75,29 +75,25 @@
             <div class="table-responsive" id="tblaBody">
                       <table class="table table" id="dataTable" width="100%" >
                           <thead class="card-header py-3" style="background: #1a202c; color:white">
-        <tr>
+        <tr style="font-family: 'Nunito', sans-serif; font-size: small">
             <th>N°</th>
-            <th>Cobros Pendientes</th>
             <th>Nombre Del Cliente</th>
             <th>Identidad</th>
             <th>Domicilio</th>
-            <th>Forma de Pago</th>
+            <th>Estado</th>
             <th>Fecha</th>
             <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden="" style="display: flex; justify-content: center;"></i></th>
         </tr>
         </thead>
         <tbody>
         @forelse($cobros as $item=> $cobr)
-            <tr>
+            <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                 <td scope="row"><strong>{{$item +$cobros->firstItem()}}</strong></td>
-                <td scope="row">{{$cobr->cobros_Pendientes}}</td>
                 <td>{{ $cobr->nombre_cliente}}</td>
                 <td>{{ $cobr->identidad}}</td>
                 <td>{{$cobr->domicilio}}</td>
-                <td>{{ $cobr->forma_de_pago}}</td>
-                <td>{{ $cobr->fecha}}</td>
-
-             
+                <td><span class="badge rounded-pill text-bg-light p-2 shadow-sm">{{ $cobr->estado}}</span></td>
+                <td>{{ $cobr->fecha}}</td> 
             </tr>
         @empty
             <tr>
