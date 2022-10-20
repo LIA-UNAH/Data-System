@@ -137,7 +137,7 @@
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6">No hay usuarios</td>
+                                    <td colspan="7">No hay usuarios</td>
                                 </tr>
                             @endforelse
                     </tbody>
