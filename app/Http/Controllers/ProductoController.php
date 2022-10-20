@@ -285,15 +285,12 @@ class ProductoController extends Controller
 
     public function index_inventario(Request $request)
     {
-        $buscar = trim( $request->get('buscar_producto'));
+        $buscar =trim($request->get('buscar_producto'));
         $productos = DB::table('productos')
             ->join('categorias', 'categorias.id', '=', 'productos.id_categoria')
-            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
+            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion','productos.imagen_producto',
                 'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
-            ->Where('name', 'LIKE', '%'. $buscar. '%')
-            ->orWhere('codigo', 'LIKE', '%'. $buscar. '%')
-            ->orWhere('marca', 'LIKE', '%'. $buscar. '%')
-            ->orWhere('modelo', 'LIKE', '%'. $buscar. '%')->paginate(5);
+            ->whereRaw('concat(name, " ",marca, " ", modelo) LIKE concat("%",?,"%")',[$buscar])->paginate(5);
 
         return view('Inventario.Inventario_index', compact('productos', 'buscar'));
     }
