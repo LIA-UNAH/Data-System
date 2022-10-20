@@ -663,8 +663,13 @@
 <script src={{ asset("admin/js/demo/chart-area-demo.js") }}></script>
 <script src={{ asset("admin/js/demo/chart-pie-demo.js") }}></script>
 
-<script src="js/jquery-3.4.1.min.js"></script>
+<!-- jQuery -->
+<script src="js/jquery-3.6.1.min.js"></script>
+
+<!-- Popper -->
 <script src="js/popper.min.js"></script>
+
+<!-- Bootstrap js -->
 <script src="js/bootstrap.min.js"></script>
 
 @stack('scripsss')
