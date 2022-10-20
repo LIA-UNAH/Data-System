@@ -7,15 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Data System</title>
+    <title>DataSystem's AlekIsa</title>
 
-    <!-- Custom fonts for this template-->
+    <!-- Plantilla de fuentes personalizadas -->
     <link href={{ asset("admin/vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Plantilla de estilos personalizados -->
     <link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet">
 
     <!-- CSS de boostrat 5.2 -->
@@ -27,13 +26,15 @@
     {{-- AlpineJS --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    {{-- Liviwire --}}
+    <!-- CSS de Mejoras visuales -->
+    <link href={{ asset("css/card.css") }} rel="stylesheet">
+
     @livewireStyles
 
 </head>
 
 <body id="page-top" >
-    @livewireScripts
+@livewireScripts
 
 <!-- Page Wrapper -->
 <div id="wrapper">
