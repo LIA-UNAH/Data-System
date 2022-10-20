@@ -155,7 +155,11 @@
                                  style="display: flex; align-items: center; justify-content: center;padding: 10px">
                                 <div class="col-lg-7 d-none d-lg-block">
                                     <div class="text-center">
-                                        <img id="imagen" src="/images/uploads/{{ $user->image }}" class="img-fluid rounded" width="430" height="430">
+                                        <img id="imagen" @if (old('image'))
+                                            src="/images/uploads/{{old('image')}}"
+                                             @else
+                                                 src="/images/uploads/{{ $user->image }}"
+                                             @endif  class="img-fluid rounded" width="430" height="430">
 
                                     </div>
 

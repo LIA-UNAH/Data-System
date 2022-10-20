@@ -89,9 +89,6 @@
                     </thead>
                     <tbody>
                     @forelse($users as $valor=> $user)
-                        @if($user->type== 'cliente')
-
-                        @else
                             <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                                 <td scope="row"><strong>{{ $valor +$users->firstItem() }}</strong></td>
                                 <td scope="row"><strong>{{ $user->name }}</strong></td>
@@ -103,8 +100,7 @@
                                 {{-- Eliminar usuario se valiada para evitar que el usuario
                                 actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
                                 @if($user->id == Auth::user()->id OR $user->type== 'administrador')
-                                    <td>
-                                    </td>
+                                    <td></td>
                                 @else
                                     <td style="text-align: center">
                                         <a class="btn btn-danger" href="#" data-bs-toggle="modal"
@@ -137,7 +133,6 @@
                                         </div>
                                     </div>
                                 @endif
-                                @endif
                                 {{-- Hasta aqui el modal de eliminar --}}
                             </tr>
                             @empty
@@ -155,9 +150,6 @@
             <div class="table-responsive" id="tblaBody" style="padding: 50px">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" style="text-align: center">
                     @forelse($users as $valor=> $user)
-                        @if($user->type== 'cliente')
-
-                        @else
                             <div class="col">
                                 <div class="wsk-cp-product">
                                     <div class="wsk-cp-img">
@@ -167,13 +159,12 @@
                                         <div class="category">
                                             <span><strong>{{ $user->name }}</strong></span>
                                         </div>
-                                        <div class="description-prod">
+                                        <div style="padding-bottom: 10px">
                                             <span class="price">{{ $user->type }}</span>
                                         </div>
                                         <div class="card-footer">
                                             <div class="wcf-center">
                                                 <a class="btn btn-primary" href="{{route('usuarios.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a>
-                                                <a class="btn btn-success" href="{{route("usuarios.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a>
                                                 <a class="btn btn-danger" href="#" data-bs-toggle="modal"
                                                    data-bs-target={{"#modal_eliminar_cliente".$user->id}}><i class="fa fa-window-close" style="color: white"></i></a>
                                             </div>
@@ -206,22 +197,17 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
                     @empty
                         <tr>
                             <td colspan="6">No hay usuarios</td>
                         </tr>
                     @endforelse
-
                 </div>
-                <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $users->links() }}</div>
+                <div>{{ $users->links() }}</div>
             </div>
         </div>
 
     </div>
-
-
-
 @endsection
 
 @push('scripsss')

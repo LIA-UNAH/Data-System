@@ -258,8 +258,12 @@ Route::get('/ventas/facturas/descargarPDF/{id}', [VentaClienteController::class,
 |--------------------------------------------------------------------------
 */
 
-// Visualizar Compras
+// Visualizar compras
 Route::resource('/compras', CompraClienteController::class)->middleware('can:controlDeCliente');
+
+// Buscar compras
+Route::get('/compras/busqueda', [CompraClienteController::class, 'search'])->middleware('can:controlDeCliente')
+    ->name('compras.searchIndex');
 
 Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::class, 'compra_guardar'])->middleware('can:controlDeCliente')
         ->name('compras.guardar_compra');
