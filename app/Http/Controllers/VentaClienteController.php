@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Dompdf\Dompdf;
 
 class VentaClienteController extends Controller
 {
@@ -39,10 +40,20 @@ class VentaClienteController extends Controller
 
     public function pdf($id)
     {
+        
+        
         $venta = Venta::findOrFail($id);
+        $vista = view('venta.ventas_show')->with('venta',$venta);
 
-        $pdf = PDF::loadView('venta/ventas_show', compact('venta'))->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->download('invoice.pdf'); 
+        $dompdf = new Dompdf();
+            $dompdf->loadHtml($vista);
+            $dompdf->setPaper('A4', 'landscape');
+            $dompdf->render();
+            $dompdf->stream("Factura-N#".".pdf");
+
+       // $pdf = PDF::loadView('venta/ventas_show', compact('venta'))->setOptions(['defaultFont' => 'sans-serif']);
+        //return $pdf->download('invoice.pdf'); 
+        
         
         
     }

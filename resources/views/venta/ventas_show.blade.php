@@ -1,10 +1,37 @@
-@extends('Layouts.Layouts')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href={{ asset("admin/vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- CSS de Mejoras visuales -->
+    <link href={{ asset("css/card.css") }} rel="stylesheet">
+
+    <!-- Plantilla de estilos personalizados -->
+    <link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet">
+
+    <!-- CSS de boostrat 5.2 -->
+    <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    {{-- AlpineJS --}}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    @livewireStyles
 
 <style>
     body{
 
     color: #484b51;
+    
+    text-align:center;
+    margin: auto;
+  width: 80%;
+  padding: 10px;
 }
 .text-secondary-d1 {
     color: #728299!important;
@@ -121,6 +148,9 @@ hr {
 
 </style>
 
+    
+</head>
+<body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="page-content container">
@@ -298,23 +328,30 @@ hr {
                                     <span class="text-150 text-success-d3 opacity-2">L {{ number_format($total, 2, ".", ",") }}</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div>
-                        <span class="text-secondary-d1 text-105">Gracias Por Comprar En Nuestro Negocio</span>
+                            <div>
+                        <span class="text-secondary-d1 text-105" style="text: size 40px;">Gracias Por Comprar En Nuestro Negocio</span>
                         @if ($venta->estado == "en_proceso")
                             <a href="{{route('ventas.pagar', $venta->id)}}" class="btn btn-success btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pagar</a>
                         @endif                            
                         <a href="/ventas" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Cerrar</a>
                     </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    
                 </div>
             </div>
         </div>
     </div>
+    
+</body>
+</html>
 
 
-@endsection
+
+
+
+
 
