@@ -23,7 +23,8 @@ class CuentasPorCobrarFactory extends Factory
             'domicilio'=>$this->faker->address(),
             'numTelefono'=>$this->faker->tollFreePhoneNumber(),
             'estado'=>$this->faker->randomElement($array = array ('Pendiente', 'pagado')),
-            'fecha'=>$this->faker->date($format = 'd-m-Y', $max = 'now'),
+            'fecha'=>$this->faker->date($format = 'd-M-Y', $max = 'now'),
+            'fecha_limite'=>$this->faker->date($format = 'd-m-Y'),
             'venta'=>$this->faker->sentence()
         ];
     }

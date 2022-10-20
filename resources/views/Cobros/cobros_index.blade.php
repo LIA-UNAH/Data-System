@@ -65,6 +65,8 @@
                        
             </div>
 
+
+
             
 
             </div>
@@ -82,6 +84,7 @@
             <th>Domicilio</th>
             <th>Estado</th>
             <th>Fecha</th>
+            <th>Fecha Limite</th>
             <th colspan="3"><i class="fa fa-exclamation-circle" aria-hidden="" style="display: flex; justify-content: center;"></i></th>
         </tr>
         </thead>
@@ -94,6 +97,12 @@
                 <td>{{$cobr->domicilio}}</td>
                 <td><span class="badge rounded-pill text-bg-light p-2 shadow-sm">{{ $cobr->estado}}</span></td>
                 <td>{{ $cobr->fecha}}</td> 
+                <td>{{$cobr->fecha_limite}}</td>
+
+                <div>
+              <td><a class="btn btn-info" href="{{ route('cobro.mostrar', ['id' => $cobr->id])}}"><i class="fa fa-eye" aria-hidden="true" style="color: white; "></i></a></td> 
+                </div> 
+
             </tr>
         @empty
             <tr>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('numTelefono');
             $table->string('estado');
             $table->string('fecha');
+            $table->string('fecha_limite');
             $table->string('venta');
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ class CuentasPorCobrar extends Model
         'numTelefono',
         'estado',
         'fecha',
+        'fecha_limite',
         'venta'
     ]; 
 }

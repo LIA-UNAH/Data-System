@@ -20,7 +20,7 @@ class PedidoFactory extends Factory
             'nombre_Cliente'=>$this->faker->name(),
             'telefon_Cliente'=>$this->faker->e164PhoneNumber(),
             'ciudad'=>$this->faker->city(),
-            'fecha_de_orden'=>$this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'fecha_de_orden'=>$this->faker->date($format = 'd-M-Y', $max = 'now'),
             'estado_Pedido'=>$this->faker->randomElement($array = array ('Entregado','No entregado')),
             'detalle_Pedido'=>$this->faker->sentence(),
             'total_Pedido'=>$this->faker->numberBetween($min = 10, $max = 40000)

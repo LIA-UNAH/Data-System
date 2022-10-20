@@ -12,5 +12,11 @@ class CuentasPorCobrarController extends Controller
         $cobros = CuentasPorCobrar::paginate(10);
         return view('cobros.cobros_index')->with('cobros', $cobros);
     }
+
+    public function show($id)
+    {
+        $cobro = CuentasPorCobrar::findOrFail($id);
+        return view('cobros.cobro_show', compact('cobro'));
+    }
     
 }

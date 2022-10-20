@@ -362,3 +362,7 @@ Route::get('/cobros', [CuentasPorCobrarController::class, 'index'])->middleware(
 
 });
 
+// Visualizar cobros
+Route::get('cobros/{id}/show', [App\Http\Controllers\CuentasPorCobrarController::class, 'show'])->middleware('can:controlDeCliente')
+    ->name('cobro.mostrar');
+
