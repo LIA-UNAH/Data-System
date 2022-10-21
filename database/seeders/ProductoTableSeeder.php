@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Producto;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,19 @@ class ProductoTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $producto = Producto::create(
+            [
+                'codigo'=>'TAB12345678ABCD',
+                'marca'=>'Samsung',
+                'modelo'=>'Galaxy Tab A7',
+                'descripcion'=>' TFT de 10,4 pulgadas FullHD+ a 2.000 x 1.200. Ratio 5:3. 8 núcleos a 2GHz, 3GB/32GB 3GB/64GB MicroSD',
+                'existencia'=>'250',
+                'prec_compra'=>'10200',
+                'prec_venta_fin'=>'10450',
+                'prec_venta_may'=>'10700',
+                'id_categoria'=> '3',
+                'imagen_producto'=> 'galaxy-tab-a7.jpg',
+            ]
+        );
     }
 }

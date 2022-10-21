@@ -28,7 +28,7 @@ class ProductoFactory extends Factory
             'prec_compra'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 500, $max = 550),
             'prec_venta_fin'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 700, $max = 750),
             'prec_venta_may'=> $this->faker->randomFloat($nbMaxDecimals = 2, $min = 600, $max = 650),
-            'id_categoria'=> $this->faker->numberBetween(1,3),
+            'id_categoria'=> $this->faker->numberBetween(1,2),
             'imagen_producto'=> $this->faker->randomElement($array = array ('playstation.jpg','xbox.jpg','usb.png', 'auriculares.jpg', 'cargador.webp')),
         ];
     }

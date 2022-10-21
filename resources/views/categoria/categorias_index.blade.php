@@ -47,13 +47,17 @@
                 <div style="float: right">
                     <!-- Recargar -->
                     <div style="float: left; margin-left: 15px">
-                        <td style="text-align: center"><a class="btn btn-dark" href="/categorias" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner" style="color: white"></i></a>
+                        <td style="text-align: center"><a class="btn btn-dark" href="/categorias"
+                                                          style=" border: 2px solid #ffffff;border-radius: 4px"><i
+                                    class="fa fa-spinner" style="color: white"></i></a>
                     </div>
                     <!-- Recargar -->
 
                     <!-- Añadir -->
                     <div style="float: right; margin-left: 10px">
-                        <td style="text-align: center"><a class="btn btn-success" href="{{route("categorias.create")}}" style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i></a>
+                        <td style="text-align: center"><a class="btn btn-success" href="{{route("categorias.create")}}"
+                                                          style=" border: 2px solid #ffffff;border-radius: 4px"><i
+                                    class="fa fa-plus-square" style="color: white"></i></a>
                     </div>
                     <!-- Añadir -->
                 </div>
@@ -70,6 +74,7 @@
                         <th>Categoria</th>
                         <th>Descripción</th>
                         <th>Estado</th>
+                        <th></th>
                         <th style="text-align: center">Visualizar</th>
                         <th style="text-align: center">Editar</th>
                         <th style="text-align: center">Eliminar</th>
@@ -88,46 +93,112 @@
                             @if( $categoria->status == 1)
                                 <td scope="row"><b style="color: darkgreen; text-align: center"><strong>Activo</strong></b></td>
                             @endif
+                            <td>
+                                @if($categoria->produc > 0)
+                                    <a class="btn btn-dark" href="#" data-bs-toggle="modal"
+                                       data-bs-target={{ "#modal_estado_categoria".$categoria->id }}>
+                                        <i class="fa-solid fa-camera-retro" style="color: white"></i>
+                                    </a>
+                                @else
+                                    <a class="btn btn-dark" href="#" data-bs-toggle="modal"
+                                       data-bs-target={{ "#modal_estado_categoria".$categoria->id }} >
+                                        <i class="fa-solid fa-code-compare" style="color: white"></i>
 
-                            <td style="text-align: center"><a class="btn btn-primary" href="{{route('categorias.show',['id'=>$categoria->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
-                            <td style="text-align: center"><a class="btn btn-success" href="{{route("categorias.edit",["id"=>$categoria->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
-                            <td style="text-align: center"><a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target={{ "#modal_eliminar_categoria".$categoria->id }}><i class="fa fa-window-close" style="color: white"></i></a></td>
 
-                            <div class="modal fade" id={{ "modal_eliminar_categoria".$categoria->id }} tabindex="-1"
-                                 aria-labelledby={{ "modal_eliminar_categoria".$categoria->id }} aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header" style="background: darkred; color: white">
-                                            <h5 class="modal-title" id="ModalLabel">Eliminar categoria</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close" style="color: white"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ¿Desea eliminar la categoria "{{ $categoria->name }}?"
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancelar
-                                            </button>
-                                            <form
-                                                action="{{ route('categorias.destroy', ['categoria'=>$categoria->id ]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Eliminar
+                                    </a>
+                                @endif
+                            </td>
+
+
+                            @if($categoria->produc > 0)
+
+                            @else
+                                <div class="modal fade" id={{ "modal_estado_categoria".$categoria->id }} tabindex="-1"
+                                     aria-labelledby={{ "modal_estado_categoria".$categoria->id }} aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background: darkred; color: white">
+                                                <h5 class="modal-title" id="ModalLabel">Estado Categoria</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close" style="color: white"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Desea cambiar el estado de esta categoria "{{ $categoria->name }}?"
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar
                                                 </button>
-                                            </form>
+                                                <form
+                                                    action="{{ route('categorias.cambiar', ['categoria'=>$categoria->id ]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Cambiar
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
+
+                            <td style="text-align: center"><a class="btn btn-primary"
+                                                              href="{{route('categorias.show',['id'=>$categoria->id])}}"><i
+                                        class="fa fa-eye" style="color: white"></i></a></td>
+                            <td style="text-align: center"><a class="btn btn-success"
+                                                              href="{{route("categorias.edit",["id"=>$categoria->id])}}"><i
+                                        class="fa fa-edit" style="color: white"></i></a></td>
+                            <td style="text-align: center">
+                                @if($categoria->produc > 0)
+
+                                @else
+                                    <a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                       data-bs-target={{ "#modal_eliminar_categoria".$categoria->id }} >
+                                        <i class="fa fa-window-close" style="color: white"></i>
+                                    </a>
+                                @endif
+
+                            </td>
+
+                            @if($categoria->produc > 0)
+
+                            @else
+                                <div class="modal fade" id={{ "modal_eliminar_categoria".$categoria->id }} tabindex="-1"
+                                     aria-labelledby={{ "modal_eliminar_categoria".$categoria->id }} aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background: darkred; color: white">
+                                                <h5 class="modal-title" id="ModalLabel">Eliminar categoria</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close" style="color: white"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Desea eliminar la categoria "{{ $categoria->name }}?"
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar
+                                                </button>
+                                                <form
+                                                    action="{{ route('categorias.destroy', ['categoria'=>$categoria->id ]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Eliminar
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             {{-- Hasta aqui el modal de eliminar --}}
-                            </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6">No hay categorias</td>
-                                </tr>
-                            @endforelse
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6">No hay categorias</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
@@ -140,9 +211,9 @@
 @endsection
 
 @push('scripsss')
-<script>
-            $(document).ready(function() {
-                $('#tblaBody').css('height', (screen.height - 450));
-            });
-</script>
+    <script>
+        $(document).ready(function () {
+            $('#tblaBody').css('height', (screen.height - 450));
+        });
+    </script>
 @endpush

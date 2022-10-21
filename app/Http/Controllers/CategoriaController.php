@@ -11,13 +11,13 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = DB::table('categorias')->paginate(4);
+        $categorias = DB::table('categorias')->selectRaw('categorias.*,(SELECT COUNT(*) FROM productos WHERE productos.id_categoria = categorias.id) as produc')->paginate(3);
         return view('categoria/categorias_index')->with('categorias', $categorias);
     }
 
     public function search(Request $request){
         $texto =trim($request->get('busqueda'));
-        $categorias = Categoria::where('name', 'like', '%'.$texto.'%')->paginate(10);
+        $categorias = Categoria::where('name', 'like', '%'.$texto.'%')->paginate(3);
         return view('categoria/categorias_index')->with('categorias', $categorias);
     }
 
@@ -132,4 +132,19 @@ class CategoriaController extends Controller
         $categoria->delete();
         return redirect()->route("categorias.index")->with("error", "Se eliminó exitosamente la categoria.");
     }
+
+    public function cambioEstado(Categoria $categoria)
+    {
+        $categoria->delete();
+        if ( $categoria->status == 0) {
+            $categoria->status = 1;
+        } else {
+            $categoria->status = 0;
+        }
+        $categoria->save();
+
+        return redirect()->route("categorias.index")->with("error", "Se cambio exitosamente el estado.");
+    }
+
+
 }
