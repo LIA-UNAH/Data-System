@@ -1,20 +1,16 @@
 @extends('Layouts.Layouts')
 @section('content')
-    <link href="/verproducto.css" rel="stylesheet" type="text/css"/>
-
+    <link href={{ asset("css/target.css") }} rel="stylesheet" type="text/css">
     <div class="container py-1">
-        <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>Detalles del Producto</strong>
-           </div>
-        <!-- Card Start -->
+        <!-- Carta -->
         <div class="card">
+            <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>DETALLES DEL PROVEEDOR</strong></div>
             <div class="row ">
-
-            <div class="col-lg-8" style="background: whitesmoke; color: ; font-family: 'Nunito', sans-serif; font-size: small; text-align: ">
-                    <div class="p-4">
+                <div class="col-lg-8" style="background: whitesmoke; color: white; font-family: 'Nunito', sans-serif; font-size: small; text-align: justify"> <div class="p-4">
                     <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Código:</strong></div>
                         <div
-                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$verproducto->codigo}} </div>
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-transform: uppercase;"> {{$verproducto->codigo}} </div>
                             <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Marca:</strong></div>
                         <div
@@ -31,7 +27,7 @@
                                 Compra:</strong></div>
                         <div style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">
                             L. {{ number_format($verproducto->prec_compra, 2, ".", ",") }}</div>
-                        <div 
+                        <div
                               style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;"><strong>Precio
                                 (Mayorista):</strong></div>
                         <div style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">
@@ -42,7 +38,7 @@
                             L. {{ number_format($verproducto->prec_venta_fin, 2, ".", ",") }}</div>
                         <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
                             <strong>Descripción:</strong></div>
-                        <div 
+                        <div
                             style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$verproducto->descripcion}} </div>
 
                         <!-- <div style="font-size: 25px; float: left; width: 45%; text-align: justify;"><strong>Impuesto:</strong></div> <div style="font-size: 25px; float: right; width: 55%; text-align: justify;"> {{$verproducto->impuesto}}</div> -->
@@ -55,11 +51,11 @@
                          style="border-radius: 10%; padding: 15px">
 
                          <div class="text-center">
-                             <a href="{{ route('productos.edit', ['id' => $verproducto->id]) }}" 
+                             <a href="{{ route('productos.edit', ['id' => $verproducto->id]) }}"
                               style=" width: 130px; display: inline-block; background: #0d6efd; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
                               class="btn btn-google btn-user">Editar</a>
 
-                            <a href="/productos" style="width: 130px; display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large" 
+                            <a href="/productos" style="width: 130px; display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
                             class="btn btn-google btn-user">Volver</a>
                           </div>
                 </div>

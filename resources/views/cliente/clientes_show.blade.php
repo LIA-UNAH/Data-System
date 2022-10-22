@@ -1,7 +1,7 @@
 @extends('Layouts.Layouts')
 @section('title', 'Clientes')
 @section('content')
-    <link href="/verproducto.css" rel="stylesheet" type="text/css"/>
+    <link href={{ asset("css/target.css") }} rel="stylesheet" type="text/css">
     <div class="container py-1">
         <!-- Carta -->
         <div class="card">

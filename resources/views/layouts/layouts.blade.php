@@ -9,26 +9,25 @@
 
     <title>DataSystem's AlekIsa</title>
 
-    <!-- Plantilla de fuentes personalizadas -->
-    <link href={{ asset("admin/vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <!-- CSS Fontawesome -->
+    <link href={{ asset("admin/fontawesome/css/all.min.css") }} rel="stylesheet" type="text/css">
+
+    <!-- Google Fonts -->
+    <link href={{ asset("css/fonts.css") }} rel="stylesheet" type="text/css">
 
     <!-- CSS de Mejoras visuales -->
-    <link href={{ asset("css/card.css") }} rel="stylesheet">
+    <link href={{ asset("css/card.css") }} rel="stylesheet" type="text/css">
 
-    <!-- Plantilla de estilos personalizados -->
-    <link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet">
+    <!-- CSS SB Admin -->
+    <link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet" type="text/css">
 
-    <!-- CSS de boostrat 5.2 -->
-    <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <!-- CSS Bootstrap 5.2 -->
+    <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet" type="text/css">
 
     {{-- AlpineJS --}}
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src={{ asset("js/alpinejs/alpinejs.min.js") }}></script>
 
     @livewireStyles
-
 </head>
 
 <body id="page-top" >
@@ -498,7 +497,7 @@
                             </h6>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="/admin/img/undraw_profile_1.svg"
+                                    <img class="rounded-circle" src=""
                                          alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
@@ -537,7 +536,7 @@
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                    <img class="rounded-circle" src=""
                                          alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
@@ -646,31 +645,24 @@
 
 
 <!-- Bootstrap core JavaScript-->
-<script src={{ asset("admin/vendor/jquery/jquery.min.js") }}></script>
+<script src={{ asset("admin/jquery/jquery.min.js") }}></script>
 
-<script src={{ asset("admin/vendor/bootstrap/js/bootstrap.bundle.min.js") }}></script>
+<script src={{ asset("admin/bootstrap/js/bootstrap.bundle.min.js") }}></script>
 
 <!-- Core plugin JavaScript-->
-<script src={{ asset("admin/vendor/jquery-easing/jquery.easing.min.js") }}></script>
+<script src={{ asset("admin/jquery-easing/jquery.easing.min.js") }}></script>
 
 <!-- Custom scripts for all pages-->
 <script src={{ asset("admin/js/sb-admin-2.min.js") }}></script>
 
-<!-- Page level plugins -->
-<script src={{ asset("admin/vendor/chart.js/Chart.min.js") }}></script>
-
-<!-- Page level custom scripts -->
-<script src={{ asset("admin/js/demo/chart-area-demo.js") }}></script>
-<script src={{ asset("admin/js/demo/chart-pie-demo.js") }}></script>
-
 <!-- jQuery -->
-<script src="js/jquery-3.6.1.min.js"></script>
+<script src={{ asset("js/jquery/jquery-3.6.1.min.js") }}></script>
 
 <!-- Popper -->
-<script src="js/popper.min.js"></script>
+<script src={{ asset("js/popper/popper.min.js") }}></script>
 
 <!-- Bootstrap js -->
-<script src="js/bootstrap.min.js"></script>
+<script src={{ asset("js/bootstrap/bootstrap.min.js") }}></script>
 
 @stack('scripsss')
 </body>
