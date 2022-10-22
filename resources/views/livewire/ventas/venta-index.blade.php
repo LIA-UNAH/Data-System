@@ -15,13 +15,21 @@
         </div>
     @endif
     {{-- Terminan los mensajes --}}
-    
+      
+    {{-- filtros activos --}}
+    <div>
+        <p class="badge bg-secondary">Estado: {{$this->filtros['estado']['nombre']}}</p>
+        <p class="badge bg-secondary">Fecha: {{$this->filtros['fecha']['nombre']}}</p>
+        <p class="badge bg-secondary">Busqueda: {{empty($this->filtros['busqueda']) ? "cualquiera": $this->filtros['busqueda'] }}</p>
+    </div>
+
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
             <div style="float: left">
-                <h2 class="m-0 font-weight-bold" style="color: white">Ventas</h2>
+                <h2 class="m-0 font-weight-bold " style="color: white">Ventas</h2>
             </div>
 
+            
             <div style="float: right">
                 <div style="float: left">
                     <!-- HU8 - Buscar y recargar producto -->
@@ -29,14 +37,9 @@
                     <form action="{{ route('ventas.searchIndex') }}" method="GET"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" name="buscar_venta" id="buscar_venta"
+                            <input wire:model="filtros.busqueda" type="text" name="buscar_venta" id="buscar_venta"
                                 class="form-control bg-light border-0 small" placeholder="Buscar" aria-label="Search"
                                 aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-dark" type="submit" value="Buscar" style="background: white">
-                                    <i class="fas fa-search fa-sm" style="color: black"></i>
-                                </button>
-                            </div>
                         </div>
                     </form>
                     <!-- HU8 - Buscar y recargar venta -->
@@ -51,15 +54,18 @@
                     </div>
                     <!-- Vista previa  -->
                     <div style="float: left; margin-left: 15px">
-                        <td style="text-align: center"><a class="btn btn-secondary" href="{{ route('ventas.factura') }}"
-                                style=" border: 2px solid #ffffff;border-radius: 4px">
-                                <i class="fa fa-plus-square" style="color: white"></i> Vista Previa</a>
+                        <td style="text-align: center">
+                            <a 
+                                class="btn btn-secondary" 
+                                href="{{ route('ventas.factura') }}"
+                                style=" border: 2px solid #ffffff;border-radius: 4px"
+                            >
+                                <i class="fa fa-plus-square" style="color: white"></i> 
+                                Vista Previa
+                            </a>
+                        </td>
 
-                            <!-- Lista pre-venta  -->
                             <div style="float: right; margin-left: 1px">
-                        {{-- <td style="text-align: center"><a class="btn btn-success" href=""
-                                style=" border: 2px solid #ffffff;border-radius: 4px">
-                                <i class="" style="color: white"></i>Preventas</a> --}}
 
                     </div>
                     <!-- Aniadir -->
@@ -67,6 +73,7 @@
                         <td style="text-align: center"><a class="btn btn-success" href="{{ route('ventas.create') }}"
                                 style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square"
                                     style="color: white"></i></a>
+                        </td>
                     </div>
 
 
@@ -75,11 +82,11 @@
                     <div style="text-align: center; float: left; margin-left: 15px;" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false"><a
                             style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
-                            href=""><i class="bi bi-calendar-check-fill"></i> Ordenar</a>
+                            href=""><i class="bi bi-calendar-check-fill"></i>Ordenar</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="$set('filtros.fecha', '{{now()->toDateString('Y-m-d')}}')">Hoy</a></li>
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="$set('filtros.fecha', '{{now()->subDays(7)->toDateString('Y-m-d')}}')">Ultima semana</a></li>
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="$set('filtros.fecha', '{{now()->subDays(30)->toDateString('Y-m-d')}}')">Ultimo mes</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha({{now()->toDateString('Y-m-d')}}, 'Hoy')">Hoy</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha({{now()->subDays(7)->toDateString('Y-m-d')}}, 'Ultima semana')">Última semana</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha({{now()->subDays(30)->toDateString('Y-m-d')}}, 'Ultimo mes')">Último mes</a></li>
                         </ul>
                     </div>
 
@@ -88,8 +95,12 @@
                           Estado
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#" wire:click.prevent="$set('filtros.estado', 'en_proceso')">En proceso</a></li>
-                          <li><a class="dropdown-item" href="#" wire:click.prevent="$set('filtros.estado', 'pagado')">Pagado</a></li>
+                          <li><a 
+                                class="dropdown-item" 
+                                wire:click.prevent="setFiltroEstado('en_proceso', 'En Proceso')">En proceso</a></li>
+                          <li><a 
+                                class="dropdown-item"  
+                                wire:click.prevent="setFiltroEstado('pagado', 'Pagado')">Pagado</a></li>
                         </ul>
                     </div>
 

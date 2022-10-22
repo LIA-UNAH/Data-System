@@ -9,14 +9,22 @@ use Livewire\Component;
 class VentaIndex extends Component
 {   
     public $filtros = [
-        "estado" => "en_proceso",
-        "fecha" => ""
+        "busqueda" => "",
+        "estado" => [
+            "nombre" => "En Proceso",
+            "valor" => "en_proceso",
+        ],
+        "fecha" => [
+            "nombre" => "",
+            "valor" => "",
+        ]
     ];
 
     public function render()
     {
         return view('livewire..ventas.venta-index', [
-            'ventas' => Venta::where('estado', $this->filtros["estado"])
+            'ventas' => Venta::where('estado', $this->filtros["estado"]["valor"])
+                ->where('numero_factura_venta', 'like', "%{$this->filtros["busqueda"]}%")
                 ->whereBetween('fecha_factura', [$this->filtros["fecha"], Carbon::now()->toDateString('Y-m-d')])
                 ->orderByDesc('id')
                 ->paginate(10)
@@ -26,6 +34,16 @@ class VentaIndex extends Component
     }
 
     public function mount(){
-        $this->filtros["fecha"] = Carbon::now()->toDateString('Y-m-d');
+        $this->setFiltroFecha(Carbon::now()->toDateString('Y-m-d'), "Hoy");
+    }
+
+    public function setFiltroEstado($valor, $nombre){
+        $this->filtros["estado"]["valor"] = $valor;
+        $this->filtros["estado"]["nombre"] = $nombre;
+    }
+
+    public function setFiltroFecha($valor, $nombre){
+        $this->filtros["fecha"]["valor"] = $valor;
+        $this->filtros["fecha"]["nombre"] = $nombre;
     }
 }
