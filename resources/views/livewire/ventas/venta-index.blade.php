@@ -84,9 +84,9 @@
                             style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
                             href=""><i class="bi bi-calendar-check-fill"></i>Ordenar</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha({{now()->toDateString('Y-m-d')}}, 'Hoy')">Hoy</a></li>
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha({{now()->subDays(7)->toDateString('Y-m-d')}}, 'Ultima semana')">Última semana</a></li>
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha({{now()->subDays(30)->toDateString('Y-m-d')}}, 'Ultimo mes')">Último mes</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->toDateString('Y-m-d')}}', 'Hoy')">Hoy</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(7)->toDateString('Y-m-d')}}', 'Ultima semana')">Última semana</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(30)->toDateString('Y-m-d')}}', 'Ultimo mes')">Último mes</a></li>
                         </ul>
                     </div>
 

@@ -183,12 +183,11 @@ hr {
                 <div class="d-flex flex-row-reverse">
                     <div class="col">
                         <div class="text-right text-150">
-                            <span class="text-default-d3">Estado</span>
+                            <span class="text-default-d3">Estado:</span>
                             @if ($venta->estado == "en_proceso")
-                                <i class="fas fa-circle text-blue-m2" title="En Proceso"></i>
-                                
+                                <p class="badge bg-secondary">En Proceso</p>
                             @else
-                                <i class="fas fa-circle text-success-m2" title="Pagado"></i>
+                                <p class="badge bg-success">Pagado</p>
                             @endif
                         </div>
                     </div>
@@ -207,7 +206,7 @@ hr {
                 <hr class="row brc-default-l1 mx-n1 mb-4" />
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="text-start col-sm-6 t">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
                             <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->name}}</span>
@@ -234,7 +233,7 @@ hr {
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
                             <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                                Datos Factura
+                               <strong>Datos Factura</strong>
                             </div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
@@ -329,7 +328,6 @@ hr {
                                 </div>
                             </div>
                             <div>
-                        <span class="text-secondary-d1 text-105" style="text: size 40px;">Gracias Por Comprar En Nuestro Negocio</span>
                         @if ($venta->estado == "en_proceso")
                             <a href="{{route('ventas.pagar', $venta->id)}}" class="btn btn-success btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pagar</a>
                         @endif                            
@@ -337,9 +335,7 @@ hr {
                     </div>
                         </div>
                     </div>
-
-                    <hr />
-
+                    <span class="text-secondary-d1 text-105" style="text: size 40px;">Gracias Por Comprar En Nuestro Negocio</span>
                     
                 </div>
             </div>

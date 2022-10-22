@@ -25,7 +25,7 @@ class VentaIndex extends Component
         return view('livewire..ventas.venta-index', [
             'ventas' => Venta::where('estado', $this->filtros["estado"]["valor"])
                 ->where('numero_factura_venta', 'like', "%{$this->filtros["busqueda"]}%")
-                ->whereBetween('fecha_factura', [$this->filtros["fecha"], Carbon::now()->toDateString('Y-m-d')])
+                ->whereBetween('fecha_factura', [$this->filtros["fecha"]["valor"], Carbon::now()->toDateString('Y-m-d')])
                 ->orderByDesc('id')
                 ->paginate(10)
         ])
