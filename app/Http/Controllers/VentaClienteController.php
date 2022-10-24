@@ -7,6 +7,7 @@ use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Venta;
 use App\Models\User;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -40,30 +41,30 @@ class VentaClienteController extends Controller
 
     public function pdf($id)
     {
-        
-        
         $venta = Venta::findOrFail($id);
-        $vista = view('venta.ventas_show')->with('venta',$venta);
+        $vista = view('venta.ventas_pdf')->with('venta',$venta);
 
-        $dompdf = new Dompdf();
-            $dompdf->loadHtml($vista);
-            $dompdf->setPaper('A4', 'landscape');
+        // Reconocemos los archivos CSS externos
+        $options = new Options();
+        $options->set('isRemoteEnabled', TRUE);
+
+        $dompdf = new Dompdf($options);
+            // Definimos el tamaño y orientación del papel que queremos.
+            $dompdf->setPaper('A4', 'portrait');
+            // Cargamos el contenido HTML.
+            $dompdf->loadHtml(utf8_decode($vista));
+            // Renderizamos el documento PDF.
             $dompdf->render();
-            $dompdf->stream("Factura-N#".".pdf");
-
-       // $pdf = PDF::loadView('venta/ventas_show', compact('venta'))->setOptions(['defaultFont' => 'sans-serif']);
-        //return $pdf->download('invoice.pdf'); 
-        
-        
-        
+            // Enviamos el fichero PDF al navegador.
+            $dompdf->stream("Factura-001-001-00-00000001".".pdf");
     }
 
-   
+
 
     public function factura()
     {
         return view('venta.facturas');
-       
+
     }
 
     public function search(Request $request){
@@ -75,7 +76,7 @@ class VentaClienteController extends Controller
         ->Where('fecha_factura', 'LIKE', '%'. $texto. '%')
         ->orWhere('a.name', 'LIKE', '%'. $texto. '%')
         ->orWhere('b.name', 'LIKE', '%'. $texto. '%')->paginate(5);
-        
+
         foreach ($ventas as $key => $value) {
             $value->total = 0;
             foreach ($value->detalle_venta as $key => $value2) {
@@ -83,7 +84,7 @@ class VentaClienteController extends Controller
             }
         }
         return view('venta.ventas_index', compact('ventas', 'texto'));
-        
+
     }
 
     public function buscarpro(Request $request){
@@ -207,7 +208,7 @@ class VentaClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $venta = Venta::findOrFail($id);
         $productos = Producto::all();
         $users = User::where('type', '=', 'cliente')->get();

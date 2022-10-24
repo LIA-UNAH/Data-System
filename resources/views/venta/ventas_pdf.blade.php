@@ -1,32 +1,38 @@
-@extends('Layouts.Layouts')
-@section('content')
+<!DOCTYPE html>
+<html lang="es">
+<head>
 
- <!-- CSS Fontawesome -->
- <link href={{ asset("admin/fontawesome/css/all.min.css") }} rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Data-system's AlekIsa</title>
 
-<!-- Google Fonts -->
-<link href={{ asset("css/fonts.css") }} rel="stylesheet" type="text/css">
 
-<!-- CSS de Mejoras visuales -->
-<link href={{ asset("css/card.css") }} rel="stylesheet" type="text/css">
+    <!-- CSS Fontawesome -->
+    <link href={{ asset("admin/fontawesome/css/all.min.css") }} rel="stylesheet" type="text/css">
 
-<!-- CSS SB Admin -->
-<link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet" type="text/css">
+    <!-- Google Fonts -->
+    <link href={{ asset("css/fonts.css") }} rel="stylesheet" type="text/css" media="screen">
 
-<!-- CSS Bootstrap 5.2 -->
-<link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet" type="text/css">
+    <!-- CSS SB Admin -->
+    <link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet" type="text/css" media="screen">
 
-<!-- CSS Factura -->
-<link href={{ asset("css/factura.css") }} rel="stylesheet" type="text/css">
+    <!-- CSS Bootstrap 5.2 -->
+    <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet" type="text/css" media="screen"/>
 
-{{-- AlpineJS --}}
-<script defer src={{ asset("js/alpinejs/alpinejs.min.js") }}></script>
+    <!-- CSS Factura -->
+    <link href={{ asset("css/factura.css") }} rel="stylesheet" type="text/css" media="screen"/>
 
-@livewireStyles
+    {{-- AlpineJS --}}
+    <script defer src={{ asset("js/alpinejs/alpinejs.min.js") }}></script>
 
-    
+    @livewireStyles
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body style"width:70%;">
+
 
 <div class="page-content container">
     <div class="page-header text-blue-d2">
@@ -37,20 +43,8 @@
                 ID: {{$venta->numero_factura_venta}}
             </small>
         </h1>
-
-        <div class="page-tools">
-            <div class="action-buttons">
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
-                    <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
-                    Imprimir
-                </a>
-                <a class="btn bg-white btn-light mx-1px text-95" href="{{route('ventas.pdf', ['id' =>$venta->id])}}" data-title="PDF">
-                    <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
-                    Guardar
-                </a>
-            </div>
-        </div>
     </div>
+
 
     <div class="container px-0">
         <div class="row mt-4">
@@ -58,11 +52,12 @@
                 <div class="d-flex flex-row-reverse">
                     <div class="col">
                         <div class="text-right text-150">
-                            <span class="text-default-d3">Estado:</span>
+                            <span class="text-default-d3">Estado</span>
                             @if ($venta->estado == "en_proceso")
-                                <p class="badge bg-secondary">En Proceso</p>
+                                <i class="fas fa-circle text-blue-m2" title="En Proceso"></i>
+
                             @else
-                                <p class="badge bg-success">Pagado</p>
+                                <i class="fas fa-circle text-success-m2" title="Pagado"></i>
                             @endif
                         </div>
                     </div>
@@ -73,7 +68,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        
+
                     </div>
                 </div>
 
@@ -81,7 +76,7 @@
                 <hr class="row brc-default-l1 mx-n1 mb-4" />
 
                 <div class="row">
-                    <div class="text-start col-sm-6 t">
+                    <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
                             <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->name}}</span>
@@ -108,7 +103,7 @@
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
                             <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                               <strong>Datos Factura</strong>
+                                Datos Factura
                             </div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
@@ -203,25 +198,21 @@
                                 </div>
                             </div>
                             <div>
+                        <span class="text-secondary-d1 text-105" style="text: size 40px;">Gracias Por Comprar En Nuestro Negocio</span>
                         @if ($venta->estado == "en_proceso")
                             <a href="{{route('ventas.pagar', $venta->id)}}" class="btn btn-success btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pagar</a>
-                        @endif                            
-                        <a href="/ventas" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Cerrar</a>
+                        @endif
                     </div>
                         </div>
                     </div>
-                    <span class="text-secondary-d1 text-105" style="text: size 40px;">Gracias Por Comprar En Nuestro Negocio</span>
-                    
+
+                    <hr />
+
+
                 </div>
             </div>
         </div>
     </div>
-@endsection
 
-
-
-
-
-
-
-
+</body>
+</html>
