@@ -11,6 +11,7 @@
 
     <!-- CSS Fontawesome -->
     <link href={{ asset("admin/fontawesome/css/all.min.css") }} rel="stylesheet" type="text/css">
+
     <!-- Google Fonts -->
     <link href={{ asset("css/fonts.css") }} rel="stylesheet" type="text/css">
 
