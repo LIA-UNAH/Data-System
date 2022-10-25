@@ -53,8 +53,7 @@
         <!-- Heading -->
         <div class="sidebar-heading">Principal</div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-
+        <!-- Nav Item - Ventas -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                aria-expanded="true" aria-controls="collapseOne">
@@ -70,7 +69,7 @@
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Productos -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
@@ -83,14 +82,11 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('productos.index')}}">Lista de productos</a>
                     <a class="collapse-item" href="{{route('categorias.index')}}">Lista de categorias</a>
-
                 </div>
-
-
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Proveedores -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                aria-expanded="true" aria-controls="collapseFour">
@@ -106,7 +102,7 @@
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Compras -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFourSix"
                aria-expanded="true" aria-controls="collapseFourSix">
@@ -118,27 +114,12 @@
             <div id="collapseFourSix" class="collapse" aria-labelledby="headingFourSix" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('compras.index') }}">Lista de compras</a>
+                    <a class="collapse-item" href="{{ route('inventario.index') }}">Lista de inventario</a>
                 </div>
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFourSix3"
-               aria-expanded="true" aria-controls="collapseFourSix3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
-                    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
-                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1ZM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V8Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z"/>
-                </svg>
-                <span>Inventario</span>
-            </a>
-            <div id="collapseFourSix3" class="collapse" aria-labelledby="headingFourSix3" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('inventario.index') }}">Lista de Inventario</a>
-                </div>
-            </div>
-        </li>
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Pedidos -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                aria-expanded="true" aria-controls="collapseFive">
@@ -150,23 +131,7 @@
             <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('pedidos.index')}}">Lista de pedidos</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
-               aria-expanded="true" aria-controls="collapseSeven">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
-                    <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                    <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
-                </svg>
-                <span>Clientes</span>
-            </a>
-            <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('clientes.index') }}">Lista de clientes</a>
+                    <a class="collapse-item" href="{{route('cobros.index')}}">Lista de cobros</a>
                 </div>
             </div>
         </li>
@@ -185,6 +150,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"></h6>
                     <a class="collapse-item" href="{{route('usuarios.index')}}">Lista de Usuarios</a>
+                    <a class="collapse-item" href="{{ route('clientes.index') }}">Lista de clientes</a>
                 </div>
             </div>
         </li>
@@ -208,8 +174,7 @@
         <!-- Heading -->
         <div class="sidebar-heading">Principal</div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-
+        <!-- Nav Item - Ventas -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                aria-expanded="true" aria-controls="collapseOne">
@@ -225,7 +190,7 @@
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Productos -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
@@ -237,11 +202,12 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('productos.index')}}">Lista de productos</a>
+                    <a class="collapse-item" href="{{route('categorias.index')}}">Lista de categorias</a>
                 </div>
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Proveedores -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                aria-expanded="true" aria-controls="collapseFour">
@@ -257,39 +223,23 @@
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Compras -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFourSix"
                aria-expanded="true" aria-controls="collapseFourSix">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-handbag-fill" viewBox="0 0 16 16">
                     <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z"/>
                 </svg>
-                <span>Compras</span>
+                <span>Inventario</span>
             </a>
             <div id="collapseFourSix" class="collapse" aria-labelledby="headingFourSix" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('compras.index') }}">Lista de compras</a>
+                    <a class="collapse-item" href="{{ route('inventario.index') }}">Lista de inventario</a>
                 </div>
             </div>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFourSix3"
-               aria-expanded="true" aria-controls="collapseFourSix3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
-                    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
-                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1ZM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V8Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z"/>
-                </svg>
-                <span>Inventario</span>
-            </a>
-            <div id="collapseFourSix3" class="collapse" aria-labelledby="headingFourSix3" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('inventario.index') }}">Lista de Inventario</a>
-                </div>
-            </div>
-        </li>
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Pedidos -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                aria-expanded="true" aria-controls="collapseFive">
@@ -301,21 +251,6 @@
             <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('pedidos.index')}}">Lista de pedidos</a>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item" >
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsEleven"
-               aria-expanded="true" aria-controls="collapseFourSix">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
-                    <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                    <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z"/>
-                </svg>
-                <span>Cobros</span>
-            </a>
-            <div id="collapsEleven" class="collapse" aria-labelledby="headingFourSix" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('cobros.index')}}">Lista de cobros</a>
                 </div>
             </div>
@@ -323,22 +258,24 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
-               aria-expanded="true" aria-controls="collapseSeven">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
-                    <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                    <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+               aria-expanded="true" aria-controls="collapseEight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-video3" viewBox="0 0 16 16">
+                    <path d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-6 5.7c0 .8.8.8.8.8h6.4s.8 0 .8-.8-.8-3.2-4-3.2-4 2.4-4 3.2Z"/>
+                    <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z"/>
                 </svg>
                 <span>Clientes</span>
             </a>
-            <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseEight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header"></h6>
                     <a class="collapse-item" href="{{ route('clientes.index') }}">Lista de clientes</a>
                 </div>
             </div>
         </li>
     </ul>
     @endrole
+
 
     @role('Cliente')
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
