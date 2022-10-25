@@ -74,7 +74,7 @@
         </div>
 
         <div class="card-body" style="padding-left: 35px; padding-right: 35px" id="lineas_table" >
-            <div class="table-responsive" id="tblaBody">
+            <div class="table-responsive" id="tablaBody">
                 <table class="table table" id="dataTable">
                     <thead class="card-header py-3" style="background: #1a202c; color: white">
                     <tr>
@@ -142,12 +142,12 @@
                             @endforelse
                     </tbody>
                 </table>
-                <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $users->links() }}</div>
             </div>
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $users->links() }}</div>
         </div>
 
         <div class="card-body" style="padding-left: 35px; padding-right: 35px; display: none" id="cartas_table" >
-            <div class="table-responsive" id="tblaBody" style="padding: 50px">
+            <div class="table-responsive" id="tablaBody" style="padding: 50px">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" style="text-align: center">
                     @forelse($users as $valor=> $user)
                             <div class="col">
@@ -203,10 +203,9 @@
                         </tr>
                     @endforelse
                 </div>
-                <div>{{ $users->links() }}</div>
+                <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $users->links() }}</div>
             </div>
         </div>
-
     </div>
 @endsection
 
@@ -225,5 +224,9 @@
                 valor = true;
             }
         }
+
+        $(document).ready(function() {
+            $('#tablaBody').css('height', (screen.height - 450));
+        });
     </script>
 @endpush
