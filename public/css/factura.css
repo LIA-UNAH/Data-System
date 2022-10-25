@@ -7,6 +7,16 @@ body{
 .text-secondary-d1 {
     color: #728299!important;
 }
+.text-secondary-d3 {
+    text-align: center;
+    margin-right: 3px;
+}
+.text-white{
+    text-align: center;
+}
+.descripcion {
+    text-align: center;
+}
 .page-header {
     margin: 0 0 1rem;
     padding-bottom: 1rem;

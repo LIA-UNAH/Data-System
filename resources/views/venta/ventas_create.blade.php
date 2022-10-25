@@ -301,8 +301,8 @@
 
                                 </div>
 
-                                <div class="col-sm-5 mb-3 mb-sm-0" style="padding: 3px">
-                                    <div class="table-responsive">
+                                <div class="col-sm-5 mb-3 mb-sm-0" style="padding: 3px; height: 400px; overflow:scroll;">
+                                    <div class="table-responsive" style=" height: 400px; overflow:scroll;" >
                                         <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                                             <thead class="bg-none bgc-default-tp1">
                                             <tr class="text-white">
