@@ -74,8 +74,8 @@
         </div>
 
         <div class="card-body" style="padding-left: 35px; padding-right: 35px" id="lineas_table">
-            <div class="table-responsive" id="tblaBody">
-                <table class="table table" id="dataTable">
+            <div class="table-responsive" id="tablaBody">
+                <table class="table table-hover" id="dataTable">
                     <thead class="card-header py-3" style="background: #1a202c; color: white">
                     <tr>
                         <th>N°</th>
@@ -93,13 +93,13 @@
 
                         @else
                             <tr style="font-family: 'Nunito', sans-serif; font-size: small">
-                                <td scope="row"><strong>{{ $valor +$users->firstItem() }}</strong></td>
+                                <td scope="row"><strong>{{ $valor+$users->firstItem() }}</strong></td>
                                 <td scope="row"><strong>{{ $user->name }}</strong></td>
                                 <td>{{ $user->email}} </td>
                                 <td scope="row">{{ $user->telephone }}</td>
 
-                                <td style="text-align: center"><a class="btn btn-primary" href="{{route('clientes.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
-                                <td style="text-align: center"><a class="btn btn-success" href="{{route("clientes.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
+                                <td style="text-align: center"><a class="btn btn-primary btn-sm" href="{{route('clientes.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
+                                <td style="text-align: center"><a class="btn btn-success btn-sm" href="{{route("clientes.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
 
                                 {{-- Eliminar usuario se valiada para evitar que el usuario
                                 actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
@@ -108,32 +108,30 @@
                                         </td>
                                     @else
                                         <td style="text-align: center">
-                                            <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target={{ "#modal_eliminar_cliente".$user->id }}><i class="fa fa-window-close" style="color: white"></i></a>
+                                            <a class="btn btn-danger btn-sm" href="#" data-bs-toggle="modal" data-bs-target={{ "#modal_eliminar_cliente".$user->id }}><i class="fa fa-window-close" style="color: white"></i></a>
                                         </td>
 
                                         <div class="modal fade" id={{ "modal_eliminar_cliente".$user->id }} tabindex="-1"
                                              aria-labelledby={{ "modal_eliminar_cliente".$user->id }} aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <div class="modal-header" style="background: darkred; color: white">
-                                                        <h5 class="modal-title" id="ModalLabel">Eliminar usuario</h5>
+                                                    <div class="modal-header" style="background: #6a1a21; color: white">
+                                                        <h5 class="modal-title" id="ModalLabel"><strong>ELIMINAR CLIENTE</strong></h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close" style="color: white"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        ¿Desea eliminar el usuario "{{ $user->name }}?"
+                                                        ¿Está seguro de eliminar a {{ $user->name }} de la lista de clientes?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Cancelar
-                                                        </button>
+                                                                data-bs-dismiss="modal" style="background: #1c294e; color: white">Cancelar</button>
                                                         <form
                                                             action="{{ route('clientes.destroy', ['user'=>$user->id ]) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Eliminar
-                                                            </button>
+                                                            <button type="submit" class="btn btn-danger" style="background: #6a1a21; color: white">Eliminar</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -150,8 +148,8 @@
                             @endforelse
                     </tbody>
                 </table>
-                <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $users->links() }}</div>
             </div>
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $users->links() }}</div>
         </div>
 
         <div class="card-body" style="padding-left: 35px; padding-right: 35px; display: none" id="cartas_table" >
@@ -211,10 +209,9 @@
                         </tr>
                     @endforelse
                 </div>
-                <div>{{ $users->links() }}</div>
+                <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $users->links() }}</div>
             </div>
         </div>
-
     </div>
 @endsection
 
@@ -233,5 +230,9 @@
                 valor = true;
             }
         }
+
+        $(document).ready(function() {
+            $('#tablaBody').css('height', (screen.height - 450));
+        });
     </script>
 @endpush

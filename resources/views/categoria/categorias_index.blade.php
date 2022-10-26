@@ -12,7 +12,7 @@
     @endif
     {{--Para los mensajes de errores --}}
     @if (session()->has('error'))
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
             <strong>{{ session('error') }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -95,17 +95,20 @@
                             @endif
                             <td>
                                 @if($categoria->produc > 0)
-                                    <a class="btn btn-dark" href="#" data-bs-toggle="modal"
-                                       data-bs-target={{ "#modal_estado_categoria".$categoria->id }}>
-                                        <i class="fa-solid fa-camera-retro" style="color: white"></i>
-                                    </a>
+
                                 @else
-                                    <a class="btn btn-dark" href="#" data-bs-toggle="modal"
-                                       data-bs-target={{ "#modal_estado_categoria".$categoria->id }} >
-                                        <i class="fa-solid fa-code-compare" style="color: white"></i>
-
-
-                                    </a>
+                                    @if( $categoria->status == 0)
+                                        <a class="btn btn-dark" href="#" data-bs-toggle="modal"
+                                           data-bs-target={{ "#modal_estado_categoria".$categoria->id }} >
+                                            <i class="fa fa-unlock" style="color: white"></i>
+                                        </a>
+                                    @endif
+                                        @if( $categoria->status == 1)
+                                            <a class="btn btn-dark" href="#" data-bs-toggle="modal"
+                                               data-bs-target={{ "#modal_estado_categoria".$categoria->id }} >
+                                                <i class="fa fa-lock" style="color: white"></i>
+                                            </a>
+                                        @endif
                                 @endif
                             </td>
 
@@ -133,8 +136,7 @@
                                                     action="{{ route('categorias.cambiar', ['categoria'=>$categoria->id ]) }}"
                                                     method="POST">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger">Cambiar
-                                                    </button>
+                                                    <button type="submit" class="btn btn-danger">Cambiar</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -142,11 +144,9 @@
                                 </div>
                             @endif
 
-                            <td style="text-align: center"><a class="btn btn-primary"
-                                                              href="{{route('categorias.show',['id'=>$categoria->id])}}"><i
+                            <td style="text-align: center"><a class="btn btn-primary" href="{{route('categorias.show',['id'=>$categoria->id])}}"><i
                                         class="fa fa-eye" style="color: white"></i></a></td>
-                            <td style="text-align: center"><a class="btn btn-success"
-                                                              href="{{route("categorias.edit",["id"=>$categoria->id])}}"><i
+                            <td style="text-align: center"><a class="btn btn-success" href="{{route("categorias.edit",["id"=>$categoria->id])}}"><i
                                         class="fa fa-edit" style="color: white"></i></a></td>
                             <td style="text-align: center">
                                 @if($categoria->produc > 0)

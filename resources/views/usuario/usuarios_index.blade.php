@@ -74,14 +74,15 @@
         </div>
 
         <div class="card-body" style="padding-left: 35px; padding-right: 35px" id="lineas_table" >
-            <div class="table-responsive" id="tblaBody">
-                <table class="table table" id="dataTable">
+            <div class="table-responsive" id="tablaBody">
+                <table class="table table-hover" id="dataTable">
                     <thead class="card-header py-3" style="background: #1a202c; color: white">
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>E-mail</th>
                         <th>Rol de usuario</th>
+                        <th>Rol de telephone</th>
                         <th style="text-align: center">Visualizar</th>
                         <th style="text-align: center">Editar</th>
                         <th style="text-align: center">Desactivar</th>
@@ -93,17 +94,22 @@
                                 <td scope="row"><strong>{{ $valor +$users->firstItem() }}</strong></td>
                                 <td scope="row"><strong>{{ $user->name }}</strong></td>
                                 <td>{{ $user->email}} </td>
-                                <td scope="row">{{ $user->type }}</td>
-
-                                <td style="text-align: center"><a class="btn btn-primary" href="{{route('usuarios.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
-                                <td style="text-align: center"><a class="btn btn-success" href="{{route("usuarios.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
+                                @if( $user->type  == "Empleado")
+                                    <td class="text-opacity-25"><strong>Empleado</strong></td>
+                                @endif
+                                @if( $user->type  == "Administrador")
+                                    <td class="text-opacity-25"><strong>Administrador</strong></td>
+                                @endif
+                                <td>{{ $user->telephone}} </td>
+                                <td style="text-align: center"><a class="btn btn-primary btn-sm" href="{{route('usuarios.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
+                                <td style="text-align: center"><a class="btn btn-success btn-sm" href="{{route("usuarios.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
                                 {{-- Eliminar usuario se valiada para evitar que el usuario
                                 actualmente logueado no se pueda eliminar a si mismo o si es administrador  H6 --}}
                                 @if($user->id == Auth::user()->id OR $user->type== 'administrador')
                                     <td></td>
                                 @else
                                     <td style="text-align: center">
-                                        <a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                        <a class="btn btn-danger btn-sm" href="#" data-bs-toggle="modal"
                                            data-bs-target={{"#modal_eliminar_cliente".$user->id}}><i class="fa fa-window-close" style="color: white"></i></a>
                                     </td>
 
@@ -111,22 +117,21 @@
                                          aria-labelledby={{"modal_eliminar_cliente".$user->id}} aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <div class="modal-header" style="background: darkred; color: white">
-                                                    <h5 class="modal-title"  id="ModalLabel">Eliminar usuario</h5>
+                                                <div class="modal-header" style="background: #6a1a21; color: white">
+                                                    <h5 class="modal-title"  id="ModalLabel"><strong>ELIMINAR USUARIO</strong></h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close" style="color: white"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    ¿Desea eliminar el usuario "{{ $user->name }}?"
+                                                    ¿Está seguro de eliminar a {{ $user->name }} de a lista de usuarios?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
-                                                    </button>
+                                                    <button type="button" class="btn btn-secondary" style="background: #1c294e; color: white" data-bs-dismiss="modal">Cancelar</button>
                                                     <form action="{{ route('usuarios.destroy', ['user'=>$user->id ]) }}"
                                                           method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                        <button type="submit" class="btn btn-danger" style="background: #6a1a21; color: white">Eliminar</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -142,12 +147,12 @@
                             @endforelse
                     </tbody>
                 </table>
-                <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $users->links() }}</div>
             </div>
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $users->links() }}</div>
         </div>
 
         <div class="card-body" style="padding-left: 35px; padding-right: 35px; display: none" id="cartas_table" >
-            <div class="table-responsive" id="tblaBody" style="padding: 50px">
+            <div class="table-responsive" id="tablaBody" style="padding: 50px">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" style="text-align: center">
                     @forelse($users as $valor=> $user)
                             <div class="col">
@@ -203,10 +208,9 @@
                         </tr>
                     @endforelse
                 </div>
-                <div>{{ $users->links() }}</div>
+                <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $users->links() }}</div>
             </div>
         </div>
-
     </div>
 @endsection
 
@@ -225,5 +229,9 @@
                 valor = true;
             }
         }
+
+        $(document).ready(function() {
+            $('#tablaBody').css('height', (screen.height - 450));
+        });
     </script>
 @endpush
