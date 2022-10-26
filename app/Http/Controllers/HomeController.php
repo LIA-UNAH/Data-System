@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetalleCompra;
+use App\Models\DetalleVenta;
 use App\Models\User;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,18 +28,26 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $ingresos = 0;
+        $egresos = 0;
 
-       if(Auth::user()->hasrole('Administrador')){
+        foreach( DetalleVenta::all() as $valor){
+            $ingresos += $valor->cantidad_detalle_venta * $valor->precio_venta;
+        }
 
-       }else if(Auth::user()->hasrole('Empleado')){
+        foreach( DetalleCompra::all() as $valor){
+            $egresos += $valor->cantidad_detalle_compra * $valor->precio;
+        }
 
-       }else {
-            $use = User::findOrFail(Auth::user()->id);
-            $use->assignRole('Cliente');
+        if(Auth::user()->hasrole('Administrador') || Auth::user()->hasrole('Empleado')){
+            return view('home')->with('ingresos',$ingresos)->with('egresos',$egresos);
+        }
 
-            Auth::login($use);
-       }
+        $use = User::findOrFail(Auth::user()->id);
+        $use->assignRole('Cliente');
 
-        return view('home');
+        Auth::login($use);
+
+        return view('home')->with('ingresos',$ingresos)->with('egresos',$egresos);
     }
 }
