@@ -15,8 +15,24 @@ body{
     text-align: center;
 }
 .descripcion {
+    width: 60%;
     text-align: center;
 }
+.num, .cant {
+    width: 5%;
+    text-align: right;
+}
+.precu {
+    width: 15%;
+    text-align: right;
+}
+.total{
+    width: 10%;
+    text-align: right;
+}
+
+
+
 .page-header {
     margin: 0 0 1rem;
     padding-bottom: 1rem;

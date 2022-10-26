@@ -149,7 +149,7 @@
                             <th>Descripcion</th>
                             <th>Cantidad</th>
                             <th>Precio Unitario</th>
-                            <th width="140">Total</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
 
@@ -159,11 +159,11 @@
                         @endphp
                         @foreach ($venta->detalle_venta as $i => $detalle )
                             <tr>
-                                <td style"text-align: right;">{{++$i}}</td>
+                                <td class="num" >{{++$i}}</td>
                                 <td class="descripcion">{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
-                                <td style"text-align: rigth;">{{$detalle->cantidad_detalle_venta}}</td>
-                                <td style"text-align: rigth;">L {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
-                                <td style"text-align: rigth;" >L {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
+                                <td class="cant">{{$detalle->cantidad_detalle_venta}}</td>
+                                <td class="precu">L {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
+                                <td  class="total" >L {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
                             </tr>
                             @php
                                 $total+=$detalle->precio_venta*$detalle->cantidad_detalle_venta;
