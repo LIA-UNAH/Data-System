@@ -82,8 +82,12 @@
 
                 <div class="row">
                     <div class="text-start col-sm-6 t">
+                        <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125" style="color:gray">
+                            <strong>Datos del Cliente</strong>
+                        </div>
+
                         <div>
-                            <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
+                            <span class="text-sm text-grey-m2 align-middle">Nombre del Cliente:</span>
                             <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->name}}</span>
                         </div>
                         <div class="text-grey-m2">
@@ -108,7 +112,7 @@
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
                             <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                               <strong>Datos Factura</strong>
+                               <strong>Datos de la Factura</strong>
                             </div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
@@ -141,7 +145,7 @@
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                     <thead class="bg-none bgc-default-tp1">
                         <tr class="text-white">
-                            <th class="opacity-2">Numero</th>
+                            <th class="opacity-2">#Num</th>
                             <th>Descripcion</th>
                             <th>Cantidad</th>
                             <th>Precio Unitario</th>
@@ -155,11 +159,11 @@
                         @endphp
                         @foreach ($venta->detalle_venta as $i => $detalle )
                             <tr>
-                                <td>{{++$i}}</td>
-                                <td>{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
-                                <td>{{$detalle->cantidad_detalle_venta}}</td>
-                                <td>L {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
-                                <td>L {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
+                                <td style"text-align: right;">{{++$i}}</td>
+                                <td class="descripcion">{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
+                                <td style"text-align: rigth;">{{$detalle->cantidad_detalle_venta}}</td>
+                                <td style"text-align: rigth;">L {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
+                                <td style"text-align: rigth;" >L {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
                             </tr>
                             @php
                                 $total+=$detalle->precio_venta*$detalle->cantidad_detalle_venta;

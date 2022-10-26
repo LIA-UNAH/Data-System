@@ -50,7 +50,7 @@ class VentaClienteController extends Controller
 
         $dompdf = new Dompdf($options);
             // Definimos el tamaño y orientación del papel que queremos.
-            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->setPaper('A4', 'landscape');
             // Cargamos el contenido HTML.
             $dompdf->loadHtml(utf8_decode($vista));
             // Renderizamos el documento PDF.

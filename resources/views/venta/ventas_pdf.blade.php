@@ -31,7 +31,7 @@
     @livewireStyles
 
 </head>
-<body style"width:70%;">
+<body >
 
 
 <div class="page-content container">
