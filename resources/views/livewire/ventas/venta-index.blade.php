@@ -77,12 +77,12 @@
                     </div>
 
 
-                    <!-- Ordenar  -->
+                    <!-- Filtrar por Fecha  -->
 
                     <div style="text-align: center; float: left; margin-left: 15px;" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false"><a
                             style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
-                            href=""><i class="bi bi-calendar-check-fill"></i>Ordenar</a>
+                            href=""><i class="bi bi-calendar-check-fill"></i>Filtrar por Fecha</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->toDateString('Y-m-d')}}', 'Hoy')">Hoy</a></li>
                             <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(7)->toDateString('Y-m-d')}}', 'Ultima semana')">Última semana</a></li>
@@ -91,7 +91,8 @@
                     </div>
 
                     <div style="text-align: center; float: left; margin-left: 15px; margin-right: 15px;" class="dropdown">
-                        <button style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle" 
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Estado
                         </button>
                         <ul class="dropdown-menu">
@@ -110,8 +111,8 @@
         </div>
 
     </div>
-    </div>
-    <div class="card-body">
+    
+    <div class="card-body" style="padding-left: 35px; padding-right: 35px">
         <div class="table-responsive" id="tblaBody">
             <table class="table" id="dataTable">
                 <thead class="card-header py-3" style="background: #1a202c; color:white">
