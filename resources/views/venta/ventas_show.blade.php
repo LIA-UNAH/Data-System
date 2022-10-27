@@ -40,6 +40,7 @@
 
         <div class="page-tools">
             <div class="action-buttons">
+                <a href="/ventas" class="btn  btn-danger mx-1px text-95">Cerrar</a>
                 <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
                     Imprimir
@@ -48,6 +49,7 @@
                     <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
                     Guardar
                 </a>
+                
             </div>
         </div>
     </div>
@@ -210,7 +212,7 @@
                         @if ($venta->estado == "en_proceso")
                             <a href="{{route('ventas.pagar', $venta->id)}}" class="btn btn-success btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pagar</a>
                         @endif                            
-                        <a href="/ventas" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Cerrar</a>
+                       
                     </div>
                         </div>
                     </div>

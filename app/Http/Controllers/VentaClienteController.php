@@ -50,13 +50,13 @@ class VentaClienteController extends Controller
 
         $dompdf = new Dompdf($options);
             // Definimos el tamaño y orientación del papel que queremos.
-            $dompdf->setPaper('A4', 'landscape');
+            $dompdf->setPaper('A4', 'portrait');
             // Cargamos el contenido HTML.
             $dompdf->loadHtml(utf8_decode($vista));
             // Renderizamos el documento PDF.
             $dompdf->render();
             // Enviamos el fichero PDF al navegador.
-            $dompdf->stream("Factura-001-001-00-00000001".".pdf");
+            $dompdf->stream("Factura-".$venta->numero_factura_venta.".pdf");
     }
 
 
