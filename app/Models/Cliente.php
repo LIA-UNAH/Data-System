@@ -18,4 +18,9 @@ class Cliente extends Model
     {
         return $this->hasMany('App\Models\Venta');
     }
+
+    public function notificacions(){
+        return $this->hasmany('App\models\notificacion');
+    }
+  
 }

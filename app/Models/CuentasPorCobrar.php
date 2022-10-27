@@ -19,4 +19,9 @@ class CuentasPorCobrar extends Model
         'fecha_limite',
         'venta'
     ]; 
+
+    public function notificacions(){
+        return $this->hasmany('App\Models\notificacion');
+    }
+  
 }
