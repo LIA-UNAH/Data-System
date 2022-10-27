@@ -149,7 +149,7 @@
                                                             <div class="" style="text-align:center ;">
                                                                 <div class="text-center">
                                                                     <!-- Nombre del producto -->
-                                                                    <p class="nombre" id="nombre">
+                                                                    <p class="nombre" id="nombre" style="width: 120px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">
                                                                         <strong style="font-size: 12px">{{$pro->marca." ".$pro->modelo}}</strong>
                                                                     </p>
                                                                     <!-- Precio del producto-->
@@ -179,23 +179,23 @@
                                                 <th colspan="3">Detalle</th>
                                                 <th width="140">Cantidad</th>
                                                 <th width="140">P/U</th>
-                                                <th width="140">Total</th>
-                                                <th width="140">Quitar</th>
+                                                <th width="10">Total</th>
+                                                <th width="40">Quitar</th>
                                             </tr>
                                             </thead>
 
                                             <tbody id="content-fac" class="content-fac">
                                                 @forelse ($carrito as $index => $item )
                                                     <tr>
-                                                        <td colspan="3" class="titulo">{{$item["detalle"]}}</td>
+                                                        <td colspan="3" class="titulo"  style="width: 120px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">{{$item["detalle"]}}</td>
                                                         <td>
                                                             <input type="number" min="1" style ="width: 40px;" value="{{$item["cantidad_detalle_venta"]}}" wire:change="actualizar_total($event.target.value, {{ $index}})" class="input_Element"></input>
                                                         </td>
-                                                        <td  width="140">{{$item["precio_venta"]}}</td>
-                                                        <td  width="140">L. {{$item["total"]}}</td>
+                                                        <td  width="120">{{$item["precio_venta"]}}</td>
+                                                        <td  width="180">L. {{$item["total"]}}</td>
                             
-                                                        <td width="140">
-                                                            <a class="borrar-producto fas fa-times-circle" wire:click.prevent="eliminar_item_carrito({{$index}})"></a>
+                                                        <td width="40" >
+                                                            <a class="borrar-producto fas fa-times-circle" style="float: right; width:60;"  wire:click.prevent="eliminar_item_carrito({{$index}})"></a>
                                                         </td>
                                                     </tr>
                                                 @empty
