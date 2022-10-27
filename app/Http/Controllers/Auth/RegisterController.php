@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::SHOP;
 
     /**
      * Create a new controller instance.
@@ -101,7 +101,7 @@ class RegisterController extends Controller
             'type' => $data['type'],
             'address' => $data['address'],
             'telephone' => $data['telephone'],
-            'image' => 'Perfil (54).jpg',
+            'image' => 'Perfil (53).jpg',
         ]);
     }
 }

@@ -4,9 +4,12 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraClienteController;
 use App\Http\Controllers\CuentasPorCobrarController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Producto\Item\AgregarCarrito;
+use App\Http\Livewire\Producto\Item\VerCarrito;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
@@ -28,10 +31,14 @@ Auth::routes();
 Route::get('sendmail', [MailController::class, 'index']);
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    Route::get('/shop', AgregarCarrito::class)->name('home-carrito');
+    Route::get('/shop/shopping', VerCarrito::class)->name('ver-carrito');
+
 
 // Información del sistema
-    Route::get('/info', [UserController::class, 'info'])->name('info');
+Route::get('/info', [UserController::class, 'info'])->name('info');
 
     /*
     |--------------------------------------------------------------------------
