@@ -62,7 +62,7 @@
                         <div class="text-right text-150">
                             <span class="text-default-d3">Estado:</span>
                             @if ($venta->estado == "en_proceso")
-                                <p class="badge bg-secondary">En Proceso</p>
+                                <p class="badge bg-primary">En Proceso</p>
                             @else
                                 <p class="badge bg-success">Pagado</p>
                             @endif
@@ -81,7 +81,8 @@
 
 
                 <hr class="row brc-default-l1 mx-n1 mb-4" />
-
+                
+                <!--Datos del Cliente-->
                 <div class="row">
                     <div class="text-start col-sm-6 t">
                         <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125" style="color:gray">

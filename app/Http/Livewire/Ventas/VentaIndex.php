@@ -26,7 +26,7 @@ class VentaIndex extends Component
             'ventas' => Venta::where('estado', $this->filtros["estado"]["valor"])
                 ->where('numero_factura_venta', 'like', "%{$this->filtros["busqueda"]}%")
                 ->whereBetween('fecha_factura', [$this->filtros["fecha"]["valor"], Carbon::now()->toDateString('Y-m-d')])
-                ->orderByDesc('id')
+                ->orderByDesc('fecha_factura')
                 ->paginate(10)
         ])
         ->extends('layouts.layouts')
