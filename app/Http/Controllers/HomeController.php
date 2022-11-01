@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetalleCompra;
 use App\Models\DetalleVenta;
+use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
@@ -39,15 +40,18 @@ class HomeController extends Controller
             $egresos += $valor->cantidad_detalle_compra * $valor->precio;
         }
 
-        if(Auth::user()->hasrole('Administrador') || Auth::user()->hasrole('Empleado')){
+        if(Auth::user()->hasRole('Administrador')){
+            return view('home')->with('ingresos',$ingresos)->with('egresos',$egresos);
+        }
+
+        if(Auth::user()->hasRole('Empleado')){
             return view('home')->with('ingresos',$ingresos)->with('egresos',$egresos);
         }
 
         $use = User::findOrFail(Auth::user()->id);
         $use->assignRole('Cliente');
-
         Auth::login($use);
 
-        return view('home')->with('ingresos',$ingresos)->with('egresos',$egresos);
+        return redirect()->route('home-carrito');
     }
 }

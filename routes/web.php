@@ -31,10 +31,9 @@ Auth::routes();
 Route::get('sendmail', [MailController::class, 'index']);
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-
-    Route::get('/shop', AgregarCarrito::class)->name('home-carrito');
-    Route::get('/shop/shopping', VerCarrito::class)->name('ver-carrito');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/venta', AgregarCarrito::class)->name('home-carrito');
+    Route::get('/shopping', VerCarrito::class)->name('ver-carrito');
 
 
 // Información del sistema

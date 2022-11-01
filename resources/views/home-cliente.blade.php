@@ -2,12 +2,14 @@
 <html lang="es">
 
 <head>
-    <title>Data System's AlekIsa</title>
+    <title>Data System´s</title>
 
     <!-- CSS Bootstrap 5.2 -->
     <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet" type="text/css">
 
-    <link href={{ asset('css/ed-grid.css') }} rel="stylesheet">
+    <!-- CSS de Mejoras visuales -->
+    <link href={{ asset("css/ed-grid.css") }} rel="stylesheet" type="text/css">
+
     <svg style="display: none" xmlns="http://www.w3.org/2000/svg">
         <symbol id="notes" viewBox="0 0 24 24">
             <rect fill="none" height="24" width="24"></rect>
@@ -39,7 +41,7 @@
         }
 
         .ed-header {
-            height: 100px;
+            height: 100p;
             border-bottom: 1px solid #FFF;
             background: #FFF;
             position: fixed;
@@ -80,7 +82,7 @@
         }
 
         .link {
-                color : lightgrey;
+            color : lightgrey;
         }
         .active {
             color : cornflowerblue
@@ -110,111 +112,286 @@
         .s-cursor-pointer {
             cursor: pointer;
         }
+
+        .cart-product-wrap {
+            padding: 16px 0;
+            border-top: 1px solid #f2f2f2;
+        }
+        .cart-product {
+            display: flex;
+        }
+        .cart-product-body {
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .comet-checkbox {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0;
+            color: #222;
+            font-size: 14px;
+            font-variant: tabular-nums;
+            line-height: 1.5;
+            list-style: none;
+            -webkit-font-feature-settings: "tnum","tnum";
+            font-feature-settings: "tnum","tnum";
+            display: inline-flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin: 0 8px 0 0;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .comet-checkbox-icon {
+            padding: 2px;
+        }
+        .comet-checkbox-circle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+        }
+        .comet-checkbox-input {
+            position: absolute;
+            opacity: 0;
+            height: 0;
+            width: 0;
+        }
+        .comet-checkbox-checked>span:first-child.comet-icon {
+            color: #ff472e;
+        }
+        .cart-product-info {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            width: 0;
+            min-width: 0;
+        }
+        .cart-product-name {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #222;
+        }
+        .cart-product-sku {
+            margin-bottom: 12px;
+        }
+        .cart-product-name-img {
+            line-height: 0;
+        }
+        .cart-product-img-tip, .cart-product-name {
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .cart-product-name a {
+            margin-right: 18px;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            width: 0;
+            min-width: 0;
+            font-weight: 600;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            word-wrap: normal;
+        }
+        .cart-product-name-ope .comet-icon-account {
+            padding: 0 12px;
+        }
+        .cart-product-block {
+            margin-top: 8px;
+            display: flex;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+        .cart-product-block-left {
+            margin-right: 12px;
+        }
+        .cart-product-price {
+            display: flex;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .cart-product-price-s span {
+            font-weight: 400;
+            font-size: 12px;
+        }
+        .cart-product-price>span {
+            margin-right: 4px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .cart-product-price-s {
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .cart-product-ship {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #999;
+            cursor: pointer;
+        }
+        .cart-product-price-picker {
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .comet-input-number {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            font-size: 14px;
+            font-variant: tabular-nums;
+            line-height: 1.5;
+            list-style: none;
+            -webkit-font-feature-settings: "tnum","tnum";
+            font-feature-settings: "tnum","tnum";
+            display: inline-flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .comet-input-number-btn {
+            width: 24px;
+            height: 24px;
+            background-color: #f5f5f5;
+            font-size: 12px;
+            line-height: 24px;
+            text-align: center;
+            border-radius: 100%;
+            cursor: pointer;
+        }
+        .comet-input-number-input {
+            margin: 0 4px;
+            height: 24px;
+            width: 32px;
+            background-color: #fff;
+            border: none;
+            line-height: 24px;
+            letter-spacing: 0;
+            text-align: center;
+            outline: 0;
+        }
+
+        .comet-icon {
+            display: inline-block;
+            color: inherit;
+            font-style: normal;
+            line-height: 0;
+            text-align: center;
+            text-transform: none;
+            vertical-align: -0.125em;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
     </style>
     @livewireStyles
 </head>
 
 <body>
-
-    <header class="ed-menu s-bg-grey s-py-2 s-px-2 lg-px-4">
-        <div class="ed-grid lg-grid-5">
-            <div class="s-cross-center s-main-center lg-main-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
-                    <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-                </svg>
-            </div>
-            <nav class="nav lg-cols-4 s-cross-center ed-grid full">
-                <ul class="menu s-main-distribute lg-to-right s-mb-0 s-pl-0 s-py-1">
-                    <li class="lg-mr-3"><a class="link s-column s-cross-center active" href="#">
-                            <svg class="icon to-lg s-mb-0">
-                                <use href="/"></use>
-                            </svg><span>Inicio</span></a></li>
-                    <li class="lg-mr-3"><a class="link s-column s-cross-center" href="#">
-                            <svg class="icon to-lg s-mb-0">
-                                <use href="#studies"></use>
-                            </svg><span>Item A</span></a></li>
-                    <li class="lg-mr-3"><a class="link s-column s-cross-center" href="#">
-                            <svg class="icon to-lg s-mb-0">
-                                <use href="#courses"></use>
-                            </svg><span>Item B</span>
-                        </a>
-                    </li>
-                    @if (Auth::guest())
+<header class="ed-menu s-bg-grey s-py-2 s-px-2 lg-px-4">
+    <div class="ed-grid lg-grid-5">
+        <div class="s-cross-center s-main-center lg-main-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+            </svg>
+        </div>
+        <nav class="nav lg-cols-4 s-cross-center ed-grid full">
+            <ul class="menu s-main-distribute lg-to-right s-mb-0 s-pl-0 s-py-1">
+                <li class="lg-mr-3"><a class="link s-column s-cross-center active" href="{{ route('home-carrito') }}">
+                        <svg class="icon to-lg s-mb-0">
+                            <use href="#home"></use>
+                        </svg><span>Inicio</span></a></li>
+                <li class="lg-mr-3"><a class="link s-column s-cross-center" href="#">
+                        <svg class="icon to-lg s-mb-0">
+                            <use href="#studies"></use>
+                        </svg><span>Estudios</span></a></li>
+                @if (Auth::guest())
                     <li><a href="{{ url('admin/auth/login') }}">Login</a></li>
-                    @else
-                    <li class="dropdown">
+                @else
+
+                    <li class="lg-mr-3">
                         <div class="user-header-menu s-relative" style="width: 35px">
                             <div>
-                                <div class="user-button s-cross-center s-cursor-pointer bg-transition relative">
+                                <div class="user-button s-cross-center s-cursor-pointer bg-transition relative "
+                                     href="#">
                                     <span class="s-mr-05 user-avatar round flex-none background-color-avatar s-main-center round s-cross-center">
                                         <img class="user-avatar-round" alt="Nahun-avatar" src="/images/uploads/{{ Auth::user()->image }}">
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <ul class="dropdown-menu">
-                        <li><a href="#">Mi perfil</a></li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{{ url('/logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    Logout
-                            </a>
-                            <form id="logout-form" action="{{ url('admin/auth/logout') }}" method="POST" style="display: none;">
-                                                        {{ csrf_field() }}
-                                                    </form>
-                        </li>
-                        </ul>
                     </li>
-                    @endif
-                </ul>
-            </nav>
-        </div>
-    </header>
+                @endif
+                <li class="lg-mr-3">
+                    <a class="link s-column s-cross-center" onclick="menu_cerrar_sesion()" href="#">
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    @yield('content')
+<form id="form_logout" action="{{ route('logout') }}" method="POST" hidden>
+    @csrf
+    <button class="btn btn-primary" type="submit">
+        {{ __('Cerrar sesión') }}
+    </button>
+</form>
 
+@yield('content')
 
-    <footer>
+<footer>
 
-    </footer>
+</footer>
 
+<!-- jQuery -->
+<script src={{ asset("js/jquery/jquery-3.6.1.min.js") }}></script>
 
-    <!-- jQuery -->
-    <script src={{ asset("js/jquery/jquery-3.6.1.min.js") }}></script>
+<!-- Popper -->
+<script src={{ asset("js/popper/popper.min.js") }}></script>
 
-    <!-- Popper -->
-    <script src={{ asset("js/popper/popper.min.js") }}></script>
+<!-- Bootstrap js -->
+<script src={{ asset("js/bootstrap/bootstrap.min.js") }}></script>
 
-    <!-- Bootstrap js -->
-    <script src={{ asset("js/bootstrap/bootstrap.min.js") }}></script>
+<!-- Tom Select js -->
+<script src={{ asset("js/tom-select.js") }}></script>
 
-    <!-- Tom Select js -->
-    <script src={{ asset('js/tom-select.js') }}></script>
-
-    <script>
-        posicionarMenu();
-
-        $(window).scroll(function() {
-            posicionarMenu();
-        });
-
-        function posicionarMenu() {
-            var altura_del_header = $('.header').outerHeight(true);
-            var altura_del_menu = $('.menu').outerHeight(true);
-
-            if ($(window).scrollTop() >= altura_del_header){
-                $('.menu').addClass('fixed');
-                $('.wrapper').css('margin-top', (altura_del_menu) + 'px');
-            } else {
-                $('.menu').removeClass('fixed');
-                $('.wrapper').css('margin-top', '0');
-            }
-        }
-
-    </script>
-    @livewireScripts
+<script>
+    function menu_cerrar_sesion() {
+        let form_logout = document.getElementById("form_logout");
+        form_logout.submit();
+    }
+</script>
+@livewireScripts
 </body>
 
 </html>

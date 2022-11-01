@@ -16,8 +16,8 @@ class AgregarCarrito extends Component
         $this->productos = Producto::whereRaw('concat(marca," ",modelo) like concat("%",?,"%")',[$this->busqueda])->get();
 
         return view('livewire.producto.item.agregar-carrito')
-        ->extends('home-cliente')
-        ->section('content');
+            ->extends('home-cliente')
+            ->section('content');
     }
 
     public function addCarrito($producto)
@@ -28,6 +28,7 @@ class AgregarCarrito extends Component
             'price' => $producto['prec_venta_fin'],
             'quantity' => 1,
             'attributes' => array(),
+            'associatedModel' => $producto
         ));
     }
 }
