@@ -16,10 +16,11 @@
     @endif
     {{-- Terminan los mensajes --}}
       
+
     {{-- filtros activos --}}
     <div>
         <p class="badge bg-secondary">Estado: {{$this->filtros['estado']['nombre']}}</p>
-        <p class="badge bg-secondary">Fecha: {{$this->filtros['fecha']['nombre']}}</p>
+        <p class="badge bg-secondary">Fecha: {{$this->NombreFiltroFecha}}</p>
         <p class="badge bg-secondary">Busqueda: {{empty($this->filtros['busqueda']) ? "cualquiera": $this->filtros['busqueda'] }}</p>
     </div>
 
@@ -78,22 +79,74 @@
 
 
                     <!-- Filtrar por Fecha  -->
+                    <div style="text-align: center; float: left; margin-left: 15px;" class="dropdown">
+                        <button 
+                            style=" border: 2px solid #ffffff;border-radius: 4px" 
+                            class="btn btn-secondary dropdown-toggle" 
+                            type="button" 
+                            data-bs-toggle="dropdown" 
+                            data-bs-auto-close="outside"
+                            aria-expanded="false">
+                            Fecha
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="mb-1 px-2">
+                                    <label for="" class="form-label">Inicio</label>
+                                    <input wire:model.lazy="filtros.fecha_inicial" class="form-control form-control-sm" type="date">
+                                </div>
+                                <div class="mb-1 px-2">
+                                    <label for="" class="form-label">Final</label>
+                                    <input wire:model.lazy="filtros.fecha_final" class="form-control form-control-sm" type="date">
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->toDateString('Y-m-d')}}', '{{now()->toDateString('Y-m-d')}}')">Hoy</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(7)->toDateString('Y-m-d')}}', '{{now()->toDateString('Y-m-d')}}')">Última semana</a></li>
+                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(30)->toDateString('Y-m-d')}}', '{{now()->toDateString('Y-m-d')}}')">Último mes</a></li>
+                        </ul>
+                    </div>
 
-                    <div style="text-align: center; float: left; margin-left: 15px;" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false"><a
-                            style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle"
-                            href=""><i class="bi bi-calendar-check-fill"></i>Filtrar por Fecha</a>
+                    {{-- <div 
+                        style="text-align: center; float: left; margin-left: 15px;" 
+                        id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                            <a
+                                style=" border: 2px solid #ffffff;border-radius: 4px" 
+                                class="btn btn-secondary dropdown-toggle"
+                                data-bs-auto-close="false" 
+                                href="">
+                                <i class="bi bi-calendar-check-fill"></i>
+                                Fecha
+                            </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <div class="mb-1 px-2">
+                                    <label for="" class="form-label">Inicio</label>
+                                    <input class="form-control form-control-sm" type="date">
+                                </div>
+                                <div class="mb-1 px-2">
+                                    <label for="" class="form-label">Final</label>
+                                    <input class="form-control form-control-sm" type="date">
+                                </div>
+                            </li>
+                            <hr>
                             <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->toDateString('Y-m-d')}}', 'Hoy')">Hoy</a></li>
                             <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(7)->toDateString('Y-m-d')}}', 'Ultima semana')">Última semana</a></li>
                             <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(30)->toDateString('Y-m-d')}}', 'Ultimo mes')">Último mes</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                     <div style="text-align: center; float: left; margin-left: 15px; margin-right: 15px;" class="dropdown">
-                        <button style=" border: 2px solid #ffffff;border-radius: 4px" class="btn btn-secondary dropdown-toggle" 
-                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Estado
+                        <button 
+                            style=" border: 2px solid #ffffff;border-radius: 4px" 
+                            class="btn btn-secondary dropdown-toggle" 
+                            type="button" 
+                            data-bs-toggle="dropdown" 
+                            data-bs-auto-close="false"
+                            aria-expanded="false">
+                            Estado
                         </button>
                         <ul class="dropdown-menu">
                           <li><a 
@@ -104,7 +157,6 @@
                                 wire:click.prevent="setFiltroEstado('pagado', 'Pagado')">Pagado</a></li>
                         </ul>
                     </div>
-
                 </div>
 
             </div>

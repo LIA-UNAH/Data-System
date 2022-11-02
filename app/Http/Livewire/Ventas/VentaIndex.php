@@ -10,13 +10,11 @@ class VentaIndex extends Component
 {   
     public $filtros = [
         "busqueda" => "",
+        "fecha_inicial" => "",
+        "fecha_final" => "",
         "estado" => [
             "nombre" => "En Proceso",
             "valor" => "en_proceso",
-        ],
-        "fecha" => [
-            "nombre" => "",
-            "valor" => "",
         ]
     ];
 
@@ -25,7 +23,7 @@ class VentaIndex extends Component
         return view('livewire..ventas.venta-index', [
             'ventas' => Venta::where('estado', $this->filtros["estado"]["valor"])
                 ->where('numero_factura_venta', 'like', "%{$this->filtros["busqueda"]}%")
-                ->whereBetween('fecha_factura', [$this->filtros["fecha"]["valor"], Carbon::now()->toDateString('Y-m-d')])
+                ->whereBetween('fecha_factura', [$this->filtros["fecha_inicial"], $this->filtros["fecha_final"]])
                 ->orderByDesc('fecha_factura')
                 ->paginate(10)
         ])
@@ -34,7 +32,7 @@ class VentaIndex extends Component
     }
 
     public function mount(){
-        $this->setFiltroFecha(Carbon::now()->toDateString('Y-m-d'), "Hoy");
+        $this->setFiltroFecha(Carbon::now()->toDateString('Y-m-d'), Carbon::now()->toDateString('Y-m-d'));
     }
 
     public function setFiltroEstado($valor, $nombre){
@@ -42,8 +40,15 @@ class VentaIndex extends Component
         $this->filtros["estado"]["nombre"] = $nombre;
     }
 
-    public function setFiltroFecha($valor, $nombre){
-        $this->filtros["fecha"]["valor"] = $valor;
-        $this->filtros["fecha"]["nombre"] = $nombre;
+    public function setFiltroFecha($fecha_inicial, $fecha_final){
+        $this->filtros["fecha_inicial"] = $fecha_inicial;
+        $this->filtros["fecha_final"] = $fecha_final;
     }
+
+    // propiedad computada para generar el nombre del filtro de fecham y mostrarlo al usuario
+    public function getNombreFiltroFechaProperty()
+    {
+        return "{$this->filtros["fecha_inicial"]} / {$this->filtros["fecha_final"]}";
+    }
+
 }
