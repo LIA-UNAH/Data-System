@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 // Información del sistema
-Route::get('/info', [UserController::class, 'info'])->name('info');
+    Route::get('/info', [UserController::class, 'info'])->name('info');
 
     /*
     |--------------------------------------------------------------------------
@@ -372,6 +372,6 @@ Route::get('/info', [UserController::class, 'info'])->name('info');
 });
 
 // Visualizar cobros
-    Route::get('cobros/{id}/show', [App\Http\Controllers\CuentasPorCobrarController::class, 'show'])->middleware('can:controlDeCliente')
-        ->name('cobro.mostrar');
+Route::get('cobros/{id}/show', [App\Http\Controllers\CuentasPorCobrarController::class, 'show'])->middleware('can:controlDeCliente')
+    ->name('cobro.mostrar');
 
