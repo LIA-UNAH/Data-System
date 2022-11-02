@@ -71,8 +71,8 @@
           <div class="card border-left-info shadow">
             <div class="card-body">
               <center class="mt-4">
-                <img src="/images/uploads/{{ $user->image }}"  class="img-profile rounded-circle"  width="150px">
-                <h4 class="card-title mt-2">{{$user->email}}</h4>
+                <img src="/images/uploads/{{ $user->image }}"  class="img-profile rounded-circle"  width="158px">
+                <h4 class="card-title mt-2">{{$user->name}}</h4>
                 <h6 class="card-subtitle">{{$user->type}}</h6>
                 <br>
                 <div class="row text-center justify-content-md-center">
@@ -83,6 +83,7 @@
                         </svg>
                      </a>
                   </div>
+
                   <div class="col-4">
                     <a class="rounded-pill" href="javascript:history.back()" class="btn btn-primary">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
@@ -103,12 +104,6 @@
           <div class="card border-left-info shadow">
             <div class="card-body">
               <form class="form-horizontal form-material mx-2" data-bitwarden-watching="1">
-                <div class="form-group" >
-                  <label class="col-md-12" style="text-align: left;"><b>Nombre:</b></label>
-                  <div class="col-md-12">
-                    <input readonly type="text" value="{{$user->name}}" placeholder="Johnathan Doe" class="form-control form-control-line">
-                  </div>
-                </div>
                 <div class="form-group">
                   <label for="example-email" class="col-md-12" style="text-align: left"><b>Correo:</b></label>
                   <div class="col-md-12">
@@ -124,11 +119,9 @@
                 <div class="form-group">
                   <label class="col-md-12" style="text-align: left"><b>Dirección</b></label>
                   <div class="col-md-12">
-                    <textarea readonly rows="5" class="form-control form-control-line">{{$user->address}}</textarea>
+                    <textarea readonly rows="3" class="form-control form-control-line">{{$user->address}}</textarea>
                   </div>
                 </div>
-
-
               </form>
             </div>
           </div>

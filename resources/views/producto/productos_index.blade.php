@@ -19,8 +19,6 @@
         </div>
     @endif
 
-
-
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
             <div style="float: left">
@@ -153,10 +151,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
-                {{ $productos->links('pagination::bootstrap-4') }}
-            </div>
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $productos->links() }}</div>
         </div>
+
         <div class="card-body" style="display: none" id="cartas_table" >
             <div class="table-responsive" id="tblaBody" >
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" style="text-align: center">
@@ -217,14 +214,10 @@
                                                                 data-bs-dismiss="modal">Cerrar</button>
                                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                                     </div>
-
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -234,11 +227,10 @@
                         </tr>
                     @endforelse
                 </div>
-                <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
-                    {{ $productos->links('pagination::bootstrap-4') }}
-                </div>
+                <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $productos->links() }}</div>
             </div>
         </div>
+    </div>
         @endsection
 
         @push('scripsss')

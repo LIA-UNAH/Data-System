@@ -232,7 +232,7 @@
         }
 
         $(document).ready(function() {
-            $('#tablaBody').css('height', (screen.height - 450));
+            $('#tablaBody').css('height', (screen.height - 440));
         });
     </script>
 @endpush

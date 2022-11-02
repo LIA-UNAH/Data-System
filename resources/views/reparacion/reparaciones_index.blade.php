@@ -98,8 +98,8 @@
                             @endforelse
                     </tbody>
                 </table>
-                <div class="col-sm-6" style="text-align: center; margin: 0 auto">{{ $reparaciones->links() }}</div>
             </div>
         </div>
+        <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $reparaciones->links() }}</div>
     </div>
 @endsection

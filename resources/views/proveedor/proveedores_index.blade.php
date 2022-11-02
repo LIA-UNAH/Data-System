@@ -103,8 +103,6 @@
 
                             <!---------############################----------->
                             <!-----------MODAL PARA ELIMINAR UN PROVEEDOR---------------->
-
-
                             <div class="modal fade" id="modalEliminarProveedor{{ $proveedor->id }}"
                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -138,18 +136,13 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">No hay proveedor</td>
+                            <td colspan="7">No hay proveedores</td>
                         </tr>
-
                     @endforelse
                 </tbody>
-
             </table>
-
         </div>
-        <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
-            {{ $proveedores->links('pagination::bootstrap-4') }}
-        </div>
+        <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $proveedores->links() }}</div>
     </div>
 </div>
 @endsection

@@ -201,8 +201,5 @@ class ClienteController extends Controller
     {
         $user->delete();
         return redirect()->route("clientes.index")->with("error", "Se eliminó exitosamente el cliente.");
-
-        //session()->put('exito', 'El cliente fue eliminado con exito.');
-        //return redirect()->back()->withInput();
     }
 }

@@ -203,10 +203,7 @@
                 </table>
             </div>
         </div>
-
-        <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
-            {{ $categorias->links() }}
-        </div>
+        <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $categorias->links() }}</div>
     </div>
 @endsection
 

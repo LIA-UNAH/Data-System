@@ -112,10 +112,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-
-        <div class="col-md-5" style="text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 12px;">
-            {{ $compras->links() }}
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $compras->links() }}</div>
         </div>
     </div>
 @endsection

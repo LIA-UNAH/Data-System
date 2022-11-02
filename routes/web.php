@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraClienteController;
@@ -11,7 +10,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Livewire\Producto\Item\AgregarCarrito;
 use App\Http\Livewire\Producto\Item\VerCarrito;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
@@ -31,12 +29,11 @@ Auth::routes();
 Route::get('sendmail', [MailController::class, 'index']);
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/venta', AgregarCarrito::class)->name('home-carrito');
     Route::get('/shopping', VerCarrito::class)->name('ver-carrito');
 
-
-// Información del sistema
+    // Información del sistema
     Route::get('/info', [UserController::class, 'info'])->name('info');
 
     /*
@@ -45,38 +42,38 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Listar usuarios
+    // Listar usuarios
     Route::get('/usuarios', [UserController::class, 'index'])->middleware('can:controlTotal')
         ->name('usuarios.index');
 
-// Buscar usuarios
+    // Buscar usuarios
     Route::get('/usuarios/busqueda', [UserController::class, 'search'])->middleware('can:controlTotal')
         ->name('usuarios.searchIndex');
 
-// Agregar usuarios
+    // Agregar usuarios
     Route::get("/usuarios/create", [UserController::class, "create"])->middleware('can:controlTotal')
         ->name("usuarios.create");
 
     Route::post("/usuarios/create", [UserController::class, "store"])->middleware('can:controlTotal')
         ->name("usuarios.create");
 
-// Editar usuarios
+    // Editar usuarios
     Route::get("/usuarios/{id}/edit", [UserController::class, "edit"])->middleware('can:controlTotal')
         ->name("usuarios.edit")->where('id', '[0-9]+');
 
     Route::put("/usuarios/{id}/edit", [UserController::class, "update"])->middleware('can:controlTotal')
         ->name("usuarios.edit")->where('id', '[0-9]+');
 
-// Eliminar usuarios
+    // Eliminar usuarios
     Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])->middleware('can:controlTotal')
         ->name('usuarios.destroy');
 
-// Visualizar usuarios
+    // Visualizar usuarios
     Route::get("/usuarios/{id}/", [UserController::class, "show"])->middleware('can:controlTotal')
         ->name("usuarios.show")->where('id', '[0-9]+');
 
-// Perfil de usuario
-    Route::get("/profile", [UserController::class, "profile"])->middleware('can:controlTotal')
+    // Perfil de usuario
+    Route::get("/profile", [UserController::class, "profile"])->middleware('can:controlParcial')
         ->name("usuarios.profile")->where('id', '[0-9]+');
 
     /*
@@ -85,33 +82,33 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Visualizar clientes
+    // Visualizar clientes
     Route::get('/clientes', [ClienteController::class, 'index'])->middleware('can:controlParcial')
         ->name('clientes.index');
 
-// Buscar clientes
+    // Buscar clientes
     Route::get('/clientes/busqueda', [ClienteController::class, 'search'])->middleware('can:controlParcial')
         ->name('clientes.searchIndex');
 
-// Agregar clientes
+    // Agregar clientes
     Route::get("/clientes/create", [ClienteController::class, "create"])->middleware('can:controlParcial')
         ->name("clientes.create");
 
     Route::post("/clientes/create", [ClienteController::class, "store"])->middleware('can:controlParcial')
         ->name("clientes.create");
 
-// Editar clientes
+    // Editar clientes
     Route::get("/clientes/{id}/edit", [ClienteController::class, "edit"])->middleware('can:controlParcial')
         ->name("clientes.edit")->where('id', '[0-9]+');
 
     Route::put("/clientes/{id}/edit", [ClienteController::class, "update"])->middleware('can:controlParcial')
         ->name("clientes.edit")->where('id', '[0-9]+');
 
-// Eliminar clientes
+    // Eliminar clientes
     Route::delete('/clientes/{user}', [ClienteController::class, 'destroy'])->middleware('can:controlParcial')
         ->name('clientes.destroy');
 
-// Visualizar clientes
+    // Visualizar clientes
     Route::get("/clientes/{id}/", [ClienteController::class, "show"])->middleware('can:controlParcial')
         ->name("clientes.show")->where('id', '[0-9]+');
 
@@ -121,34 +118,33 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-//HU20 - #PRODUCTOS# index, create, store, show, edit, update, destroy
-// Listar productos
+    // Listar productos
     Route::get('/productos', [ProductoController::class, 'index'])->middleware('can:controlDeCliente')
         ->name('productos.index');
 
-// Buscar productos
+    // Buscar productos
     Route::get('/productos/busqueda', [ProductoController::class, 'search'])->middleware('can:controlDeCliente')
         ->name('productos.searchIndex');
 
-// Agregar productos
+    // Agregar productos
     Route::get("/productos/create", [ProductoController::class, "create"])->middleware('can:controlDeCliente')
         ->name("productos.create");
 
     Route::post("/productos/create", [ProductoController::class, "store"])->middleware('can:controlDeCliente')
         ->name("productos.create");
 
-// Editar productos
+    // Editar productos
     Route::get("/productos/{id}/edit", [ProductoController::class, "edit"])->middleware('can:controlParcial')
         ->name("productos.edit")->where('id', '[0-9]+');
 
     Route::put("/productos/{id}/edit", [ProductoController::class, "update"])->middleware('can:controlParcial')
         ->name("productos.edit")->where('id', '[0-9]+');
 
-// Visualizar productos
+    // Visualizar productos
     Route::get("/productos/{id}/", [ProductoController::class, "show"])->middleware('can:controlParcial')
         ->name("productos.show")->where('id', '[0-9]+');
 
-// Eliminar productos
+    // Eliminar productos
     Route::delete('/productos/{user}', [ProductoController::class, 'destroy'])->middleware('can:controlParcial')
         ->name('productos.destroy');
 
@@ -158,26 +154,25 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-//Listar pedidos
+    //Listar pedidos
     Route::resource('/pedidos', PedidoController::class)->middleware('can:controlDeCliente')->middleware('can:controlDeCliente');
 
-// Visualizar pedido
-    Route::get('pedidos/{id}/show', [App\Http\Controllers\PedidoController::class, 'show'])->middleware('can:controlDeCliente')
+    // Visualizar pedido
+    Route::get('pedidos/{id}/show', [PedidoController::class, 'show'])->middleware('can:controlDeCliente')
         ->name('pedidos.mostrar');
 
-// Editar pedido
-    Route::get('/pedidos/{id}/editar', [App\Http\Controllers\PedidoController::class, 'edit'])->middleware('can:controlDeCliente')
+    // Editar pedido
+    Route::get('/pedidos/{id}/editar', [PedidoController::class, 'edit'])->middleware('can:controlDeCliente')
         ->name('pedido.edit')
         ->where('id', '[0-9]+');
 
-    Route::put('/pedidos/{id}/editar', [App\Http\Controllers\PedidoController::class, 'update'])->middleware('can:controlDeCliente')
+    Route::put('/pedidos/{id}/editar', [PedidoController::class, 'update'])->middleware('can:controlDeCliente')
         ->name('pedido.update')
         ->where('id', '[0-9]+');
 
-// Eliminar pedido
+    // Eliminar pedido
     Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])->middleware('can:controlDeCliente')
         ->name('pedidos.destroy');
-
 
     /*
     |--------------------------------------------------------------------------
@@ -185,33 +180,33 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Listar proveedores
+    // Listar proveedores
     Route::get('/proveedor', [ProveedorController::class, 'index'])->middleware('can:controlParcial')
         ->name('proveedor.index');
 
-// Agregar proveedor
+    // Agregar proveedor
     Route::get("/proveedor/create", [ProveedorController::class, "create"])->middleware('can:controlParcial')
         ->name("proveedor.create");
 
     Route::post("/proveedor/create", [ProveedorController::class, "store"])->middleware('can:controlParcial')
         ->name("proveedor.create");
 
-// Eliminar proveedor
+    // Eliminar proveedor
     Route::delete('/proveedor/{proved}', [ProveedorController::class, 'destroy'])->middleware('can:controlParcial')
         ->name('proveedor.destroy');
 
-// Editar proveedor
+    // Editar proveedor
     Route::get("/proveedor/{id}/edit", [ProveedorController::class, "edit"])->middleware('can:controlParcial')
         ->name("proveedor.edit")->where('id', '[0-9]+');
 
     Route::put("/proveedor/{id}/edit", [ProveedorController::class, "update"])->middleware('can:controlParcial')
         ->name("proveedor.edit")->where('id', '[0-9]+');
 
-// Editar proveedor
+    // Editar proveedor
     Route::put('/proveedor/{id}/editar', [ProveedorController::class, 'update'])->middleware('can:controlParcial')
         ->name('proveedor.update');
 
-// Visualizar proveedor
+    // Visualizar proveedor
     Route::get("/proveedor/{id}/", [ProveedorController::class, "show"])->middleware('can:controlParcial')
         ->name("proveedor.show")->where('id', '[0-9]+');
 
@@ -221,42 +216,38 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Visualizar ventas
-// Route::resource('/ventas', VentaClienteController::class)->middleware('can:controlParcial');
+    // Visualizar ventas
     Route::get('/ventas', VentaIndex::class)->name('ventas.index')->middleware('can:controlParcial');
 
-// Registrar venta
+    // Registrar venta
     Route::get('/ventas/create', VentaCreate::class)->name('ventas.create')->middleware('can:controlParcial');
 
-// //Editar venta
+    //Editar venta
     Route::get('/ventas/{id}/editar', VentaCreate::class)->name('ventas.edit')->middleware('can:controlParcial');
 
-// Buscar ventas
-    Route::get('/ventas/busqueda', [App\Http\Controllers\VentaClienteController::class, 'search'])->middleware('can:controlParcial')
+    // Buscar ventas
+    Route::get('/ventas/busqueda', [VentaClienteController::class, 'search'])->middleware('can:controlParcial')
         ->name('ventas.searchIndex');
 
-// Factura ventas
-    Route::get('/ventas/facturas/{id}', [App\Http\Controllers\VentaClienteController::class, 'show'])->middleware('can:controlParcial')
+    // Factura ventas
+    Route::get('/ventas/facturas/{id}', [VentaClienteController::class, 'show'])->middleware('can:controlParcial')
         ->name('ventas.facturas');
 
-// Vista Previa Factura
-    Route::get('/ventas/factura/', [App\Http\Controllers\VentaClienteController::class, 'factura'])->middleware('can:controlParcial')
+    // Vista Previa Factura
+    Route::get('/ventas/factura/', [VentaClienteController::class, 'factura'])->middleware('can:controlParcial')
         ->name('ventas.factura');
 
-//Buscar producto al registrar venta
-    Route::get('/ventas/create/busquedapro', [App\Http\Controllers\VentaClienteController::class, 'buscarpro'])->middleware('can:controlParcial')
+    // Buscar producto al registrar venta
+    Route::get('/ventas/create/busquedapro', [VentaClienteController::class, 'buscarpro'])->middleware('can:controlParcial')
         ->name('ventas.buscarpro');
 
-//Marcar venta como pagada
+    // Marcar venta como pagada
     Route::get('/ventas/pagar/{id}', [VentaClienteController::class, 'pagar_factura'])->middleware('can:controlParcial')
         ->name('ventas.pagar');
-//pdf de venta
+
+    // PDF de venta
     Route::get('/ventas/facturas/descargarPDF/{id}', [VentaClienteController::class, 'pdf'])->middleware('can:controlParcial')
         ->name('ventas.pdf');
-//Route::get('/ventas/pdf/{id}', [App\Http\Controllers\VentaClienteController::class, 'pdf'])->middleware('can:controlParcial')
-    // ->name('ventas.pdf');
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -264,14 +255,14 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Visualizar compras
+    // Visualizar compras
     Route::resource('/compras', CompraClienteController::class)->middleware('can:controlDeCliente');
 
-// Buscar compras
+    // Buscar compras
     Route::get('/compras/busqueda', [CompraClienteController::class, 'search'])->middleware('can:controlDeCliente')
         ->name('compras.searchIndex');
 
-    Route::post('/compras/guardar', [App\Http\Controllers\CompraClienteController::class, 'compra_guardar'])->middleware('can:controlDeCliente')
+    Route::post('/compras/guardar', [CompraClienteController::class, 'compra_guardar'])->middleware('can:controlDeCliente')
         ->name('compras.guardar_compra');
 
     /*
@@ -280,7 +271,7 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Visualizar inventario
+    // Visualizar inventario
     Route::get('/inventario', [ProductoController::class, 'index_inventario'])->middleware('can:controlDeCliente')
         ->name('inventario.index');
 
@@ -290,37 +281,37 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Listar categorias
+    // Listar categorias
     Route::get('/categorias', [CategoriaController::class, 'index'])->middleware('can:controlParcial')
         ->name('categorias.index');
 
-// Buscar categorias
+    // Buscar categorias
     Route::get('/categorias/busqueda', [CategoriaController::class, 'search'])->middleware('can:controlParcial')
         ->name('categorias.searchIndex');
 
-// Agregar categorias
+    // Agregar categorias
     Route::get("/categorias/create", [CategoriaController::class, "create"])->middleware('can:controlParcial')
         ->name("categorias.create");
 
     Route::post("/categorias/create", [CategoriaController::class, "store"])->middleware('can:controlParcial')
         ->name("categorias.create");
 
-// Editar categorias
+    // Editar categorias
     Route::get("/categorias/{id}/edit", [CategoriaController::class, "edit"])->middleware('can:controlParcial')
         ->name("categorias.edit")->where('id', '[0-9]+');
 
     Route::put("/categorias/{id}/edit", [CategoriaController::class, "update"])->middleware('can:controlParcial')
         ->name("categorias.edit")->where('id', '[0-9]+');
 
-// Eliminar categoria
+    // Eliminar categoria
     Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy'])->middleware('can:controlParcial')
         ->name('categorias.destroy');
 
-// Visualizar categoria
+    // Visualizar categoria
     Route::get("/categorias/{id}/", [CategoriaController::class, "show"])->middleware('can:controlParcial')
         ->name("categorias.show")->where('id', '[0-9]+');
 
-// Eliminar categoria
+    // Eliminar categoria
     Route::post('/categorias/{categoria}', [CategoriaController::class, 'cambioEstado'])->middleware('can:controlParcial')
         ->name('categorias.cambiar');
 
@@ -330,33 +321,33 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Listar reparaciones
+    // Listar reparaciones
     Route::get('/reparaciones', [ReparacionController::class, 'index'])->middleware('can:controlParcial')
         ->name('reparaciones.index');
 
-// Buscar reparaciones
+    // Buscar reparaciones
     Route::get('/reparaciones/busqueda', [ReparacionController::class, 'search'])->middleware('can:controlParcial')
         ->name('reparaciones.searchIndex');
 
-// Agregar reparaciones
+    // Agregar reparaciones
     Route::get("/reparaciones/create", [ReparacionController::class, "create"])->middleware('can:controlParcial')
         ->name("reparaciones.create");
 
     Route::post("/reparaciones/create", [ReparacionController::class, "store"])->middleware('can:controlParcial')
         ->name("reparaciones.create");
 
-// Editar reparaciones
+    // Editar reparaciones
     Route::get("/reparaciones/{id}/edit", [ReparacionController::class, "edit"])->middleware('can:controlParcial')
         ->name("reparaciones.edit")->where('id', '[0-9]+');
 
     Route::put("/reparaciones/{id}/edit", [ReparacionController::class, "update"])->middleware('can:controlParcial')
         ->name("reparaciones.edit")->where('id', '[0-9]+');
 
-// Eliminar reparaciones
+    // Eliminar reparaciones
     Route::delete('/reparaciones/{reparacion}', [ReparacionController::class, 'destroy'])->middleware('can:controlParcial')
         ->name('reparaciones.destroy');
 
-// Visualizar reparaciones
+    // Visualizar reparaciones
     Route::get("/reparaciones/{id}/", [ReparacionController::class, "show"])->middleware('can:controlParcial')
         ->name("reparaciones.show")->where('id', '[0-9]+');
 
@@ -366,12 +357,12 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-// Listar cobros
+    // Listar cobros
     Route::get('/cobros', [CuentasPorCobrarController::class, 'index'])->middleware('can:controlParcial')
         ->name('cobros.index');
-});
 
-// Visualizar cobros
-Route::get('cobros/{id}/show', [App\Http\Controllers\CuentasPorCobrarController::class, 'show'])->middleware('can:controlDeCliente')
-    ->name('cobro.mostrar');
+    // Visualizar cobros
+    Route::get('cobros/{id}/show', [CuentasPorCobrarController::class, 'show'])->middleware('can:controlDeCliente')
+        ->name('cobro.mostrar');
+});
 
