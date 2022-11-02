@@ -30,7 +30,7 @@
     @livewireStyles
 </head>
 
-<body id="page-top" >
+<body id="page-top">
 @livewireScripts
 
 <!-- Page Wrapper -->
@@ -528,7 +528,7 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <div id="contaire" style="padding: 10px">
+                <div id="contaire" style="overflow-y: auto; height: calc(82vh);">
                     @yield('content')
                 </div>
             </div>
