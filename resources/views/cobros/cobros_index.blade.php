@@ -89,7 +89,7 @@
                     @forelse($cobros as $item=> $cobr)
                         <tr style="font-family: 'Nunito', sans-serif; font-size: small">
                             <td scope="row"><strong>{{$item +$cobros->firstItem()}}</strong></td>
-                            <td>{{$cobr->nombre_cliente}}</td>
+                            <td><strong>{{$cobr->nombre_cliente}}</strong></td>
                             <td>{{$cobr->identidad}}</td>
                             <td>{{$cobr->domicilio}}</td>
                             <td><span class="badge rounded-pill text-bg-light p-2 shadow-sm">{{ $cobr->estado}}</span>

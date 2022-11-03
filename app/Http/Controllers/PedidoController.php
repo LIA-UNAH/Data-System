@@ -15,7 +15,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedid = Pedido::paginate(10);
+        $pedid = Pedido::paginate(5);
         return view('pedido.pedidos_index')->with('pedidos', $pedid);
     }
 

@@ -1,90 +1,57 @@
 @extends('Layouts.Layouts')
 @section('content')
-
-<div class="card shadow mb-4 ">
-  <div></div>
-<div class="card-header py-3" style="background: #0d6efd">
-                
-                <div style="float: left">
-                    <h2 class="m-0 font-weight-bold" style="color: white">Detalle del cobro a nombre de: <strong>{{$cobro->nombre_cliente}}</strong></h2>
-                  </div>
-                </div>
-<br>
-<br>
-
-                <div class="container">
-                <form action="" method="">
-                <div class="modal-body">
-                      <div class="row g-3">
-                              <div class="col-sm-6">
-                                <label for="nombre_cliente" class="form-label"><strong>Cliente:</strong></label>
-                                <td>{{$cobro->nombre_cliente}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <label for="identidad" class="form-label"><strong>Identidad:</strong></label>
-                                <td>{{$cobro->identidad}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              
-                              <div class="col-sm-6">
-                                <label for="numTelefono" class="form-label"><strong>Numero de telefono:</strong></label>
-                                <td>{{$cobro->numTelefono}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="estado" class="form-label"><strong>Estado:</strong></label>
-                                <td>{{$cobro->estado}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="fecha" class="form-label"><strong>Fecha:</strong></label>
-                                <td>{{$cobro->fecha}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div> 
-                              <div class="col-sm-6">
-                                <label for="detalle_Pedido" class="form-label"><strong>Fecha limite:</strong></label>
-                                <td>{{$cobro->fecha_limite}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="venta" class="form-label"><strong>Venta:</strong></label>
-                                <td> {{$cobro->venta}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                               
-                              
-                              </div>            
-                          </div>
-
-                          <br>
-                        
-                          <div style="float:center">
-                          
-                              <a class="btn btn-dark" href="/cobros">Volver</a>       
-
-
-                          </div>
+<link href={{ asset("css/target.css") }} rel="stylesheet" type="text/css">
+    <div class="container py-1">
+        <!-- Carta -->
+        <div class="card">
+            <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>DETALLES DEL COBRO</strong></div>
+            <div class="row ">
+                <div class="col-lg-8" style="background: whitesmoke; color: white; font-family: 'Nunito', sans-serif; font-size: small; text-align: justify"> <div class="p-4">
+                    <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Cliente:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-transform: uppercase;"> {{$cobro->nombre_cliente}} </div>
+                            <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Identidad:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$cobro->identidad}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                           <strong>Numero de telefono:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none; text-transform:uppercase">  {{$cobro->numTelefono}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                        <strong>Estado:</strong></div>
+                        <div
+                              style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$cobro->estado}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                             <strong>Fecha:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$cobro->fecha}} </div>
+                            <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Fecha limite:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$cobro->fecha_limite}} </div>
+                            <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Venta:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$cobro->venta}} </div>
                         <br>
-                          </form>
+                    </div>
                 </div>
-                <br>
-                
-</div>
+
+                         <div class="text-center">
+                          <br>
+                            <a href="/cobros" style="width: 130px; display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                            class="btn btn-google btn-user">Volver</a>
+                            <br>
+                            <br>
+                          </div>
+                </div>
+            </div>
+        </div>
+      </div>
+        <!-- End of card -->
+
+    </div>
 
 @endsection

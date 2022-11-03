@@ -88,7 +88,7 @@
                     @forelse($pedidos as $item=> $pedid)
                         <tr>
                             <td scope="row"><strong>{{$item +$pedidos->firstItem()}}</strong></td>
-                            <td scope="row">{{$pedid->ciudad}}</td>
+                            <td scope="row"><strong>{{$pedid->ciudad}}</strong></td>
                             <td>{{ $pedid->fecha_de_orden}}</td>
                             <td><span
                                     class="badge rounded-pill text-bg-light p-2 shadow-sm">{{ $pedid->estado_Pedido}}</span>
