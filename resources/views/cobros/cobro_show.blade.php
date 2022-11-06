@@ -32,26 +32,24 @@
                         <div
                             style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$cobro->fecha_limite}} </div>
                             <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
-                            <strong>Venta:</strong></div>
+                            <strong>Venta:</strong><br> <br></div>
                         <div
                             style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;"> {{$cobro->venta}} </div>
                         <br>
                     </div>
                 </div>
-
+              
                          <div class="text-center">
                           <br>
                             <a href="/cobros" style="width: 130px; display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
                             class="btn btn-google btn-user">Volver</a>
                             <br>
-                            <br>
-                          </div>
+                            <br>                  
+                  </div>
                 </div>
             </div>
-        </div>
-      </div>
-        <!-- End of card -->
-
-    </div>
-
+        
+      
+           <!-- End of card -->
+ </div>
 @endsection
