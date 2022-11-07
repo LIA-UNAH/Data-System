@@ -4,7 +4,7 @@
     <div class="container py-1">
         <!-- Carta -->
         <div class="card">
-            <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>DETALLES DEL PROVEEDOR</strong></div>
+            <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>DETALLES DEL PRODUCTO</strong></div>
             <div class="row ">
                 <div class="col-lg-8" style="background: whitesmoke; color: white; font-family: 'Nunito', sans-serif; font-size: small; text-align: justify"> <div class="p-4">
                     <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
