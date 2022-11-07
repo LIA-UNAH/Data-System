@@ -1,88 +1,56 @@
 @extends('Layouts.Layouts')
 @section('content')
-
-<div class="card shadow mb-4 ">
-  <div></div>
-<div class="card-header py-3" style="background: #0d6efd">
-                
-                <div style="float: left">
-                    <h2 class="m-0 font-weight-bold" style="color: white">Detalle del Pedidos de <strong>{{$pedido->nombre_Cliente}}</strong></h2>
-                  </div>
-                </div>
-<br>
-
-                <div class="container">
-                <form action="" method="">
-                <div class="modal-body">
-                      <div class="row g-3">
-                              <div class="col-sm-6">
-                                <label for="nombre_Cliente" class="form-label"><strong>Cliente:</strong></label>
-                                <td>{{$pedido->nombre_Cliente}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <label for="telefono_Cliente" class="form-label"><strong>Telefono del cliente:</strong></label>
-                                <td>{{$pedido->telefon_Cliente}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              
-                              <div class="col-sm-6">
-                                <label for="ciudad" class="form-label"><strong>Ciudad:</strong></label>
-                                <td>{{$pedido->ciudad}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="fecha_de_orden" class="form-label"><strong>Fecha de orden:</strong></label>
-                                <td>{{$pedido->fecha_de_orden}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="estado_Pedido" class="form-label"><strong>Estado pedido:</strong></label>
-                                <td>{{$pedido->estado_Pedido}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div> 
-                              <div class="col-sm-6">
-                                <label for="detalle_Pedido" class="form-label"><strong>Detalle pedido:</strong></label>
-                                <td>{{$pedido->detalle_Pedido}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="total_Pedido" class="form-label"><strong>Total pedido:</strong></label>
-                                <td> {{$pedido->total_Pedido}}</td>
-                                <div class="invalid-feedback">
-                                  Valid first name is required.
-                                </div>
-                              </div>
-                               
-                              
-                              </div>            
-                          </div>
-
-                          <br>
-                        
-                          <div style="float:center">
-                          
-                              <a class="btn btn-dark" href="/pedidos">Volver</a>                   
-                              <a class="btn btn-success" href="{{ route('pedido.edit', ['id' => $pedido->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                          </div>
+<link href={{ asset("css/target.css") }} rel="stylesheet" type="text/css">
+    <div class="container py-1">
+        <!-- Carta -->
+        <div class="card">
+            <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>DETALLES DEL PEDIDO</strong></div>
+            <div class="row ">
+                <div class="col-lg-8" style="background: whitesmoke; color: white; font-family: 'Nunito', sans-serif; font-size: small; text-align: justify"> <div class="p-4">
+                    <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Cliente:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-transform: uppercase;">{{$pedido->nombre_Cliente}}</div>
+                            <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Telefono del cliente:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none; text-transform:uppercase">{{$pedido->telefon_Cliente}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Ciudad:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none; text-transform:uppercase">{{$pedido->ciudad}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Fecha de orden:</strong></div>
+                        <div
+                              style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">{{$pedido->fecha_de_orden}}</div>
+                        <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                             <strong>Estado pedido:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">{{$pedido->estado_Pedido}} </div>
+                            <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                             <strong>Detalle pedido:</strong></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">{{$pedido->detalle_Pedido}}</div>
+                            <div style="font-size: large; color: #1a202c; float: left; width: 40%; text-align: justify;">
+                            <strong>Total pedido:</strong><br> <br></div>
+                        <div
+                            style="font-size: large; color: #1a202c; float: right; width: 55%; text-align: none;">{{$pedido->total_Pedido}}</div>
                         <br>
-                          </form>
+                    </div>
                 </div>
-                <br>
-                
-</div>
+              </div>
+            </div>
+                 <div class="text-center">
+                          <br>
+                               <a href="{{ route('pedido.edit', ['id' => $pedido->id]) }}"
+                                  style=" width: 130px; display: inline-block; background: #0d6efd; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                                    class="btn btn-google btn-user">Editar</a>
 
+                               <a href="/pedidos" style="width: 130px; display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
+                                 class="btn btn-google btn-user">Volver</a>
+                               <br>
+                             <br>                  
+                  </div>    
+           <!-- End of card -->
+ </div>       
 @endsection
