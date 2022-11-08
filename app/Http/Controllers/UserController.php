@@ -112,6 +112,13 @@ class UserController extends Controller
     }
 
     //H30 - Editar usuario
+    public function edit_profile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return view("usuario.usuarios_edit")->with("user", $user);
+    }
+
+    //H30 - Editar usuario
     public function edit(Request $request, $id)
     {
         $user = User::findOrFail($id);
