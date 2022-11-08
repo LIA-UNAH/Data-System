@@ -20,7 +20,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     Ingresos (Anual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">L. {{ $ingresos }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">L. {{ number_format($ingresos, 2, ".", ",") }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-arrow-circle-up fa-2x text-gray-300"></i>
@@ -38,7 +38,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Egresos (Anual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">L. {{ $egresos }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">L. {{ number_format($egresos, 2, ".", ",") }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-arrow-circle-down fa-2x text-gray-300"></i>
@@ -56,7 +56,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Margen de Ganancia</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">L. {{ $ingresos-$egresos }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">L. {{ number_format($ingresos - $egresos, 2, ".", ",") }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
