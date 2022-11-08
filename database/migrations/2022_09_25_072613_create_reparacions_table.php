@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("fecha_entrada");
             $table->date("fecha_salida");
-            $table->string("hora_salida", 8);
+            $table->string("hora_salida");
             $table->string('marca',40);
             $table->string('modelo',40)->nullable();
             $table->string('descripcion', 255);

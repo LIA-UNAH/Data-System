@@ -82,19 +82,6 @@
                             </div>
                         </div>
 
-
-                        <div class="mb-0">
-                            <textarea class="form-control @error('descripcion_compra') is-invalid @enderror"
-                                      id="descripcion_compra"
-                                      name="descripcion_compra"  required autofocus
-                                      minlength="3" maxlength="250" rows="3">{{ old('descripcion_compra') }}</textarea>
-                            @error('descripcion_compra')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
                         <div class="form-group row" style="margin-top: 15px">
                             <div class="col-sm-5 mb-3 mb-sm-0">
                                 <button type="submit" style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"

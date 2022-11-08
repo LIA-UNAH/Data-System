@@ -40,12 +40,12 @@ class CompraClienteController extends Controller
     {
         $provedores = Proveedor::all();
         $productos = Producto::join('categorias', 'categorias.id', '=', 'productos.id_categoria')
-            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo','productos.descripcion',
-                'productos.existencia', 'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria', 'categorias.name')
+            ->select('productos.id','productos.codigo', 'productos.marca','productos.modelo', 'productos.existencia',
+                'productos.prec_venta_may', 'productos.prec_venta_fin','productos.prec_compra','productos.id_categoria',
+                'categorias.name')
             ->get();
         $compra = Compra::where('estado_compra', '=', 'p')->where('user_id', '=', Auth::user()->id)->get();
         if ($compra->count() == 0) {
-
             $compra_nueva = new Compra();
             $compra_nueva->docummento_compra = '';
             $compra_nueva->fecha_compra = '2022-07-29';
@@ -54,12 +54,10 @@ class CompraClienteController extends Controller
             $compra_nueva->estado_compra = 'p';
             $compra_nueva->save();
 
-
             return view('compra.compras_create')->with('compra', $compra_nueva)
                 ->with('provedores', $provedores)
                 ->with('productos', $productos);
         }
-
 
         return view('compra.compras_create')->with('compra', $compra[0])
             ->with('provedores', $provedores)
@@ -91,7 +89,6 @@ class CompraClienteController extends Controller
         $compra->fecha_compra = $request->input('fecha_compra');
         $compra->proveedor_id = $request->input('proveedor_id');
         $compra->user_id = Auth::user()->id;
-        $compra->descripcion_compra = $request->input('descripcion_compra');
         $compra->estado_compra = 'g';
         $compra->save();
 
@@ -150,7 +147,6 @@ class CompraClienteController extends Controller
     public function destroy($id)
     {
         Compra::destroy($id);
-
         return redirect()->route('compras.index');
     }
 }

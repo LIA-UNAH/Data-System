@@ -62,7 +62,7 @@ class ReparacionController extends Controller
         $this->validate($request, [
             'fecha_entrada' => ['required'],
             'fecha_salida' => ['required'],
-            'hora_salida' => ['required', 'string', 'min:8', 'max:8'],
+            'hora_salida' => ['required', 'string'],
             'marca' => ['required', 'string', 'min:2', 'max:40'],
             'modelo' => ['required', 'string', 'max:40'],
             'descripcion' => ['required', 'string', 'min:2', 'max:255'],
@@ -74,8 +74,6 @@ class ReparacionController extends Controller
 
             'hora_salida.required' => '¡Debes ingresar una hora de entrega!',
             'hora_salida.string' => '¡Debes ingresar una hora correcta, verifica la información!',
-            'hora_salida.min' => '¡Verifica que sea el formato de hora correcto, ejemplo: 02:00 PM!',
-            'hora_salida.max' => '¡Verifica que sea el formato de hora correcto, ejemplo: 05:00 PM!',
 
             'marca.required' => '¡Debes ingresar la marca!',
             'marca.string' => '¡Debes ingresar una marca, verifica la información!',

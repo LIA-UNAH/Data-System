@@ -87,7 +87,41 @@
                                 <td scope="row">{{ $reparacion->telefono }}</td>
                                 <td scope="row"> <strong>{{ $reparacion->marca }} {{ $reparacion->modelo }}</strong></td>
                                 <td style="color: #b02a37"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_entrada)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_entrada)->isoFormat("MMMM")}}</strong></td>
-                                <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las {{ $reparacion->hora_salida }}</strong></td>
+                                @if($reparacion->hora_salida >= '08:00' && $reparacion->hora_salida < '09:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 08:00 AM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '09:00' && $reparacion->hora_salida < '10:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 09:00 AM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '10:00' && $reparacion->hora_salida < '11:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 10:00 AM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '11:00' && $reparacion->hora_salida < '12:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 11:00 AM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '12:00' && $reparacion->hora_salida < '13:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 12:00 PM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '13:00' && $reparacion->hora_salida < '14:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a la 01:00 PM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '14:00' && $reparacion->hora_salida < '15:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 02:00 PM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '15:00' && $reparacion->hora_salida < '16:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 03:00 PM</strong></td>
+                                @endif
+
+                                @if($reparacion->hora_salida >= '16:00' && $reparacion->hora_salida < '17:00')
+                                    <td style="color: #0c63e4"> <strong>{{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($reparacion->fecha_salida)->isoFormat("MMMM")}} a las 04:00 PM</strong></td>
+                                @endif
                                 <td scope="row" style="width: 10%"><strong style="text-align: left">L. {{ number_format($reparacion->costo_reparacion, 2, ".", ",") }}</strong></td>
                                 <td style="text-align: center"><a class="btn btn-primary" href="{{route('reparaciones.show',['id'=>$reparacion->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
                             </tr>

@@ -36,8 +36,8 @@
                                     <label for="fecha_salida" class="form-label">Fecha de entrega:</label>
                                     <input type="date" class="form-control @error('fecha_salida') is-invalid @enderror" id="fecha_salida"
                                            name="fecha_salida" value="{{old('fecha_salida') }}" required autocomplete="fecha_salida"
-                                           autofocus
-                                           style="text-transform: capitalize;">
+                                           min="{{ now()->toDateString('Y-m-d') }}"
+                                           autofocus >
                                     @error('fecha_salida')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -47,12 +47,13 @@
 
                                 <div class="col-sm-3 mb-3 mb-sm-0">
                                     <label for="hora_salida" class="form-label">Hora de entrega:</label>
-                                    <input type="text"
+                                    <input type="time"
                                            class="form-control @error('hora_salida') is-invalid @enderror"
                                            id="hora_salida"
                                            name="hora_salida"
                                            value="{{ old('hora_salida') }}" required
                                            autocomplete="hora_salida"
+                                           min="08:00" max="16:00" step="3600"
                                            autofocus minlength="8" maxlength="8" >
                                     @error('hora_salida')
                                     <span class="invalid-feedback" role="alert">
@@ -66,6 +67,7 @@
                                     <input type="text" class="form-control @error('fecha_entrada') is-invalid @enderror"
                                            id="costo_reparacion"
                                            name="costo_reparacion" value="{{old('costo_reparacion')}}"
+                                           onkeypress="return funcionLempiras(event);" min="1" max="10000"
                                            required
                                            autocomplete="costo_reparacion"
                                            autofocus >

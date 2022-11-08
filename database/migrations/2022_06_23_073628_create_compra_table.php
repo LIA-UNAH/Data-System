@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
             $table->string('docummento_compra',20);
-            $table->string('descripcion_compra',20)->nullable();
             $table->date('fecha_compra');
             $table->unsignedBigInteger('proveedor_id');
             $table->foreign('proveedor_id')->references('id')->on('proveedors');
