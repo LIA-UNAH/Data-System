@@ -4,8 +4,8 @@
         <div class="ed-grid s-grid-4" style="height: calc(85vh)">
             <div class="s-cols-3" style="height: 100%;overflow-y: auto;">
                 @forelse ( $datos as $items)
-                    <div class="card" style="padding-top: 10px; padding-right: 15px">
-                        <div style="text-align: right">
+                    <div class="card" style="margin-bottom: 8px">
+                        <div style="text-align: right; padding-top: 10px; padding-right: 15px">
                             <div class="cart-product-name-ope">
                                 <span class="comet-icon comet-icon-delete" style="font-size: 16px;"
                                       wire:click="quitar_item({{ $items['id'] }})">
