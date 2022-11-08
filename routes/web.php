@@ -79,15 +79,19 @@ Route::group(['middleware' => 'auth'], function () {
    */
 
     // Perfil de usuario
-    Route::get("/profile", [UserController::class, "profile"])->middleware('can:controlParcial')
+    Route::get("/profile", [UserController::class, "profile"])
         ->name("usuarios.profile")->where('id', '[0-9]+');
 
-    // Editar usuarios
-    Route::get("/profile/{id}/edit_profile", [UserController::class, "edit"])->middleware('can:controlParcial')
+    // Editar perfil de usuario
+    Route::get("/profile/{id}/edit_profile", [UserController::class, "edit"])
         ->name("usuarios.edit_profile")->where('id', '[0-9]+');
 
-    Route::put("/profile/{id}/edit_profile", [UserController::class, "update"])->middleware('can:controlParcial')
+    Route::put("/profile/{id}/edit_profile", [UserController::class, "update"])
         ->name("usuarios.edit_profile")->where('id', '[0-9]+');
+
+    // Perfil de usuario
+    Route::get("/profile_cliente", [UserController::class, "profile_cliente"])
+        ->name("usuarios.profile_cliente")->where('id', '[0-9]+');
 
     /*
     |--------------------------------------------------------------------------

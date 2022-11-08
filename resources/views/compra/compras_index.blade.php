@@ -89,26 +89,26 @@
                     <tbody>
                     @forelse($compras as $compra)
                         <tr style="font-family: 'Nunito', sans-serif; font-size: small">
-                                <td scope="row" style="text-transform: uppercase"><strong>{{ $compra->docummento_compra }}</strong></td>
-                                <td> <strong>{{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("YYYY")}}</strong></td>
-                                <td scope="row">{{ $compra->proveedor->nombre_proveedor }}</td>
-                                @if($compra->estado_compra == 'p')
-                                    <td scope="row">Preparando</td>
-                                @endif
-                                @if($compra->estado_compra == 'g')
-                                    <td scope="row">Finalizado</td>
-                                @endif
-                                <td scope="row"><strong>{{ $compra->user->name }}</strong></td>
-                                @if($compra->estado_compra != 'p')
-                                    <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye" style="color: white"></i></a></td>
-                                    <td style="text-align: center"><a class="btn btn-success" href="#" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente"><i class="fa fa-edit" style="color: white"></i></a></td>
-                                @endif
-                            </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8">No hay Compras</td>
-                                </tr>
-                            @endforelse
+                            <td scope="row" style="text-transform: uppercase"><strong>{{ $compra->docummento_compra }}</strong></td>
+                            <td> <strong>{{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("DD")}} de {{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("MMMM")}}, {{\Carbon\Carbon::parse($compra->fecha_compra)->isoFormat("YYYY")}}</strong></td>
+                            <td scope="row">{{ $compra->proveedor->nombre_proveedor }}</td>
+                            @if($compra->estado_compra == 'p')
+                                <td scope="row">Preparando</td>
+                            @endif
+                            @if($compra->estado_compra == 'g')
+                                <td scope="row">Finalizado</td>
+                            @endif
+                            <td scope="row"><strong>{{ $compra->user->name }}</strong></td>
+                            @if($compra->estado_compra != 'p')
+                                <td style="text-align: center"><a class="btn btn-primary" href=""><i class="fa fa-eye" style="color: white"></i></a></td>
+                                <td style="text-align: center"><a class="btn btn-success" href="#" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente"><i class="fa fa-edit" style="color: white"></i></a></td>
+                            @endif
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="8">No hay Compras</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
@@ -118,9 +118,9 @@
 @endsection
 
 @push('scripsss')
-<script>
-            $(document).ready(function() {
-                $('#tblaBody').css('height', (screen.height - 450));
-            });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#tblaBody').css('height', (screen.height - 450));
+        });
+    </script>
 @endpush

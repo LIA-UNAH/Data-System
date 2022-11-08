@@ -106,6 +106,12 @@ class UserController extends Controller
         return view("profile")->with("user", $user);
     }
 
+    public function profile_cliente()
+    {
+        $user = auth()->user();
+        return view("profile_cliente")->with("user", $user);
+    }
+
     //HU35 - Información del sistema
     public function info(){
         return view('information');

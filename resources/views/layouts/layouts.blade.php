@@ -27,6 +27,11 @@
     {{-- AlpineJS --}}
     <script defer src={{ asset("js/alpinejs/alpinejs.min.js") }}></script>
 
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
     @livewireStyles
 </head>
 

@@ -26,313 +26,61 @@
 
     {{-- AlpineJS --}}
     <script defer src={{ asset("js/alpinejs/alpinejs.min.js") }}></script>
+<style>
+    select.form-control.form-control-line {
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+}
 
-    <svg style="display: none" xmlns="http://www.w3.org/2000/svg">
-        <symbol id="notes" viewBox="0 0 24 24">
-            <rect fill="none" height="24" width="24"></rect>
-            <path
-                d="M19,3H4.99C3.89,3,3,3.9,3,5l0.01,14c0,1.1,0.89,2,1.99,2h10l6-6V5C21,3.9,20.1,3,19,3z M7,8h10v2H7V8z M12,14H7v-2h5V14z M14,19.5V14h5.5L14,19.5z">
-            </path>
-        </symbol>
-        <symbol id="studies" viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"></path>
-        </symbol>
-        <symbol id="courses" viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0V0z" fill="none"></path>
-            <path
-                d="M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z">
-            </path>
-        </symbol>
-        <symbol id="home" viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-        </symbol>
-    </svg>
+/*Material inputs*/
+.form-material .form-group {
+  overflow: hidden;
+}
 
-    <style>
-        body {
-            display: flex;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            background: #C1CCF9
-        }
+.form-material .form-control {
+  background-color: rgba(0, 0, 0, 0);
+  background-position: center bottom, center calc(100% - 1px);
+  background-repeat: no-repeat;
+  background-size: 0 2px, 100% 1px;
+  padding: 0;
+  -webkit-transition: background 0s ease-out 0s;
+  transition: background 0s ease-out 0s;
+}
 
-        .ed-header {
-            height: 100p;
-            border-bottom: 1px solid #FFF;
-            background: #FFF;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            left: 0;
-            z-index: 100;
-        }
+.form-material .form-control,
+.form-material .form-control.focus,
+.form-material .form-control:focus {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#398bf7), to(#398bf7)), -webkit-gradient(linear, left top, left bottom, from(#e9edf2), to(#e9edf2));
+  background-image: linear-gradient(#398bf7, #398bf7), linear-gradient(#e9edf2, #e9edf2);
+  border: 0 none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  float: none;
+}
 
-        .ed-menu .menu {
-            list-style: none;
+.form-material .form-control.focus,
+.form-material .form-control:focus {
+  background-size: 100% 2px, 100% 1px;
+  outline: 0 none;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
 
-        }
+    .form-control-line .form-group {
+  overflow: hidden;
+}
 
-        .ed-grid .ed-grid,
-        .ed-grid.full {
-            width: 100%;
-            max-width: 100%;
-            margin-right: 0;
-            margin-left: 0;
-        }
-
-        @media screen and (max-width: 1023px) {
-            .ed-menu .nav {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                background: black;
-                z-index: 100;
-            }
-        }
-
-        .icon {
-            --size: 1.5rem;
-            width: var(--size);
-            height: var(--size);
-            fill: currentColor;
-        }
-
-        .link {
-            color : lightgrey;
-        }
-        .active {
-            color : cornflowerblue
-        }
-
-        .logo {
-            height: 2rem
-        }
-
-        .user-avatar-round {
-            border-radius: 50%;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .s-relative {
-            position: relative;
-        }
-
-        .s-cross-center {
-            align-items: center;
-            align-content: center;
-        }
-        .s-cursor-pointer {
-            cursor: pointer;
-        }
-
-        .cart-product-wrap {
-            padding: 16px 0;
-            border-top: 1px solid #f2f2f2;
-        }
-        .cart-product {
-            display: flex;
-        }
-        .cart-product-body {
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-        }
-        .comet-checkbox {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 0;
-            color: #222;
-            font-size: 14px;
-            font-variant: tabular-nums;
-            line-height: 1.5;
-            list-style: none;
-            -webkit-font-feature-settings: "tnum","tnum";
-            font-feature-settings: "tnum","tnum";
-            display: inline-flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-            margin: 0 8px 0 0;
-            cursor: pointer;
-            vertical-align: middle;
-        }
-        .comet-checkbox-icon {
-            padding: 2px;
-        }
-        .comet-checkbox-circle {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-        }
-        .comet-checkbox-input {
-            position: absolute;
-            opacity: 0;
-            height: 0;
-            width: 0;
-        }
-        .comet-checkbox-checked>span:first-child.comet-icon {
-            color: #ff472e;
-        }
-        .cart-product-info {
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            width: 0;
-            min-width: 0;
-        }
-        .cart-product-name {
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #222;
-        }
-        .cart-product-sku {
-            margin-bottom: 12px;
-        }
-        .cart-product-name-img {
-            line-height: 0;
-        }
-        .cart-product-img-tip, .cart-product-name {
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-        }
-        .cart-product-name a {
-            margin-right: 18px;
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            width: 0;
-            min-width: 0;
-            font-weight: 600;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            word-wrap: normal;
-        }
-        .cart-product-name-ope .comet-icon-account {
-            padding: 0 12px;
-        }
-        .cart-product-block {
-            margin-top: 8px;
-            display: flex;
-            -webkit-box-pack: justify;
-            -webkit-justify-content: space-between;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-        }
-        .cart-product-block-left {
-            margin-right: 12px;
-        }
-        .cart-product-price {
-            display: flex;
-            -webkit-box-pack: justify;
-            -webkit-justify-content: space-between;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-        }
-
-        .cart-product-price-s span {
-            font-weight: 400;
-            font-size: 12px;
-        }
-        .cart-product-price>span {
-            margin-right: 4px;
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .cart-product-price-s {
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-        }
-        .cart-product-ship {
-            margin-top: 8px;
-            font-size: 12px;
-            color: #999;
-            cursor: pointer;
-        }
-        .cart-product-price-picker {
-            font-size: 12px;
-            text-align: right;
-        }
-
-        .comet-input-number {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            color: #222;
-            font-size: 14px;
-            font-variant: tabular-nums;
-            line-height: 1.5;
-            list-style: none;
-            -webkit-font-feature-settings: "tnum","tnum";
-            font-feature-settings: "tnum","tnum";
-            display: inline-flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-        }
-
-        .comet-input-number-btn {
-            width: 24px;
-            height: 24px;
-            background-color: #f5f5f5;
-            font-size: 12px;
-            line-height: 24px;
-            text-align: center;
-            border-radius: 100%;
-            cursor: pointer;
-        }
-        .comet-input-number-input {
-            margin: 0 4px;
-            height: 24px;
-            width: 32px;
-            background-color: #fff;
-            border: none;
-            line-height: 24px;
-            letter-spacing: 0;
-            text-align: center;
-            outline: 0;
-        }
-
-        .comet-icon {
-            display: inline-block;
-            color: inherit;
-            font-style: normal;
-            line-height: 0;
-            text-align: center;
-            text-transform: none;
-            vertical-align: -0.125em;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        ::-webkit-scrollbar {
-            display: none;
-        }
-    </style>
+.form-control-line .form-control {
+  border: 0px;
+  border-radius: 0px;
+  padding-left: 0px;
+  border-bottom: 1px solid #f6f9ff;
+}
+.form-control-line .form-control:focus {
+  border-bottom: 1px solid #398bf7;
+}
+</style>
     @livewireStyles
 </head>
 
@@ -346,7 +94,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content" style="background: grey">
+        <div id="content" style="background: whitesmoke">
 
             <!-- Topbar -->
             <nav class="navbar navbar-expand topbar mb-4 static-top shadow" style="background: #1a202c; color:whitesmoke;">
@@ -514,82 +262,156 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <div id="contaire" style="overflow-y: auto; height: calc(70vh);">
-                    @yield('content')
+
+
+<div style="float: left;margin-left: 46px">
+    <h2 class="m-0 font-weight-bold" style="color: rgb(0, 0, 0)">Perfil de usuario</h2>
+</div>
+<br>
+<br>
+<br>
+<center>
+    <div class="row" style="width: 96%">
+        <!-- Column -->
+        <div class="col-lg-4 col-xlg-3">
+          <div class="card border-left-info shadow">
+            <div class="card-body">
+              <center class="mt-4">
+                <img src="/images/uploads/{{ $user->image }}"  class="img-profile rounded-circle"  width="158px">
+                <h4 class="card-title mt-2"><strong>{{$user->name}}</strong></h4>
+                <br>
+                <div class="row text-center justify-content-md-center">
+                  <div class="col-4">
+                    <a class="rounded-pill" href="{{route("usuarios.edit_profile",["id"=>$user->id])}}" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                        </svg>
+                     </a>
+                  </div>
+
+                  <div class="col-4">
+                    <a class="rounded-pill" href="javascript:history.back()" class="btn btn-primary">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+                            <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                            <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+                          </svg>
+                        </a>
+                  </div>
                 </div>
+              </center>
             </div>
-            <!-- /.container-fluid -->
+          </div>
         </div>
-        <!-- End of Main Content -->
-        <!-- Footer -->
-        <footer class="sticky-footer " style="background: #1a202c; color: whitesmoke">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Data System 2022</span>
+        <!-- Column -->
+
+        <!-- Column -->
+        <div class="col-lg-8 col-xlg-6">
+          <div class="card border-left-info shadow">
+            <div class="card-body">
+              <form class="form-horizontal form-material mx-2" data-bitwarden-watching="1">
+                <div class="form-group">
+                  <label for="example-email" class="col-md-12" style="text-align: left"><b>Correo:</b></label>
+                  <div class="col-md-12">
+                    <input readonly type="email" value="{{$user->email}}" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
+                  </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-md-12" style="text-align: left"><b>Teléfono:</b></label>
+                  <div class="col-md-12">
+                    <input readonly type="text" value="{{$user->telephone}}" placeholder="123 456 7890" class="form-control form-control-line">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12" style="text-align: left"><b>Dirección</b></label>
+                  <div class="col-md-12">
+                    <textarea readonly rows="2" class="form-control form-control-line">{{$user->address}}</textarea>
+                  </div>
+                </div>
+              </form>
             </div>
-        </footer>
-        <!-- End of Footer -->
+          </div>
+        </div>
+        <!-- Column -->
+    </div>
+
+
+</center>
+    </div>
+    </div>
+    <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+    <!-- Footer -->
+    <footer class="sticky-footer " style="background: #1a202c; color: whitesmoke">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Data System 2022</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
     </div>
     <!-- End of Content Wrapper -->
-</div>
-<!-- End of Page Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
 
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #0d6efd; color: white">
-                <h5 class="modal-title" id="exampleModalLabel" >¿Listo para salir?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: white">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button class="btn btn-primary" type="submit">
-                        {{ __('Cerrar sesión') }}
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #0d6efd; color: white">
+                    <h5 class="modal-title" id="exampleModalLabel" >¿Listo para salir?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: white">×</span>
                     </button>
-                </form>
+                </div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-primary" type="submit">
+                            {{ __('Cerrar sesión') }}
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!-- Bootstrap core JavaScript-->
-<script src={{ asset("admin/jquery/jquery.min.js") }}></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src={{ asset("admin/jquery/jquery.min.js") }}></script>
 
-<script src={{ asset("admin/bootstrap/js/bootstrap.bundle.min.js") }}></script>
+    <script src={{ asset("admin/bootstrap/js/bootstrap.bundle.min.js") }}></script>
 
-<!-- Core plugin JavaScript-->
-<script src={{ asset("admin/jquery-easing/jquery.easing.min.js") }}></script>
+    <!-- Core plugin JavaScript-->
+    <script src={{ asset("admin/jquery-easing/jquery.easing.min.js") }}></script>
 
-<!-- Custom scripts for all pages-->
-<script src={{ asset("admin/js/sb-admin-2.min.js") }}></script>
+    <!-- Custom scripts for all pages-->
+    <script src={{ asset("admin/js/sb-admin-2.min.js") }}></script>
 
-<!-- jQuery -->
-<script src={{ asset("js/jquery/jquery-3.6.1.min.js") }}></script>
+    <!-- jQuery -->
+    <script src={{ asset("js/jquery/jquery-3.6.1.min.js") }}></script>
 
-<!-- Popper -->
-<script src={{ asset("js/popper/popper.min.js") }}></script>
+    <!-- Popper -->
+    <script src={{ asset("js/popper/popper.min.js") }}></script>
 
-<!-- Bootstrap js -->
-<script src={{ asset("js/bootstrap/bootstrap.min.js") }}></script>
+    <!-- Bootstrap js -->
+    <script src={{ asset("js/bootstrap/bootstrap.min.js") }}></script>
 
-<!-- Tom Select js -->
-<script src={{ asset("js/tom-select.js") }}></script>
+    <!-- Tom Select js -->
+    <script src={{ asset("js/tom-select.js") }}></script>
 
-@stack('scripsss')
-</body>
+    @stack('scripsss')
+    </body>
 
 </html>
+
