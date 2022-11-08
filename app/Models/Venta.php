@@ -23,6 +23,4 @@ class Venta extends Model
     {
         return $this->hasMany('App\Models\DetalleVenta');
     }
-
-
 }

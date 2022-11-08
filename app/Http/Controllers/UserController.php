@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index(){
         $users = DB::table('users')
             ->whereNotIn('type', ['Cliente'])
-            ->paginate(4);
+            ->paginate(5);
         return view('usuario/usuarios_index')->with('users', $users);
     }
 
@@ -24,7 +24,7 @@ class UserController extends Controller
         $users = DB::table('users')
             ->where('name', 'like', '%'.$texto.'%')
             ->whereNotIn('type', ['Cliente'])
-            ->paginate(4);
+            ->paginate(5);
         return view('usuario/usuarios_index')->with('users', $users);
     }
 

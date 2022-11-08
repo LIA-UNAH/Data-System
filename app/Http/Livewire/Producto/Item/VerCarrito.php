@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire\Producto\Item;
 
+use App\Models\DetalleVenta;
+use App\Models\Venta;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -10,6 +13,13 @@ class VerCarrito extends Component
     public $datos = [];
     public $total_items = 0;
     public $precio_total = 0;
+
+    public $sesion = '';
+
+    public function mount($sesion = '')
+    {
+        $this->sesion = $sesion;
+    }
 
     public function render()
     {
@@ -42,8 +52,27 @@ class VerCarrito extends Component
         \Cart::session(Auth::user()->id)->remove($id);
     }
 
-    public function guardar_venta($id)
+    public function guardar_venta()
     {
-        \Cart::session(Auth::user()->id)->remove($id);
+
+        $venta = new Venta();
+        $venta->numero_factura_venta = 'F0-'.Venta::all()->count();
+        $venta->fecha_factura = Carbon::now()->format('Y-m-d');
+        $venta->user_id = 1;
+        $venta->cliente_id = Auth::user()->id;
+        $venta->tipo_cliente_factura = 'Cliente';
+        $venta->save();
+
+
+        foreach (\Cart::session(Auth::user()->id)->getContent() as $key => $value) {
+            $detalle = new DetalleVenta();
+            $detalle->venta_id = $venta->id;
+            $detalle->producto_id = $value['associatedModel']['id'];
+            $detalle->cantidad_detalle_venta = $value['quantity'];
+            $detalle->precio_venta = $value['price'];
+            $detalle->save();
+        }
+
+        \Cart::session(Auth::user()->id)->clear();
     }
 }

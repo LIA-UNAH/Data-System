@@ -377,5 +377,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Visualizar cobros
     Route::get('cobros/{id}/show', [CuentasPorCobrarController::class, 'show'])->middleware('can:controlParcial')
         ->name('cobro.mostrar');
+
+    //Reload
+    Route::get('/vista', [HomeController::class , 'vista_tabla']);
 });
 

@@ -19,7 +19,7 @@ class ClienteController extends Controller
      */
     public function index(){
         $users = DB::table('users')->where('type', '=', 'cliente')
-            ->paginate(4);
+            ->paginate(5);
         return view('cliente/clientes_index')->with('users', $users);
     }
 
@@ -27,7 +27,7 @@ class ClienteController extends Controller
         $texto =trim($request->get('busqueda'));
         $users = User::where('name', 'like', '%'.$texto.'%')
             ->whereIn('type', ['Cliente'])
-            ->paginate(4);
+            ->paginate(5);
         return view('cliente/clientes_index')->with('users', $users);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\VarStatic;
 use App\Models\DetalleCompra;
 use App\Models\DetalleVenta;
 use App\Models\Producto;
@@ -9,6 +10,7 @@ use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -53,5 +55,23 @@ class HomeController extends Controller
         Auth::login($use);
 
         return redirect()->route('home-carrito');
+    }
+
+
+    public function vista_tabla(){
+
+        if (!Cache::has('vista')){
+            Cache::put('vista',true);
+        }
+
+        if (Cache::get('vista')) {
+            Cache::put('vista',false);
+        }else {
+            Cache::put('vista',true);
+        }
+
+
+        return redirect()->back();
+
     }
 }
