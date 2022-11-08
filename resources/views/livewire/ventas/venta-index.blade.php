@@ -107,37 +107,6 @@
                         </ul>
                     </div>
 
-                    {{-- <div 
-                        style="text-align: center; float: left; margin-left: 15px;" 
-                        id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" 
-                        aria-expanded="false">
-                            <a
-                                style=" border: 2px solid #ffffff;border-radius: 4px" 
-                                class="btn btn-secondary dropdown-toggle"
-                                data-bs-auto-close="false" 
-                                href="">
-                                <i class="bi bi-calendar-check-fill"></i>
-                                Fecha
-                            </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li>
-                                <div class="mb-1 px-2">
-                                    <label for="" class="form-label">Inicio</label>
-                                    <input class="form-control form-control-sm" type="date">
-                                </div>
-                                <div class="mb-1 px-2">
-                                    <label for="" class="form-label">Final</label>
-                                    <input class="form-control form-control-sm" type="date">
-                                </div>
-                            </li>
-                            <hr>
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->toDateString('Y-m-d')}}', 'Hoy')">Hoy</a></li>
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(7)->toDateString('Y-m-d')}}', 'Ultima semana')">Última semana</a></li>
-                            <li><a class="dropdown-item" href="#" wire:click.prevent="setFiltroFecha('{{now()->subDays(30)->toDateString('Y-m-d')}}', 'Ultimo mes')">Último mes</a></li>
-                        </ul>
-                    </div> --}}
-
                     <div style="text-align: center; float: left; margin-left: 15px; margin-right: 15px;" class="dropdown">
                         <button 
                             style=" border: 2px solid #ffffff;border-radius: 4px" 
@@ -196,9 +165,11 @@
 
                             <td>
                                 <div class="d-flex col-8">
-                                    <a class="btn btn-info mr-2"
-                                        href="{{ route('ventas.facturas', ['id' => $venta->id]) }}">Ver</a>
-                                    <a class="btn btn-success mr-2" href="{{route('ventas.edit', ['id' => $venta->id])}}">Editar</a>
+                                    @if ($venta->estado == 'en_proceso')
+                                        <a class="btn btn-info mr-2"
+                                            href="{{ route('ventas.facturas', ['id' => $venta->id]) }}">Ver</a>
+                                        <a class="btn btn-success mr-2" href="{{route('ventas.edit', ['id' => $venta->id])}}">Editar</a>
+                                    @endif
 
                                     <a class="btn btn-danger mr-2" href="#" data-bs-toggle="modal"
                                         data-bs-target="#modal_eliminar_cliente">Eliminar</a>
