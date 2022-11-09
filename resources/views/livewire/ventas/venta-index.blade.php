@@ -15,8 +15,8 @@
         </div>
     @endif
     {{-- Terminan los mensajes --}}
-      
-
+   
+    
     {{-- filtros activos --}}
     <div>
         <p class="badge bg-secondary">Estado: {{$this->filtros['estado']['nombre']}}</p>
@@ -165,14 +165,20 @@
 
                             <td>
                                 <div class="d-flex col-8">
+                                    <a class="btn btn-info mr-2" href="{{ route('ventas.facturas', ['id' => $venta->id]) }}">Ver</a>
+
                                     @if ($venta->estado == 'en_proceso')
-                                        <a class="btn btn-info mr-2"
-                                            href="{{ route('ventas.facturas', ['id' => $venta->id]) }}">Ver</a>
                                         <a class="btn btn-success mr-2" href="{{route('ventas.edit', ['id' => $venta->id])}}">Editar</a>
+                                        <a 
+                                            class="btn btn-danger mr-2" 
+                                            href="#" 
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal_eliminar_cliente">
+                                            Eliminar
+                                        </a>
                                     @endif
 
-                                    <a class="btn btn-danger mr-2" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#modal_eliminar_cliente">Eliminar</a>
+                                    
                                 </div>
 
                             </td>
