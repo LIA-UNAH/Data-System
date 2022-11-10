@@ -112,7 +112,9 @@
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Ventas Vendedores ({{ Carbon\Carbon::now()->format('F') }})</h6>
+
+                        <h6 class="m-0 font-weight-bold text-primary">Ventas Vendedores ({{ Carbon\Carbon::now()->locale('es')->monthName }})</h6>
+
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" id="tblaBody">

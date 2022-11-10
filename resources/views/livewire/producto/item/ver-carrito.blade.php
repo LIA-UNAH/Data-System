@@ -1,7 +1,7 @@
 <div>
     <div class="l-block"></div>
     <div style="height: calc(85vh);">
-        <div class="ed-grid s-grid-4" style="height: calc(85vh)">
+        <div class="ed-grid s-grid-4" >
             <div class="s-cols-3" style="height: 100%;overflow-y: auto;">
                 @forelse ( $datos as $items)
                     <div class="card" style="margin-bottom: 8px">
@@ -34,9 +34,7 @@
                                         </div>
                                         <div class="cart-product-name">
                                             <p>{{$items['associatedModel']['descripcion'] }}</p>
-
                                         </div>
-
 
 
                                         <div class="cart-product-block" style="opacity: 1;">
@@ -66,8 +64,7 @@
                                                             </svg>
                                                         </span>
                                                         </div>
-                                                        <input type="text" class="comet-input-number-input"
-                                                               value="{{ $items['quantity'] }}">
+                                                        <input type="text" class="comet-input-number-input" value="{{ $items['quantity'] }}">
                                                         <div class="comet-input-number-btn">
                                                         <span class="comet-icon comet-icon-add "
                                                               wire:click="actualizar_cantidad(1,{{ $items['id'] }},{{ $items['associatedModel']['existencia'] }},{{ $items['quantity'] }})">
@@ -77,6 +74,7 @@
                                                                 <path
                                                                     d="M864 480a32 32 0 0 1 1.877333 63.946667L864 544H160a32 32 0 0 1-1.877333-63.946667L160 480h704z">
                                                                 </path>
+
                                                                 <path
                                                                     d="M512 128a32 32 0 0 1 31.946667 30.122667L544 160v704a32 32 0 0 1-63.946667 1.877333L480 864V160a32 32 0 0 1 32-32z">
                                                                 </path>
@@ -98,30 +96,31 @@
 
             </div>
             <div>
-                <div class="card" style="height: 300px; width: 100%">
+                <div class="card" style="height: 370px">
                     <div class="card-body">
-                        <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen</h3>
+                        <h3 class="fw-bold mb-4 mt-2 pt-1">Resumen</h3>
                         <hr class="my-4">
 
                         <div class="d-flex justify-content-between mb-4">
-                            <h6 class="text-uppercase">Articulos {{ $total_items }}</h6>
-                            <h6>L. {{ number_format($precio_total, 2, ".", ",") }}</h6>
+                            <h6 class="text-uppercase">Articulos </h6>
+                            <h6><strong>{{ $total_items }}</strong></h6>
                         </div>
 
-                        <hr class="my-4">
+                        <hr class="my-3">
 
                         <div class="d-flex justify-content-between mb-5">
                             <h6 class="text-uppercase">Precio Total</h6>
-                            <h6>L. {{ number_format($precio_total, 2, ".", ",") }}</h6>
+                            <h6><strong>L. {{ number_format($precio_total, 2, ".", ",") }}</strong></h6>
                         </div>
 
+                        <a type="reset" class="btn btn-danger btn-block btn-lg" href="javascript:history.back()">Regresar</a>
+
                         @if(count($datos) > 0)
-                            <a type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" href="#"
+                            <a type="reset" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" href="#"
                                data-bs-toggle="modal" data-bs-target="#exampleModal">Facturar</a>
                         @else
 
                         @endif
-
                     </div>
                 </div>
             </div>
