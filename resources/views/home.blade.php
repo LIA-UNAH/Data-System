@@ -177,7 +177,7 @@
             },
             labels: {
                 items: [{
-                    html: 'Valance Neto',
+                    html: 'Balance Neto',
                     style: {
                         left: '50px',
                         top: '18px',

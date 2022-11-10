@@ -83,15 +83,22 @@ Route::group(['middleware' => 'auth'], function () {
         ->name("usuarios.profile")->where('id', '[0-9]+');
 
     // Editar perfil de usuario
-    Route::get("/profile/{id}/edit_profile", [UserController::class, "edit"])
+    Route::get("/profile/{id}/edit_profile", [UserController::class, "edit_profile"])
         ->name("usuarios.edit_profile")->where('id', '[0-9]+');
 
-    Route::put("/profile/{id}/edit_profile", [UserController::class, "update"])
+    Route::put("/profile/{id}/edit_profile", [UserController::class, "update_profile"])
         ->name("usuarios.edit_profile")->where('id', '[0-9]+');
 
-    // Perfil de usuario
+    // Perfil de cliente
     Route::get("/profile_cliente", [UserController::class, "profile_cliente"])
         ->name("usuarios.profile_cliente")->where('id', '[0-9]+');
+
+    // Editar perfil de usuario
+    Route::get("/profile_cliente/{id}/edit_profile_cliente", [UserController::class, "edit_profile_cliente"])
+        ->name("usuarios.edit_profile_cliente")->where('id', '[0-9]+');
+
+    Route::put("/profile_cliente/{id}/edit_profile_cliente", [UserController::class, "update_profile_cliente"])
+        ->name("usuarios.edit_profile_cliente")->where('id', '[0-9]+');
 
     /*
     |--------------------------------------------------------------------------

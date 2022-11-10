@@ -118,18 +118,24 @@ class UserController extends Controller
     }
 
     //H30 - Editar usuario
-    public function edit_profile(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        return view("usuario.usuarios_edit")->with("user", $user);
-    }
-
-    //H30 - Editar usuario
     public function edit(Request $request, $id)
     {
         $user = User::findOrFail($id);
         return view("usuario.usuarios_edit")->with("user", $user);
     }
+
+    public function edit_profile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return view("profile_usuarios_edit")->with("user", $user);
+    }
+
+    public function edit_profile_cliente(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return view("profile_cliente_edit")->with("user", $user);
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -193,6 +199,120 @@ class UserController extends Controller
         $users->assignRole($request->input('type'));
 
         return redirect()->route("usuarios.index")->with("exito", "Se editó exitosamente el usuario");
+    }
+
+    public function update_profile(Request $request, $id)
+    {
+        $users = User::findOrFail($id);
+        $this->validate($request, [
+            'name' => ['required', 'string','min:3', 'max:70'],
+            'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id),],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'type' => ['required'],
+            'address' => ['required', 'string','min:3', 'max:250'],
+            'telephone' => ['required', 'numeric','min:2', 'max:99999999']
+        ], [
+            'name.required' => '¡Debes ingresar tu nombre completo!',
+            'name.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'name.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
+            'name.max' => '¡Has excedido el limite máximo de 70 letras!',
+
+            'email.required' => '¡Debes ingresar tu correo electrónico!',
+            'email.string' => '¡Debes ingresar tu correo electrónico, verifica la información!',
+            'email.email' => '¡Debes ingresar un correo electrónico válido!',
+            'email.max' => '¡Has excedido el limite máximo de 70 letras!',
+            'email.unique' => '¡Debes ingresar un correo electrónico diferente!',
+
+            'type.required' => '¡Debes ingresar el tipo de usuario!',
+
+            'password.required' => '¡Debes ingresar una contraseña!',
+            'password.confirmed' => '¡Debes confirmar tu contraseña!',
+            'password.min' => '¡Debes ingresar una contraseña segura!',
+
+            'address.required' => '¡Debes ingresar tu dirección!',
+            'address.string' => '¡Debes ingresar tu dirección, verifica la información!',
+            'address.min' => '¡Ingresa tu dirección completa, sin abreviaturas!',
+            'address.max' => '¡Has excedido el limite máximo de 250 letras!',
+
+            'telephone.required' => '¡Debes ingresar tu número de teléfono!',
+            'telephone.numeric' => '¡Debes ingresar tu teléfono, solo se permiten números!',
+            'telephone.min' => '¡Ingresa tu número de teléfono completo!',
+            'telephone.max' => '¡Ingresa tu número de teléfono completo, sin exceder el límite!',
+        ]);
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/uploads/';
+            $file_name = $image->getClientOriginalName();
+            $profileImage = $file_name ;
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        $users->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $users->assignRole($request->input('type'));
+
+        return redirect()->route("usuarios.profile")->with("exito", "Se editó exitosamente el usuario");
+    }
+
+    public function update_profile_cliente(Request $request, $id)
+    {
+        $users = User::findOrFail($id);
+        $this->validate($request, [
+            'name' => ['required', 'string','min:3', 'max:70'],
+            'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id),],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'type' => ['required'],
+            'address' => ['required', 'string','min:3', 'max:250'],
+            'telephone' => ['required', 'numeric','min:2', 'max:99999999']
+        ], [
+            'name.required' => '¡Debes ingresar tu nombre completo!',
+            'name.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'name.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
+            'name.max' => '¡Has excedido el limite máximo de 70 letras!',
+
+            'email.required' => '¡Debes ingresar tu correo electrónico!',
+            'email.string' => '¡Debes ingresar tu correo electrónico, verifica la información!',
+            'email.email' => '¡Debes ingresar un correo electrónico válido!',
+            'email.max' => '¡Has excedido el limite máximo de 70 letras!',
+            'email.unique' => '¡Debes ingresar un correo electrónico diferente!',
+
+            'type.required' => '¡Debes ingresar el tipo de usuario!',
+
+            'password.required' => '¡Debes ingresar una contraseña!',
+            'password.confirmed' => '¡Debes confirmar tu contraseña!',
+            'password.min' => '¡Debes ingresar una contraseña segura!',
+
+            'address.required' => '¡Debes ingresar tu dirección!',
+            'address.string' => '¡Debes ingresar tu dirección, verifica la información!',
+            'address.min' => '¡Ingresa tu dirección completa, sin abreviaturas!',
+            'address.max' => '¡Has excedido el limite máximo de 250 letras!',
+
+            'telephone.required' => '¡Debes ingresar tu número de teléfono!',
+            'telephone.numeric' => '¡Debes ingresar tu teléfono, solo se permiten números!',
+            'telephone.min' => '¡Ingresa tu número de teléfono completo!',
+            'telephone.max' => '¡Ingresa tu número de teléfono completo, sin exceder el límite!',
+        ]);
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/uploads/';
+            $file_name = $image->getClientOriginalName();
+            $profileImage = $file_name ;
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        $users->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $users->assignRole($request->input('type'));
+
+        return redirect()->route("usuarios.profile_cliente")->with("exito", "Se editó exitosamente el usuario");
     }
 
     //HU6 - Eliminar usuario
