@@ -94,29 +94,14 @@
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Proyectos</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Reporte de Ingresos y Egresos</h6>
                     </div>
                     <div class="card-body">
-                        <h4 class="small font-weight-bold">Migración De Un Servidor  <span class="float-right">50%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <figure class="highcharts-figure">
+                            <div id="container"></div>
+
+                        </figure>
+
                     </div>
                 </div>
 
@@ -127,17 +112,29 @@
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Ventas Vendedores ({{ Carbon\Carbon::now()->format('F') }})</h6>
                     </div>
                     <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" alt="...">
+                        <div class="table-responsive" id="tblaBody">
+                            <table class="table" id="dataTable">
+                                <thead class="card-header py-3" style="background: #1a202c; color:white">
+                                <tr>
+                                    <th style="text-align: left">Vendedor</th>
+                                    <th style="text-align: left">Ventas (HNL)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($vendedores as $vende)
+                                    <tr>
+                                        <td>{{ $vende->name }}</td>
+                                        <td>{{ number_format($vende->total, 2, ".", ",") }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                            </table>
+
                         </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                            unDraw →</a>
                     </div>
                 </div>
             </div>
@@ -145,3 +142,109 @@
 
     </div>
 @endsection
+
+
+@push("scripsss")
+    <script>
+
+        let compras = @json($valores_compre);
+        let ventas = @json($valores_ventas);
+
+
+        Highcharts.chart('container', {
+            title: {
+                text: '',
+                align: 'left'
+            },
+            xAxis: {
+                categories: ['Enero',
+                    'Febrero',
+                    'Marzo',
+                    'Abril',
+                    'Mayo',
+                    'Junio',
+                    'Julio',
+                    'Agosto',
+                    'Septiembre',
+                    'Octubre',
+                    'Noviembre',
+                    'Diciembre']
+            },
+            yAxis: {
+                title: {
+                    text: 'HNL'
+                }
+            },
+            labels: {
+                items: [{
+                    html: 'Valance Neto',
+                    style: {
+                        left: '50px',
+                        top: '18px',
+                        color: ( // theme
+                            Highcharts.defaultOptions.title.style &&
+                            Highcharts.defaultOptions.title.style.color
+                        ) || 'black'
+                    }
+                }]
+            },
+            series: [{
+                type: 'column',
+                name: 'Ingresos',
+                data: [parseFloat(ventas[0].Total),parseFloat(ventas[1].Total),parseFloat(ventas[2].Total),
+                    parseFloat(ventas[3].Total),parseFloat(ventas[4].Total),parseFloat(ventas[5].Total),
+                    parseFloat(ventas[6].Total),parseFloat(ventas[7].Total),parseFloat(ventas[8].Total),
+                    parseFloat(ventas[9].Total),parseFloat(ventas[10].Total),parseFloat(ventas[11].Total)]
+            }, {
+                type: 'column',
+                name: 'Egresos',
+                data: [parseFloat(compras[0].Total),parseFloat(compras[1].Total),parseFloat(compras[2].Total),
+                    parseFloat(compras[3].Total),parseFloat(compras[4].Total),parseFloat(compras[5].Total),
+                    parseFloat(compras[6].Total),parseFloat(compras[7].Total),parseFloat(compras[8].Total),
+                    parseFloat(compras[9].Total),parseFloat(compras[10].Total),parseFloat(compras[11].Total)]
+            }, {
+                type: 'column',
+                name: 'M.G.',
+                data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
+                    ventas[2].Total - compras[2].Total,ventas[3].Total - compras[3].Total,
+                    ventas[4].Total - compras[4].Total,ventas[5].Total - compras[5].Total,
+                    ventas[6].Total - compras[6].Total,ventas[7].Total - compras[7].Total,
+                    ventas[8].Total - compras[8].Total,ventas[9].Total - compras[9].Total,
+                    ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total]
+            }, {
+                type: 'spline',
+                name: 'MG',
+                data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
+                    ventas[2].Total - compras[2].Total,ventas[3].Total - compras[3].Total,
+                    ventas[4].Total - compras[4].Total,ventas[5].Total - compras[5].Total,
+                    ventas[6].Total - compras[6].Total,ventas[7].Total - compras[7].Total,
+                    ventas[8].Total - compras[8].Total,ventas[9].Total - compras[9].Total,
+                    ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total],
+                marker: {
+                    lineWidth: 2,
+                    lineColor: Highcharts.getOptions().colors[3],
+                    fillColor: 'white'
+                }
+            }, {
+                type: 'pie',
+                name: 'Liter',
+                data: [{
+                    name: 'Ingresos',
+                    y: {{ $ingresos }},
+                    color: Highcharts.getOptions().colors[0]
+                }, {
+                    name: 'Egresos',
+                    y: {{ $egresos }},
+                    color: Highcharts.getOptions().colors[1]
+                }],
+                center: [80, 70],
+                size: 100,
+                showInLegend: false,
+                dataLabels: {
+                    enabled: false
+                }
+            }]
+        });
+
+    </script>
+@endpush

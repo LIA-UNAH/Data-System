@@ -61,6 +61,8 @@ class VerCarrito extends Component
         $venta->user_id = 1;
         $venta->cliente_id = Auth::user()->id;
         $venta->tipo_cliente_factura = 'Cliente';
+        $venta->total = \Cart::session(Auth::user()->id)->getTotal();
+        $venta->tipo_cliente_factura = 'en_proceso';
         $venta->save();
 
 
