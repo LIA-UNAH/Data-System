@@ -8,9 +8,11 @@ use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -34,6 +36,22 @@ class HomeController extends Controller
         $ingresos = 0;
         $egresos = 0;
 
+        $datos_ventas = DB::select('CALL traer_ventas_por_mes(?)', [Carbon::now()->format('Y')]);
+        $datos_compras = DB::select('CALL traer_compras_por_mes(?)', [Carbon::now()->format('Y')]);
+        $vendedores = DB::select('CALL traer_vendedores(?,?)', [Carbon::now()->format('Y'),Carbon::now()->format('m')]);
+
+
+
+        $valores_ventas = [];
+        foreach ($datos_ventas as $key => $value) {
+            $valores_ventas[] = $value;
+        }
+
+        $valores_compre = [];
+        foreach ($datos_compras as $key => $value) {
+            $valores_compre[] = $value;
+        }
+
         foreach( DetalleVenta::all() as $valor){
             $ingresos += $valor->cantidad_detalle_venta * $valor->precio_venta;
         }
@@ -42,12 +60,14 @@ class HomeController extends Controller
             $egresos += $valor->cantidad_detalle_compra * $valor->precio;
         }
 
-        if(Auth::user()->hasRole('Administrador')){
-            return view('home')->with('ingresos',$ingresos)->with('egresos',$egresos);
-        }
 
-        if(Auth::user()->hasRole('Empleado')){
-            return view('home')->with('ingresos',$ingresos)->with('egresos',$egresos);
+
+        if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Empleado')){
+            return view('home')->with('ingresos',$ingresos)
+                ->with('egresos',$egresos)
+                ->with('valores_ventas',$valores_ventas)
+                ->with('valores_compre',$valores_compre)
+                ->with('vendedores',$vendedores);
         }
 
         $use = User::findOrFail(Auth::user()->id);
@@ -59,7 +79,6 @@ class HomeController extends Controller
 
 
     public function vista_tabla(){
-
         if (!Cache::has('vista')){
             Cache::put('vista',true);
         }
@@ -70,8 +89,6 @@ class HomeController extends Controller
             Cache::put('vista',true);
         }
 
-
         return redirect()->back();
-
     }
 }
