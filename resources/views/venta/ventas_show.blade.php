@@ -1,6 +1,8 @@
 @extends('Layouts.Layouts')
 @section('content')
 
+    @include('layouts.flash-message')
+
  <!-- CSS Fontawesome -->
  <link href={{ asset("admin/fontawesome/css/all.min.css") }} rel="stylesheet" type="text/css">
 
@@ -188,7 +190,6 @@
 
                     <div class="row mt-3">
                         <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                            Reaizar Pago imediato de factura
                         </div>
 
                         <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">

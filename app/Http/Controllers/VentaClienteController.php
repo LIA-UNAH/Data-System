@@ -260,7 +260,7 @@ class VentaClienteController extends Controller
         $venta->estado = 'pagado';
         $venta->save();
 
-        return redirect()->back();
+        return back()->with('success', '¡Factura pagada con éxito!');
 
     }
 }

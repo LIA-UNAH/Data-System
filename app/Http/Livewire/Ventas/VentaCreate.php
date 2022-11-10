@@ -222,6 +222,9 @@ class VentaCreate extends Component
                     $detalle_venta->save();
                 }
             }
+
+            return redirect()->route('ventas.index')->with('success', 'Venta guardada con éxito!');
+
         }else{
             
             $this->venta->numero_factura_venta = $pagar == true ? $this->generar_numero_factura() : $this->data["numero_factura_venta"];
@@ -244,10 +247,13 @@ class VentaCreate extends Component
                 $detalle_venta->precio_venta = $item["precio_venta"];
 
                 $detalle_venta->save();
+
             }
+
+            return redirect()->route('ventas.index')->with('success', 'Venta editada con éxito!');
         }
 
-        return redirect()->route('ventas.index');
+        
     }
 
 
