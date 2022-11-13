@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Ventas;
 
+use App\Models\DetalleVenta;
 use App\Models\Venta;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -51,4 +52,15 @@ class VentaIndex extends Component
         return "{$this->filtros["fecha_inicial"]} / {$this->filtros["fecha_final"]}";
     }
 
+
+    public function eliminarVenta($id){
+        $venta = Venta::findOrFail($id);
+
+        if ($venta) {
+            DetalleVenta::where('venta_id', $venta->id)->delete();
+            $venta->delete();
+        }
+
+        return redirect()->route('ventas.index')->with('success','¡Venta eliminada con éxito!');
+    }
 }

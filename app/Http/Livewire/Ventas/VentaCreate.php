@@ -223,7 +223,7 @@ class VentaCreate extends Component
                 }
             }
 
-            return redirect()->route('ventas.index')->with('success', '¡Venta guardada con éxito!');
+            return redirect()->route('ventas.index')->with('info', '¡Venta guardada con éxito!');
 
         }else{
             
@@ -250,7 +250,7 @@ class VentaCreate extends Component
 
             }
 
-            return redirect()->route('ventas.index')->with('success', '¡Venta editada con éxito!');
+            return redirect()->route('ventas.index')->with('warning', '¡Venta editada con éxito!');
         }
 
         
