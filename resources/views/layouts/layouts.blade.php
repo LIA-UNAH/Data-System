@@ -347,48 +347,49 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bell fa-fw"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
+                            <span class="badge badge-danger badge-counter">1+</span>
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="alertsDropdown">
+                            aria-labelledby="alertsDropdown" style="width:100px; height:500px; overflow: scroll;"">
                             <h6 class="dropdown-header">
                                 Centro de notificaciones
                             </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
+                            <?php
+                            function conexion(){
+                                $c = mysqli_connect('localhost', 'root', '', 'datasystem', '3306');
+                                return $c;
+                            }
+
+                            $con = conexion();
+                            $sql = "select * from cuentas_por_cobrar";
+                            $query = mysqli_query($con,$sql);
+
+                            while ($row=mysqli_fetch_array($query)) {
+                                $i = $row["id"];
+                                $n = $row["nombre_cliente"];
+                                $fecha = $row["fecha_limite"];
+                                $estado = $row["estado"];
+
+
+                                if ($fecha <= date('d-m-Y') && $estado == "Pendiente") {
+                        ?>
+                            <div>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('cobro.mostrar', ['id' => <?php $i  ?>->id])}}">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
+                                    <div>
+
+                                        <div class="small text-gray-500"><span class="font-weight-bold"><?php echo $estado ?></span>
+                                            <?php echo $fecha  ?></div>
+                                        <span class="font-weight-bold"><?php echo $n ?></span>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                </a>
+                            </div>
+                            <?php } }?>
                         </div>
                     </li>
 
