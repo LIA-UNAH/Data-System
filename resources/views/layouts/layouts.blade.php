@@ -375,13 +375,14 @@
                                 if ($fecha <= date('d-m-Y') && $estado == "Pendiente") {
                         ?>
                             <div>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ route('cobro.mostrar', ['id' => <?php $i  ?>->id])}}">
+                                <a class="dropdown-item d-flex align-items-center" href="{{route('cobro.mostrar', [$i])}}">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
                                     <div>
+                                    
 
                                         <div class="small text-gray-500"><span class="font-weight-bold"><?php echo $estado ?></span>
                                             <?php echo $fecha  ?></div>
