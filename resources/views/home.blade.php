@@ -178,17 +178,6 @@
                 }
             },
             labels: {
-                items: [{
-                    html: 'Balance Neto',
-                    style: {
-                        left: '50px',
-                        top: '18px',
-                        color: ( // theme
-                            Highcharts.defaultOptions.title.style &&
-                            Highcharts.defaultOptions.title.style.color
-                        ) || 'black'
-                    }
-                }]
             },
             series: [{
                 type: 'column',
@@ -196,14 +185,16 @@
                 data: [parseFloat(ventas[0].Total),parseFloat(ventas[1].Total),parseFloat(ventas[2].Total),
                     parseFloat(ventas[3].Total),parseFloat(ventas[4].Total),parseFloat(ventas[5].Total),
                     parseFloat(ventas[6].Total),parseFloat(ventas[7].Total),parseFloat(ventas[8].Total),
-                    parseFloat(ventas[9].Total),parseFloat(ventas[10].Total),parseFloat(ventas[11].Total)]
+                    parseFloat(ventas[9].Total),parseFloat(ventas[10].Total),parseFloat(ventas[11].Total)],
+                color: '#0DCAF0',
             }, {
                 type: 'column',
                 name: 'Egresos',
                 data: [parseFloat(compras[0].Total),parseFloat(compras[1].Total),parseFloat(compras[2].Total),
                     parseFloat(compras[3].Total),parseFloat(compras[4].Total),parseFloat(compras[5].Total),
                     parseFloat(compras[6].Total),parseFloat(compras[7].Total),parseFloat(compras[8].Total),
-                    parseFloat(compras[9].Total),parseFloat(compras[10].Total),parseFloat(compras[11].Total)]
+                    parseFloat(compras[9].Total),parseFloat(compras[10].Total),parseFloat(compras[11].Total)],
+                color: '#DC3545',
             }, {
                 type: 'column',
                 name: 'M.G.',
@@ -212,7 +203,8 @@
                     ventas[4].Total - compras[4].Total,ventas[5].Total - compras[5].Total,
                     ventas[6].Total - compras[6].Total,ventas[7].Total - compras[7].Total,
                     ventas[8].Total - compras[8].Total,ventas[9].Total - compras[9].Total,
-                    ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total]
+                    ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total],
+                color: '#198754',
             }, {
                 type: 'spline',
                 name: 'MG',
@@ -226,24 +218,6 @@
                     lineWidth: 2,
                     lineColor: Highcharts.getOptions().colors[3],
                     fillColor: 'white'
-                }
-            }, {
-                type: 'pie',
-                name: 'Liter',
-                data: [{
-                    name: 'Ingresos',
-                    y: {{ $ingresos }},
-                    color: Highcharts.getOptions().colors[0]
-                }, {
-                    name: 'Egresos',
-                    y: {{ $egresos }},
-                    color: Highcharts.getOptions().colors[1]
-                }],
-                center: [80, 70],
-                size: 100,
-                showInLegend: false,
-                dataLabels: {
-                    enabled: false
                 }
             }]
         });

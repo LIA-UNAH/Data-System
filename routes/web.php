@@ -14,6 +14,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
+use App\Http\Livewire\Producto\Item\HistorialVentaCliente;
 use App\Http\Livewire\Ventas\VentaCreate;
 use App\Http\Livewire\Ventas\VentaIndex;
 
@@ -32,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/venta', AgregarCarrito::class)->name('home-carrito');
     Route::get('/shopping', VerCarrito::class)->name('ver-carrito');
+    Route::get('/historial', HistorialVentaCliente::class)->name('ver-carrito-historial');
 
     // Información del sistema
     Route::get('/info', [UserController::class, 'info'])->name('info');

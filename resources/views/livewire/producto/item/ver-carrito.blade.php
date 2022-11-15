@@ -1,10 +1,10 @@
 <div>
     <div class="l-block"></div>
     <div style="height: calc(85vh);">
-        <div class="ed-grid s-grid-4" >
+        <div class="ed-grid s-grid-1  m-grid-1 lg-grid-4" >
             <div class="s-cols-3" style="height: 100%;overflow-y: auto;">
                 @forelse ( $datos as $items)
-                    <div class="card" style="margin-bottom: 8px">
+                    <div class="card" style="margin-bottom: 8px;width: 93%">
                         <div style="text-align: right; padding-top: 10px; padding-right: 15px">
                             <div class="cart-product-name-ope">
                                 <span class="comet-icon comet-icon-delete" style="font-size: 16px;"
@@ -19,6 +19,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+
                             <div class="cart-product-wrap">
                                 <div class="cart-product">
                                     <div class="cart-product-body" style="opacity: 1;">
@@ -33,7 +34,7 @@
                                             <a href="#" style="opacity: 1; color: #1a202c; font-size: 18px"> <strong>{{ $items['name'] }}</strong></a>
                                         </div>
                                         <div class="cart-product-name">
-                                            <p>{{$items['associatedModel']['descripcion'] }}</p>
+                                            <p style=" white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{$items['associatedModel']['descripcion'] }}</p>
                                         </div>
 
 
@@ -96,9 +97,32 @@
 
             </div>
             <div>
-                <div class="card" style="height: 370px">
+                <div class="card" style="height: 100%">
                     <div class="card-body">
-                        <h3 class="fw-bold mb-4 mt-2 pt-1">Resumen</h3>
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="fw-bold mb-4 mt-2 pt-1">Resumen</h3>
+                            </div>
+                            <div class="col">
+
+                            </div>
+                            <div class="col" >
+                                <center>
+                                    <abbr title="Vaciar cesta">
+                                        <a href="" style="position: absolute;
+                                        right: 0px;
+                                        padding: 10px;" data-toggle="modal" data-target="#vaciar">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
+                                                <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </a>
+                                    </abbr>
+
+                                </center>
+                            </div>
+                        </div>
+
+
                         <hr class="my-4">
 
                         <div class="d-flex justify-content-between mb-4">
@@ -201,3 +225,32 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="vaciar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #0d6efd; color: white">
+                <h5 class="modal-title" id="exampleModalLabel" >Vaciar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: white">×</span>
+                </button>
+            </div>
+            <div class="modal-body">¿Desea vaciar la canasta?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="vaciar()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@push('scripsss')
+    <script>
+        function vaciar() {
+        @this.vaciar_carrito()
+        }
+    </script>
+@endpush
+
