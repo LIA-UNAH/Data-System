@@ -139,7 +139,7 @@
                                                             <!-- Cantidad en existencia -->
                                                             <div class="badge bg-dark text-white position-absolute"
                                                                     style="top: 0.5rem; right: 0.5rem">
-                                                                {{$pro->existencia}} unidades
+                                                                {{number_format($pro->existencia)}} unidades
                                                             </div>
                                                             <!-- Imagen del producto-->
                                                             <img class="card-img-top"
@@ -154,8 +154,8 @@
                                                                     </p>
                                                                     <!-- Precio del producto-->
                                                                     <div class="p">
-                                                                        <span id="pre" class="pre text-muted text-decoration-line">
-                                                                            <strong style="font-size: 15px"> L.{{$pro->prec_venta_fin}}</strong>
+                                                                        <span id="prec" class="pre text-muted text-decoration-line">
+                                                                            <strong id="pre"style="font-size: 15px">L. {{number_format($pro->prec_venta_fin)}} </strong>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -187,12 +187,21 @@
                                             <tbody id="content-fac" class="content-fac">
                                                 @forelse ($carrito as $index => $item )
                                                     <tr>
-                                                        <td colspan="3" class="titulo"  style="width: 120px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">{{$item["detalle"]}}</td>
-                                                        <td>
-                                                            <input type="number" min="1" style ="width: 40px;" value="{{$item["cantidad_detalle_venta"]}}" wire:change="actualizar_total($event.target.value, {{ $index}})" class="input_Element"></input>
+                                                        <td colspan="3" >
+                                                        <div class="titulo" >{{$item["detalle"]}}</div>
                                                         </td>
-                                                        <td  width="80">{{$item["precio_venta"]}}</td>
-                                                        <td  width="200">L. {{$item["total"]}}</td>
+                                                        <td>
+                                                            
+                                                                <input type="number" min="1" style ="width: 40px;"
+                                                                value="{{$item["cantidad_detalle_venta"]}}" 
+                                                                
+                                                                wire:change="actualizar_total($event.target.value, {{ $index}})" 
+                                                                class="input_Element">
+                                                                </input>
+                                                           
+                                                        </td>
+                                                        <td  width="80">{{number_format($item["precio_venta"], 2, ".", ",")}}</td>
+                                                        <td  width="200">L. {{number_format($item["total"], 2, ".", ",")}}</td>
                             
                                                         <td width="40" >
                                                             <a class="borrar-producto fas fa-times-circle" style="float: right; width:60;"  wire:click.prevent="eliminar_item_carrito({{$index}})"></a>
@@ -212,7 +221,7 @@
 
                                                 <div class=" row my-2 align-items-center bgc-primary-l3 p-2">
                                                     <div class="total">
-                                                        Total: L {{ $this->total }}
+                                                        Total: L {{number_format( $this->total, 2, ".", ",") }}
                                                     </div>
                                                     <div class="col-5">
                                                         <span class="text-150 text-success-d3 opacity-2"></span>
