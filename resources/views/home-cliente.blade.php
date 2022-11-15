@@ -332,6 +332,73 @@
         ::-webkit-scrollbar {
             display: none;
         }
+
+        .box {
+            width: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+            0 10px 10px rgba(0,0,0,0.22);
+        }
+
+        .box-header {
+            padding: 10px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--box-header-bg);
+            color: var(--box-header-color);
+        }
+
+        .list {
+            position: relative;
+            padding: unset;
+            margin: 0;
+            width: 100%;
+        }
+
+        .item {
+            list-style: none;
+            padding: 15px 40px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.1);
+            position: relative;
+            background: var(--item-bg-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.1);
+            z-index: 100;
+            background: var(--item-hover-bg);
+            color: var(--item-hover-color);
+        }
+
+        .item i {
+            color: var(--item-hover-bg);
+        }
+
+        .item:hover i {
+            color: var(--item-hover-color);
+        }
+
+        .right-icon {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .left-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
     </style>
     @livewireStyles
 </head>
@@ -490,13 +557,13 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Perfil
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Configuración
-                            </a>
                             <a class="dropdown-item" href="/info">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Información
+                            </a>
+                            <a class="dropdown-item" href="{{ route('ver-carrito-historial') }}">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Historial
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

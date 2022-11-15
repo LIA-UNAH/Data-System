@@ -52,6 +52,11 @@ class VerCarrito extends Component
         \Cart::session(Auth::user()->id)->remove($id);
     }
 
+    public function vaciar_carrito()
+    {
+        \Cart::session(Auth::user()->id)->clear();
+    }
+
     public function guardar_venta()
     {
 
