@@ -39,7 +39,6 @@
                         <footer class="s-cross-center s-bg-grey s-pxy-2 s-radius-br s-radius-bl">
                             <!--Define el ancho máximo de la imagen-->
                             <div class="s-7 s-mr-1" style="font-size: 0.9em">
-
                             </div>
                             <!--Boton-->
                             @if($producto->existencia == 0)

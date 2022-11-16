@@ -52,7 +52,6 @@
 {{-- Alpine Js --}}
 <script src="{{ asset('js/alpine.js') }}" defer></script>
 
-
 @stack('scripsss')
 </body>
 

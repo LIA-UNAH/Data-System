@@ -9,7 +9,6 @@ use Livewire\Component;
 class AgregarCarrito extends Component
 {
     public $busqueda = '';
-
     public $productos = [];
     public function render()
     {

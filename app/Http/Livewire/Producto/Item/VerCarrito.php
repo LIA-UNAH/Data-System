@@ -13,7 +13,6 @@ class VerCarrito extends Component
     public $datos = [];
     public $total_items = 0;
     public $precio_total = 0;
-
     public $sesion = '';
 
     public function mount($sesion = '')

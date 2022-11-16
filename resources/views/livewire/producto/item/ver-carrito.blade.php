@@ -34,7 +34,7 @@
                                             <a href="#" style="opacity: 1; color: #1a202c; font-size: 18px"> <strong>{{ $items['name'] }}</strong></a>
                                         </div>
                                         <div class="cart-product-name">
-                                            <p style=" white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{$items['associatedModel']['descripcion'] }}</p>
+                                            <p>{{$items['associatedModel']['descripcion'] }}</p>
                                         </div>
 
 
@@ -245,7 +245,6 @@
     </div>
 </div>
 
-
 @push('scripsss')
     <script>
         function vaciar() {
@@ -253,4 +252,3 @@
         }
     </script>
 @endpush
-

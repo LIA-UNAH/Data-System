@@ -394,4 +394,3 @@ Route::group(['middleware' => 'auth'], function () {
     //Reload
     Route::get('/vista', [HomeController::class , 'vista_tabla']);
 });
-

@@ -59,7 +59,7 @@
         }
 
         .ed-header {
-            height: 100p;
+            height: 100px;
             border-bottom: 1px solid #FFF;
             background: #FFF;
             position: fixed;
@@ -71,7 +71,6 @@
 
         .ed-menu .menu {
             list-style: none;
-
         }
 
         .ed-grid .ed-grid,
