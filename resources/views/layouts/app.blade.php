@@ -20,40 +20,40 @@
 
 </head>
 <body class="bg-gradient-primary">
-    <div class="container">
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                @yield('content')
-            </div>
+<div class="container">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-12 col-md-9">
+            @yield('content')
         </div>
     </div>
+</div>
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src={{ asset("admin/jquery/jquery.min.js") }}></script>
-    <script src={{ asset("admin/bootstrap/js/bootstrap.bundle.min.js") }}></script>
+<!-- Bootstrap core JavaScript-->
+<script src={{ asset("admin/jquery/jquery.min.js") }}></script>
+<script src={{ asset("admin/bootstrap/js/bootstrap.bundle.min.js") }}></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src={{ asset("admin/jquery-easing/jquery.easing.min.js") }}></script>
+<!-- Core plugin JavaScript-->
+<script src={{ asset("admin/jquery-easing/jquery.easing.min.js") }}></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src={{ asset("admin/js/sb-admin-2.min.js") }}></script>
+<!-- Custom scripts for all pages-->
+<script src={{ asset("admin/js/sb-admin-2.min.js") }}></script>
 
-    <!-- jQuery -->
-    <script src={{ asset("js/jquery/jquery-3.6.1.min.js") }}></script>
+<!-- jQuery -->
+<script src={{ asset("js/jquery/jquery-3.6.1.min.js") }}></script>
 
-    <!-- Popper -->
-    <script src={{ asset("js/popper/popper.min.js") }}></script>
+<!-- Popper -->
+<script src={{ asset("js/popper/popper.min.js") }}></script>
 
-    <!-- Bootstrap js -->
-    <script src={{ asset("js/bootstrap/bootstrap.min.js") }}></script>
+<!-- Bootstrap js -->
+<script src={{ asset("js/bootstrap/bootstrap.min.js") }}></script>
 
-    {{-- Alpine Js --}}
-    <script src="{{ asset('js/alpine.js') }}" defer></script>
+{{-- Alpine Js --}}
+<script src="{{ asset('js/alpine.js') }}" defer></script>
 
 
-    @stack('scripsss')
+@stack('scripsss')
 </body>
 
 </html>

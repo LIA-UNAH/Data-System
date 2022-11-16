@@ -4,6 +4,9 @@ body{
     color: #484b51;
     
 }
+.cuerpo{
+    width: 100%;   
+}
 .text-secondary-d1 {
     color: #728299!important;
 }
@@ -16,18 +19,18 @@ body{
 }
 .descripcion {
     width: 60%;
-    text-align: center;
+    text-align:left;
 }
 .num, .cant {
     width: 5%;
-    text-align: right;
+    text-align: left;
 }
 .precu {
     width: 15%;
     text-align: right;
 }
 .total{
-    width: 10%;
+    width: 15%;
     text-align: right;
 }
 
@@ -142,4 +145,3 @@ hr {
 .align-bottom {
     vertical-align: bottom!important;
 }
-

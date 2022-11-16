@@ -10,9 +10,7 @@
     <title>Data-system's AlekIsa</title>
 
 
-    <!-- CSS Fontawesome -->
-    <link href={{ asset("admin/fontawesome/css/all.min.css") }} rel="stylesheet" type="text/css">
-
+    
     <!-- Google Fonts -->
     <link href={{ asset("css/fonts.css") }} rel="stylesheet" type="text/css" media="screen">
 
@@ -20,18 +18,14 @@
     <link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet" type="text/css" media="screen">
 
     <!-- CSS Bootstrap 5.2 -->
-    <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet" type="text/css" media="screen"/>
+    <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet" type="text/css" media="screen">
 
     <!-- CSS Factura -->
-    <link href={{ asset("css/factura.css") }} rel="stylesheet" type="text/css" media="screen"/>
+    <link href={{ asset("css/factura.css") }} rel="stylesheet" type="text/css" media="screen">
 
-    {{-- AlpineJS --}}
-    <script defer src={{ asset("js/alpinejs/alpinejs.min.js") }}></script>
-
-    @livewireStyles
 
 </head>
-<body >
+<body class="cuerpo" >
 
 
 <div class="page-content container">
@@ -51,13 +45,12 @@
             <div class="col-12 col-lg-12">
                 <div class="d-flex flex-row-reverse">
                     <div class="col">
-                        <div class="text-right text-150">
-                            <span class="text-default-d3">Estado</span>
+                    <div class="text-right text-150">
+                            <span class="text-default-d3">Estado:</span>
                             @if ($venta->estado == "en_proceso")
-                                <i class="fas fa-circle text-blue-m2" title="En Proceso"></i>
-
+                                <p class="badge bg-primary">En Proceso</p>
                             @else
-                                <i class="fas fa-circle text-success-m2" title="Pagado"></i>
+                                <p class="badge bg-success">Pagado</p>
                             @endif
                         </div>
                     </div>
@@ -76,7 +69,10 @@
                 <hr class="row brc-default-l1 mx-n1 mb-4" />
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="text-grey-m2 col-sm-6">
+                        <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                            Datos del Cliente
+                        </div>
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
                             <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->name}}</span>
@@ -103,7 +99,7 @@
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
                             <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                                Datos Factura
+                                Datos de la Factura
                             </div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
@@ -136,11 +132,11 @@
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                     <thead class="bg-none bgc-default-tp1">
                         <tr class="text-white">
-                            <th class="opacity-2">Numero</th>
+                            <th class="opacity-2">#Num</th>
                             <th>Descripcion</th>
                             <th>Cantidad</th>
                             <th>Precio Unitario</th>
-                            <th width="140">Total</th>
+                            <th >Total</th>
                         </tr>
                     </thead>
 
@@ -150,11 +146,11 @@
                         @endphp
                         @foreach ($venta->detalle_venta as $i => $detalle )
                             <tr>
-                                <td>{{++$i}}</td>
-                                <td>{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
-                                <td>{{$detalle->cantidad_detalle_venta}}</td>
-                                <td>L {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
-                                <td>L {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
+                                <td class="num">{{++$i}}</td>
+                                <td class="descripcion">{{$detalle->producto->marca." ".$detalle->producto->modelo}}</td>
+                                <td class="cant">{{$detalle->cantidad_detalle_venta}}</td>
+                                <td class="precu">L. {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
+                                <td class="total">L. {{ number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",") }}</td>
                             </tr>
                             @php
                                 $total+=$detalle->precio_venta*$detalle->cantidad_detalle_venta;
@@ -173,28 +169,28 @@
                         <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
                             <div class="row my-2">
                                 <div class="col-7 text-right">
-                                    SubTotal
+                                    SubTotal:
                                 </div>
                                 <div class="col-5" style="text-align: right">
-                                    <span class="text-150 text-success-d3 opacity-2">L {{ number_format($total *  0.85, 2, ".", ",") }}</span>
+                                    <span class="text-150 text-success-d3 opacity-2">L. {{ number_format($total *  0.85, 2, ".", ",") }}</span>
                                 </div>
                             </div>
 
                             <div class="row my-2">
                                 <div class="col-7 text-right">
-                                    Impuesto s/v. (15%)
+                                    Impuesto s/v. (15%):
                                 </div>
                                 <div class="col-5" style="text-align: right">
-                                    <span class="text-150 text-success-d3 opacity-2" >L {{ number_format($total *  0.15, 2, ".", ",") }}</span>
+                                    <span class="text-150 text-success-d3 opacity-2" >L. {{ number_format($total *  0.15, 2, ".", ",") }}</span>
                                 </div>
                             </div>
 
                             <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                 <div class="col-7 text-right">
-                                    Total
+                                    Total:
                                 </div>
                                 <div class="col-5" style="text-align: right">
-                                    <span class="text-150 text-success-d3 opacity-2">L {{ number_format($total, 2, ".", ",") }}</span>
+                                    <span class="text-150 text-success-d3 opacity-2">L. {{ number_format($total, 2, ".", ",") }}</span>
                                 </div>
                             </div>
                             <div>
