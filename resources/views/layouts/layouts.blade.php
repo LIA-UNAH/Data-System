@@ -351,7 +351,7 @@
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown" style="overflow: scroll">
+                            aria-labelledby="alertsDropdown" style="float:left; width:1000px; overflow-y: auto; height: 500px;">
                             <h6 class="dropdown-header">
                                 Centro de notificaciones
                             </h6>
