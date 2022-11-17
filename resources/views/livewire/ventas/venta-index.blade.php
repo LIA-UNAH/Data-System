@@ -107,6 +107,9 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item"
+                                    wire:click.prevent="setFiltroEstado('', 'Todas')">Todas</a>
+                                </li>
+                                <li><a class="dropdown-item"
                                         wire:click.prevent="setFiltroEstado('en_proceso', 'En Proceso')">En proceso</a>
                                 </li>
                                 <li><a class="dropdown-item"

@@ -14,15 +14,15 @@ class VentaIndex extends Component
         "fecha_inicial" => "",
         "fecha_final" => "",
         "estado" => [
-            "nombre" => "En Proceso",
-            "valor" => "en_proceso",
+            "nombre" => "Todas",
+            "valor" => "",
         ]
     ];
 
     public function render()
     {
         return view('livewire..ventas.venta-index', [
-            'ventas' => Venta::where('estado', $this->filtros["estado"]["valor"])
+            'ventas' => Venta::where('estado', 'like', "%{$this->filtros["estado"]["valor"]}%")
                 ->where('numero_factura_venta', 'like', "%{$this->filtros["busqueda"]}%")
                 ->whereBetween('fecha_factura', [$this->filtros["fecha_inicial"], $this->filtros["fecha_final"]])
                 ->orderByDesc('fecha_factura')
