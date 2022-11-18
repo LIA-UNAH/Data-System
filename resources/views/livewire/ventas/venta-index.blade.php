@@ -132,7 +132,7 @@
                             <th>Empleado</th>
                             <th>Cliente</th>
                             <th>Total</th>
-                            <th>Fecha</th>
+                            <th>Fecha <a class="text-white" href="#" wire:click.prevent="sortBy('fecha_factura')"><i class="fas fa-sort"></i></a></th>
                             <th>Estado</th>
                             <th colspan="3">Opciones</th>
 
