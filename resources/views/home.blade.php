@@ -90,6 +90,7 @@
 
             <!-- Content Column -->
             <div class="col-lg-6 mb-4">
+
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -98,9 +99,38 @@
                     <div class="card-body">
                         <figure class="highcharts-figure">
                             <div id="container"></div>
-
                         </figure>
+                    </div>
+                </div>
 
+            </div>
+            <div class="col-lg-6 mb-4">
+
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Margen Mensual</h6>
+                    </div>
+                    <div class="card-body">
+                        <figure class="highcharts-figure">
+                            <div id="container2"></div>
+                        </figure>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 mb-4">
+
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Margen Mensual</h6>
+                    </div>
+                    <div class="card-body">
+                        <figure class="highcharts-figure">
+                            <div id="container3"></div>
+                        </figure>
                     </div>
                 </div>
 
@@ -204,7 +234,39 @@
                     ventas[8].Total - compras[8].Total,ventas[9].Total - compras[9].Total,
                     ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total],
                 color: '#198754',
-            }, {
+            }]
+        });
+
+
+
+
+        Highcharts.chart('container2', {
+            title: {
+                text: '',
+                align: 'left'
+            },
+            xAxis: {
+                categories: ['Enero',
+                    'Febrero',
+                    'Marzo',
+                    'Abril',
+                    'Mayo',
+                    'Junio',
+                    'Julio',
+                    'Agosto',
+                    'Septiembre',
+                    'Octubre',
+                    'Noviembre',
+                    'Diciembre']
+            },
+            yAxis: {
+                title: {
+                    text: 'HNL'
+                }
+            },
+            labels: {
+            },
+            series: [  {
                 type: 'spline',
                 name: 'MG',
                 data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
@@ -220,6 +282,39 @@
                 }
             }]
         });
+
+        Highcharts.chart('container3', {
+            title: {
+                text: '',
+                align: 'left'
+            },
+            labels: {
+            },
+            series: [ {
+                type: 'pie',
+                name: 'Liter',
+                data: [{
+                    name: 'Ingresos',
+                    y: {{ $ingresos }},
+                    color: '#0DCAF0'
+                }, {
+                    name: 'Egresos',
+                    y: {{ $egresos }},
+                    color: '#DC3545'
+                }, {
+                    name: 'Margen de Ganancia',
+                    y: {{ $ingresos - $egresos }},
+                    color: '#198754'
+                }],
+                center: [320, 160],
+                size: 320,
+                showInLegend: false,
+                dataLabels: {
+                    enabled: true
+                }
+            }]
+        });
+
 
     </script>
 @endpush
