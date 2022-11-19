@@ -73,6 +73,18 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-sm-5 mb-3 mb-sm-0 none" style="margin-top: 6px; display: none">
+                                    <label for="customer" class="form-label">Tipo de cliente:</label>
+                                    <input  type="customer" class="form-control @error('customer') is-invalid @enderror" id="customer"
+                                            name="customer" value="Mayorista"
+                                            required autocomplete="customer" readonly style="background-color: white">
+                                    @error('customer')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
                                 <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 6px">
                                     <label for="password" class="form-label">Contraseña:</label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"

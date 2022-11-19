@@ -198,7 +198,7 @@
             <div id="collapseEight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"></h6>
-                    <a class="collapse-item" href="{{route('usuarios.index')}}">Lista de Usuarios</a>
+                    <a class="collapse-item" href="{{route('usuarios.index')}}">Lista de usuarios</a>
                     <a class="collapse-item" href="{{ route('clientes.index') }}">Lista de clientes</a>
                 </div>
             </div>

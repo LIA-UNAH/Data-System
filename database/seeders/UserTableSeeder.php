@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'data-system@outlook.es',
                 'password' => bcrypt('DSA12345678.'),
                 'type'=>'Administrador',
+                'customer'=>'Mayorista',
                 'address'=>'La Esperanza, Intibuca; barrio el centro, frente emprendedores agrícolas negocio DSA',
                 'telephone'=>'32042936',
                 'image'=>'Perfil (39).jpg'
@@ -34,6 +35,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'amromero@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Administrador',
+                'customer'=>'Mayorista',
                 'address'=>'3917 Ayers Corpus Christi TX 78415 USA',
                 'telephone'=>'99607004',
                 'image'=>'Perfil (40).jpg'
@@ -47,6 +49,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'nvmeza@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Empleado',
+                'customer'=>'Mayorista',
                 'address'=>'3201 W. Pecan McAllen TX 78501 USA',
                 'telephone'=>'96832662',
                 'image'=>'Perfil (26).jpg'
@@ -60,6 +63,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'jennifer.lazo@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Empleado',
+                'customer'=>'Mayorista',
                 'address'=>'1303 San Jacinto Street Houston TX 77002 USA',
                 'telephone'=>'33476034',
                 'image'=>'Perfil (17).jpg'
@@ -73,6 +77,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'osanchezg@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Empleado',
+                'customer'=>'Mayorista',
                 'address'=>'2419 E Haggar Ave Weslaco TX 78599 USA',
                 'telephone'=>'95795073',
                 'image'=>'Perfil (9).jpg'
@@ -86,6 +91,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'wnhernandezf@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Empleado',
+                'customer'=>'Mayorista',
                 'address'=>'1303 San Jacinto Street Houston TX 77002 USA',
                 'telephone'=>'94896083',
                 'image'=>'Perfil (5).jpg'
@@ -99,6 +105,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'lester-bogran@unah.edu.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Cliente',
+                'customer'=>'Minorista',
                 'address'=>'1901 W Hwy 77 San Benito TX 78586 USA',
                 'telephone'=>'99178932',
                 'image'=>'Perfil (2).jpg'
@@ -112,6 +119,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'megonzalezl@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Administrador',
+                'customer'=>'Mayorista',
                 'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
                 'telephone'=>'99999999',
                 'image'=>'Perfil (35).jpg'
@@ -125,6 +133,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'jcaceresb@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Administrador',
+                'customer'=>'Mayorista',
                 'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
                 'telephone'=>'99999999',
                 'image'=>'Perfil (34).jpg'
@@ -138,6 +147,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'kimberly.licona@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Administrador',
+                'customer'=>'Mayorista',
                 'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
                 'telephone'=>'99999999',
                 'image'=>'Perfil (34).jpg'
@@ -151,6 +161,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'meylin.merlo@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Administrador',
+                'customer'=>'Mayorista',
                 'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
                 'telephone'=>'99999999',
                 'image'=>'Perfil (34).jpg'
@@ -164,6 +175,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'silvia.palma@unah.hn',
                 'password' => bcrypt('12345678'),
                 'type'=>'Administrador',
+                'customer'=>'Mayorista',
                 'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
                 'telephone'=>'99999999',
                 'image'=>'Perfil (34).jpg'

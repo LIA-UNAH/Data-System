@@ -57,6 +57,23 @@
                                 </div>
 
                                 <div class="col-sm-5 mb-3 mb-sm-0" style="margin-top: 6px">
+                                    <label for="customer" class="form-label">Tipo de cliente:</label>
+                                    <select class="form-control @error('customer') is-invalid @enderror"
+                                            id="customer"
+                                            required autocomplete="customer" name="customer"
+                                            autofocus>
+                                        <option value="">Seleccione</option>
+                                        <option value="Mayorista">Mayorista</option>
+                                        <option value="Minorista">Consumidor Final</option>
+                                    </select>
+                                    @error('customer')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-sm-5 mb-3 mb-sm-0 none" style="margin-top: 6px; display: none">
                                     <label for="type" class="form-label">Rol de usuario:</label>
                                     <input  type="type" class="form-control @error('type') is-invalid @enderror" id="type"
                                             name="type" value="Cliente"

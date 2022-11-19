@@ -83,6 +83,7 @@
                             <th>Nombre</th>
                             <th>E-mail</th>
                             <th>Telefóno</th>
+                            <th>Tipo de cliente</th>
                             <th style="text-align: center">Visualizar</th>
                             <th style="text-align: center">Editar</th>
                             <th style="text-align: center">Eliminar</th>
@@ -97,6 +98,7 @@
                                     <td scope="row"><strong>{{ $user->name }}</strong></td>
                                     <td>{{ $user->email}} </td>
                                     <td scope="row">{{ $user->telephone }}</td>
+                                    <td scope="row">{{ $user->customer }}</td>
 
                                     <td style="text-align: center"><a class="btn btn-primary btn-sm" href="{{route('clientes.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
                                     <td style="text-align: center"><a class="btn btn-success btn-sm" href="{{route("clientes.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>
@@ -169,7 +171,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <div class="wcf-center">
-                                                <a class="btn btn-primary" href="{{route('usuarios.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a>
+                                                <a class="btn btn-primary" href="{{route('clientes.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a>
                                                 <a class="btn btn-danger" href="#" data-bs-toggle="modal"
                                                    data-bs-target={{"#modal_eliminar_cliente".$user->id}}><i class="fa fa-window-close" style="color: white"></i></a>
                                             </div>

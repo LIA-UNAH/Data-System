@@ -266,6 +266,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id),],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required'],
+            'customer' => ['required'],
             'address' => ['required', 'string','min:3', 'max:250'],
             'telephone' => ['required', 'numeric','min:2', 'max:99999999']
         ], [
@@ -281,6 +282,7 @@ class UserController extends Controller
             'email.unique' => '¡Debes ingresar un correo electrónico diferente!',
 
             'type.required' => '¡Debes ingresar el tipo de usuario!',
+            'customer.required' => '¡Debes ingresar el tipo de cliente!',
 
             'password.required' => '¡Debes ingresar una contraseña!',
             'password.confirmed' => '¡Debes confirmar tu contraseña!',

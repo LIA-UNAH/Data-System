@@ -55,6 +55,7 @@ class ClienteController extends Controller
             'email' => ['required', 'string', 'email', 'max:70', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required'],
+            'customer' => ['required'],
             'address' => ['required', 'string','min:3', 'max:250'],
             'telephone' => ['required', 'numeric','min:2', 'max:99999999'],
         ], [
@@ -69,7 +70,8 @@ class ClienteController extends Controller
             'email.max' => '¡Has excedido el limite máximo de 70 letras!',
             'email.unique' => '¡Debes ingresar un correo electrónico diferente!',
 
-            'type.required' => '¡Debes ingresar el tipo de usuario!',
+            'type.required' => '¡Debes seleccionar el tipo de usuario!',
+            'customer.required' => '¡Debes seleccionar el tipo de cliente!',
 
             'password.required' => '¡Debes ingresar una contraseña!',
             'password.confirmed' => '¡Debes confirmar tu contraseña!',
@@ -112,7 +114,6 @@ class ClienteController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-
         return view("cliente.clientes_show")->with("user", $user);
     }
 
@@ -144,6 +145,7 @@ class ClienteController extends Controller
             'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id)],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required'],
+            'customer' => ['required'],
             'address' => ['required', 'string','min:3', 'max:250'],
             'telephone' => ['required', 'numeric','min:2', 'max:99999999'],
         ], [
@@ -159,6 +161,7 @@ class ClienteController extends Controller
             'email.unique' => '¡Debes ingresar un correo electrónico diferente!',
 
             'type.required' => '¡Debes ingresar el tipo de usuario!',
+            'customer.required' => '¡Debes ingresar el tipo de cliente!',
 
             'password.required' => '¡Debes ingresar una contraseña!',
             'password.confirmed' => '¡Debes confirmar tu contraseña!',

@@ -5,7 +5,7 @@
     <div class="container py-1">
         <!-- Carta -->
         <div class="card">
-            <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>DETALLES DEL USUARIO</strong></div>
+            <div class=" text-center" style="font-size: 2em; background-color: #0c63e4; color: white"><strong>DETALLES DEL CLIENTE</strong></div>
             <div class="row ">
                 <div class="col-lg-8" style="background: whitesmoke; color: white; font-family: 'Nunito', sans-serif; font-size: small; text-align: justify">
                     <div class="p-5">
@@ -21,7 +21,7 @@
                             </div>
 
                             <div class="col-sm-12"style="margin-top: 10px">
-                                <h6  style="color: #1a202c; font-size: large"><strong>Rol: </strong>{{$user->type}}</h6>
+                                <h6  style="color: #1a202c; font-size: large"><strong>Cliente: </strong>{{$user->customer}}</h6>
                             </div>
 
                             <div class="col-sm-12" style="margin-top: 10px">
