@@ -11,9 +11,7 @@
     display: grid; 
     grid-template-columns: 140px 140px 140px 140px;
 }
-.input-group{
-    border:solid black 1px;
-}
+
 .titulo{
 width: 120px; 
 text-overflow:ellipsis;

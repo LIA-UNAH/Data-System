@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class VentaCreate extends Component
-{   
+{
     public $filtro_producto= "";
     public $venta;
     public $editar = false;
@@ -31,13 +31,11 @@ class VentaCreate extends Component
 
     protected $rules = [
         'data.cliente_id' => 'required',
-        'data.tipo_cliente_factura' => 'required',
         'carrito' => 'required',
     ];
 
     protected $messages = [
         'data.cliente_id.required' => '¡Debes seleccionar un cliente antes de realizar la venta!',
-        'data.tipo_cliente_factura.required' => '¡Debes seleccionar el tipo de cliente!',
     ];
 
 
@@ -60,6 +58,7 @@ class VentaCreate extends Component
             $this->editar = true;
 
             $this->venta = Venta::findOrFail($id);
+            $this->user = Users::findOrFail($id);
 
             $this->data["numero_factura_venta"] = $this->venta->numero_factura_venta;
             $this->data["fecha_factura"] = $this->venta->fecha_factura;
@@ -67,9 +66,9 @@ class VentaCreate extends Component
             $this->data["username"] = $this->venta->user->name;
             $this->data["cliente_id"] = $this->venta->cliente_id;
             $this->data["cliente_telefono"] = $this->venta->cliente->telephone;
-            $this->data["tipo_cliente_factura"] = $this->venta->tipo_cliente_factura;
+            $this->data["tipo_cliente_factura"] = $this->user->customer;
             $this->data["estado"] = $this->venta->estado;
-            
+
             foreach($this->venta->detalle_venta as $item){
 
                 $vals = [
@@ -86,11 +85,11 @@ class VentaCreate extends Component
 
         }
         else {
-            $this->data["fecha_factura"] = Carbon::now()->format('Y-m-d');
+            $this->data["fecha_factura"] = Carbon::now()->setTimezone('America/Costa_Rica')->format('Y-m-d').'T'.Carbon::now()->setTimezone('America/Costa_Rica')->format('H:i');
             $this->data["user_id"] = Auth::user()->id;
             $this->data["username"] = Auth::user()->name;
         }
-       
+
     }
 
 
@@ -101,6 +100,14 @@ class VentaCreate extends Component
             return User::find($this->data["cliente_id"])->telephone;
         }
     }
+    // propiedad computada para traer el tipo de cliente seleccionado
+    public function getTipoProperty()
+    {
+        if ($this->data["cliente_id"]){
+            return User::find($this->data["cliente_id"])->customer;
+        }
+    }
+
 
 
     // propiedad computada para calcular el total de la venta
@@ -109,7 +116,7 @@ class VentaCreate extends Component
         $totales = array_column($this->carrito, 'total');
 
         return array_sum($totales);
-        
+
     }
 
 
@@ -182,14 +189,14 @@ class VentaCreate extends Component
             array_push($this->carrito, $item);
 
         } else {
-            
+
             #busco el index del elemento que contengo el id del producto que ando buscando
             $index = array_search("{$producto['id']}", array_column($this->carrito, 'producto_id'));
-            
+
             // aumento la cantidad en 1 y el total
             $this->carrito[$index]["cantidad_detalle_venta"] += 1;
             $this->carrito[$index]["total"] = $this->carrito[$index]["cantidad_detalle_venta"] * $this->carrito[$index]["precio_venta"];
-            
+
         }
 
     }
@@ -210,23 +217,29 @@ class VentaCreate extends Component
             $venta->total = $this->total;
             $venta->estado = ($pagar == true ? "pagado" : "en_proceso");
             $venta->save();
-    
+
             if ($venta){
+                $total_detalles = 0;
                 foreach ($this->carrito as $key => $item) {
                     $detalle_venta = new DetalleVenta();
                     $detalle_venta->venta_id = $venta->id;
                     $detalle_venta->producto_id = $item["producto_id"];
                     $detalle_venta->cantidad_detalle_venta = $item["cantidad_detalle_venta"];
                     $detalle_venta->precio_venta = $item["precio_venta"];
-    
+                    
                     $detalle_venta->save();
+
+                    $total_detalles += $detalle_venta->cantidad_detalle_venta* $detalle_venta->precio_venta;
                 }
+
+                $venta->total = $this->total;
+                $venta->save();
             }
 
-            return redirect()->route('ventas.index')->with('info', '¡Venta guardada con éxito!');
+            return redirect()->route('ventas.index')->with('success', '¡Venta guardada con éxito!');
 
         }else{
-            
+
             $this->venta->numero_factura_venta = $pagar == true ? $this->generar_numero_factura() : $this->data["numero_factura_venta"];
             $this->venta->fecha_factura = $this->data["fecha_factura"];
             $this->venta->user_id = $this->data["user_id"];
@@ -244,16 +257,25 @@ class VentaCreate extends Component
                 $detalle_venta->venta_id = $this->venta->id;
                 $detalle_venta->producto_id = $item["producto_id"];
                 $detalle_venta->cantidad_detalle_venta = $item["cantidad_detalle_venta"];
-                $detalle_venta->precio_venta = $item["precio_venta"];
+                if ($this->data["tipo_cliente_factura"] == 'Mayorista') {
+                    $detalle_venta->precio_venta = Producto::findOrFail($item["producto_id"])->prec_venta_may;
+                }
+                if ($this->data["tipo_cliente_factura"] == 'Minorista') {
+                    $detalle_venta->precio_venta = Producto::findOrFail($item["producto_id"])->prec_venta_fin;
+                }
 
                 $detalle_venta->save();
-
+                $total_detalles += $detalle_venta->cantidad_detalle_venta* $detalle_venta->precio_venta;
             }
 
-            return redirect()->route('ventas.index')->with('warning', '¡Venta editada con éxito!');
+            $venta->total = $this->total;
+            $venta->save();
+
+
+            return redirect()->route('ventas.index')->with('success', '¡Venta editada con éxito!');
         }
 
-        
+
     }
 
 
