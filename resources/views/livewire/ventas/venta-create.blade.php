@@ -154,7 +154,7 @@
                                                                     <div class="p">
                                                                         <span id="pre" class="pre text-muted text-decoration-line">
                                                                             @if($data['tipo_cliente_factura'] == 'mayorista')
-                                                                                <strong style="font-size: 15px"> L.{{$pro->prec_venta_may}}</strong>
+                                                                                <strong style="font-size: 15px"> L.{{number_format($pro->prec_venta_may, 2, ".", ",")}}</strong>
                                                                                 @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
                                                                                     @php
                                                                                         $carrito[$index]["precio_venta"] = $pro->prec_venta_may;
@@ -163,7 +163,7 @@
                                                                                 @endif
 
                                                                             @else
-                                                                                <strong style="font-size: 15px"> L.{{$pro->prec_venta_fin}}</strong>
+                                                                                <strong style="font-size: 15px"> L.{{number_format($pro->prec_venta_fin, 2, ".", ",")}}</strong>
                                                                                 @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
                                                                                     @php
                                                                                         $carrito[$index]["precio_venta"] = $pro->prec_venta_fin;
@@ -202,12 +202,17 @@
                                             @endphp
                                             @forelse ($carrito as $index => $item )
                                                 <tr>
-                                                    <td colspan="3" class="titulo"  style="width: 120px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">{{$item["detalle"]}}</td>
+                                                    <td colspan="3" class="titulo">
+                                                        <div
+                                                        style="width: 120px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">
+                                                        {{$item["detalle"]}}
+                                                        </div>
+                                                    </td>
                                                     <td>
                                                         <input type="number" min="1" style ="width: 40px;" value="{{$item["cantidad_detalle_venta"]}}" wire:change="actualizar_total($event.target.value, {{ $index}})" class="input_Element"></input>
                                                     </td>
-                                                    <td  width="80">{{$item["precio_venta"]}}</td>
-                                                    <td  width="200">L. {{$item["total"]}}</td>
+                                                    <td  width="80">{{number_format($item["precio_venta"], 2, ".", ",")}}</td>
+                                                    <td  width="200">L. {{number_format($item["total"], 2, ".", ",")}}</td>
 
                                                     <td width="40" >
                                                         <a class="borrar-producto fas fa-times-circle" style="float: right; width:60;"  wire:click.prevent="eliminar_item_carrito({{$index}})"></a>
@@ -230,7 +235,7 @@
 
                                                 <div class=" row my-2 align-items-center bgc-primary-l3 p-2">
                                                     <div class="total">
-                                                        Total: L {{ $total_carrito }}
+                                                        Total: L {{number_format( $total_carrito, 2, ".", ",") }}
                                                     </div>
                                                     <div class="col-5">
                                                         <span class="text-150 text-success-d3 opacity-2"></span>
