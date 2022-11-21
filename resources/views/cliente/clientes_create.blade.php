@@ -63,8 +63,8 @@
                                             required autocomplete="customer" name="customer"
                                             autofocus>
                                         <option value="">Seleccione</option>
-                                        <option value="Mayorista">Mayorista</option>
-                                        <option value="Minorista">Consumidor Final</option>
+                                        <option value="mayorista">Mayorista</option>
+                                        <option value="consumidor_final">Consumidor Final</option>
                                     </select>
                                     @error('customer')
                                     <span class="invalid-feedback" role="alert">

@@ -21,7 +21,12 @@
                             </div>
 
                             <div class="col-sm-12"style="margin-top: 10px">
-                                <h6  style="color: #1a202c; font-size: large"><strong>Cliente: </strong>{{$user->customer}}</h6>
+                                @if( $user->customer == "mayorista")
+                                    <h6  style="color: #1a202c; font-size: large"><strong>Cliente: </strong>Mayorista</h6>
+                                @else
+                                    <h6  style="color: #1a202c; font-size: large"><strong>Cliente: </strong>Consumidor Final</h6>
+                                @endif
+
                             </div>
 
                             <div class="col-sm-12" style="margin-top: 10px">

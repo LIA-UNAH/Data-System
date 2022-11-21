@@ -75,13 +75,13 @@
                                     <select class="form-control @error('customer') is-invalid @enderror"  id="customer"
                                             required autocomplete="customer" name="customer"
                                             autofocus>
-                                        if({{$user->customer}} == "minorista"){
-                                        <option value="{{$user->customer}}" style="display: none">Cliente Final</option>
+                                        if({{$user->customer}} == "consumidor_final"){
+                                        <option value="{{$user->customer}}" style="display: none">Consumidor Final</option>
                                         } else {
                                         <option value="{{$user->customer}}" style="display: none">Mayorista</option>
                                         }
-                                        <option value="Mayorista">Mayorista</option>
-                                        <option value="Minorista">Cliente final</option>
+                                        <option value="mayorista">Mayorista</option>
+                                        <option value="consumidor_final">Consumidor final</option>
                                     </select>
                                     @error('customer')
                                     <span class="invalid-feedback" role="alert">

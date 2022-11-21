@@ -98,7 +98,11 @@
                                     <td scope="row"><strong>{{ $user->name }}</strong></td>
                                     <td>{{ $user->email}} </td>
                                     <td scope="row">{{ $user->telephone }}</td>
-                                    <td scope="row">{{ $user->customer }}</td>
+                                    @if( $user->customer == "mayorista")
+                                        <td scope="row">Mayorista</td>
+                                    @else
+                                        <td scope="row">Consumidor Final</td>
+                                    @endif
 
                                     <td style="text-align: center"><a class="btn btn-primary btn-sm" href="{{route('clientes.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a></td>
                                     <td style="text-align: center"><a class="btn btn-success btn-sm" href="{{route("clientes.edit",["id"=>$user->id])}}"><i class="fa fa-edit" style="color: white"></i></a></td>

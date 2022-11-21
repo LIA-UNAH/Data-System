@@ -23,11 +23,11 @@ class VentaClienteController extends Controller
     public function index()
     {
         $ventas = Venta::select('ventas.id','ventas.numero_factura_venta','ventas.fecha_factura',
-        'a.name as usuario','b.name as cliente', 'tipo_cliente_factura', 'ventas.estado')
-        ->join("users as a", "ventas.user_id", "=", "a.id")
-        ->join("users as b", "ventas.cliente_id", "=", "b.id")
-        ->where('estado', '=', 'en_proceso')
-        ->paginate(5);
+            'a.name as usuario','b.name as cliente', 'tipo_cliente_factura', 'ventas.estado')
+            ->join("users as a", "ventas.user_id", "=", "a.id")
+            ->join("users as b", "ventas.cliente_id", "=", "b.id")
+            ->where('estado', '=', 'en_proceso')
+            ->paginate(5);
 
         foreach ($ventas as $key => $value) {
             $value->total = 0;
@@ -44,19 +44,21 @@ class VentaClienteController extends Controller
         $venta = Venta::findOrFail($id);
         $vista = view('venta.ventas_pdf')->with('venta',$venta);
 
+        // return $vista;
+
         // Reconocemos los archivos CSS externos
         $options = new Options();
         $options->set('isRemoteEnabled', TRUE);
 
         $dompdf = new Dompdf($options);
-            // Definimos el tamaño y orientación del papel que queremos.
-            $dompdf->setPaper('A4', 'portrait');
-            // Cargamos el contenido HTML.
-            $dompdf->loadHtml(utf8_decode($vista));
-            // Renderizamos el documento PDF.
-            $dompdf->render();
-            // Enviamos el fichero PDF al navegador.
-            $dompdf->stream("Factura-".$venta->numero_factura_venta.".pdf");
+        // Definimos el tamaño y orientación del papel que queremos.
+        $dompdf->setPaper('A4', 'landscape');
+        // Cargamos el contenido HTML.
+        $dompdf->loadHtml(utf8_decode($vista));
+        // Renderizamos el documento PDF.
+        $dompdf->render();
+        // Enviamos el fichero PDF al navegador.
+        $dompdf->stream("Factura-".$venta->numero_factura_venta.".pdf");
     }
 
 
@@ -70,12 +72,12 @@ class VentaClienteController extends Controller
     public function search(Request $request){
         $texto =trim($request->get('buscar_venta'));
         $ventas = Venta::select('ventas.id','ventas.numero_factura_venta','ventas.fecha_factura',
-        'a.name as usuario','b.name as cliente', 'tipo_cliente_factura', 'ventas.estado')
-        ->join("users as a", "ventas.user_id", "=", "a.id")
-        ->join("users as b", "ventas.cliente_id", "=", "b.id")
-        ->Where('fecha_factura', 'LIKE', '%'. $texto. '%')
-        ->orWhere('a.name', 'LIKE', '%'. $texto. '%')
-        ->orWhere('b.name', 'LIKE', '%'. $texto. '%')->paginate(5);
+            'a.name as usuario','b.name as cliente', 'tipo_cliente_factura', 'ventas.estado')
+            ->join("users as a", "ventas.user_id", "=", "a.id")
+            ->join("users as b", "ventas.cliente_id", "=", "b.id")
+            ->Where('fecha_factura', 'LIKE', '%'. $texto. '%')
+            ->orWhere('a.name', 'LIKE', '%'. $texto. '%')
+            ->orWhere('b.name', 'LIKE', '%'. $texto. '%')->paginate(5);
 
         foreach ($ventas as $key => $value) {
             $value->total = 0;
@@ -153,11 +155,11 @@ class VentaClienteController extends Controller
     {
         $request ->validate([
             'cliente_id'=>  ['required'],
-            'tipo_cliente' => ['required'],
+            'tipo_cliente_factura' => ['required'],
             'tuplas' => ['required'],
         ],[
             'cliente_id.required' => '¡Debes seleccionar un cliente antes de realizar la venta!',
-            'tipo_cliente.required' => '¡Debes seleccionar el tipo de cliente!',
+            'tipo_cliente_factura.required' => '¡Debes seleccionar el tipo de cliente!',
         ]);
 
         $venta = new Venta();
@@ -165,7 +167,7 @@ class VentaClienteController extends Controller
         $venta->fecha_factura = $request->input('current_date');
         $venta->user_id = $request->input('usuario_id');
         $venta->cliente_id = $request->input('cliente_id');
-        $venta->tipo_cliente_factura = $request->input('tipo_cliente');
+        $venta->tipo_cliente_factura = $request->input('tipo_cliente_factura');
         $venta->estado = $request->input("pagado") == "true" ? "pagado" : "en_proceso";
         $venta->save();
 
@@ -176,9 +178,10 @@ class VentaClienteController extends Controller
             $detalle_venta->venta_id = $venta->id;
             $detalle_venta->producto_id = $array[0];
             $detalle_venta->cantidad_detalle_venta = $array[1];
-            if ($request->input('tipo_cliente') == 'mayorista') {
+            if ($request->input('tipo_cliente_factura') == 'Mayorista') {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_may;
-            } else {
+            }
+            if ($request->input('tipo_cliente_factura') == 'Minorista') {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_fin;
             }
             $detalle_venta->save();

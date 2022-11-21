@@ -31,10 +31,9 @@ class Venta extends Model
             if ($filtros['fecha_inicial'] && $filtros['fecha_final']) {
                 $query->whereBetween('fecha_factura', [$filtros["fecha_inicial"], $filtros["fecha_final"]]);
             }
-            
+
             $query->where("numero_factura_venta", 'like', "%{$filtros['busqueda']}%")
                     ->where('estado', 'like', "%{$filtros["estado"]["valor"]}%");
-
         });
     }
 }
