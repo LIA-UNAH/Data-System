@@ -216,6 +216,12 @@ class VentaCreate extends Component
                     $detalle_venta->save();
 
                     $total_detalles += $detalle_venta->cantidad_detalle_venta * $detalle_venta->precio_venta;
+
+                }
+                foreach ($venta->detalle_venta as $key => $value) {
+                    $prodcuto = Producto::findOrFail($value->producto_id);
+                    $prodcuto->existencia = $prodcuto->existencia - $value->cantidad_detalle_venta;
+                    $prodcuto->save();
                 }
 
                 $venta->total = $this->total;
@@ -253,6 +259,8 @@ class VentaCreate extends Component
                 $detalle_venta->save();
                 $total_detalles += $detalle_venta->cantidad_detalle_venta * $detalle_venta->precio_venta;
             }
+
+            
 
             $venta -> total = $this->total;
             $venta -> save();
