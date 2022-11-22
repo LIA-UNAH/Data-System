@@ -84,6 +84,13 @@ class CompraClienteController extends Controller
 
     public function compra_guardar(Request $request)
     {
+
+        $request->validate([
+            'compra_id'=>  ['required'],
+            'docummento_compra' => ['required','unique:compras,docummento_compra,'.$request->input('docummento_compra')],
+            'proveedor_id' => ['required']
+        ]);
+
         $compra = Compra::findOrFail($request->input('compra_id'));
         $compra->docummento_compra = $request->input('docummento_compra');
         $compra->fecha_compra = $request->input('fecha_compra');

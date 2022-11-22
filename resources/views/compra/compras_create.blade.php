@@ -12,10 +12,10 @@
                 <form action="{{ route('compras.destroy', $compra->id) }}" id='form_eliminar' method="POST">
                     @csrf
                     @method('DELETE')
-                        <button type="submit" style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
-                                class="btn btn-google btn-user btn-block">
-                                {{ __('Eliminar') }}
-                        </button>
+                    <button type="submit" style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
+                            class="btn btn-google btn-user btn-block">
+                        {{ __('Eliminar') }}
+                    </button>
                 </form>
             </div>
 
@@ -35,18 +35,18 @@
                                 <input type="text" class="form-control @error('docummento_compra') is-invalid @enderror" id="docummento_compra"
                                        name="docummento_compra" value="CP{{Carbon\Carbon::now()->format('Ymdhms')}}" required autocomplete="docummento_compra"
                                        autofocus placeholder="{{ __('') }}"
-                                       style="text-transform: uppercase; background-color: white" readonly>
+                                       style="text-transform: uppercase; background-color: white">
                                 @error('docummento_compra')
                                 <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                             <div class="col-sm-6">
                                 <label for="fecha_compra">Fecha:</label>
-                                <input type="date" class="form-control @error('fecha_compra') is-invalid @enderror"
+                                <input type="datetime-local" class="form-control @error('fecha_compra') is-invalid @enderror"
                                        id="fecha_compra"
-                                       name="fecha_compra" value="{{Carbon\Carbon::now()->format('Y-m-d')}}"
+                                       name="fecha_compra" value="{{Carbon\Carbon::now()->setTimezone('America/Costa_Rica')->format('Y-m-d') . 'T' . Carbon\Carbon::now()->setTimezone('America/Costa_Rica')->format('H:i')}}"
                                        required
                                        autocomplete="fecha_compra"
                                        autofocus readonly
@@ -66,12 +66,14 @@
                                     <select class="form-control @error('proveedor_id') is-invalid @enderror"  id="proveedor_id"
                                             required autocomplete="proveedor_id" name="proveedor_id"
                                             autofocus>
-                                            <option value="">Seleccione el proveedor</option>
-                                            @forelse ($provedores as $provedore)
-                                              <option value="{{ $provedore->id }}">{{ $provedore->nombre_proveedor }}</option>
-                                            @empty
-                                              <option value="0">Proveedor</option>
-                                            @endforelse
+                                        <option value="">Seleccione el proveedor</option>
+                                        @forelse ($provedores as $provedore)
+                                            <option @if( old('proveedor_id') == $provedore->id )
+                                                        selected
+                                                    @endif value="{{ $provedore->id }}">{{ $provedore->nombre_proveedor }}</option>
+                                        @empty
+                                            <option value="0">Proveedor</option>
+                                        @endforelse
                                     </select>
                                     @error('proveedor_id')
                                     <span class="invalid-feedback" role="alert">
@@ -97,13 +99,13 @@
                             </div>
                             <div class="col-sm-2">
                                 <a style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
-                                data-toggle="modal" data-target="#modal_agregar_detalle" class="btn btn-google btn-user btn-block">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path
-                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                </svg>
+                                   data-toggle="modal" data-target="#modal_agregar_detalle" class="btn btn-google btn-user btn-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
@@ -126,29 +128,29 @@
                             @php
                                 $sum = 0;
                             @endphp
-                                    @forelse($compra->detalle_compra as $i => $detalle)
-                                    <tr>
-                                        <td scope="row">{{ ++$i }}</td>
-                                        <td>{{ $detalle->producto->marca}} - {{ $detalle->producto->modelo}} </td>
-                                        <td scope="row">{{ $detalle->cantidad_detalle_compra }}</td>
-                                        <td scope="row">L {{ number_format($detalle->precio, 2, ".", ",") }}</td>
-                                        <td scope="row">L {{ number_format($detalle->precio*$detalle->cantidad_detalle_compra, 2, ".", ",") }}</td>
-                                    </tr>
-                                    @php
-                                        $sum += $detalle->precio*$detalle->cantidad_detalle_compra;
-                                    @endphp
-                                    @empty
-                                        <tr>
-                                            <td colspan="8">No hay Detalles</td>
-                                        </tr>
-                                    @endforelse
+                            @forelse($compra->detalle_compra as $i => $detalle)
+                                <tr>
+                                    <td scope="row">{{ ++$i }}</td>
+                                    <td>{{ $detalle->producto->marca}} - {{ $detalle->producto->modelo}} </td>
+                                    <td scope="row">{{ $detalle->cantidad_detalle_compra }}</td>
+                                    <td scope="row">L {{ number_format($detalle->precio, 2, ".", ",") }}</td>
+                                    <td scope="row">L {{ number_format($detalle->precio*$detalle->cantidad_detalle_compra, 2, ".", ",") }}</td>
+                                </tr>
+                                @php
+                                    $sum += $detalle->precio*$detalle->cantidad_detalle_compra;
+                                @endphp
+                            @empty
+                                <tr>
+                                    <td colspan="8">No hay Detalles</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                             <tfoot>
-                                <td scope="row"></td>
-                                <td scope="row"></td>
-                                <td></td>
-                                <td scope="row">Total</td>
-                                <td scope="row">L {{ number_format($sum, 2, ".", ",") }}</td>
+                            <td scope="row"></td>
+                            <td scope="row"></td>
+                            <td></td>
+                            <td scope="row">Total</td>
+                            <td scope="row">L {{ number_format($sum, 2, ".", ",") }}</td>
                             </tfoot>
                         </table>
                     </div>
@@ -160,90 +162,90 @@
     </div>
 
 
-<div class="modal fade" id="modal_agregar_detalle" data-bs-backdrop="static"
-    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-    aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-       <div class="modal-content">
-           <div class="modal-header">
-               <h5 class="modal-title" id="staticBackdropLabel">Agregar Producto</h5>
-               <button type="button" class="btn-close" data-dismiss="modal"
-                       aria-label="Close"></button>
-           </div>
+    <div class="modal fade" id="modal_agregar_detalle" data-bs-backdrop="static"
+         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Producto</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
 
-           <form action="{{ route('compras.store') }}" method="POST">
-               @csrf
-               <div class="modal-body">
-                   <div class="row g-3">
-                        <input type="text" name="compra_id" id="compra_id" value="{{ $compra->id }}" hidden>
-                       <div class="col-sm-12">
-                           <label for="producto_id" class="form-label">Producto:</label>
-                           <select class="form-control @error('producto_id') is-invalid @enderror"
-                                   id="producto_id"
-                                   required autocomplete="producto_id" name="producto_id" autofocus onchange="funcionObtenerCosto()">
-                               <option value="">Seleccione el producto</option>
-                               @foreach ($productos as $producto)
-                                   <option value="{{ $producto->id }}" {{ old('producto_id') == $producto->id ? 'selected' : '' }}>{{$producto['name']}} {{$producto['marca']}} - {{$producto['modelo']}}</option>
-                               @endforeach
-                           </select>
-                           @error('producto_id')
-                           <span class="invalid-feedback" role="alert">
+                <form action="{{ route('compras.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <input type="text" name="compra_id" id="compra_id" value="{{ $compra->id }}" hidden>
+                            <div class="col-sm-12">
+                                <label for="producto_id" class="form-label">Producto:</label>
+                                <select class="form-control @error('producto_id') is-invalid @enderror"
+                                        id="producto_id"
+                                        required autocomplete="producto_id" name="producto_id" autofocus onchange="funcionObtenerCosto()">
+                                    <option value="">Seleccione el producto</option>
+                                    @foreach ($productos as $producto)
+                                        <option value="{{ $producto->id }}" {{ old('producto_id') == $producto->id ? 'selected' : '' }}>{{$producto['name']}} {{$producto['marca']}} - {{$producto['modelo']}}</option>
+                                    @endforeach
+                                </select>
+                                @error('producto_id')
+                                <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                           @enderror
-                       </div>
+                                @enderror
+                            </div>
 
-                       <div class="col-sm-6">
-                           <label for="precio" class="text-secondary-d1"><strong>Precio:</strong></label>
-                           <input type="text"
-                                  class="form-control @error('precio') is-invalid @enderror"
-                                  id="precio"
-                                  name="precio" value="{{ old('precio') }}" required
-                                  autocomplete="precio"
-                                  autofocus readonly
-                                  style="background-color: white">
-                           @error('precio')
-                           <span class="invalid-feedback" role="alert">
+                            <div class="col-sm-6">
+                                <label for="precio" class="text-secondary-d1"><strong>Precio:</strong></label>
+                                <input type="text"
+                                       class="form-control @error('precio') is-invalid @enderror"
+                                       id="precio"
+                                       name="precio" value="{{ old('precio') }}" required
+                                       autocomplete="precio"
+                                       autofocus readonly
+                                       style="background-color: white">
+                                @error('precio')
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                           @enderror
+                                @enderror
 
 
-                       </div>
-                       <div class="col-sm-6">
-                           <label for="firstName" class="form-label">Cantidad:</label>
-                           <input type="number" class="form-control" id="cantidad_detalle_compra"
-                                  name="cantidad_detalle_compra" value="" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Cantidad:</label>
+                                <input type="number" class="form-control" id="cantidad_detalle_compra"
+                                       name="cantidad_detalle_compra" value="" required>
 
-                       </div>
-                   </div>
-               </div>
+                            </div>
+                        </div>
+                    </div>
 
-               <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary"
-                           data-dismiss="modal">Cancelar
-                   </button>
-                   <button type="submit" class="btn btn-primary">Guardar</button>
-               </div>
+                    <!-----ESTE BOTON ES EL BOTON DEL MODAL PARA CREAR EL NUEVO INVENTARIO-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
 
-           </form>
-       </div>
-   </div>
-</div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-<script>
-    function funcionObtenerCosto(){
-        var select = document.getElementById("producto_id");
-        var valor = select.value;
+    <script>
+        function funcionObtenerCosto(){
+            var select = document.getElementById("producto_id");
+            var valor = select.value;
 
-        @foreach ($productos as $producto)
-        if(valor == {{$producto->id}}){
-            var input = document.getElementById("precio");
-            input.value = "{{$producto->prec_compra}}";
+            @foreach ($productos as $producto)
+            if(valor == {{$producto->id}}){
+                var input = document.getElementById("precio");
+                input.value = "{{$producto->prec_compra}}";
+            }
+            @endforeach
         }
-        @endforeach
-    }
-</script>
+    </script>
 
 @endsection
