@@ -157,7 +157,6 @@ class VentaCreate extends Component
         $this->carrito[$index]["total"] = $cantidad * $this->carrito[$index]["precio_venta"];
     }
 
-
     public function agregar_item_carrito($producto)
     {
         $item = [
@@ -214,7 +213,6 @@ class VentaCreate extends Component
                         $detalle_venta->precio_venta = Producto::findOrFail($item["producto_id"])->prec_venta_fin;
                     }
                     $detalle_venta->save();
-
                     $total_detalles += $detalle_venta->cantidad_detalle_venta * $detalle_venta->precio_venta;
 
                 }
@@ -229,9 +227,7 @@ class VentaCreate extends Component
             }
 
             return redirect()->route('ventas.index')->with('success', '¡Venta guardada con éxito!');
-
         } else {
-
             $this->venta->numero_factura_venta = $pagar == true ? $this->generar_numero_factura() : $this->data["numero_factura_venta"];
             $this->venta->fecha_factura = $this->data["fecha_factura"];
             $this->venta->user_id = $this->data["user_id"];
@@ -249,21 +245,10 @@ class VentaCreate extends Component
                 $detalle_venta->venta_id = $this->venta->id;
                 $detalle_venta->producto_id = $item["producto_id"];
                 $detalle_venta->cantidad_detalle_venta = $item["cantidad_detalle_venta"];
-                if ($this->data["tipo_cliente_factura"] == 'mayorista') {
-                    $detalle_venta->precio_venta = Producto::findOrFail($item["producto_id"])->prec_venta_may;
-                }
-                if ($this->data["tipo_cliente_factura"] == 'consumidor_final') {
-                    $detalle_venta->precio_venta = Producto::findOrFail($item["producto_id"])->prec_venta_fin;
-                }
-
+                $detalle_venta->precio_venta = $item["precio_venta"];
                 $detalle_venta->save();
-                $total_detalles += $detalle_venta->cantidad_detalle_venta * $detalle_venta->precio_venta;
+
             }
-
-            
-
-            $venta -> total = $this->total;
-            $venta -> save();
 
             return redirect()->route('ventas.index')->with('success', '¡Venta editada con éxito!');
         }

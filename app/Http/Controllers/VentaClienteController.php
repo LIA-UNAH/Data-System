@@ -44,7 +44,7 @@ class VentaClienteController extends Controller
         $venta = Venta::findOrFail($id);
         $vista = view('venta.ventas_pdf')->with('venta',$venta);
 
-        // return $vista;
+        //return $vista;
 
         // Reconocemos los archivos CSS externos
         $options = new Options();
@@ -52,16 +52,14 @@ class VentaClienteController extends Controller
 
         $dompdf = new Dompdf($options);
         // Definimos el tamaño y orientación del papel que queremos.
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
         // Cargamos el contenido HTML.
-        $dompdf->loadHtml(utf8_decode($vista));
+        $dompdf->loadHtml($vista, 'UTF-8');
         // Renderizamos el documento PDF.
         $dompdf->render();
         // Enviamos el fichero PDF al navegador.
         $dompdf->stream("Factura-".$venta->numero_factura_venta.".pdf");
     }
-
-
 
     public function factura()
     {
@@ -178,10 +176,10 @@ class VentaClienteController extends Controller
             $detalle_venta->venta_id = $venta->id;
             $detalle_venta->producto_id = $array[0];
             $detalle_venta->cantidad_detalle_venta = $array[1];
-            if ($request->input('tipo_cliente_factura') == 'Mayorista') {
+            if ($request->input('tipo_cliente_factura') == 'mayorista') {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_may;
             }
-            if ($request->input('tipo_cliente_factura') == 'Minorista') {
+            if ($request->input('tipo_cliente_factura') == 'consumidor_final') {
                 $detalle_venta->precio_venta = Producto::findOrFail($array[0])->prec_venta_fin;
             }
             $detalle_venta->save();

@@ -36,7 +36,7 @@
                                 </div>
 
                                 <!-- Tipo de cliente -->
-                                <div class="col-sm-3 mb-3 mb-sm-0" style="display: none">
+                                <div class="col-sm-3 mb-3 mb-sm-0">
                                     <label for="tipo_cliente_factura" class="text-secondary-d1"><strong>Precio:</strong></label>
                                     <input type="text"
                                            wire:model="data.tipo_cliente_factura"
@@ -54,7 +54,7 @@
                                 </div>
 
                                 <!-- Teléfono del cliente -->
-                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                <div class="col-sm-3 mb-3 mb-sm-0" style="display: none">
                                     <label for="celular_cliente" class="text-secondary-d1"><strong>Teléfono del
                                             cliente:</strong></label>
                                     <input

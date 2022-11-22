@@ -17,6 +17,7 @@ use App\Http\Controllers\VentaClienteController;
 use App\Http\Livewire\Producto\Item\HistorialVentaCliente;
 use App\Http\Livewire\Ventas\VentaCreate;
 use App\Http\Livewire\Ventas\VentaIndex;
+use App\Http\Livewire\Ventas\VentasShow;
 
 /*
 |--------------------------------------------------------------------------
@@ -256,7 +257,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('ventas.searchIndex');
 
     // Factura ventas
-    Route::get('/ventas/facturas/{id}', [VentaClienteController::class, 'show'])->middleware('can:controlParcial')
+    Route::get('/ventas/facturas/{venta}', VentasShow::class)->middleware('can:controlParcial')
         ->name('ventas.facturas');
 
     // Vista Previa Factura
@@ -394,3 +395,4 @@ Route::group(['middleware' => 'auth'], function () {
     //Reload
     Route::get('/vista', [HomeController::class , 'vista_tabla']);
 });
+
