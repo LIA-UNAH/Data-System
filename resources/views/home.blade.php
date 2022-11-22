@@ -89,7 +89,7 @@
         <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-4 mb-4">
 
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
@@ -104,7 +104,7 @@
                 </div>
 
             </div>
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-4 mb-4">
 
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
@@ -120,7 +120,7 @@
 
             </div>
 
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-4 mb-4">
 
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
@@ -136,7 +136,7 @@
 
             </div>
 
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-4 mb-4">
 
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
@@ -306,8 +306,8 @@
                     y: {{ $ingresos - $egresos }},
                     color: '#198754'
                 }],
-                center: [320, 160],
-                size: 320,
+                center: [210, 160],
+                size: 160,
                 showInLegend: false,
                 dataLabels: {
                     enabled: true
