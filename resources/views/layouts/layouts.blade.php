@@ -342,19 +342,22 @@
                 <!-- End of Sidebar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
+                    <li class="nav-item dropdown no-arrow mx-1" >
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
+                            <i class="fas fa-bell fa-fw" ></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">1+</span>
+                            <span class="badge badge-danger badge-counter">.</span>
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown" style="float:left; width:1000px; overflow-y: auto; height: 500px;">
+                            aria-labelledby="alertsDropdown">
+                           
+                             
                             <h6 class="dropdown-header">
                                 Centro de notificaciones
                             </h6>
+                            <div  style= "overflow-y: scroll; height: 500px;"> 
                             <?php
                             function conexion(){
                                 $c = mysqli_connect('localhost', 'root', '', 'datasystem', '3306');
@@ -390,6 +393,7 @@
                                 </a>
                             </div>
                             <?php } }?>
+                        </div>
                         </div>
                     </li>
 

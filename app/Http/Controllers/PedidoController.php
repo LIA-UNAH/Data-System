@@ -76,7 +76,9 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::findOrFail($id);
 
-        //Validar        
+        //Validar 
+        
+        
         
         //Formulario
         $pedido -> nombre_Cliente=$request->input('nombre_Cliente');
