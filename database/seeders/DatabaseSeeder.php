@@ -31,5 +31,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\Pedido::factory(100)->create();
         \App\Models\Reparacion::factory(15)->create();
         \App\Models\CuentasPorCobrar::factory(100)->create();
+        $this->call(CompraTableSeeder::class);
+        $this->call(DetalleCompraTableSeeder::class);
+        $this->call(VentaTableSeeder::class);
+        $this->call(DetalleVentaSeeder::class);
+
     }
 }

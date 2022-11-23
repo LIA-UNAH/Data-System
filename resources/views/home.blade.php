@@ -54,8 +54,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Margen de Ganancia</div>
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Margen de Ganancia (Anual)</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">L. {{ number_format($ingresos - $egresos, 2, ".", ",") }}</div>
                             </div>
                             <div class="col-auto">
@@ -73,7 +72,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Reparaciones Pendientes</div>
+                                    Reparaciones (Diarias)</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                             </div>
                             <div class="col-auto">
@@ -89,12 +88,11 @@
         <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-4 mb-4">
-
+            <div class="col-xl-6 col-md-5 mb-4">
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Reporte de Ingresos y Egresos</h6>
+                    <div class="card-header py-3" style="background: #0d6efd">
+                        <h6 class="m-0 font-weight-bold text-white">REPORTE POR MES</h6>
                     </div>
                     <div class="card-body">
                         <figure class="highcharts-figure">
@@ -102,14 +100,13 @@
                         </figure>
                     </div>
                 </div>
-
             </div>
-            <div class="col-lg-4 mb-4">
 
+            <div class="col-xl-6 col-md-5 mb-4">
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Margen Mensual</h6>
+                    <div class="card-header py-3" style="background: #0d6efd">
+                        <h6 class="m-0 font-weight-bold text-white">MARGEN DE GANANCIAS POR AÑO</h6>
                     </div>
                     <div class="card-body">
                         <figure class="highcharts-figure">
@@ -120,12 +117,11 @@
 
             </div>
 
-            <div class="col-lg-4 mb-4">
-
+            <div class="col-xl-6 col-md-5 mb-4">
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Margen Mensual</h6>
+                    <div class="card-header py-3" style="background: #0d6efd">
+                        <h6 class="m-0 font-weight-bold text-white">REPORTE GENERAL POR AÑO</h6>
                     </div>
                     <div class="card-body">
                         <figure class="highcharts-figure">
@@ -136,51 +132,43 @@
 
             </div>
 
-            <div class="col-lg-4 mb-4">
-
+            <div class="col-xl-6 col-md-5 mb-4">
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-
-                        <h6 class="m-0 font-weight-bold text-primary">Ventas Vendedores ({{ Carbon\Carbon::now()->locale('es')->monthName }})</h6>
-
+                    <div class="card-header py-3" style="background: #0d6efd">
+                        <h6 class="m-0 font-weight-bold text-white" style="text-transform: uppercase">VENTAS REALIZADAS EN EL MES DE ({{ Carbon\Carbon::now()->locale('es')->monthName }})</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" id="tblaBody">
                             <table class="table" id="dataTable">
                                 <thead class="card-header py-3" style="background: #1a202c; color:white">
                                 <tr>
-                                    <th style="text-align: left">Vendedor</th>
-                                    <th style="text-align: left">Ventas (HNL)</th>
+                                    <th style="text-align: left">EMPLEADO</th>
+                                    <th style="text-align: left">TOTALES</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($vendedores as $vende)
                                     <tr>
                                         <td>{{ $vende->name }}</td>
-                                        <td>{{ number_format($vende->total, 2, ".", ",") }}</td>
+                                        <td>L. {{ number_format($vende->total, 2, ".", ",") }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
-
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 
 
 @push("scripsss")
     <script>
-
         let compras = @json($valores_compre);
         let ventas = @json($valores_ventas);
-
 
         Highcharts.chart('container', {
             title: {
@@ -215,7 +203,7 @@
                     parseFloat(ventas[3].Total),parseFloat(ventas[4].Total),parseFloat(ventas[5].Total),
                     parseFloat(ventas[6].Total),parseFloat(ventas[7].Total),parseFloat(ventas[8].Total),
                     parseFloat(ventas[9].Total),parseFloat(ventas[10].Total),parseFloat(ventas[11].Total)],
-                color: '#0DCAF0',
+                color: '#29B6CA',
             }, {
                 type: 'column',
                 name: 'Egresos',
@@ -223,22 +211,19 @@
                     parseFloat(compras[3].Total),parseFloat(compras[4].Total),parseFloat(compras[5].Total),
                     parseFloat(compras[6].Total),parseFloat(compras[7].Total),parseFloat(compras[8].Total),
                     parseFloat(compras[9].Total),parseFloat(compras[10].Total),parseFloat(compras[11].Total)],
-                color: '#DC3545',
+                color: '#E74A3B',
             }, {
                 type: 'column',
-                name: 'M.G.',
+                name: 'Margen de Ganancia',
                 data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
                     ventas[2].Total - compras[2].Total,ventas[3].Total - compras[3].Total,
                     ventas[4].Total - compras[4].Total,ventas[5].Total - compras[5].Total,
                     ventas[6].Total - compras[6].Total,ventas[7].Total - compras[7].Total,
                     ventas[8].Total - compras[8].Total,ventas[9].Total - compras[9].Total,
                     ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total],
-                color: '#198754',
+                color: '#1CC88A',
             }]
         });
-
-
-
 
         Highcharts.chart('container2', {
             title: {
@@ -268,7 +253,7 @@
             },
             series: [  {
                 type: 'spline',
-                name: 'MG',
+                name: 'Margen de Ganancia',
                 data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
                     ventas[2].Total - compras[2].Total,ventas[3].Total - compras[3].Total,
                     ventas[4].Total - compras[4].Total,ventas[5].Total - compras[5].Total,
@@ -296,15 +281,15 @@
                 data: [{
                     name: 'Ingresos',
                     y: {{ $ingresos }},
-                    color: '#0DCAF0'
+                    color: '#29B6CA'
                 }, {
                     name: 'Egresos',
                     y: {{ $egresos }},
-                    color: '#DC3545'
+                    color: '#E74A3B'
                 }, {
                     name: 'Margen de Ganancia',
                     y: {{ $ingresos - $egresos }},
-                    color: '#198754'
+                    color: '#1CC88A'
                 }],
                 center: [210, 160],
                 size: 160,
@@ -314,7 +299,5 @@
                 }
             }]
         });
-
-
     </script>
 @endpush

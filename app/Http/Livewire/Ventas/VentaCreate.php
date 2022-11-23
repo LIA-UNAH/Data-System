@@ -40,7 +40,6 @@ class VentaCreate extends Component
         'data.tipo_cliente_factura.required' => '¡Debes seleccionar el tipo de cliente!',
     ];
 
-
     public function render()
     {
         $this->data["tipo_cliente_factura"] =  User::findOrFail($this->data["cliente_id"])->customer;
