@@ -152,8 +152,15 @@ class VentaCreate extends Component
     public function actualizar_total($cantidad, $index = 0)
     {
         // actualizo la cantidad y el total
-        $this->carrito[$index]["cantidad_detalle_venta"] = $cantidad;
-        $this->carrito[$index]["total"] = $cantidad * $this->carrito[$index]["precio_venta"];
+       
+        $stock = Producto::findOrFail($this->carrito[$index]["producto_id"])->existencia;
+            if ( $this->carrito[$index]["cantidad_detalle_venta"] > $stock ) {
+                $this->carrito[$index]["cantidad_detalle_venta"] = $stock ;
+            } 
+            else {
+                $this->carrito[$index]["cantidad_detalle_venta"] = $cantidad -1;
+            }
+        $this->carrito[$index]["total"] = $this->carrito[$index]["cantidad_detalle_venta"] * $this->carrito[$index]["precio_venta"];
     }
 
     public function agregar_item_carrito($producto)
@@ -166,18 +173,31 @@ class VentaCreate extends Component
             "total" => $producto["prec_venta_fin"],
         ];
 
+        
+
         // verifico si el producto que se va a agregar ya existe
         $existe = in_array("{$producto['id']}", array_column($this->carrito, 'producto_id'));
 
         // si el producto no existe entonces lo agrego de lo contrario muestro un error
         if (!$existe) {
-            array_push($this->carrito, $item);
+            
+            
+           
+            array_push($this->carrito, $item); 
+        
+           
+
         } else {
             #busco el index del elemento que contengo el id del producto que ando buscando
             $index = array_search("{$producto['id']}", array_column($this->carrito, 'producto_id'));
 
             // aumento la cantidad en 1 y el total
             $this->carrito[$index]["cantidad_detalle_venta"] += 1;
+            $stock = Producto::findOrFail($producto["id"])->existencia;
+            if ( $this->carrito[$index]["cantidad_detalle_venta"] > $stock ) {
+                $this->carrito[$index]["cantidad_detalle_venta"] = $stock;
+            } 
+            
             $this->carrito[$index]["total"] = $this->carrito[$index]["cantidad_detalle_venta"] * $this->carrito[$index]["precio_venta"];
         }
     }
