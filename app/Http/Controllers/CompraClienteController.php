@@ -72,6 +72,16 @@ class CompraClienteController extends Controller
      */
     public function store(Request $request)
     {
+        if ( $request->input('id_prove') != '') {
+            $compra = Compra::findOrFail($request->input('compra_id'));
+            $compra->proveedor_id = $request->input('id_prove');
+            $compra->save();
+        }
+
+        $detalle = DetalleCompra::where('compra_id','=','')->where('producto_id','=','')->get();
+
+
+
         $detalles = new DetalleCompra();
         $detalles->compra_id = $request->input('compra_id');
         $detalles->producto_id = $request->input('producto_id');
@@ -107,7 +117,7 @@ class CompraClienteController extends Controller
         }
 
 
-        return redirect()->route('compras.index');
+        return redirect()->route('compras.index2');
     }
 
 
@@ -153,7 +163,8 @@ class CompraClienteController extends Controller
      */
     public function destroy($id)
     {
+        DB::delete('delete from detalle_compras where compra_id = ?', [$id]);
         Compra::destroy($id);
-        return redirect()->route('compras.index');
+        return redirect()->route('compras.index2');
     }
 }

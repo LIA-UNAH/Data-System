@@ -68,7 +68,7 @@
                                             autofocus>
                                         <option value="">Seleccione el proveedor</option>
                                         @forelse ($provedores as $provedore)
-                                            <option @if( old('proveedor_id') == $provedore->id )
+                                            <option @if( $compra->proveedor_id == $provedore->id )
                                                         selected
                                                     @endif value="{{ $provedore->id }}">{{ $provedore->nombre_proveedor }}</option>
                                         @empty
@@ -99,7 +99,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <a style="display: inline-block; background: #b02a37; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
-                                   data-toggle="modal" data-target="#modal_agregar_detalle" class="btn btn-google btn-user btn-block">
+                                   data-toggle="modal" data-target="#modal_agregar_detalle" class="btn btn-google btn-user btn-block" onclick="provedor()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-plus-circle" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -216,8 +216,9 @@
                                 <label for="firstName" class="form-label">Cantidad:</label>
                                 <input type="number" class="form-control" id="cantidad_detalle_compra"
                                        name="cantidad_detalle_compra" value="" required>
-
                             </div>
+
+                            <input type="text" id="id_prove" name="id_prove" hidden>
                         </div>
                     </div>
 
@@ -245,6 +246,10 @@
                 input.value = "{{$producto->prec_compra}}";
             }
             @endforeach
+        }
+
+        function provedor() {
+            $('#id_prove').val($('#proveedor_id').val());
         }
     </script>
 

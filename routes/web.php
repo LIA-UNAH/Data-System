@@ -14,6 +14,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
+use App\Http\Livewire\Compras\CompraIndex;
 use App\Http\Livewire\Producto\Item\HistorialVentaCliente;
 use App\Http\Livewire\Ventas\VentaCreate;
 use App\Http\Livewire\Ventas\VentaIndex;
@@ -282,8 +283,11 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------
     */
 
-    // Visualizar compras
+
     Route::resource('/compras', CompraClienteController::class)->middleware('can:controlParcial');
+
+
+    Route::get('/lis_compras', CompraIndex::class)->name('compras.index2')->middleware('can:controlParcial');
 
     // Buscar compras
     Route::get('/compras/busqueda', [CompraClienteController::class, 'search'])->middleware('can:controlParcial')
