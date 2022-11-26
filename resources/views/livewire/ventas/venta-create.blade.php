@@ -241,7 +241,7 @@
 
                                                 <div class=" row my-2 align-items-center bgc-primary-l3 p-2">
                                                     <div class="total">
-                                                        Total: L {{number_format( $total_carrito, 2, ".", ",") }}
+                                                        Total: L. {{number_format( $total_carrito, 2, ".", ",") }}
                                                     </div>
                                                     <div class="col-5">
                                                         <span class="text-150 text-success-d3 opacity-2"></span>

@@ -152,14 +152,14 @@ class VentaCreate extends Component
     public function actualizar_total($cantidad, $index = 0)
     {
         // actualizo la cantidad y el total
-       
         $stock = Producto::findOrFail($this->carrito[$index]["producto_id"])->existencia;
-            if ( $this->carrito[$index]["cantidad_detalle_venta"] > $stock ) {
-                $this->carrito[$index]["cantidad_detalle_venta"] = $stock ;
+            if ( $cantidad >= $stock ) {
+                $this->carrito[$index]["cantidad_detalle_venta"] = $stock  ;
             } 
             else {
-                $this->carrito[$index]["cantidad_detalle_venta"] = $cantidad -1;
+                $this->carrito[$index]["cantidad_detalle_venta"] = $cantidad;
             }
+            
         $this->carrito[$index]["total"] = $this->carrito[$index]["cantidad_detalle_venta"] * $this->carrito[$index]["precio_venta"];
     }
 
@@ -180,10 +180,15 @@ class VentaCreate extends Component
 
         // si el producto no existe entonces lo agrego de lo contrario muestro un error
         if (!$existe) {
-            
+            $stock = Producto::findOrFail($producto["id"])->existencia;
+            if ($stock == 0) {
+            }
+            else {
+                array_push($this->carrito, $item); 
+            }
             
            
-            array_push($this->carrito, $item); 
+            
         
            
 
@@ -192,11 +197,15 @@ class VentaCreate extends Component
             $index = array_search("{$producto['id']}", array_column($this->carrito, 'producto_id'));
 
             // aumento la cantidad en 1 y el total
-            $this->carrito[$index]["cantidad_detalle_venta"] += 1;
+           
             $stock = Producto::findOrFail($producto["id"])->existencia;
-            if ( $this->carrito[$index]["cantidad_detalle_venta"] > $stock ) {
-                $this->carrito[$index]["cantidad_detalle_venta"] = $stock;
+            if ( $this->carrito[$index]["cantidad_detalle_venta"] >= $stock ) {
+                $this->carrito[$index]["cantidad_detalle_venta"] = $stock ;
             } 
+            
+            else {
+                $this->carrito[$index]["cantidad_detalle_venta"] += 1;
+            }
             
             $this->carrito[$index]["total"] = $this->carrito[$index]["cantidad_detalle_venta"] * $this->carrito[$index]["precio_venta"];
         }
@@ -224,7 +233,15 @@ class VentaCreate extends Component
                     $detalle_venta = new DetalleVenta();
                     $detalle_venta->venta_id = $venta->id;
                     $detalle_venta->producto_id = $item["producto_id"];
-                    $detalle_venta->cantidad_detalle_venta = $item["cantidad_detalle_venta"];
+                    
+                    $stock = Producto::findOrFail($item["producto_id"])->existencia;
+                    if ( $item["cantidad_detalle_venta"]  >= $stock ) {
+                        $detalle_venta->cantidad_detalle_venta = $stock ;
+                    } 
+                    else {
+                        $detalle_venta->cantidad_detalle_venta = $item["cantidad_detalle_venta"];
+                    }
+                    
                     if ($this->data["tipo_cliente_factura"] == 'mayorista') {
                         $detalle_venta->precio_venta = Producto::findOrFail($item["producto_id"])->prec_venta_may;
                     }
