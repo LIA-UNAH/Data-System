@@ -154,11 +154,12 @@ class VentaCreate extends Component
         // actualizo la cantidad y el total
        
         $stock = Producto::findOrFail($this->carrito[$index]["producto_id"])->existencia;
-            if ( $this->carrito[$index]["cantidad_detalle_venta"] > $stock ) {
-                $this->carrito[$index]["cantidad_detalle_venta"] = $stock ;
+            
+            if ( $cantidad >= $stock ) {
+                $this->carrito[$index]["cantidad_detalle_venta"] = $stock  ;
             } 
             else {
-                $this->carrito[$index]["cantidad_detalle_venta"] = $cantidad -1;
+                $this->carrito[$index]["cantidad_detalle_venta"] = $cantidad;
             }
         $this->carrito[$index]["total"] = $this->carrito[$index]["cantidad_detalle_venta"] * $this->carrito[$index]["precio_venta"];
     }
@@ -181,9 +182,14 @@ class VentaCreate extends Component
         // si el producto no existe entonces lo agrego de lo contrario muestro un error
         if (!$existe) {
             
-            
+            $stock = Producto::findOrFail($producto["id"])->existencia;
+            if ($stock == 0) {
+            }
+            else {
+                array_push($this->carrito, $item); 
+            }
            
-            array_push($this->carrito, $item); 
+           
         
            
 
