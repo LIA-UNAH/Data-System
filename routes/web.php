@@ -15,10 +15,12 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
 use App\Http\Livewire\Compras\CompraIndex;
+use App\Http\Livewire\Compras\ComprasShow;
 use App\Http\Livewire\Producto\Item\HistorialVentaCliente;
 use App\Http\Livewire\Ventas\VentaCreate;
 use App\Http\Livewire\Ventas\VentaIndex;
 use App\Http\Livewire\Ventas\VentasShow;
+use App\Models\Compra;
 
 /*
 |--------------------------------------------------------------------------
@@ -295,6 +297,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/compras/guardar', [CompraClienteController::class, 'compra_guardar'])->middleware('can:controlParcial')
         ->name('compras.guardar_compra');
+
+    // Factura ventas
+    Route::get('/compras/comprobante/{compra}', ComprasShow::class)->middleware('can:controlParcial')
+        ->name('compras.facturas');
 
     /*
     |--------------------------------------------------------------------------

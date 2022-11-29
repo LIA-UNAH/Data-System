@@ -28,7 +28,7 @@ class CompraIndex extends Component
             'compras' => Compra::filter($this->filtros)
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(10)
-             ])->extends('layouts.layouts')->section('content');
+        ])->extends('layouts.layouts')->section('content');
     }
 
 

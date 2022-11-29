@@ -92,7 +92,7 @@
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3" style="background: #0d6efd">
-                        <h6 class="m-0 font-weight-bold text-white">REPORTE POR MES</h6>
+                        <h6 class="m-0 font-weight-bold text-white">REPORTE MENSUAL</h6>
                     </div>
                     <div class="card-body">
                         <figure class="highcharts-figure">
