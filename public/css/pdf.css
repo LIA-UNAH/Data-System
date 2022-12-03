@@ -4,7 +4,9 @@ body{
     color: #484b51;
     
 }
-
+.page-tools{
+    display: none;
+}
 .cuerpo{
     width: 100%;   
 }
@@ -24,7 +26,7 @@ body{
 }
 .num, .cant {
     width: 5%;
-    text-align:right ;
+    text-align: right;
 }
 .precu {
     width: 15%;
