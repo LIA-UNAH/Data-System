@@ -17,6 +17,8 @@ use App\Http\Controllers\VentaClienteController;
 use App\Http\Livewire\Compras\CompraIndex;
 use App\Http\Livewire\Compras\ComprasShow;
 use App\Http\Livewire\Producto\Item\HistorialVentaCliente;
+use App\Http\Livewire\Reparacion\ReparacionIndex;
+use App\Http\Livewire\Reparacion\ReparacionShow;
 use App\Http\Livewire\Ventas\VentaCreate;
 use App\Http\Livewire\Ventas\VentaIndex;
 use App\Http\Livewire\Ventas\VentasShow;
@@ -359,8 +361,10 @@ Route::group(['middleware' => 'auth'], function () {
     */
 
     // Listar reparaciones
-    Route::get('/reparaciones', [ReparacionController::class, 'index'])->middleware('can:controlParcial')
-        ->name('reparaciones.index');
+    Route::get('/reparaciones', ReparacionIndex::class)->name('reparaciones.index')->middleware('can:controlParcial');
+
+    // Route::get('/reparaciones', [ReparacionController::class, 'index'])->middleware('can:controlParcial')
+    //     ->name('reparaciones.index');
 
     // Buscar reparaciones
     Route::get('/reparaciones/busqueda', [ReparacionController::class, 'search'])->middleware('can:controlParcial')
@@ -385,8 +389,10 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('reparaciones.destroy');
 
     // Visualizar reparaciones
-    Route::get("/reparaciones/{id}/", [ReparacionController::class, "show"])->middleware('can:controlParcial')
+    Route::get("/reparaciones/{reparacion}/", ReparacionShow::class)->middleware('can:controlParcial')
         ->name("reparaciones.show")->where('id', '[0-9]+');
+    // Route::get("/reparaciones/{id}/", [ReparacionController::class, "show"])->middleware('can:controlParcial')
+    //     ->name("reparaciones.show")->where('id', '[0-9]+');
 
     /*
     |--------------------------------------------------------------------------
