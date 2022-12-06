@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\VentaClienteController;
 use App\Http\Livewire\Compras\CompraIndex;
+use App\Http\Livewire\Compras\ComprasCreate;
 use App\Http\Livewire\Compras\ComprasShow;
 use App\Http\Livewire\Producto\Item\HistorialVentaCliente;
 use App\Http\Livewire\Reparacion\ReparacionIndex;
@@ -292,6 +293,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/lis_compras', CompraIndex::class)->name('compras.index2')->middleware('can:controlParcial');
+
+    Route::get('/comprass/crear', ComprasCreate::class)->name('compras.crear')->middleware('can:controlParcial');
+
+    Route::get('/comprass/edita/{id}', ComprasCreate::class)->name('compras.editar')->middleware('can:controlParcial');
 
     // Buscar compras
     Route::get('/compras/busqueda', [CompraClienteController::class, 'search'])->middleware('can:controlParcial')

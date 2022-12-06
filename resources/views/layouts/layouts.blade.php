@@ -162,7 +162,7 @@
             </a>
             <div id="collapseFourSix" class="collapse" aria-labelledby="headingFourSix" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('compras.index') }}">Lista de compras</a>
+                    <a class="collapse-item" href="{{ route('compras.index2') }}">Lista de compras</a>
                     <a class="collapse-item" href="{{ route('inventario.index') }}">Lista de inventario</a>
                 </div>
             </div>
@@ -342,25 +342,22 @@
                 <!-- End of Sidebar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1" >
+                    <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw" ></i>
+                            <i class="fas fa-bell fa-fw"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">.</span>
+                            <span class="badge badge-danger badge-counter">1+</span>
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown">
-                           
-                             
+                            aria-labelledby="alertsDropdown" style="float:left; width:1000px; overflow-y: auto; height: 500px;">
                             <h6 class="dropdown-header">
                                 Centro de notificaciones
                             </h6>
-                            <div  style= "overflow-y: scroll; height: 500px;"> 
                             <?php
                             function conexion(){
-                                $c = mysqli_connect('localhost', 'root', '', 'datasystem', '3306');
+                                $c = mysqli_connect(env('DB_HOST'), env('DB_USERNAME'), '', env('DB_DATABASE'), env('DB_PORT'));
                                 return $c;
                             }
 
@@ -393,7 +390,6 @@
                                 </a>
                             </div>
                             <?php } }?>
-                        </div>
                         </div>
                     </li>
 
@@ -584,7 +580,7 @@
 <script src={{ asset("js/tom-select.js") }}></script>
 
 <!-- High Charts js -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src={{ asset("js/highchar.js") }}></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>

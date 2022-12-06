@@ -1,43 +1,24 @@
-<!-- Google Fonts -->
-<link href={{ asset("css/fonts.css") }} rel="stylesheet" type="text/css" media="screen">
 
-<!-- CSS SB Admin -->
-<link href={{ asset("admin/css/sb-admin-2.min.css") }} rel="stylesheet" type="text/css" media="screen">
-
-<!-- CSS Bootstrap 5.2 -->
-<link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet" type="text/css" media="screen">
-
-<!-- CSS Factura -->
-<link href={{ asset("css/factura.css") }} rel="stylesheet" type="text/css" media="screen">
+<link href={{ asset('css/bootstrap.min.css') }} rel="stylesheet">
 
 
-
-
-<div class="page-content container">
+<div class="page-content container-fluid">
     <div class="page-header text-blue-d2">
         <h1 class="page-title text-secondary-d1">
-            Factura
+            Compra
             <small class="page-info">
                 <i class="fa fa-angle-double-right text-80"></i>
-                ID: {{$venta->numero_factura_venta}}
+                ID: {{ $compra->docummento_compra }}
             </small>
         </h1>
     </div>
 
-
-    <div class="container px-0">
+    <div class="container-fluid px-0" style="width: 95%">
         <div class="row mt-4">
             <div class="col-12 col-lg-12">
                 <div class="d-flex flex-row-reverse">
                     <div class="col">
-                        <div class="text-right text-150">
-                            <span class="text-default-d3">Estado:</span>
-                            @if ($venta->estado == "en_proceso")
-                            <p class="badge bg-primary">En Proceso</p>
-                            @else
-                            <p class="badge bg-success">Pagado</p>
-                            @endif
-                        </div>
+
                     </div>
                     <div class="col">
                         <div class="text-center text-150">
@@ -53,29 +34,33 @@
 
                 <hr class="row brc-default-l1 mx-n1 mb-4" />
 
+                <!--Datos del Cliente-->
                 <div class="row">
-                    <div class="text-grey-m2 col-sm-6">
-                        <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                            Datos del Cliente
+                    <div class="text-start col-sm-6 t">
+                        <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125" style="color:gray">
+                            <strong>Datos del Proveedor</strong>
                         </div>
+
                         <div>
-                            <span class="text-sm text-grey-m2 align-middle">Nombre Cliente:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->name}}</span>
+                            <span class="text-sm text-grey-m2 align-middle">Nombre del Proveedor:</span>
+                            <span
+                                class="text-600 text-110 text-blue align-middle">{{ $compra->proveedor->nombre_proveedor }}</span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
                                 <span class="text-sm text-grey-m2 align-middle">Teléfono:</span>
                                 <span
-                                    class="text-600 text-110 text-blue align-middle">{{$venta->cliente->telephone}}</span>
+                                    class="text-600 text-110 text-blue align-middle">{{ $compra->proveedor->telefono_proveedor }}</span>
                             </div>
                             <div class="my-1">
-                                <span class="text-sm text-grey-m2 align-middle">Correo Electrónico:</span>
-                                <span class="text-600 text-110 text-blue align-middle">{{$venta->cliente->email}}</span>
+                                <span class="text-sm text-grey-m2 align-middle">RTN:</span>
+                                <span
+                                    class="text-600 text-110 text-blue align-middle">{{ $compra->proveedor->rtn_proveedor }}</span>
                             </div>
                             <div class="my-1">
                                 <span class="text-sm text-grey-m2 align-middle">Dirección:</span>
                                 <span
-                                    class="text-600 text-110 text-blue align-middle">{{$venta->cliente->address}}</span>
+                                    class="text-600 text-110 text-blue align-middle">{{ $compra->proveedor->direccion_proveedor }}</span>
                             </div>
 
                         </div>
@@ -86,26 +71,26 @@
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
                             <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                                Datos de la Factura
+                                <strong>Datos de la Factura</strong>
                             </div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1">
                                 </i>
-                                <span class="text-600 text-90">ID: {{$venta->numero_factura_venta}}</span>
+                                <span class="text-600 text-90">ID: {{ $compra->docummento_compra }}</span>
                             </div>
 
                             <div class="my-2">
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
                                 <span class="text-600 text-90">Fecha:
-                                    {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("DD")}} de
-                                    {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("MMMM")}},
-                                    {{\Carbon\Carbon::parse($venta->fecha_factura)->isoFormat("YYYY")}}
+                                    {{ \Carbon\Carbon::parse($compra->fecha_compra)->isoFormat('DD') }} de
+                                    {{ \Carbon\Carbon::parse($compra->fecha_compra)->isoFormat('MMMM') }},
+                                    {{ \Carbon\Carbon::parse($compra->fecha_compra)->isoFormat('YYYY') }}
                                 </span>
                             </div>
 
                             <div class="my-2">
                                 <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i>
-                                <span class="text-600 text-90">Vendido Por: {{$venta->user->name}}</span>
+                                <span class="text-600 text-90">Comprado Por: {{ $compra->user->name }}</span>
                                 <span class="badge badge-warning badge-pill px-25"></span>
                             </div>
                         </div>
@@ -132,22 +117,22 @@
 
                         <tbody class="text-95 text-secondary-d3">
                             @php
-                            $total=0;
+                                $total = 0;
                             @endphp
-                            @foreach ($venta->detalle_venta as $i => $detalle )
-                            <tr>
-                                <td class="num">{{++$i}}</td>
-                                <td class="descripcion">{{$detalle->producto->marca." ".$detalle->producto->modelo}}
-                                </td>
-                                <td class="cant">{{$detalle->cantidad_detalle_venta}}</td>
-                                <td class="precu">L. {{ number_format($detalle->precio_venta, 2, ".", ",") }}</td>
-                                <td class="total">L. {{
-                                    number_format($detalle->precio_venta*$detalle->cantidad_detalle_venta, 2, ".", ",")
-                                    }}</td>
-                            </tr>
-                            @php
-                            $total+=$detalle->precio_venta*$detalle->cantidad_detalle_venta;
-                            @endphp
+                            @foreach ($compra->detalle_compra as $i => $detalle)
+                                <tr>
+                                    <td class="num">{{ ++$i }}</td>
+                                    <td class="descripcion" style="text-align: center">
+                                        {{ $detalle->producto->marca . ' ' . $detalle->producto->modelo }}</td>
+                                    <td class="cant">{{ $detalle->cantidad_detalle_compra }}</td>
+                                    <td class="precu">L {{ number_format($detalle->precio, 2, '.', ',') }}</td>
+                                    <td class="total">L
+                                        {{ number_format($detalle->precio * $detalle->cantidad_detalle_compra, 2, '.', ',') }}
+                                    </td>
+                                </tr>
+                                @php
+                                    $total += $detalle->precio * $detalle->cantidad_detalle_compra;
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>
@@ -156,52 +141,44 @@
 
                 <div class="row mt-3">
                     <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                        Reaizar Pago imediato de factura
                     </div>
 
                     <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
                         <div class="row my-2">
                             <div class="col-7 text-right">
-                                SubTotal:
+                                SubTotal
                             </div>
                             <div class="col-5" style="text-align: right">
-                                <span class="text-150 text-success-d3 opacity-2">L. {{ number_format($total * 0.85, 2,
-                                    ".", ",") }}</span>
+                                <span class="text-150 text-success-d3 opacity-2">L
+                                    {{ number_format($total * 0.85, 2, '.', ',') }}</span>
                             </div>
                         </div>
 
                         <div class="row my-2">
                             <div class="col-7 text-right">
-                                Impuesto s/v. (15%):
+                                Impuesto s/v. (15%)
                             </div>
                             <div class="col-5" style="text-align: right">
-                                <span class="text-150 text-success-d3 opacity-2">L. {{ number_format($total * 0.15, 2,
-                                    ".", ",") }}</span>
+                                <span class="text-150 text-success-d3 opacity-2">L
+                                    {{ number_format($total * 0.15, 2, '.', ',') }}</span>
                             </div>
                         </div>
 
                         <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                             <div class="col-7 text-right">
-                                Total:
+                                Total
                             </div>
                             <div class="col-5" style="text-align: right">
-                                <span class="text-150 text-success-d3 opacity-2">L. {{ number_format($total, 2, ".",
-                                    ",") }}</span>
+                                <span class="text-150 text-success-d3 opacity-2">L
+                                    {{ number_format($total, 2, '.', ',') }}</span>
                             </div>
                         </div>
                         <div>
-                            <span class="text-secondary-d1 text-105" style="text: size 40px;">Gracias Por Comprar En
-                                Nuestro Negocio</span>
-                            @if ($venta->estado == "en_proceso")
-                            <a href="{{route('ventas.pagar', $venta->id)}}"
-                                class="btn btn-success btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pagar</a>
-                            @endif
+
+
                         </div>
                     </div>
                 </div>
-
-                <hr />
-
 
             </div>
         </div>

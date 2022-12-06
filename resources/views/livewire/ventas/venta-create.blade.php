@@ -125,63 +125,59 @@
                                             <div class="producto" id="producto"
                                                  style="display: grid; grid-template-columns: 140px 140px 140px 140px;">
                                                 @foreach($productos as $pro)
-                                                    @if ($pro->existencia==0)
-                                                        
-                                                    @else
-                                                        <div class="agregar-factura" x-data="{ open: true }"
-                                                            style="display:block;  height: 170px; width: 140px; padding: 3px ">
-                                                            <div class="card h-100 btn" data-id="{{$pro->id}}"  wire:click="agregar_item_carrito({{$pro}})">
-                                                                <!-- Cantidad en existencia -->
-                                                                @php
-                                                                    $index = array_search("{$pro->id}", array_column($carrito, 'producto_id'));
-                                                                @endphp
-                                                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-                                                                    @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
-                                                                        {{$pro->existencia - $carrito[$index]["cantidad_detalle_venta"] }} unidades
-                                                                    @else
-                                                                        {{$pro->existencia}} unidades
-                                                                    @endif
-                                                                </div>
-                                                                <!-- Imagen del producto-->
-                                                                <img class="card-img-top"
-                                                                    src="/images/products/{{$pro->imagen_producto}}"
-                                                                    width="00px"
-                                                                    height="80px" alt="..."/>
-                                                                <div class="" style="text-align:center ;">
-                                                                    <div class="text-center">
-                                                                        <!-- Nombre del producto -->
-                                                                        <p class="nombre" id="nombre" style="width: 120px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">
-                                                                            <strong style="font-size: 12px">{{$pro->marca." ".$pro->modelo}}</strong>
-                                                                        </p>
-                                                                        <!-- Precio del producto-->
-                                                                        <div class="p">
-                                                                            <span id="pre" class="pre text-muted text-decoration-line">
-                                                                                @if($data['tipo_cliente_factura'] == 'mayorista')
-                                                                                    <strong style="font-size: 15px"> L.{{number_format($pro->prec_venta_may, 2, ".", ",")}}</strong>
-                                                                                    @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
-                                                                                        @php
-                                                                                            $carrito[$index]["precio_venta"] = $pro->prec_venta_may;
-                                                                                            $carrito[$index]["total"] = $carrito[$index]["precio_venta"] * $carrito[$index]["cantidad_detalle_venta"];
-                                                                                        @endphp
-                                                                                    @endif
-
-                                                                                @else
-                                                                                    <strong style="font-size: 15px"> L.{{number_format($pro->prec_venta_fin, 2, ".", ",")}}</strong>
-                                                                                    @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
-                                                                                        @php
-                                                                                            $carrito[$index]["precio_venta"] = $pro->prec_venta_fin;
-                                                                                            $carrito[$index]["total"] = $carrito[$index]["precio_venta"] * $carrito[$index]["cantidad_detalle_venta"];
-                                                                                        @endphp
-                                                                                    @endif
+                                                    <div class="agregar-factura" x-data="{ open: true }"
+                                                         style="display:block;  height: 170px; width: 140px; padding: 3px ">
+                                                        <div class="card h-100 btn" data-id="{{$pro->id}}"  wire:click="agregar_item_carrito({{$pro}})">
+                                                            <!-- Cantidad en existencia -->
+                                                            @php
+                                                                $index = array_search("{$pro->id}", array_column($carrito, 'producto_id'));
+                                                            @endphp
+                                                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                                                @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
+                                                                    {{$pro->existencia - $carrito[$index]["cantidad_detalle_venta"] }} unidades
+                                                                @else
+                                                                    {{$pro->existencia}} unidades
+                                                                @endif
+                                                            </div>
+                                                            <!-- Imagen del producto-->
+                                                            <img class="card-img-top"
+                                                                 src="/images/products/{{$pro->imagen_producto}}"
+                                                                 width="00px"
+                                                                 height="80px" alt="..."/>
+                                                            <div class="" style="text-align:center ;">
+                                                                <div class="text-center">
+                                                                    <!-- Nombre del producto -->
+                                                                    <p class="nombre" id="nombre" style="width: 120px; white-space: nowrap; text-overflow: ellipsis;overflow: hidden;">
+                                                                        <strong style="font-size: 12px">{{$pro->marca." ".$pro->modelo}}</strong>
+                                                                    </p>
+                                                                    <!-- Precio del producto-->
+                                                                    <div class="p">
+                                                                        <span id="pre" class="pre text-muted text-decoration-line">
+                                                                            @if($data['tipo_cliente_factura'] == 'mayorista')
+                                                                                <strong style="font-size: 15px"> L.{{number_format($pro->prec_venta_may, 2, ".", ",")}}</strong>
+                                                                                @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
+                                                                                    @php
+                                                                                        $carrito[$index]["precio_venta"] = $pro->prec_venta_may;
+                                                                                        $carrito[$index]["total"] = $carrito[$index]["precio_venta"] * $carrito[$index]["cantidad_detalle_venta"];
+                                                                                    @endphp
                                                                                 @endif
 
-                                                                            </span>
-                                                                        </div>
+                                                                            @else
+                                                                                <strong style="font-size: 15px"> L.{{number_format($pro->prec_venta_fin, 2, ".", ",")}}</strong>
+                                                                                @if(isset($carrito[$index]) && $carrito[$index]["producto_id"] == $pro->id)
+                                                                                    @php
+                                                                                        $carrito[$index]["precio_venta"] = $pro->prec_venta_fin;
+                                                                                        $carrito[$index]["total"] = $carrito[$index]["precio_venta"] * $carrito[$index]["cantidad_detalle_venta"];
+                                                                                    @endphp
+                                                                                @endif
+                                                                            @endif
+
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endif
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </section>
@@ -194,8 +190,8 @@
                                             <tr class="text-white">
                                                 <th colspan="3">Detalle</th>
                                                 <th width="120">Cantidad</th>
-                                                <th width="180" style ="text-align:rigth" >P/U</th>
-                                                <th width="200" style ="text-align:rigth" >Total</th>
+                                                <th width="180">P/U</th>
+                                                <th width="200">Total</th>
                                                 <th width="40">Quitar</th>
                                             </tr>
                                             </thead>
@@ -213,15 +209,9 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <input type="number"
-                                                         min="1"
-                                                          style ="width: 40px; text-align:rigth" 
-                                                          value="{{$item["cantidad_detalle_venta"]}}" 
-                                                          wire:change="actualizar_total($event.target.value, {{ $index}})"
-                                                           class="input_Element">
-                                                        </input>
+                                                        <input type="number" min="1" style ="width: 40px;" value="{{$item["cantidad_detalle_venta"]}}" wire:change="actualizar_total($event.target.value, {{ $index}})" class="input_Element"></input>
                                                     </td>
-                                                    <td  width="80" style ="text-align:rigth" >L.{{number_format($item["precio_venta"], 2, ".", ",")}}</td>
+                                                    <td  width="80">{{number_format($item["precio_venta"], 2, ".", ",")}}</td>
                                                     <td  width="200">L. {{number_format($item["total"], 2, ".", ",")}}</td>
 
                                                     <td width="40" >
@@ -245,7 +235,7 @@
 
                                                 <div class=" row my-2 align-items-center bgc-primary-l3 p-2">
                                                     <div class="total">
-                                                        Total: L.{{number_format( $total_carrito, 2, ".", ",") }}
+                                                        Total: L {{number_format( $total_carrito, 2, ".", ",") }}
                                                     </div>
                                                     <div class="col-5">
                                                         <span class="text-150 text-success-d3 opacity-2"></span>
