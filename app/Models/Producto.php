@@ -22,4 +22,9 @@ class Producto extends Model
     {
         return $this->hasOne('App\Models\DetalleVenta');
     }
+
+    public function masDetalles()
+    {
+        return $this->hasMany('App\Models\DatosAdicionalesProductos');
+    }
 }

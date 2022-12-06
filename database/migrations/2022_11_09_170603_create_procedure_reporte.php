@@ -15,6 +15,8 @@ return new class extends Migration
         DB::unprepared("DROP PROCEDURE IF EXISTS traer_compras_por_mes");
         DB::unprepared("DROP PROCEDURE IF EXISTS traer_ventas_por_mes");
         DB::unprepared("DROP PROCEDURE IF EXISTS traer_vendedores");
+        DB::unprepared("DROP PROCEDURE IF EXISTS trer_productos_mas_vendidos");
+
         DB::unprepared("
         CREATE PROCEDURE `traer_ventas_por_mes`(
             IN `pa_anio` INT
@@ -215,6 +217,38 @@ return new class extends Migration
             GROUP BY users.name;
         END
         ");
+
+        DB::unprepared("
+        CREATE PROCEDURE `trer_productos_mas_vendidos`()
+        BEGIN
+                SELECT SUM(detalle_ventas.cantidad_detalle_venta) AS 'vendidos',
+                    productos.id,
+                    productos.codigo,
+                    productos.marca,
+                    productos.modelo,
+                    productos.descripcion,
+                    productos.existencia,
+                    productos.prec_venta_fin,
+                    productos.imagen_producto,
+                    categorias.name AS 'categoria'
+                FROM detalle_ventas
+                INNER JOIN productos ON productos.id = detalle_ventas.producto_id
+                INNER JOIN categorias ON categorias.id = productos.id_categoria
+                GROUP BY productos.id,
+                        productos.codigo,
+                        productos.marca,
+                        productos.modelo,
+                        productos.descripcion,
+                        productos.existencia,
+                        productos.prec_venta_fin,
+                        productos.imagen_producto,
+                        categorias.name
+                ORDER BY SUM(detalle_ventas.cantidad_detalle_venta) DESC
+                LIMIT 10;
+        END
+        ");
+
+
 
 
 
