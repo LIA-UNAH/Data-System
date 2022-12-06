@@ -250,7 +250,7 @@
 
         function provedor() {
             $('#id_prove').val($('#proveedor_id').val());
-        }
+         }
     </script>
 
 @endsection
