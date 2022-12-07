@@ -125,6 +125,9 @@
                                             <div class="producto" id="producto"
                                                  style="display: grid; grid-template-columns: 140px 140px 140px 140px;">
                                                 @foreach($productos as $pro)
+                                                    @if ($pro->existencia ==0)
+                                                        
+                                                    @else
                                                     <div class="agregar-factura" x-data="{ open: true }"
                                                          style="display:block;  height: 170px; width: 140px; padding: 3px ">
                                                         <div class="card h-100 btn" data-id="{{$pro->id}}"  wire:click="agregar_item_carrito({{$pro}})">
@@ -178,6 +181,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                        
+                                                    @endif
+                                                    
                                                 @endforeach
                                             </div>
                                         </section>
