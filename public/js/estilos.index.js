@@ -759,10 +759,7 @@ $('#custom_product_carousel').owlCarousel({
 // .....................................................................  SHOP  ..........................................................................
 
 
-$(document).ready(function() {
-      $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('shop_list_item');});
-      $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('shop_list_item');$('#products .item').addClass('shop_grid_item');});
-});
+
 
 
 // ..................................................................../  SHOP  ...........................................................................

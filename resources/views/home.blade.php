@@ -97,9 +97,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Reporte de Ingresos y Egresos</h6>
                     </div>
                     <div class="card-body">
-                        <figure class="highcharts-figure">
-                            <div id="container"></div>
-                        </figure>
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
 
@@ -112,9 +110,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Margen Mensual</h6>
                     </div>
                     <div class="card-body">
-                        <figure class="highcharts-figure">
-                            <div id="container2"></div>
-                        </figure>
+                        <canvas id="myChart1"></canvas>
                     </div>
                 </div>
 
@@ -128,9 +124,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Margen Mensual</h6>
                     </div>
                     <div class="card-body">
-                        <figure class="highcharts-figure">
-                            <div id="container3"></div>
-                        </figure>
+                        <canvas id="myChart2"></canvas>
                     </div>
                 </div>
 
@@ -182,13 +176,11 @@
         let ventas = @json($valores_ventas);
 
 
-        Highcharts.chart('container', {
-            title: {
-                text: '',
-                align: 'left'
-            },
-            xAxis: {
-                categories: ['Enero',
+
+        const ctx = document.getElementById('myChart');
+
+        const data = {
+            labels: ['Enero',
                     'Febrero',
                     'Marzo',
                     'Abril',
@@ -199,122 +191,64 @@
                     'Septiembre',
                     'Octubre',
                     'Noviembre',
-                    'Diciembre']
-            },
-            yAxis: {
-                title: {
-                    text: 'HNL'
-                }
-            },
-            labels: {
-            },
-            series: [{
-                type: 'column',
-                name: 'Ingresos',
-                data: [parseFloat(ventas[0].Total),parseFloat(ventas[1].Total),parseFloat(ventas[2].Total),
+                    'Diciembre'],
+            datasets: [
+                {
+                    label: 'Ingresos',
+                    data: [parseFloat(ventas[0].Total),parseFloat(ventas[1].Total),parseFloat(ventas[2].Total),
                     parseFloat(ventas[3].Total),parseFloat(ventas[4].Total),parseFloat(ventas[5].Total),
                     parseFloat(ventas[6].Total),parseFloat(ventas[7].Total),parseFloat(ventas[8].Total),
                     parseFloat(ventas[9].Total),parseFloat(ventas[10].Total),parseFloat(ventas[11].Total)],
-                color: '#0DCAF0',
-            }, {
-                type: 'column',
-                name: 'Egresos',
-                data: [parseFloat(compras[0].Total),parseFloat(compras[1].Total),parseFloat(compras[2].Total),
+                    borderColor: '#0DCAF0',
+                    backgroundColor: '#0DCAF0',
+                    borderWidth: 2,
+                    borderRadius: 0,
+                    borderSkipped: false,
+                },
+                {
+                    label: 'Egresos',
+                    data: [parseFloat(compras[0].Total),parseFloat(compras[1].Total),parseFloat(compras[2].Total),
                     parseFloat(compras[3].Total),parseFloat(compras[4].Total),parseFloat(compras[5].Total),
                     parseFloat(compras[6].Total),parseFloat(compras[7].Total),parseFloat(compras[8].Total),
                     parseFloat(compras[9].Total),parseFloat(compras[10].Total),parseFloat(compras[11].Total)],
-                color: '#DC3545',
-            }, {
-                type: 'column',
-                name: 'M.G.',
-                data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
+                    borderColor: '#DC3545',
+                    backgroundColor:'#DC3545',
+                    borderWidth: 2,
+                    borderRadius: 5,
+                    borderSkipped: false,
+                },
+                {
+                    label: 'MG',
+                    data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
                     ventas[2].Total - compras[2].Total,ventas[3].Total - compras[3].Total,
                     ventas[4].Total - compras[4].Total,ventas[5].Total - compras[5].Total,
                     ventas[6].Total - compras[6].Total,ventas[7].Total - compras[7].Total,
                     ventas[8].Total - compras[8].Total,ventas[9].Total - compras[9].Total,
                     ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total],
-                color: '#198754',
-            }]
+                    borderColor: '#198754',
+                    backgroundColor:'#198754',
+                    borderWidth: 2,
+                    borderRadius: 5,
+                    borderSkipped: false,
+                },
+            ]
+        };
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
         });
 
 
 
 
-        Highcharts.chart('container2', {
-            title: {
-                text: '',
-                align: 'left'
-            },
-            xAxis: {
-                categories: ['Enero',
-                    'Febrero',
-                    'Marzo',
-                    'Abril',
-                    'Mayo',
-                    'Junio',
-                    'Julio',
-                    'Agosto',
-                    'Septiembre',
-                    'Octubre',
-                    'Noviembre',
-                    'Diciembre']
-            },
-            yAxis: {
-                title: {
-                    text: 'HNL'
-                }
-            },
-            labels: {
-            },
-            series: [  {
-                type: 'spline',
-                name: 'MG',
-                data: [ventas[0].Total - compras[0].Total,ventas[1].Total - compras[1].Total,
-                    ventas[2].Total - compras[2].Total,ventas[3].Total - compras[3].Total,
-                    ventas[4].Total - compras[4].Total,ventas[5].Total - compras[5].Total,
-                    ventas[6].Total - compras[6].Total,ventas[7].Total - compras[7].Total,
-                    ventas[8].Total - compras[8].Total,ventas[9].Total - compras[9].Total,
-                    ventas[10].Total - compras[10].Total,ventas[11].Total - compras[11].Total],
-                marker: {
-                    lineWidth: 2,
-                    lineColor: Highcharts.getOptions().colors[3],
-                    fillColor: 'white'
-                }
-            }]
-        });
-
-        Highcharts.chart('container3', {
-            title: {
-                text: '',
-                align: 'left'
-            },
-            labels: {
-            },
-            series: [ {
-                type: 'pie',
-                name: 'Liter',
-                data: [{
-                    name: 'Ingresos',
-                    y: {{ $ingresos }},
-                    color: '#0DCAF0'
-                }, {
-                    name: 'Egresos',
-                    y: {{ $egresos }},
-                    color: '#DC3545'
-                }, {
-                    name: 'Margen de Ganancia',
-                    y: {{ $ingresos - $egresos }},
-                    color: '#198754'
-                }],
-                center: [210, 160],
-                size: 160,
-                showInLegend: false,
-                dataLabels: {
-                    enabled: true
-                }
-            }]
-        });
-
+        
 
     </script>
 @endpush
