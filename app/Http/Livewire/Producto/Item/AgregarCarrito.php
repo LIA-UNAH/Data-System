@@ -12,6 +12,7 @@ class AgregarCarrito extends Component
 {
     public $busqueda = '';
     public $productos = [];
+    public $productoCategoria = [];
     public $mas_vendidos = [];
     public $categorias = [];
 
@@ -22,6 +23,8 @@ class AgregarCarrito extends Component
         $this->productos = Producto::whereRaw('concat(marca," ",modelo) like concat("%",?,"%")',[$this->busqueda])->get();
         $this->mas_vendidos = DB::select('CALL trer_productos_mas_vendidos()');
         $this->categorias = Categoria::all();
+
+        $this->productoCategoria = Producto::where("id_categoria","=",$this->categoria)->get();
 
         return view('livewire.producto.item.agregar-carrito')
             ->extends('home-cliente')
