@@ -4,8 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="modal-title f_13 font-weight-bold">Producto agregado exitosamente a su carrito de compras
-                    </div>
+                    <div class="modal-title f_13 font-weight-bold"></div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -253,7 +252,7 @@
                 <div class="row">
                     <div class="col-xl-2 col-lg-2 col-6  head-logo">
                         <div class="text-left header-top-left pt-2"><a href="index.html"><img
-                                    src="assets/img/Hitech..png" class="img-responsive img" alt="Hitech"></a></div>
+                                    src="assets/img/Hitech..png" class="img-responsive img" alt="DATA SYSTEM"></a></div>
                     </div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
                     <div class="col-xl-10 col-lg-10 col-6  head-search">
                         <div class="d-flex navbar">
@@ -874,22 +873,26 @@
                                                             onclick="modal_mostra({{ json_encode($product) }})"><svg
                                                                 width="20px" height="19px">
                                                                 <use xlink:href="#pro_cart"></use>
-                                                            </svg></a>
+                                                            </svg>
+                                                        </a>
                                                         <a href="#" class="symbol" data-toggle="modal"
                                                             data-target="#compare_model"><svg width="20px"
                                                                 height="19px">
                                                                 <use xlink:href="#pro_compare"></use>
-                                                            </svg></a>
+                                                            </svg>
+                                                        </a>
                                                         <a href="#" class="symbol" data-toggle="modal"
                                                             data-target="#eye_model">
                                                             <svg width="20px" height="19px">
                                                                 <use xlink:href="#pro_eye"></use>
-                                                            </svg></a>
+                                                            </svg>
+                                                        </a>
                                                         <a href="#" class="symbol" data-toggle="modal"
                                                             data-target="#heart_model"><svg width="20px"
                                                                 height="19px">
                                                                 <use xlink:href="#pro_heart"></use>
-                                                            </svg></a>
+                                                            </svg>
+                                                        </a>
                                                     </div>
 
                                                     <div class="main_text">
@@ -1348,7 +1351,7 @@
                             </a>
                         </div>
                         <div class="col-xl-4 d-xl-inline-block d-lg-none d-sm-none d-none">
-                            <div class="show-product pt-1"><a href="#"> There are 12 products. </a></div>
+                            <div class="show-product pt-1"><a href="#"> Se encontraron {{ count($productoCategoria) }} producto(s). </a></div>
                         </div>
                         <div class="col-xl-6 col-sm-10 col-8 pr-0 sortpro">
                             <div class="sort-by text-right">
@@ -1367,27 +1370,20 @@
                     </div>
 
                     <div id="products" class="row">
-
+                        @foreach ($productoCategoria as $product)
                         <div class="item col-xl-3">
                             <div class="product_thumb bg-white rounded">
                                 <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_1.jpg"
+                                    <a href="single-product.html"><img src="/images/products/{{ $product->imagen_producto }}"
                                             class="fst-image mx-auto d-block img-fluid" alt="product_1"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_2.jpg"
+                                    <a href="single-product.html"><img src="/images/products/{{ $product->imagen_producto }}"
                                             class="second-img mx-auto d-block img-fluid" alt="product_2"></a>
                                 </div>
 
                                 <div class="text-center main_text pt-3">
                                     <div>
                                         <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
+
                                             <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
                                             <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
                                                 focusable="false" data-prefix="fa" data-icon="star"
@@ -1427,21 +1423,23 @@
                                             <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
                                         </div>
                                         <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
+                                                href="single-product.html"> {{ $product->marca . ' ' . $product->modelo }}</a></h2>
 
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
+                                        <span>
+                                            <span class="font-weight-bold price">L. {{ $product->prec_venta_fin }}</span>
+                                            <del class="text-muted">L. {{ $product->prec_venta_fin + 100 }}</del>
+                                        </span>
 
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
+                                        <p class="description mt-1 text-muted">{{$product->descripcion}}</p>
 
                                         <div class="button-group">
                                             <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
+                                                            data-target="#cart_model"
+                                                            onclick="modal_mostra({{ json_encode($product) }})"><svg
+                                                                width="20px" height="19px">
                                                     <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
+                                                </svg>
+                                            </a>
                                             <a href="#" class="symbol" data-toggle="modal"
                                                 data-target="#compare_model"><svg width="20px" height="19px">
                                                     <use xlink:href="#pro_compare"></use>
@@ -1460,656 +1458,10 @@
                             </div>
                         </div> <!-- item -->
 
-                        <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
-                                <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_15.jpg"
-                                            class="fst-image mx-auto d-block img-fluid" alt="product_15"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_16.jpg"
-                                            class="second-img mx-auto d-block img-fluid" alt="product_16"></a>
-                                </div>
-
-                                <div class="text-center main_text pt-3">
-                                    <div>
-                                        <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                        </div>
-                                        <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
-
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
-
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
-
-                                        <div class="button-group">
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#compare_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_compare"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#eye_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_eye"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#heart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_heart"></use>
-                                                </svg></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- item -->
-
-                        <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
-                                <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_3.jpg"
-                                            class="fst-image mx-auto d-block img-fluid" alt="product_3"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_4.jpg"
-                                            class="second-img mx-auto d-block img-fluid" alt="product_4"></a>
-                                </div>
-
-                                <div class="text-center main_text pt-3">
-                                    <div>
-                                        <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                        </div>
-                                        <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
-
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
-
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
-
-                                        <div class="button-group">
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#compare_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_compare"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#eye_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_eye"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#heart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_heart"></use>
-                                                </svg></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- item -->
-
-                        <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
-                                <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_5.jpg"
-                                            class="fst-image mx-auto d-block img-fluid" alt="product_5"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_6.jpg"
-                                            class="second-img mx-auto d-block img-fluid" alt="product_6"></a>
-                                </div>
-
-                                <div class="text-center main_text pt-3">
-                                    <div>
-                                        <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                        </div>
-                                        <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
-
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
-
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
-
-                                        <div class="button-group">
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#compare_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_compare"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#eye_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_eye"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#heart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_heart"></use>
-                                                </svg></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- item -->
-
-                        <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
-                                <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_7.jpg"
-                                            class="fst-image mx-auto d-block img-fluid" alt="product_7"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_8.jpg"
-                                            class="second-img mx-auto d-block img-fluid" alt="product_8"></a>
-                                </div>
-
-                                <div class="text-center main_text pt-3">
-                                    <div>
-                                        <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                        </div>
-                                        <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
-
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
-
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
-
-                                        <div class="button-group">
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#compare_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_compare"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#eye_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_eye"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#heart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_heart"></use>
-                                                </svg></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- item -->
-
-                        <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
-                                <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_9.jpg"
-                                            class="fst-image mx-auto d-block img-fluid" alt="product_9"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_10.jpg"
-                                            class="second-img mx-auto d-block img-fluid" alt="product_10"></a>
-                                </div>
-
-                                <div class="text-center main_text pt-3">
-                                    <div>
-                                        <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                        </div>
-                                        <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
-
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
-
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
-
-                                        <div class="button-group">
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#compare_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_compare"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#eye_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_eye"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#heart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_heart"></use>
-                                                </svg></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- item -->
-
-                        <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
-                                <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_11.jpg"
-                                            class="fst-image mx-auto d-block img-fluid" alt="product_11"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_12.jpg"
-                                            class="second-img mx-auto d-block img-fluid" alt="product_12"></a>
-                                </div>
-
-                                <div class="text-center main_text pt-3">
-                                    <div>
-                                        <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                        </div>
-                                        <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
-
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
-
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
-
-                                        <div class="button-group">
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#compare_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_compare"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#eye_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_eye"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#heart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_heart"></use>
-                                                </svg></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- item -->
-
-                        <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
-                                <div class="pro_image">
-                                    <a href="single-product.html"><img src="assets/img/product/product_13.jpg"
-                                            class="fst-image mx-auto d-block img-fluid" alt="product_13"></a>
-                                    <a href="single-product.html"><img src="assets/img/product/product_14.jpg"
-                                            class="second-img mx-auto d-block img-fluid" alt="product_13"></a>
-                                </div>
-
-                                <div class="text-center main_text pt-3">
-                                    <div>
-                                        <div class="star mb-2">
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                focusable="false" data-prefix="fa" data-icon="star"
-                                                role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                                </path>
-                                            </svg>
-                                            <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                                        </div>
-                                        <h2 class="pro-heading  font-weight-bolder mb-1	"><a
-                                                href="single-product.html">Aliquam Top Erat Volutpat</a></h2>
-
-                                        <span><span class="font-weight-bold price">$69.00 </span> <del
-                                                class="text-muted">$100.00</del></span>
-
-                                        <p class="description mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua.
-                                            Ut enim ad minim veniam.</p>
-
-                                        <div class="button-group">
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#cart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_cart"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#compare_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_compare"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#eye_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_eye"></use>
-                                                </svg></a>
-                                            <a href="#" class="symbol" data-toggle="modal"
-                                                data-target="#heart_model"><svg width="20px" height="19px">
-                                                    <use xlink:href="#pro_heart"></use>
-                                                </svg></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- item -->
-
-
+                        @endforeach
 
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -2150,6 +1502,20 @@
             })
 
 
+        });
+
+        $(document).ready(function() {
+            $('#list').click(function(event){4
+                event.preventDefault();
+                $('#products .item').addClass('shop_list_item');
+                $('#products .item').addStyle('width: 100%');
+
+            });
+            $('#grid').click(function(event){
+                event.preventDefault();
+                $('#products .item').removeClass('shop_list_item');
+                $('#products .item').addClass('shop_grid_item');
+            });
         });
 
         var carruserl2 = $('#carrusel2');
