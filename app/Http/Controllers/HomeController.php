@@ -39,6 +39,10 @@ class HomeController extends Controller
         $datos_ventas = DB::select('CALL traer_ventas_por_mes(?)', [Carbon::now()->format('Y')]);
         $datos_compras = DB::select('CALL traer_compras_por_mes(?)', [Carbon::now()->format('Y')]);
         $vendedores = DB::select('CALL traer_vendedores(?,?)', [Carbon::now()->format('Y'),Carbon::now()->format('m')]);
+        $reparaciones = DB::select('SELECT COUNT(*) AS pendientes
+        FROM reparacions
+        WHERE reparacions.fecha_salida >= NOW()');
+
 
 
 
@@ -67,7 +71,8 @@ class HomeController extends Controller
                 ->with('egresos',$egresos)
                 ->with('valores_ventas',$valores_ventas)
                 ->with('valores_compre',$valores_compre)
-                ->with('vendedores',$vendedores);
+                ->with('vendedores',$vendedores)
+                ->with('pendiente',$reparaciones);
         }
 
         $use = User::findOrFail(Auth::user()->id);
