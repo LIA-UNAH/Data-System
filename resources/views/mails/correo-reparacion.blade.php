@@ -19,17 +19,17 @@
         }
 
         .saludo {
-            font-weight: 500;
+            font-weight: bold;
             font-size: 18px;
         }
 
         .cuerpo {
-            font-size: 14px;
+            font-size: 18px;
             text-align: justify;
         }
 
         .despedida{
-            font-size: 14px;
+            font-size: 18px;
             font-weight: bold;
         }
 

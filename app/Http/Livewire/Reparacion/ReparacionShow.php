@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Reparacion;
 use App\Models\Reparacion;
 use App\Notifications\ClienteReparacion;
 use Livewire\Component;
+use PDF;
 
 class ReparacionShow extends Component
 {
@@ -39,5 +40,25 @@ class ReparacionShow extends Component
         $this->reparacion->cliente->notify(new ClienteReparacion($this->mensaje));
 
         return  redirect()->route('reparaciones.show', ['reparacion' => $this->reparacion->id])->with('success', '¡Correo enviado con éxito!');
+    }
+
+    public function exportarPdf()
+    {
+                            
+        // imagenes codificadas en base64 sino no funcionan en el pdf
+        $logo_empresa = base64_encode(file_get_contents(public_path('/images/logo-empresa.jpg')));
+        $logo_whatsapp = base64_encode(file_get_contents(public_path('/images/whatsapp.png')));
+
+        $pdf = PDF::loadView('pdfs.ficha-tecnica', [
+            'reparacion' => $this->reparacion,
+            'logo_empresa' => $logo_empresa,
+            'logo_whatsapp' => $logo_whatsapp
+        ])->output();
+
+        return response()->streamDownload(
+            fn () => print($pdf),
+            "ficha-tecnica({$this->reparacion->cliente->name}).pdf"
+        );
+
     }
 }

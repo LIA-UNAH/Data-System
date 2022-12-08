@@ -67,9 +67,13 @@
                         </a>
 
                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="fas fa-envelope"></i></button>
-
-
+                            data-bs-target="#exampleModal"><i class="fas fa-envelope"></i>
+                        </button>
+                        
+                        <button wire:loading.attr="disabled" type="button" class="btn btn-outline-secondary" wire:click="exportarPdf">
+                            <span wire:loading wire:target="exportarPdf" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <i class="fas fa-print"></i>
+                        </button>
                     </div>
 
                 </div>
@@ -77,22 +81,18 @@
             </div>
         </div>
 
-        <div wire:ignore class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Mensaje</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
-                            {{-- <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Cliente:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div> --}}
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Mensaje:</label>
-                                <textarea wire:model.="mensaje" class="form-control @error('mensaje') is-invalid @enderror" id="message-text"></textarea>
+                                <textarea wire:model="mensaje" class="form-control @error('mensaje') is-invalid @enderror" id="message-text"></textarea>
                                 @error('mensaje')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -103,7 +103,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
-                        <button type="button" class="btn btn-primary" wire:click="enviar_correo">enviar</button>
+                        <button type="button" class="btn btn-primary" wire:click="enviar_correo">
+                            <span wire:loading wire:target="enviar_correo" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            enviar
+                        </button>
                     </div>
                 </div>
             </div>
