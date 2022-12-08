@@ -35,13 +35,13 @@
                                     @enderror
                                 </div>
                                 <!-- Nombre del cliente -->
-                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                <div class="col-sm-3 mb-3 mb-sm-0" wire:ignore>
                                     <label for="proveedor_id" class="text-secondary-d1"><strong>Nombre del
                                             proveedor:</strong></label>
                                     <select wire:model="data.proveedor_id"
                                         class="form-control @error('data.proveedor_id') is-invalid @enderror"
                                         id="proveedor_id" required autocomplete="proveedor_id" name="proveedor_id"
-                                        autofocus onchange="funcionObtenerTipoCliente()">
+                                        autofocus onchange="funcionObtenerTipoCliente()"  >
                                         <option value="0">Seleccione el proveedor</option>
                                         @foreach ($provedors as $provedor)
                                         <option value="{{ $provedor->id }}">{{$provedor->nombre_proveedor}}</option>
@@ -288,3 +288,13 @@
         </div>
     </form>
 </div>
+
+
+@push('scripsss')
+    <script>
+        $(document).ready(function() {
+            var select2 = $("#proveedor_id").select2();
+            select2.data('select2').$selection.css('height', '37px');
+        });
+    </script>
+@endpush

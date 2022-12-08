@@ -22,9 +22,9 @@ class ProductoTableSeeder extends Seeder
                 'modelo'=>'Galaxy Tab A7',
                 'descripcion'=>' TFT de 10,4 pulgadas FullHD+ a 2.000 x 1.200. Ratio 5:3. 8 núcleos a 2GHz, 3GB/32GB 3GB/64GB MicroSD',
                 'existencia'=>'250',
-                'prec_compra'=>'1020',
-                'prec_venta_fin'=>'1040',
-                'prec_venta_may'=>'1070',
+                'prec_compra'=>'10200',
+                'prec_venta_fin'=>'10450',
+                'prec_venta_may'=>'10700',
                 'id_categoria'=> '3',
                 'imagen_producto'=> 'galaxy-tab-a7.jpg',
             ]

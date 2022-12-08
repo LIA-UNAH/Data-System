@@ -38,5 +38,13 @@ class CategoriaTableSeeder extends Seeder
                 'status'=>'1',
             ]
         );
+
+        Categoria::create(
+            [
+                'name'=>'Cable VGA',
+                'description'=>'Cable que tiene un conector con 15 pines distribuido en tres filas. Su función es transmitir la señal desde la tarjeta gráfica de la PC al monitor.',
+                'status'=>'0',
+            ]
+        );
     }
 }

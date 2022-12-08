@@ -30,19 +30,11 @@ class VerCarrito extends Component
             ->section('content');
     }
 
-    public function actualizar_cantidad($incremento,$id,$apartado,$quantiti)
+    public function actualizar_total($incremento,$id)
     {
-        $apartado -= 1;
-        if ($apartado <= $quantiti) {
-            if ($incremento == -1) {
-                $incremento = -1;
-            }else {
-                $incremento = 0;
-            }
-        }
 
         \Cart::session(Auth::user()->id)->update($id,[
-            'quantity' => $incremento,
+            'quantity' => $incremento - \Cart::session(Auth::user()->id)->get($id)['quantity']  ,
         ]);
     }
 
@@ -80,5 +72,6 @@ class VerCarrito extends Component
         }
 
         \Cart::session(Auth::user()->id)->clear();
+        
     }
 }

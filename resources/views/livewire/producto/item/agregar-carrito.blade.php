@@ -4,7 +4,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="modal-title f_13 font-weight-bold"></div>
+                    <div class="modal-title f_13 font-weight-bold">Producto agregado exitosamente a su carrito de compras
+                    </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -167,7 +168,7 @@
                             <div class="dropdown right1 md_acc ">
                                 <span class="dropdown-toggle" role="menu" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false"><a href="#"
-                                        class="font-weight-bolder"> my account&nbsp;<svg
+                                        class="font-weight-bolder">{{ Auth::user()->name }}<svg
                                             class="svg-inline--fa fa-angle-down fa-w-10" aria-hidden="true"
                                             focusable="false" data-prefix="fas" data-icon="angle-down"
                                             role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
@@ -183,6 +184,20 @@
                                         @auth
                                             <a href="{{ url('/') }}"
                                                 class="dropdown-item font-weight-bolder">Home</a>
+                                            <a class="dropdown-item" href="{{ route('ver-carrito') }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                    </svg>
+                                                    Ver Varrito
+                                            </a>
+
+                                            <a class="dropdown-item" href="{{ route('ver-carrito-historial') }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                                                </svg>
+                                                Ver Historial
+                                            </a>
+
                                             <a class="dropdown-item" href="#" data-toggle="modal"
                                                 data-target="#logoutModal">
                                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -252,7 +267,7 @@
                 <div class="row">
                     <div class="col-xl-2 col-lg-2 col-6  head-logo">
                         <div class="text-left header-top-left pt-2"><a href="index.html"><img
-                                    src="assets/img/Hitech..png" class="img-responsive img" alt="DATA SYSTEM"></a></div>
+                                    src="assets/img/Hitech..png" class="img-responsive img" alt="Hitech"></a></div>
                     </div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
                     <div class="col-xl-10 col-lg-10 col-6  head-search">
                         <div class="d-flex navbar">
@@ -357,9 +372,7 @@
                                                         {{ \Cart::session(Auth::user()->id)->getTotal() }}</span>
                                                 </li>
                                                 <li class="d-block font-weight-bolder pt-2">
-                                                    <span class="text-left"><a href="cart.html">view cart</a></span>
-                                                    <span class="float-right"><a href="checkout.html">check
-                                                            out</a></span>
+                                                    <span class="text-left"><a href="{{ route('ver-carrito') }}">view cart</a></span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1372,7 +1385,7 @@
                     <div id="products" class="row">
                         @foreach ($productoCategoria as $product)
                         <div class="item col-xl-3">
-                            <div class="product_thumb bg-white rounded">
+                            <div class="product_thumb bg-white rounded" style="width: 100%;">
                                 <div class="pro_image">
                                     <a href="single-product.html"><img src="/images/products/{{ $product->imagen_producto }}"
                                             class="fst-image mx-auto d-block img-fluid" alt="product_1"></a>
@@ -1383,7 +1396,14 @@
                                 <div class="text-center main_text pt-3">
                                     <div>
                                         <div class="star mb-2">
-
+                                            <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
+                                                focusable="false" data-prefix="fa" data-icon="star"
+                                                role="img" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 576 512" data-fa-i2svg="">
+                                                <path fill="currentColor"
+                                                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+                                                </path>
+                                            </svg>
                                             <!-- <i class="fa fa-star" aria-hidden="true"></i> Font Awesome fontawesome.com -->
                                             <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
                                                 focusable="false" data-prefix="fa" data-icon="star"
@@ -1467,8 +1487,6 @@
     </div>
 
 
-
-
     <div class="footer animate__animated animate__fadeInUp">
 
 
@@ -1508,7 +1526,6 @@
             $('#list').click(function(event){4
                 event.preventDefault();
                 $('#products .item').addClass('shop_list_item');
-                $('#products .item').addStyle('width: 100%');
 
             });
             $('#grid').click(function(event){
