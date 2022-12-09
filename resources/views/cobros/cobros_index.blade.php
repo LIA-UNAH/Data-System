@@ -63,6 +63,10 @@
                     </form>
 
                 </div>
+                <div style="float: right; margin-left: 10px">
+                        <td style="text-align: center"><a class="btn btn-success" href="{{route("cobro.create")}}"
+                        style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-plus-square" style="color: white"></i></a>
+                    </div>
 
 
             </div>

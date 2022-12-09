@@ -409,6 +409,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/cobros', [CuentasPorCobrarController::class, 'index'])->middleware('can:controlParcial')
         ->name('cobros.index');
 
+    // Agregar cobros
+    Route::get("/cobros/create", [CuentasPorCobrarController::class, "create"])->middleware('can:controlParcial')
+    ->name("cobro.create");
+
     // Visualizar cobros
     Route::get('cobros/{id}/show', [CuentasPorCobrarController::class, 'show'])->middleware('can:controlParcial')
         ->name('cobro.mostrar');
