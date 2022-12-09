@@ -7,6 +7,12 @@ body{
 .page-tools{
     display: none;
 }
+.col1{
+    display: none;
+}
+.text-right{
+    display: none;
+}
 .cuerpo{
     width: 100%;   
 }

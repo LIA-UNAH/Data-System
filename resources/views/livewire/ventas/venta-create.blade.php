@@ -211,7 +211,7 @@
                                                     <td>
                                                         <input type="number" min="1" style ="width: 40px;" value="{{$item["cantidad_detalle_venta"]}}" wire:change="actualizar_total($event.target.value, {{ $index}})" class="input_Element"></input>
                                                     </td>
-                                                    <td  width="80">{{number_format($item["precio_venta"], 2, ".", ",")}}</td>
+                                                    <td  width="80">L.{{number_format($item["precio_venta"], 2, ".", ",")}}</td>
                                                     <td  width="200">L. {{number_format($item["total"], 2, ".", ",")}}</td>
 
                                                     <td width="40" >
@@ -235,7 +235,7 @@
 
                                                 <div class=" row my-2 align-items-center bgc-primary-l3 p-2">
                                                     <div class="total">
-                                                        Total: L {{number_format( $total_carrito, 2, ".", ",") }}
+                                                        Total: L. {{number_format( $total_carrito, 2, ".", ",") }}
                                                     </div>
                                                     <div class="col-5">
                                                         <span class="text-150 text-success-d3 opacity-2"></span>
