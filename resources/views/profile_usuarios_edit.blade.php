@@ -70,21 +70,24 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-sm-5 mb-3 mb-sm-0" style="margin-top: 6px">
-                                    <label for="type" class="form-label">Rol de usuario:</label>
-                                    <select class="form-control @error('type') is-invalid @enderror"  id="type"
-                                            required autocomplete="type" name="type"
-                                            autofocus>
-                                        <option value="{{$user->type}}" style="display: none">{{$user->type}}</option>
-                                        <option value="empleado">Empleado</option>
-                                        <option value="administrador">Administrador</option>
-                                    </select>
-                                    @error('type')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                @if ($user->type === 'Administrador')
+                                    <div class="col-sm-5 mb-3 mb-sm-0" style="margin-top: 6px">
+                                        <label for="type" class="form-label">Rol de usuario:</label>
+                                        <select class="form-control @error('type') is-invalid @enderror"  id="type" required autocomplete="type" name="type" autofocus>
+                                            <option value="{{$user->type}}" style="display: none">{{$user->type}}</option>
+                                            <option value="empleado">Empleado</option>
+                                            <option value="administrador" selected>Administrador</option>
+                                        </select>
+                                        @error('type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                @else
+                                    <input type="hidden" name="type" value="{{$user->type}}">
+                                @endif
+
 
                                 <div class="col-sm-12 mb-3 mb-sm-0" style="margin-top: 6px">
                                     <label for="address" class="form-label">Dirección:</label>

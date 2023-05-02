@@ -95,7 +95,7 @@
             <div class="card-body">
               <form class="form-horizontal form-material mx-2" data-bitwarden-watching="1">
                 <div class="form-group">
-                  <label for="example-email" class="col-md-12" style="text-align: left"><b>Correo:</b></label>
+                  <label for="example-email" class="col-md-12" style="text-align: left; margin-top: 10px"><b>Correo:</b></label>
                   <div class="col-md-12">
                     <input readonly type="email" value="{{$user->email}}" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
                   </div>
@@ -103,7 +103,7 @@
                 <div class="form-group">
                   <label class="col-md-12" style="text-align: left"><b>Teléfono:</b></label>
                   <div class="col-md-12">
-                    <input readonly type="text" value="{{$user->telephone}}" placeholder="123 456 7890" class="form-control form-control-line">
+                    <input readonly type="text" value="{{$user->telephone}}" class="form-control form-control-line">
                   </div>
                 </div>
                 <div class="form-group">
@@ -113,6 +113,7 @@
                   </div>
                 </div>
               </form>
+
             </div>
           </div>
         </div>
