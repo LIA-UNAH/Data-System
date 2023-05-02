@@ -197,13 +197,34 @@
     <script type="text/javascript">
         function funcionLetras(evt) {
             var code = (evt.which) ? evt.which : evt.keyCode;
-            if (code == 8 || code == 32) {
-                return true;
-            } else if (code >= 65) {
-                return true;
-            } else {
+            var input = evt.target.value;
+
+            // No permitir números, ni símbolos
+            if (code >= 33 && code <= 64 || code >= 186 && code <= 222 || code >= 91 && code <= 96) {
                 return false;
             }
+
+            // No permitir espacios al principio
+            if (code == 32 && input.length === 0) {
+                return false;
+            }
+
+            // Transformar primera letra de cada palabra a mayúscula
+            var words = input.split(" ");
+            for (var i = 0; i < words.length; i++) {
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+            }
+            var modifiedInput = words.join(" ");
+            evt.target.value = modifiedInput;
+
+            // Permitir separar palabras (mínimo una vez, máximo tres)
+            if (code == 32) {
+                var spaceCount = (input.match(/ /g) || []).length;
+                if (spaceCount >= 3) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         function funcionNumeros(evt) {

@@ -184,7 +184,6 @@
 @endsection
 @push('scripsss')
     <script type="text/javascript">
-
         function funcionLetras(evt) {
             var code = (evt.which) ? evt.which : evt.keyCode;
             var input = evt.target.value;
