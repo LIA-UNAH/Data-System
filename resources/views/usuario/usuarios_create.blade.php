@@ -157,20 +157,17 @@
 
                                     <div class="form-group row" style="margin-top: 15px">
                                         <div class="col-sm-6">
-                                            <a href="javascript:history.back()"
-                                               style="display: inline-block; background: #1a202c; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
-                                               class="btn btn-google btn-user btn-block">
-                                                {{ __('Regresar') }}
+                                            <a href="javascript:history.back()" class="btn btn-dark btn-lg btn-block">
+                                                Regresar
                                             </a>
                                         </div>
 
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <button type="submit"
-                                                    style="display: inline-block; color: white; border: 2px solid #ffffff;border-radius: 10px; font-size: large"
-                                                    class="btn btn-primary btn-user btn-block">
-                                                {{ __('Registrar') }}
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                                Registrar
                                             </button>
                                         </div>
+
                                     </div>
 
                                 </div>
