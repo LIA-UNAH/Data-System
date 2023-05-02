@@ -36,18 +36,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string','min:3', 'max:70'],
+            'name' => ['required', 'min:3','max:40','regex:/^[a-zA-Z]+\s[a-zA-Z]+(\s[a-zA-Z]+)?(\s[a-zA-Z]+)?$/'],
             'email' => ['required', 'string', 'email', 'max:70', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required'],
             'address' => ['required', 'string','min:3', 'max:250'],
             'telephone' => ['required', 'numeric','min:2', 'max:99999999'],
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:10240'
         ], [
             'name.required' => '¡Debes ingresar tu nombre completo!',
-            'name.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'name.regex' => '¡Debes ingresar de 2 a 4 nombres, sin incluir símbolos ni números!',
             'name.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
-            'name.max' => '¡Has excedido el limite máximo de 70 letras!',
+            'name.max' => '¡Has excedido el limite máximo de 40 letras!',
 
             'email.required' => '¡Debes ingresar tu correo electrónico!',
             'email.string' => '¡Debes ingresar tu correo electrónico, verifica la información!',
@@ -148,7 +148,7 @@ class UserController extends Controller
     {
         $users = User::findOrFail($id);
         $this->validate($request, [
-            'name' => ['required', 'string','min:3', 'max:70'],
+            'name' => ['required', 'min:3','max:40','regex:/^[a-zA-Z]+\s[a-zA-Z]+(\s[a-zA-Z]+)?(\s[a-zA-Z]+)?$/'],
             'email' => ['required', 'string', 'email', 'max:70', Rule::unique('users')->ignore($users->id),],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['required'],
@@ -156,9 +156,9 @@ class UserController extends Controller
             'telephone' => ['required', 'numeric','min:2', 'max:99999999']
         ], [
             'name.required' => '¡Debes ingresar tu nombre completo!',
-            'name.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
+            'name.regex' => '¡Debes ingresar de 2 a 4 nombres, sin incluir símbolos ni números!',
             'name.min' => '¡Ingresa tu nombre completo, sin abreviaturas!',
-            'name.max' => '¡Has excedido el limite máximo de 70 letras!',
+            'name.max' => '¡Has excedido el limite máximo de 40 letras!',
 
             'email.required' => '¡Debes ingresar tu correo electrónico!',
             'email.string' => '¡Debes ingresar tu correo electrónico, verifica la información!',
