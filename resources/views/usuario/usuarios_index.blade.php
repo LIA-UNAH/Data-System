@@ -170,10 +170,23 @@
                                         </div>
                                         <div class="card-footer">
                                             <div class="wcf-center">
-                                                <a class="btn btn-primary" href="{{route('usuarios.show',['id'=>$user->id])}}"><i class="fa fa-eye" style="color: white"></i></a>
-                                                <a class="btn btn-danger" href="#" data-bs-toggle="modal"
-                                                   data-bs-target={{"#modal_eliminar_cliente".$user->id}}><i class="fa fa-window-close" style="color: white"></i></a>
+                                                <a class="btn btn-success btn-sm d-inline-block" href="{{route("usuarios.edit",["id"=>$user->id])}}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a class="btn btn-primary btn-sm d-inline-block" href="{{route('usuarios.show',['id'=>$user->id])}}">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                @if($user->id == Auth::user()->id OR $user->type== 'administrador')
+                                                    <td></td>
+                                                @else
+                                                    <a class="btn btn-danger btn-sm d-inline-block" href="#" data-bs-toggle="modal"
+                                                       data-bs-target={{"#modal_eliminar_cliente".$user->id}}>
+                                                        <i class="fas fa-window-close"></i>
+                                                    </a>
+                                                @endif
                                             </div>
+
+
                                         </div>
                                         <div class="modal fade" id={{"modal_eliminar_cliente".$user->id}} tabindex="-1"
                                              aria-labelledby={{"modal_eliminar_cliente".$user->id}} aria-hidden="true">
