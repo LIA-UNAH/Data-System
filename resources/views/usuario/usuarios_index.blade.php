@@ -185,8 +185,6 @@
                                                     </a>
                                                 @endif
                                             </div>
-
-
                                         </div>
                                         <div class="modal fade" id={{"modal_eliminar_cliente".$user->id}} tabindex="-1"
                                              aria-labelledby={{"modal_eliminar_cliente".$user->id}} aria-hidden="true">
