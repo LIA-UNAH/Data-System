@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\QueryException;
+
 
 class UserController extends Controller
 {
@@ -319,7 +321,17 @@ class UserController extends Controller
 
     //HU6 - Eliminar usuario
     public function destroy(User $user){
-        $user->delete();
-        return redirect()->route("usuarios.index")->with("error", "Se eliminó exitosamente el usuario.");
+        try {
+            $user->delete();
+            return redirect()->route("usuarios.index")->with("exito", "El usuario ha sido eliminado exitosamente del sistema.");
+        } catch (QueryException $ex) {
+            $errorCode = $ex->errorInfo[1];
+            if ($errorCode == 1451) {
+                $message = 'Lo siento, no se puede eliminar este usuario porque tiene registros asociados en la tabla de ventas. Si desea eliminar este usuario, primero debe eliminar todos los registros asociados en la tabla de ventas.';
+                return view('usuario.usuarios_delete', compact('message'));
+            } else {
+                // Código para manejar otros errores aquí
+            }
+        }
     }
 }
