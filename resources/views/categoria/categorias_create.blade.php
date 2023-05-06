@@ -88,7 +88,7 @@
     <script type="text/javascript">
         function funcionLetras(evt) {
             var code = (evt.which) ? evt.which : evt.keyCode;
-            if (code == 8 || code == 32 || code == 46) {
+            if (code == 8 || code == 32) {
                 return true;
             } else if (code > 65 && code < 91 || code > 160 && code < 165 || code > 96 && code < 122 ) {
                 return true;
