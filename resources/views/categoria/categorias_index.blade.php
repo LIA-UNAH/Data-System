@@ -93,7 +93,6 @@
                             @endif
                             <td>
                                 @if($categoria->produc > 0)
-
                                 @else
                                     @if( $categoria->status == 0)
                                         <a class="btn btn-dark" href="#" data-bs-toggle="modal"
@@ -112,7 +111,6 @@
 
 
                             @if($categoria->produc > 0)
-
                             @else
                                 <div class="modal fade" id={{ "modal_estado_categoria".$categoria->id }} tabindex="-1"
                                      aria-labelledby={{ "modal_estado_categoria".$categoria->id }} aria-hidden="true">
