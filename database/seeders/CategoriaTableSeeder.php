@@ -15,6 +15,23 @@ class CategoriaTableSeeder extends Seeder
      */
     public function run()
     {
+
+        Categoria::create(
+            [
+                'name'=>'Cable VGA',
+                'description'=>'Cable que tiene un conector con 15 pines distribuido en tres filas. Su función es transmitir la señal desde la tarjeta gráfica de la PC al monitor.',
+                'status'=>'1',
+            ]
+        );
+
+        Categoria::create(
+            [
+                'name'=>'Consolas',
+                'description'=>'Son dispositivos electrónicos utilizados para interactuar con sistemas informáticos.',
+                'status'=>'0',
+            ]
+        );
+
         Categoria::create(
             [
                 'name'=>'Computadora',
@@ -39,12 +56,6 @@ class CategoriaTableSeeder extends Seeder
             ]
         );
 
-        Categoria::create(
-            [
-                'name'=>'Cable VGA',
-                'description'=>'Cable que tiene un conector con 15 pines distribuido en tres filas. Su función es transmitir la señal desde la tarjeta gráfica de la PC al monitor.',
-                'status'=>'0',
-            ]
-        );
+
     }
 }

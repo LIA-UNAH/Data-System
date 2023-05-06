@@ -27,14 +27,14 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductoTableSeeder::class);
         \App\Models\Proveedor::factory(100)->create();
         \App\Models\User::factory(100)->create();
-        \App\Models\Producto::factory(1)->create();
+        \App\Models\Producto::factory(100)->create();
         \App\Models\Pedido::factory(100)->create();
         \App\Models\Reparacion::factory(15)->create();
         \App\Models\CuentasPorCobrar::factory(100)->create();
-        //$this->call(CompraTableSeeder::class);
-        //$this->call(DetalleCompraTableSeeder::class);
-        //$this->call(VentaTableSeeder::class);
-        //$this->call(DetalleVentaSeeder::class);
+        $this->call(CompraTableSeeder::class);
+        $this->call(DetalleCompraTableSeeder::class);
+        $this->call(VentaTableSeeder::class);
+        $this->call(DetalleVentaSeeder::class);
 
     }
 }
