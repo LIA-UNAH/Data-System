@@ -84,10 +84,10 @@
                             <th>Nombre</th>
                             <th>E-mail</th>
                             <th>Rol de usuario</th>
-                            <th>Rol de telephone</th>
+                            <th>Telefóno</th>
                             <th style="text-align: center">Visualizar</th>
                             <th style="text-align: center">Editar</th>
-                            <th style="text-align: center">Desactivar</th>
+                            <th style="text-align: center">Eliminar</th>
                         </tr>
                         </thead>
                         <tbody>
