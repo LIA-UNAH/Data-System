@@ -43,7 +43,6 @@
                                         @if($categoria->status == 1)
                                             <option value="{{$categoria->status}}" style="display: none">Activo</option>
                                         @endif
-
                                         @if($categoria->status == 0)
                                             <option value="{{$categoria->status}}" style="display: none">Inactivo</option>
                                         @endif
@@ -73,7 +72,7 @@
                             </div>
                             <div class="form-group row" style="margin-top: 15px">
                                 <div class="col-sm-6">
-                                    <a href="/categorias" style="display: inline-block; background: #2c3034; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
+                                    <a href="javascript:history.back()" style="display: inline-block; background: #2c3034; color: white; border: 2px solid #ffffff;border-radius: 4px; font-size: large"
                                        class="btn btn-google btn-user btn-block">
                                         {{ __('Regresar') }}
                                     </a>
