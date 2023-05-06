@@ -31,6 +31,20 @@ class UserTableSeeder extends Seeder
 
         $us = User::create(
             [
+                'name'=>'Nielsandr Meza',
+                'email'=>'nvmeza@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Empleado',
+                'customer'=>'mayorista',
+                'address'=>'La Esperanza, Intibuca; barrio el centro, frente emprendedores agrícolas negocio DSA',
+                'telephone'=>'96832662',
+                'image'=>'Perfil (38).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
                 'name'=>'Ana Romero',
                 'email'=>'amromero@unah.hn',
                 'password' => bcrypt('12345678'),
@@ -43,19 +57,7 @@ class UserTableSeeder extends Seeder
         );
         $us->assignRole('Administrador');
 
-        $us = User::create(
-            [
-                'name'=>'Nielsandr Meza',
-                'email'=>'nvmeza@unah.hn',
-                'password' => bcrypt('12345678'),
-                'type'=>'Empleado',
-                'customer'=>'mayorista',
-                'address'=>'3201 W. Pecan McAllen TX 78501 USA',
-                'telephone'=>'96832662',
-                'image'=>'Perfil (26).jpg'
-            ]
-        );
-        $us->assignRole('Empleado');
+
 
         $us = User::create(
             [
@@ -66,7 +68,7 @@ class UserTableSeeder extends Seeder
                 'customer'=>'mayorista',
                 'address'=>'1303 San Jacinto Street Houston TX 77002 USA',
                 'telephone'=>'33476034',
-                'image'=>'Perfil (17).jpg'
+                'image'=>'Perfil (26).jpg'
             ]
         );
         $us->assignRole('Empleado');
@@ -80,7 +82,7 @@ class UserTableSeeder extends Seeder
                 'customer'=>'mayorista',
                 'address'=>'2419 E Haggar Ave Weslaco TX 78599 USA',
                 'telephone'=>'95795073',
-                'image'=>'Perfil (9).jpg'
+                'image'=>'Perfil (16).jpg'
             ]
         );
         $us->assignRole('Empleado');
@@ -94,24 +96,24 @@ class UserTableSeeder extends Seeder
                 'customer'=>'mayorista',
                 'address'=>'1303 San Jacinto Street Houston TX 77002 USA',
                 'telephone'=>'94896083',
-                'image'=>'Perfil (5).jpg'
+                'image'=>'Perfil (10).jpg'
             ]
         );
         $us->assignRole('Empleado');
 
         $us = User::create(
             [
-                'name'=>'Lester Bogran',
-                'email'=>'lester-bogran@unah.edu.hn',
+                'name'=>'Jairo Martinez',
+                'email'=>'jairo.martinez@unah.edu.hn',
                 'password' => bcrypt('12345678'),
-                'type'=>'Cliente',
-                'customer'=>'consumidor_final',
+                'type'=>'Administrador',
+                'customer'=>'mayorista',
                 'address'=>'1901 W Hwy 77 San Benito TX 78586 USA',
                 'telephone'=>'99178932',
-                'image'=>'Perfil (2).jpg'
+                'image'=>'Perfil (18).jpg'
             ]
         );
-        $us->assignRole('Cliente');
+        $us->assignRole('Administrador');
 
         $us = User::create(
             [
@@ -125,7 +127,7 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (35).jpg'
             ]
         );
-        $us->assignRole('Administrador');
+        $us->assignRole('Empleado');
 
         $us = User::create(
             [
@@ -139,7 +141,7 @@ class UserTableSeeder extends Seeder
                 'image'=>'Perfil (34).jpg'
             ]
         );
-        $us->assignRole('Administrador');
+        $us->assignRole('Empleado');
 
         $us = User::create(
             [
@@ -179,6 +181,62 @@ class UserTableSeeder extends Seeder
                 'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
                 'telephone'=>'99999999',
                 'image'=>'Perfil (34).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Estefany López',
+                'email'=>'estefanylopez@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'customer'=>'mayorista',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'99999999',
+                'image'=>'Perfil (30).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Juan Vallecillo',
+                'email'=>'juan_vallecillo@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'customer'=>'mayorista',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'99999999',
+                'image'=>'Perfil (42).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Ingris Carcamo',
+                'email'=>'ingris.carcamo@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'customer'=>'mayorista',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'33333333',
+                'image'=>'Perfil (47).jpg'
+            ]
+        );
+        $us->assignRole('Administrador');
+
+        $us = User::create(
+            [
+                'name'=>'Ruth Fonseca',
+                'email'=>'ruth.fonseca@unah.hn',
+                'password' => bcrypt('12345678'),
+                'type'=>'Administrador',
+                'customer'=>'mayorista',
+                'address'=>'15800 South State Street South Holland IL 60473-1200 USA',
+                'telephone'=>'33333333',
+                'image'=>'Perfil (47).jpg'
             ]
         );
         $us->assignRole('Administrador');
