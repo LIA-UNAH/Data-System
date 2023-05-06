@@ -1,7 +1,6 @@
 @extends('Layouts.Layouts')
 @section('title', 'Categorias')
 @section('content')
-
     {{-- Mensajes de las operaciones realizadas --}}
     {{--Para los mensajes afirmativos y sin errores --}}
     @if (session()->has('exito'))
