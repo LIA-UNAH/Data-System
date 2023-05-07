@@ -33,6 +33,14 @@ class Venta extends Model
             }
 
             $query->where("numero_factura_venta", 'like', "%{$filtros['busqueda']}%")
+            ->orWhereHas('user', function ($q) use ($filtros) {
+                $q->where('name', 'like', "%{$filtros['busqueda']}%");
+            })
+            ->orWhereHas('cliente', function ($q) use ($filtros) {
+                $q->where('name', 'like', "%{$filtros['busqueda']}%");
+            })
+            ->orWhere("fecha_factura", 'like', "%{$filtros['busqueda']}%")
+            
                     ->where('estado', 'like', "%{$filtros["estado"]["valor"]}%");
         });
     }
