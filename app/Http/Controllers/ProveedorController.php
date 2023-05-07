@@ -20,7 +20,11 @@ class ProveedorController extends Controller
         $proveedores =DB::table('proveedors')->select('id','nombre_proveedor',
         'rtn_proveedor','telefono_proveedor','direccion_proveedor','contacto_proveedor','telefono_contacto_proveedor')
         ->where('nombre_proveedor', 'like', '%'.$buscar.'%')
-        ->orWhere('rtn_proveedor', 'LIKE', '%'. $buscar. '%')->paginate(5);
+        ->orWhere('rtn_proveedor', 'LIKE', '%'. $buscar. '%')
+        ->orWhere('contacto_proveedor', 'LIKE', '%'. $buscar. '%')
+        ->orWhere('telefono_proveedor', 'LIKE', '%'. $buscar. '%')
+        ->orWhere('telefono_contacto_proveedor', 'LIKE', '%'. $buscar. '%')
+        ->paginate(5);
         return view('proveedor.proveedores_index', compact('proveedores', 'buscar'));// ESTAS 2 VARIABLES SON LAS QUE SE INICIALIZARON ARRIBA
     }
 
