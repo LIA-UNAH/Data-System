@@ -46,6 +46,7 @@
 
             <div style="float: right">
                 <div style="float: left">
+
                     <!-- HU8 - Buscar y recargar pedido -->
 
                     <form action="" method="GET"
@@ -95,7 +96,7 @@
                             </td>
                             <td>{{$pedid->detalle_Pedido}}</td>
                             <td>{{ $pedid->total_Pedido}}</td>
-
+                            
                             <div>
                                 <td><a class="btn btn-info"
                                        href="{{ route('pedidos.mostrar', ['id' => $pedid->id])}}"><i class="fa fa-eye"
@@ -157,4 +158,5 @@
             <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $pedidos->links() }}</div>
         </div>
     </div>
+    
 @endsection
