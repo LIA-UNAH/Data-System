@@ -1,7 +1,6 @@
 @extends('Layouts.Layouts')
 
 
-
 @section('content')
 
     {{-- Mensajes de las operaciones realizadas --}}
@@ -96,7 +95,7 @@
                             </td>
                             <td>{{$pedid->detalle_Pedido}}</td>
                             <td>{{ $pedid->total_Pedido}}</td>
-                            
+
                             <div>
                                 <td><a class="btn btn-info"
                                        href="{{ route('pedidos.mostrar', ['id' => $pedid->id])}}"><i class="fa fa-eye"
