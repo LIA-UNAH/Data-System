@@ -34,7 +34,7 @@
 
                     <div style="float: left; margin-left: 15px">
                         <td style="text-align: center">
-                            <a class="btn btn-dark" href="/compras"
+                            <a class="btn btn-dark" href="/lis_compras"
                                 style=" border: 2px solid #ffffff;border-radius: 4px"><i class="fa fa-spinner"
                                     style="color: white"></i>
                             </a>
