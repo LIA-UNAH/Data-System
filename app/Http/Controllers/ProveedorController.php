@@ -25,7 +25,6 @@ class ProveedorController extends Controller
         return view('proveedor.proveedores_index', compact('proveedores', 'buscar'));// ESTAS 2 VARIABLES SON LAS QUE SE INICIALIZARON ARRIBA
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -48,10 +47,10 @@ class ProveedorController extends Controller
         $this->validate($request, [
             'nombre_proveedor' => ['required', 'string','min:3', 'max:70'],
             'rtn_proveedor' => ['required', 'string','min:16', 'max:16'],
-            'telefono_proveedor' => ['required', 'numeric','min:2', 'max:99999999'],
+            'telefono_proveedor' => ['required', 'numeric','min:2', 'max:99999999','regex:/^[9832]/'],
             'direccion_proveedor' => ['required', 'string','min:3', 'max:250'],
             'contacto_proveedor' => ['required', 'string','min:3', 'max:70'],
-            'telefono_contacto_proveedor' => ['required', 'numeric','min:2', 'max:99999999'],
+            'telefono_contacto_proveedor' => ['required', 'numeric','min:2', 'max:99999999','regex:/^[9832]/'],
         ], [
             'nombre_proveedor.required' => '¡Debes ingresar tu nombre completo!',
             'nombre_proveedor.string' => '¡Debes ingresar tu nombre completo, solo se permiten letras!',
@@ -67,6 +66,7 @@ class ProveedorController extends Controller
             'telefono_proveedor.numeric' => '¡Debes ingresar un teléfono, solo se permiten números!',
             'telefono_proveedor.min' => '¡Ingresa tu número un teléfono completo!',
             'telefono_proveedor.max' => '¡Ingresa tu número un teléfono completo, sin exceder el límite!',
+            'telefono_proveedor.regex' => 'El teléfono del proveedor debe comenzar con 9, 8, 3 o 2.',
 
             'direccion_proveedor.required' => '¡Debes ingresar tu dirección!',
             'direccion_proveedor.string' => '¡Debes ingresar tu dirección, verifica la información!',
@@ -82,7 +82,9 @@ class ProveedorController extends Controller
             'telefono_contacto_proveedor.numeric' => '¡Debes ingresar un teléfono, solo se permiten números!',
             'telefono_contacto_proveedor.min' => '¡Ingresa tu número un teléfono completo!',
             'telefono_contacto_proveedor.max' => '¡Ingresa tu número un teléfono completo, sin exceder el límite!',
+            'telefono_contacto_proveedor.regex' => 'El teléfono del contacto del proveedor debe comenzar con 9, 8, 3 o 2.'
         ]);
+
 
         $proveedor = new Proveedor();
         $proveedor->nombre_proveedor = $request->input('nombre_proveedor');
