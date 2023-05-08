@@ -47,20 +47,12 @@
             <div style="float: right">
                 <div style="float: left">
                     <!-- HU8 - Buscar y recargar pedido -->
-
-                    <form action="" method="GET"
-                          class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" name="busqueda" class="form-control bg-light border-0 small"
-                                   placeholder="Buscar"
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn" type="submit" value="Buscar" style="background: white">
-                                    <i class="fas fa-search fa-sm" style="color: black"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="input-group">
+                                    <span class="input-group-text text-body"><i class="fas fa-search"
+                                            aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" placeholder="Busqueda..." name="myInput" id="myInput">
+                                </div>
+                   
 
                 </div>
                 <div style="float: right; margin-left: 10px">
@@ -117,5 +109,19 @@
             <div class="sidebar-brand d-flex align-items-center justify-content-center">{{ $cobros->links() }}</div>
         </div>
     </div>
+
+    <script src="/admin/jquery/jquery.js"></script>
+    <script src="/admin/jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#tblaBody tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+        </script>
+
 
 @endsection
