@@ -189,6 +189,12 @@ class ProveedorController extends Controller
      */
     public function destroy($id)
     {
+        $proveedor = Proveedor::find($id);
+
+        if ($proveedor->compra()->exists()) {
+            return redirect()->route('proveedor.index')->with("error", "No se puede eliminar el proveedor porque tiene compras asociadas.");
+        }
+
         Proveedor::destroy($id);
         return redirect()->route('proveedor.index')->with("error", "Se eliminó exitosamente el proveedor.");
     }
