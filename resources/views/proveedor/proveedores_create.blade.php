@@ -127,15 +127,14 @@
 @endsection
 @push('scripsss')
     <script type="text/javascript">
-        function funcionLetras(evt) {
-            var code = (evt.which) ? evt.which : evt.keyCode;
-            if (code == 8 || code == 32 || code == 46) {
-                return true;
-            } else if (code >= 65) {
-                return true;
-            } else {
-                return false;
-            }
+
+        function funcionLetras(event) {
+                    const tecla = event.key;
+                    const regex = /^[a-zA-Z]+$/;
+
+                    if (!regex.test(tecla)) {
+                        event.preventDefault();
+                    }
         }
 
         function funcionNumeros(evt) {
@@ -150,5 +149,9 @@
                 return false;
             }
         }
+
+
+
+
     </script>
 @endpush
