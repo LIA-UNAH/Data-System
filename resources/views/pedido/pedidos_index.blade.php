@@ -36,6 +36,8 @@
             </button>
         </div>
     @endif
+    
+    <!--no aplica la seccion de crear pedido ya que es una seccion parte del cliente y solo se muestra la lista de pedidos ingtesados  -->
 
     <div class="card shadow mb-4 ">
         <div class="card-header py-3" style="background: #0d6efd">
@@ -163,5 +165,6 @@
           });
         });
         </script>
+
     
 @endsection
