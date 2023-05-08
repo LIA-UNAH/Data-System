@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
-{ 
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    { 
         $buscar = trim( $request->get('buscar_texto'));
         $proveedores =DB::table('proveedors')->select('id','nombre_proveedor',
         'rtn_proveedor','telefono_proveedor','direccion_proveedor','contacto_proveedor','telefono_contacto_proveedor')
