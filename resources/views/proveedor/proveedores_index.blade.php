@@ -1,4 +1,4 @@
-@extends('Layouts.Layouts')
+@extends('Layouts.Layouts') 
 @section('content')
 {{-- Mensajes de las operaciones realizadas --}}
 {{-- Para los mensajes afirmativos y sin errores --}}
